@@ -1,0 +1,15 @@
+/home/omidsa/Programmings/PatternsWithCSharp/CompositePattern/bin/Debug/net9.0/CompositePattern
+/home/omidsa/Programmings/PatternsWithCSharp/CompositePattern/bin/Debug/net9.0/CompositePattern.deps.json
+/home/omidsa/Programmings/PatternsWithCSharp/CompositePattern/bin/Debug/net9.0/CompositePattern.runtimeconfig.json
+/home/omidsa/Programmings/PatternsWithCSharp/CompositePattern/bin/Debug/net9.0/CompositePattern.dll
+/home/omidsa/Programmings/PatternsWithCSharp/CompositePattern/bin/Debug/net9.0/CompositePattern.pdb
+/home/omidsa/Programmings/PatternsWithCSharp/CompositePattern/obj/Debug/net9.0/CompositePattern.GeneratedMSBuildEditorConfig.editorconfig
+/home/omidsa/Programmings/PatternsWithCSharp/CompositePattern/obj/Debug/net9.0/CompositePattern.AssemblyInfoInputs.cache
+/home/omidsa/Programmings/PatternsWithCSharp/CompositePattern/obj/Debug/net9.0/CompositePattern.AssemblyInfo.cs
+/home/omidsa/Programmings/PatternsWithCSharp/CompositePattern/obj/Debug/net9.0/CompositePattern.csproj.CoreCompileInputs.cache
+/home/omidsa/Programmings/PatternsWithCSharp/CompositePattern/obj/Debug/net9.0/CompositePattern.sourcelink.json
+/home/omidsa/Programmings/PatternsWithCSharp/CompositePattern/obj/Debug/net9.0/CompositePattern.dll
+/home/omidsa/Programmings/PatternsWithCSharp/CompositePattern/obj/Debug/net9.0/refint/CompositePattern.dll
+/home/omidsa/Programmings/PatternsWithCSharp/CompositePattern/obj/Debug/net9.0/CompositePattern.pdb
+/home/omidsa/Programmings/PatternsWithCSharp/CompositePattern/obj/Debug/net9.0/CompositePattern.genruntimeconfig.cache
+/home/omidsa/Programmings/PatternsWithCSharp/CompositePattern/obj/Debug/net9.0/ref/CompositePattern.dll
