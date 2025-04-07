@@ -1,52 +1,94 @@
 namespace CompositePattern.Pattern01
 {
-    public class ProductBundle
+    public class ProductBundle : OrderItem
     {
-        public string Name { get; set; }
-        public List<SimpleProduct> Products {get; set;} = new List<SimpleProduct>();
-        public decimal Discount {get; set;}
-
-        public ProductBundle(string name, decimal discount)
+        public List<OrderItem> Items {get; set;} = new List<OrderItem>();
+        public decimal Discount { get; set; }
+        public ProductBundle(string name, decimal dicount) : base(name)
         {
-            Name = name;
-            Discount = discount;
-        }
-        
-        public void AddProduct(SimpleProduct product)
-        {
-            Products.Add(product);
+            Discount = dicount;
         }
 
-        public decimal GetPrice()
+        //     public string Name { get; set; }
+        //     public List<SimpleProduct> Products {get; set;} = new List<SimpleProduct>();
+        //     public decimal Discount {get; set;}
+
+        //     public ProductBundle(string name, decimal discount)
+        //     {
+        //         Name = name;
+        //         Discount = discount;
+        //     }
+
+        //     public void AddProduct(SimpleProduct product)
+        //     {
+        //         Products.Add(product);
+        //     }
+
+        //     public decimal GetPrice()
+        //     {
+        //         decimal total = 0;
+        //         foreach(var product in Products)
+        //         {
+        //             total += product.GetPrice();
+        //         }
+        //         return total - Discount;
+        //     }
+
+        //     public double GetWeight()
+        //     {
+        //         double total = 0;
+        //         foreach(var product in Products)
+        //         {
+        //             total += product.GetWeight();
+        //         }
+        //         return total;
+        //     }
+
+        //     public string GenerateInvoiceLine()
+        // {
+        //     var lines = new List<string> { $"Bundle: {Name}" };
+        //     foreach (var product in Products)
+        //     {
+        //         lines.Add($"  - {product.GenerateInvoiceLine()}");
+        //     }
+        //     lines.Add($"  Bundle Discount: -{Discount:C}");
+        //     lines.Add($"  Total: {GetPrice():C}");
+        //     return string.Join("\n", lines);
+        // }
+        public void AddItem(OrderItem item)
         {
-            decimal total = 0;
-            foreach(var product in Products)
+            Items.Add(item);
+        }
+        public override string GenerateInvoiceLine(int indentLevel = 0)
+        {
+            var lines = new List<string> { $"{new string(' ', indentLevel * 2)}Bundle: {Name}" };
+        foreach (var item in Items)
+        {
+            lines.Add(item.GenerateInvoiceLine(indentLevel + 1));
+        }
+        lines.Add($"{new string(' ', indentLevel * 2)}Bundle Discount: -{Discount:C}");
+        lines.Add($"{new string(' ', indentLevel * 2)}Total: {GetPrice():C}");
+        return string.Join("\n", lines);
+        }
+
+        public override int GetPrice()
+        {
+            int total = 0;
+            foreach(var item in Items)
             {
-                total += product.GetPrice();
+                total += item.GetPrice();
             }
-            return total - Discount;
+            return total - (int)Discount;
         }
 
-        public double GetWeight()
+        public override double GetWeight()
         {
             double total = 0;
-            foreach(var product in Products)
-            {
-                total += product.GetWeight();
-            }
-            return total;
-        }
-
-        public string GenerateInvoiceLine()
-    {
-        var lines = new List<string> { $"Bundle: {Name}" };
-        foreach (var product in Products)
+        foreach (var item in Items)
         {
-            lines.Add($"  - {product.GenerateInvoiceLine()}");
+            total += item.GetWeight();
         }
-        lines.Add($"  Bundle Discount: -{Discount:C}");
-        lines.Add($"  Total: {GetPrice():C}");
-        return string.Join("\n", lines);
-    }
+        return total;
+        }
     }
 }
