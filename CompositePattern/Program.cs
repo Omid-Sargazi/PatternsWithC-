@@ -25,9 +25,9 @@ public class Program
         var phone = new SimpleProduct("IPhone",200, 0.2);
 
         var bundle = new ProductBundle("Book + Phone", 50.0m);
-        bundle.AddProduct(book);
-        bundle.AddProduct(phone);
-        
+        //bundle.AddProduct(book);
+        //bundle.AddProduct(phone);
+
         Console.WriteLine("فاکتور:");
         Console.WriteLine(bundle.GenerateInvoiceLine());
         Console.WriteLine($"وزن کل: {bundle.GetWeight()} کیلوگرم");
