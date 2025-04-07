@@ -17,7 +17,7 @@ public class Program
 
         var rootDir = new CompositePattern.Pattern01.Directory("Root");
         rootDir.AddFile(file1);
-        rootDir.AddDirectory(subDir);
+        rootDir.AddFile(subDir);
     Console.WriteLine($"اندازه کل Root: {rootDir.GetSize()}"); // خروجی: 300    };
         Console.WriteLine($"اندازه کل SubDir: {subDir.GetSize()}"); // خروجی: 200
     }

@@ -1,39 +1,75 @@
 namespace CompositePattern.Pattern01
 {
-    public class Directory
+    public class Directory : FileSystemItem
     {
-        public string Name {get; set;}
-        public List<File> files {get; set;} = new List<File>();
-        public List<Directory> SubDirectories {get; set;} = new List<Directory>();
-
-        public Directory(string name)
+        public List<FileSystemItem> Items {get; set;} = new List<FileSystemItem>();
+        public Directory(string name) : base(name)
         {
-            Name = name;
+
+        }
+        public void AddFile(FileSystemItem item)
+        {
+            Items.Add(item);
         }
 
-        public void AddFile(File file)
+        public void Remove(FileSystemItem item)
         {
-            files.Add(file);
+            Items.Remove(item);
         }
 
-        public void AddDirectory(Directory directory)
-        {
-            SubDirectories.Add(directory);
-        }
+        // public string Name {get; set;}
+        // public List<File> files {get; set;} = new List<File>();
+        // public List<Directory> SubDirectories {get; set;} = new List<Directory>();
 
-        public int GetSize()
+        // public Directory(string name)
+        // {
+        //     Name = name;
+        // }
+
+        // public void AddFile(File file)
+        // {
+        //     files.Add(file);
+        // }
+
+        // public void AddDirectory(Directory directory)
+        // {
+        //     SubDirectories.Add(directory);
+        // }
+
+        // public int GetSize()
+        // {
+        //     int totalSize = 0;
+        //     foreach(var file in files)
+        //     {
+        //         totalSize += file.GetSize();
+        //     }
+
+        //     foreach(var directory in SubDirectories)
+        //     {
+        //         totalSize += directory.GetSize();
+        //     }
+        //     return totalSize;
+        // }
+        public override int GetSize()
         {
             int totalSize = 0;
-            foreach(var file in files)
+            foreach(var item in Items)
             {
-                totalSize += file.GetSize();
-            }
-
-            foreach(var directory in SubDirectories)
-            {
-                totalSize += directory.GetSize();
+                totalSize += item.GetSize();
             }
             return totalSize;
+        }
+
+        public override void Search(string keyword)
+        {
+            if(Name.Contains(keyword))
+            {
+                Console.WriteLine($"دایرکتوری پیدا شد: {Name}");
+            }
+            foreach(var item in Items)
+            {
+                item.Search(keyword);
+            }
         }
     }
 }
