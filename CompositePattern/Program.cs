@@ -32,6 +32,23 @@ public class Program
         Console.WriteLine(bundle.GenerateInvoiceLine());
         Console.WriteLine($"وزن کل: {bundle.GetWeight()} کیلوگرم");
 
+        var app = new App();
+        var button1 = new Button{Text = "Click Me"}; 
+        var button2 = new Button{Text = "Submit", Color="Blue"};
+        app.AddComponent(button1); 
+        app.AddComponent(button2);
+
+        Console.WriteLine("تم روشن:");
+        button1.Render();
+        button2.Render();
+
+        var darkTheme = new Theme("Black", "White", "Arial", 12);
+        app.SwitchTheme(darkTheme);
+
+        Console.WriteLine("تم تیره:");
+        button1.Render();
+        button2.Render(); 
+
 
     }
 }
