@@ -2,7 +2,7 @@ namespace CompositePattern.Pattern01
 {
     public class Solution01
     {
-       public int[] TwoSum(int[] sums, int targer)
+       public  int[] TwoSum(int[] sums, int targer)
        {
         for(int i=0; i<sums.Length; i++)
         {
@@ -12,9 +12,9 @@ namespace CompositePattern.Pattern01
                 {
                     return new int[] {i,j};
                 }
-                return new int[] {};
             }
         }
+                return new int[] {};
        }
     }
 }
