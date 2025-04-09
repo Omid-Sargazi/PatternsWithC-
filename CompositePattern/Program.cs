@@ -1,4 +1,5 @@
-﻿using CompositePattern.Pattern01;
+﻿using CompositePattern.APIGetAway;
+using CompositePattern.Pattern01;
 using System;
 public class Program
 {
@@ -49,6 +50,11 @@ public class Program
         button1.Render();
         button2.Render(); 
 
+        Gateway gateway = new Gateway(new OAuth());
+        Console.WriteLine(gateway.ProcessRequest("Rest")); // درخواست Rest با OAuth پردازش شد
+
+        gateway = new Gateway(new JWT());
+        Console.WriteLine(gateway.ProcessRequest("GraphQL")); // درخواست GraphQL با JWT پردازش شد
 
     }
 }
