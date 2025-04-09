@@ -1,4 +1,4 @@
-namespace CompositePattern.Pattern01
+namespace CompositePattern.OtherCodes
 {
     public class Solution01
     {
