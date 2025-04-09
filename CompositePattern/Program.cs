@@ -57,8 +57,10 @@ public class Program
         // gateway = new Gateway(new JWT());
         // Console.WriteLine(gateway.ProcessRequest("GraphQL")); // درخواست GraphQL با JWT پردازش شد
 
-        PaymentGateway gateway = new PaymentGateway(new IDCart());
+        PaymentGateway gateway = new PaymentGateway(new IDCart(), new OnlineShop());
+        PaymentGateway gateway02 = new PaymentGateway(new IDCart(), new PhysicalStore());
         gateway.PaymentWay(100.5m); // IDCard payment of 100.5 processed.
+        gateway02.PaymentWay(100.5m); // IDCard payment of 100.5 processed.
 
     }
 }

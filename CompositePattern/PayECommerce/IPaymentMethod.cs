@@ -2,6 +2,6 @@ namespace CompositePattern.PayECommerce
 {
     public interface IPaymentMethod
     {
-        void PaymentWay(decimal amount);
+        bool PaymentWay(decimal amount);
     }
 }

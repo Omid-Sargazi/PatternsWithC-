@@ -2,9 +2,10 @@ namespace CompositePattern.PayECommerce
 {
     public class IDCart : IPaymentMethod
     {
-        public void PaymentWay(decimal amount)
+        public bool PaymentWay(decimal amount)
         {
             Console.WriteLine($"IDCard payment of {amount} processed.");
+            return true;
         }
     }
 }
