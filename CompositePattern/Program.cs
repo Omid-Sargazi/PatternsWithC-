@@ -1,5 +1,6 @@
 ﻿using CompositePattern.APIGetAway;
 using CompositePattern.Pattern01;
+using CompositePattern.PayECommerce;
 using System;
 public class Program
 {
@@ -55,6 +56,9 @@ public class Program
 
         // gateway = new Gateway(new JWT());
         // Console.WriteLine(gateway.ProcessRequest("GraphQL")); // درخواست GraphQL با JWT پردازش شد
+
+        PaymentGateway gateway = new PaymentGateway(new IDCart());
+        gateway.PaymentWay(100.5m); // IDCard payment of 100.5 processed.
 
     }
 }

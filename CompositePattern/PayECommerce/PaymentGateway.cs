@@ -1,11 +1,15 @@
 namespace CompositePattern.PayECommerce
 {
-    public class PaymentGateway : IPaymentGateway
+    public class PaymentGateway 
     {
-        public void ProcessPayment(string payType)
+        private IPaymentMethod _paymentMethod;
+        public PaymentGateway(IPaymentMethod paymentMethod)
         {
-            // Simulate payment processing
-            Console.WriteLine($"Processing {payType} payment...");
+            _paymentMethod = paymentMethod;
+        }
+        public void PaymentWay(decimal amount)
+        {
+            _paymentMethod.PaymentWay(amount);
         }
     }
 }
