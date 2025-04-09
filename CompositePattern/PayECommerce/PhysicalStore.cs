@@ -8,7 +8,7 @@ namespace CompositePattern.PayECommerce
         {
             Location = "Physical Store";
         }
-        public void Enviroment(decimal amount)
+        public void Enviroment(decimal amount, bool success)
         {
             Console.WriteLine($"Physical store environment with {amount} {Location}");
         }

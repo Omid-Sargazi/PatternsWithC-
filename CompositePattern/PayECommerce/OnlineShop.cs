@@ -8,7 +8,7 @@ namespace CompositePattern.PayECommerce
         {
             Location = "Online Shop";
         }
-        public void Enviroment(decimal amount)
+        public void Enviroment(decimal amount, bool success)
         {
             // Here you can implement the logic for the online shop environment
             // For example, you might want to log the environment and amount

@@ -11,15 +11,8 @@ namespace CompositePattern.PayECommerce
         }
         public void PaymentWay(decimal amount)
         {
-            if(_paymentMethod.PaymentWay(amount))
-            {
-                Console.WriteLine($"Payment of {amount} processed.");
-            _paymentEnvironment.Enviroment(amount);
-            }
-            else
-            {
-                Console.WriteLine($"Payment of {amount} failed.");
-            }
+            bool seccess = _paymentMethod.PaymentWay(amount);
+            _paymentEnvironment.Enviroment(amount, seccess);
         }
         
     }
