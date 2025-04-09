@@ -1,14 +1,12 @@
 namespace CompositePattern.SendMessageWithDecoratorPattern
 {
-    public class CompressedMessage:IMessage
+    public class CompressedMessage : MessageDecorator
     {
-        private IMessage _message;
-        public CompressedMessage(IMessage message)
+        public CompressedMessage(IMessage message) : base(message)
         {
-            _message = message;
         }
 
-        public string Send()
+        public override string Send()
         {
             return $"Sending compressed: {Compress(_message.Send())}";
         }

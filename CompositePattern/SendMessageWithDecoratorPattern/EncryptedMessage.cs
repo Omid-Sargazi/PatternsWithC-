@@ -1,18 +1,18 @@
 namespace CompositePattern.SendMessageWithDecoratorPattern
 {
-    public class EncryptedMessage : IMessage
+    public class EncryptedMessage : MessageDecorator
     {
-        private IMessage _message;
-       
-        public EncryptedMessage(IMessage message)
+        public EncryptedMessage(IMessage message) : base(message)
         {
-            _message = message;
         }
-        public string Send()
+
+        public override string Send()
         {
             return $"Sending encrypted: {Encrypt(_message.Send())}";
         }
-        
-        private string Encrypt(string text)=> $"ENC({text})"; 
+        private string Encrypt(string text)
+        {
+            return $"ENC{text}";
+        }
     }
 }
