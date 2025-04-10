@@ -64,8 +64,13 @@ public class Program
         gateway02.PaymentWay(100.5m); // IDCard payment of 100.5 processed.
 
         var folder = new Folder{Name = "Doc"};
+        folder.files.Add(new CompositePattern.Composite.WithoutPattern.File {Name = "File1", Size = 100});
+
         folder.files.Add(new CompositePattern.Composite.WithoutPattern.File{Name = "File1", Size = 100});
         folder.files.Add(new CompositePattern.Composite.WithoutPattern.File{Name = "img.jpg", Size = 200});
+        var subfolder = new Folder {Name = "Photoes"};
+        subfolder.files.Add(new CompositePattern.Composite.WithoutPattern.File{Name = "img.jpg", Size = 200});
+        folder.files.Add(subfolder);
 
 
     }

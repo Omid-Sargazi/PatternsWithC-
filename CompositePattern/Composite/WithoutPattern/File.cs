@@ -2,9 +2,9 @@ using System.Globalization;
 
 namespace CompositePattern.Composite.WithoutPattern
 {
-    public class File
+    public class File : FileSystemItem
     {
-        public string Name { get; set; }
+        
         public int Size { get; set; }
         public string GetInfo() =>  $"File: {Name}, Size: {Size} bytes";
     }

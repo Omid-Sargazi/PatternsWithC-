@@ -1,9 +1,8 @@
 namespace CompositePattern.Composite.WithoutPattern
 {
-    public class Folder
+    public class Folder : FileSystemItem
     {
-        public string Name { get; set; }
-        public List<File> files = new List<File>();
+        public List<FileSystemItem> files = new List<FileSystemItem>();
 
         public string GetInfo()
         {
