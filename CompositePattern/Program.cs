@@ -1,5 +1,6 @@
 ﻿using CompositePattern.APIGetAway;
 using CompositePattern.Composite.WithoutPattern;
+using CompositePattern.Database;
 using CompositePattern.Pattern01;
 using CompositePattern.PayECommerce;
 using System;
@@ -71,6 +72,11 @@ public class Program
         var subfolder = new Folder {Name = "Photoes"};
         subfolder.files.Add(new CompositePattern.Composite.WithoutPattern.File{Name = "img.jpg", Size = 200});
         folder.files.Add(subfolder);
+
+        var repo = new DatabaseProductRepository();
+        var product = repo.GetProductById(1);
+        Console.WriteLine($"{product.Name}: {product.Price}");
+        var all = repo.GetAllProducts();
 
 
     }
