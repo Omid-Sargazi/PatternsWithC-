@@ -9,12 +9,6 @@ namespace CompositePattern.ProxyPattern.WithoutPattern
       {
            Console.WriteLine($"Displaying {FileName} (loaded from disk)");
       }
-      private string LoadImage()
-      {
-            // Simulate loading image from disk
-            Console.WriteLine($"Loading image: {FileName}");
-            _data = "Image data";
-            return _data;
-      }
+     
     }
 }
