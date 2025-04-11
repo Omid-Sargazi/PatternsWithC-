@@ -6,6 +6,7 @@ namespace CompositePattern.CommandPattern.Order
     {
         private TradingPlatform _platform;
         private TradeOrder _order;
+        private bool _exceuted;
         public BuyOrderCommand(TradingPlatform platform, TradeOrder order)
         {
             _platform = platform;
@@ -26,6 +27,15 @@ namespace CompositePattern.CommandPattern.Order
            else{
             Console.WriteLine("Invalid order!");
            }
+        }
+
+        public void Undo()
+        {
+            if(_exceuted)
+            {
+                Console.WriteLine($"Undoing buy of {_order.Quantity} {_order.Symbol}");
+                _exceuted = false;
+            }
         }
     }
 }
