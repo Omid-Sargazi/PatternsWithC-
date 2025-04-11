@@ -1,4 +1,4 @@
-namespace CompositePattern.CommandPattern.TradeOrder
+namespace CompositePattern.CommandPattern.Order
 {
     public class TradeOrder
     {
