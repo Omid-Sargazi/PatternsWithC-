@@ -3,6 +3,7 @@ namespace CompositePattern.GRASP
     public class Library
     {
         private List<Book> _books = new List<Book>();
+        private BorrowingManager _borrowingManager = new BorrowingManager();
         // private Dictionary<string, string> _borrowers = new Dictionary<string, string>(); // title -> user
         public void AddBook(string title, string author)
         {
@@ -10,19 +11,17 @@ namespace CompositePattern.GRASP
             _books.Add(book);
             Console.WriteLine($"Added {title} by {author}");
         }
-        public void BorrowBook(string title, string user)
+        public void BorrowBook(string title, User userName)
         {
-            foreach(var book in _books)
-            {
-                if(book.Title == title && !book.IsBorrowed)
+            var book = _books.FirstOrDefault(b => b.Title==title);
+           
+                if(book != null)
                 {
-                    book.IsBorrowed = true;
-                    // _borrowers[title] = user;
-                    Console.WriteLine($"Borrowed {title}");
-                    return;
+                //    var user = new User {Name = userName};
+                _borrowingManager.BorrowBook(book, userName);
                 }
 
-            }
+            
             Console.WriteLine($"{title} not available");
         }
 
