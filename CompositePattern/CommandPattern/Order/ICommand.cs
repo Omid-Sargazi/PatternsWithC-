@@ -4,5 +4,6 @@ namespace CompositePattern.CommandPattern.Order
     {
         void Execute();
         // void Undo();
+        bool CanExcecute();
     }
 }

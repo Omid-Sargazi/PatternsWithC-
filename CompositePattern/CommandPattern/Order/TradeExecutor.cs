@@ -2,6 +2,11 @@ namespace CompositePattern.CommandPattern.Order
 {
     public class TradeExecutor
     {
+        private readonly Queue<ICommand> _orderQueue = new Queue<ICommand>();
+        public void AddToQueue(ICommand command)
+        {
+            _orderQueue.Enqueue(command);
+        }
         private ICommand _command;
         public void setCommand(ICommand command)
         {
@@ -9,7 +14,14 @@ namespace CompositePattern.CommandPattern.Order
         }
         public void ProcessOrder()
         {
-            _command.Execute();
+           while(_orderQueue.Count>0)
+           {
+             var command = _orderQueue.Dequeue();
+             if(command.CanExcecute())
+             {
+                command.Execute();
+             }
+           }
         }
     }
 }

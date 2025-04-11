@@ -11,9 +11,21 @@ namespace CompositePattern.CommandPattern.Order
             _platform = platform;
             _order = order;
         }
+
+        public bool CanExcecute()
+        {
+            return _order.Quantity > 0 && _order.Price > 0;
+        }
+
         public void Execute()
         {
-            _platform.ExecuteBuyOrder(_order.Symbol, _order.Quantity, _order.Price);
+           if(CanExcecute())
+           {
+                 _platform.ExecuteBuyOrder(_order.Symbol, _order.Quantity, _order.Price);
+           }
+           else{
+            Console.WriteLine("Invalid order!");
+           }
         }
     }
 }
