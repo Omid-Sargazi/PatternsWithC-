@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CompositePattern")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+925468f93ade5b851f566d120f956a5389741b31")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+13e94107db6bf97182495f8f2d36508edbbccede")]
 [assembly: System.Reflection.AssemblyProductAttribute("CompositePattern")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CompositePattern")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
