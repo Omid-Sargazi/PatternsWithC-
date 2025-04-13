@@ -3,9 +3,9 @@ namespace CompositePattern.Adapter
     public class AdapterMediaPlayer : IMediaPlayer
     {
         private AdvancedMediaLibrary _player;
-        public AdapterMediaPlayer(AdvancedMediaLibrary player)
+        public AdapterMediaPlayer()
         {
-            _player = player;
+            _player = new AdvancedMediaLibrary();
         }
         public void Play(string fileType, string fileName)
         {
