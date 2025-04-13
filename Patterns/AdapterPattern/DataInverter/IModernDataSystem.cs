@@ -2,6 +2,7 @@ namespace Patterns.AdapterPattern.DataInverter
 {
     public interface IModernDataSystem
     {
-        string GetData();
+        string ReadData(); // داده‌ها رو به فرمت JSON برگردونه
+        void WriteData(string jsonData);
     }
 }

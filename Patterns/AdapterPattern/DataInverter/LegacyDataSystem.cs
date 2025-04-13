@@ -4,9 +4,18 @@ namespace Patterns.AdapterPattern.DataInverter
 {
     public class LegacyDataSystem
     {
-        public string FetchData()
+       private string _csvData = "name,age\nAli,30"; // داده‌های نمونه به فرمت CSV
+
+        public string ReadCsvData()
         {
-            return "Alice|30|New York";
+            Console.WriteLine("LegacyDataSystem: Reading CSV data...");
+            return _csvData;
+        }
+
+        public void WriteCsvData(string csvData)
+        {
+            _csvData = csvData;
+            Console.WriteLine($"LegacyDataSystem: Writing CSV data: {csvData}");
         }
     }
 }
