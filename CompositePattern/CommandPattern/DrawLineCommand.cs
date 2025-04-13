@@ -22,6 +22,6 @@ namespace CompositePattern.CommandPattern
     public void Undo()
     {
         _mediator.EraseShape("Line", _x1, _y1, _x2, _y2);
-    }
+    }   
     }
 }

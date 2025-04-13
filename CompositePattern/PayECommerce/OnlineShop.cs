@@ -2,11 +2,12 @@ namespace CompositePattern.PayECommerce
 {
     public class OnlineShop : IPaymentEnvironment
     {
-        public string Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        // public string Location { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Location {get; set;}
         
         public OnlineShop()
         {
-            Location = "Online Shop";
+            // Location = "Online Shop";
         }
         public void Enviroment(decimal amount, bool success)
         {

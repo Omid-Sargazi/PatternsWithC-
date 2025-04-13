@@ -1,4 +1,5 @@
-﻿using CompositePattern.APIGetAway;
+﻿using CompositePattern.Adapter;
+using CompositePattern.APIGetAway;
 using CompositePattern.Composite.WithoutPattern;
 using CompositePattern.Database;
 using CompositePattern.Pattern01;
@@ -78,6 +79,10 @@ public class Program
         Console.WriteLine($"{product.Name}: {product.Price}");
         var all = repo.GetAllProducts();
 
+        MediaPlayer player = new MediaPlayer();
+        player.Play("mp3", "song.mp3");
+        player.Play("mp4", "song.mp3");
+        player.Play("wav", "song.mp3");
 
     }
 }
