@@ -9,6 +9,10 @@ namespace Patterns.CompositePattern.MenuRestuant
             _name = name;
             _menuComponents = new List<IMenuComponent>();
         }
+        public void Add(IMenuComponent menuComponent)
+        {
+            _menuComponents.Add(menuComponent);
+        }
         public void Display(int depth = 0)
         {
             string indent = new string(' ', depth * 2);
