@@ -1,6 +1,6 @@
 namespace Patterns.CommandPattern.WithPattern
 {
-    public class RemoteControl 
+    public class RemoteController 
     {
         private IOperation _onButtonOperation;
         private IOperation _offButtonOperation;
