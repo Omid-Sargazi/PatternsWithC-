@@ -2,16 +2,16 @@ using Patterns.CommandPattern.WithoutPattern;
 
 namespace Patterns.CommandPattern.WithPattern
 {
-    public class TurnOnOperation : IOperation
+    public class TurnOffOperation : IOperation
     {
         private Television _tv;
-        public TurnOnOperation(Television tv)
+        public TurnOffOperation(Television tv)
         {
             _tv = tv;
         }
         public void Execute()
         {
-            _tv.TurnOn(); 
+            _tv.TurnOff();
         }
     }
 }

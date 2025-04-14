@@ -1,5 +1,7 @@
 ﻿using Patterns.AdapterPattern;
+using Patterns.CommandPattern.WithoutPattern;
 using Patterns.CompositePattern.MenuRestuant;
+using Patterns.CommandPattern.WithPattern;
 
 public class Program
 {
@@ -20,5 +22,9 @@ public class Program
         menu.Add(subMenu02);
         subMenu02.Add(new MenuItem("Chicken Biryani",14));
         menu.Display();
+
+        Television tv = new Television();
+        Patterns.CommandPattern.WithPattern.RemoteController remote = new Patterns.CommandPattern.WithPattern.RemoteController(new TurnOnOperation(tv), new TurnOffOperation(tv));
+        tv.
     }
 }
