@@ -2,15 +2,17 @@ namespace Patterns.MediatorPattern.CheckForm
 {
     public class TextBoxUsername
     {
-        private string _username;
-        public TextBoxUsername(string username)
+        private IMediator _mediator;
+        public TextBoxUsername(IMediator mediator)
         {
-            _username = username;
+            _mediator = mediator;
         }
-        public void Render()
-        {  
-            // Render the username text box
-            Console.WriteLine($"Rendering TextBoxUsername{_username}");
-        }
+        public string _username;
+        public void Input(string value)
+    {
+        _username = value;
+        Console.WriteLine($"Username Input: {value}");
+        _mediator.Notify(this, "InputChanged");
+    }
     }
 }

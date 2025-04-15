@@ -2,16 +2,18 @@ namespace Patterns.MediatorPattern.CheckForm
 {
     public class Checkbox
     {
-        private bool _isChecked;
-        public Checkbox(bool isChecked)
+        private IMediator _mediator;
+        public bool _isChecked;
+        public Checkbox(IMediator mediator)
         {
-            _isChecked = isChecked;
+            _mediator = mediator;
         }
         
-        public void Render()
-        {
-            // Render the checkbox
-            Console.WriteLine($"Rendering Checkbox{_isChecked}");
-        }
+        public void Toggle(bool value)
+    {
+        _isChecked = value;
+        Console.WriteLine($"Checkbox toggled: {value}");
+        _mediator.Notify(this, "InputChanged");
+    }
     }
 }
