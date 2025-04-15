@@ -12,19 +12,7 @@ namespace Patterns.MediatorPattern.CheckForm
 
         public void Notify(object sender, string ev)
         {
-            if (ev == "Changed")
-        {
-            if (!string.IsNullOrEmpty(UsernameBox) &&
-                PasswordBox.IsValid() &&
-                AgreementCheck.IsChecked)
-            {
-                SubmitButton.Enable();
-            }
-            else
-            {
-                SubmitButton.Disable();
-            }
-        }
+            
         }
     }
 }

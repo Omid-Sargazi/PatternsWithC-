@@ -11,5 +11,10 @@ namespace Patterns.MediatorPattern.Controllers
             Console.WriteLine("Light turned on");
             _mediator?.Notify(this, "TurnOn");
         }
+        public void TurnOff()
+        {
+            Console.WriteLine("Light turned off");
+            _mediator?.Notify(this, "TurnOff");
+        }
     }
 }
