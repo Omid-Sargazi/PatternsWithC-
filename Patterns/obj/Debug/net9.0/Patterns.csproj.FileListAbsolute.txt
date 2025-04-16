@@ -13,3 +13,4 @@
 /home/omidsa/Programmings/PatternsWithCSharp/Patterns/obj/Debug/net9.0/Patterns.pdb
 /home/omidsa/Programmings/PatternsWithCSharp/Patterns/obj/Debug/net9.0/Patterns.genruntimeconfig.cache
 /home/omidsa/Programmings/PatternsWithCSharp/Patterns/obj/Debug/net9.0/ref/Patterns.dll
+/home/omidsa/Programmings/PatternsWithCSharp/Patterns/obj/Debug/net9.0/Patterns.csproj.AssemblyReference.cache
