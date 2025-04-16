@@ -9,7 +9,8 @@ namespace Patterns.RegisterSchool
             {
                 new MinimumLengthStrategy(),
                 new ContainsNumberStrategy(),
-                new NotSameAsUsernameStrategy()
+                new NotSameAsUsernameStrategy(),
+                new AtleastUppercaseStrategy()
             };
         }
 
