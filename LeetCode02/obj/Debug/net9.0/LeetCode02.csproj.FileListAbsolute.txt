@@ -1,0 +1,15 @@
+/home/omidsa/Programmings/PatternsWithCSharp/LeetCode02/bin/Debug/net9.0/LeetCode02
+/home/omidsa/Programmings/PatternsWithCSharp/LeetCode02/bin/Debug/net9.0/LeetCode02.deps.json
+/home/omidsa/Programmings/PatternsWithCSharp/LeetCode02/bin/Debug/net9.0/LeetCode02.runtimeconfig.json
+/home/omidsa/Programmings/PatternsWithCSharp/LeetCode02/bin/Debug/net9.0/LeetCode02.dll
+/home/omidsa/Programmings/PatternsWithCSharp/LeetCode02/bin/Debug/net9.0/LeetCode02.pdb
+/home/omidsa/Programmings/PatternsWithCSharp/LeetCode02/obj/Debug/net9.0/LeetCode02.GeneratedMSBuildEditorConfig.editorconfig
+/home/omidsa/Programmings/PatternsWithCSharp/LeetCode02/obj/Debug/net9.0/LeetCode02.AssemblyInfoInputs.cache
+/home/omidsa/Programmings/PatternsWithCSharp/LeetCode02/obj/Debug/net9.0/LeetCode02.AssemblyInfo.cs
+/home/omidsa/Programmings/PatternsWithCSharp/LeetCode02/obj/Debug/net9.0/LeetCode02.csproj.CoreCompileInputs.cache
+/home/omidsa/Programmings/PatternsWithCSharp/LeetCode02/obj/Debug/net9.0/LeetCode02.sourcelink.json
+/home/omidsa/Programmings/PatternsWithCSharp/LeetCode02/obj/Debug/net9.0/LeetCode02.dll
+/home/omidsa/Programmings/PatternsWithCSharp/LeetCode02/obj/Debug/net9.0/refint/LeetCode02.dll
+/home/omidsa/Programmings/PatternsWithCSharp/LeetCode02/obj/Debug/net9.0/LeetCode02.pdb
+/home/omidsa/Programmings/PatternsWithCSharp/LeetCode02/obj/Debug/net9.0/LeetCode02.genruntimeconfig.cache
+/home/omidsa/Programmings/PatternsWithCSharp/LeetCode02/obj/Debug/net9.0/ref/LeetCode02.dll
