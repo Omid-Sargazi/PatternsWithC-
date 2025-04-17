@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using MessageBroker.IteratorPattern;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -31,6 +32,17 @@ public class Program
         // فرستادن پیام به صندوق
         channel.BasicPublish(exchange: "", routingKey: "payment_queue", basicProperties: null, body: body);
         Console.WriteLine("پیام فرستاده شد: {0}", message);
+
+        var collection = new ProductCollection();
+        collection.Add("laptop");
+        collection.Add("phone");
+        collection.Add("tablet");
+
+        var iterator = collection.CreateIterator();
+        while(iterator.MoveNext())
+        {
+            Console.WriteLine(iterator.Current());
+        }
     }
 }
 
