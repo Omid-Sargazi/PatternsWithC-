@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using MessageBroker.CommandPattern;
 using MessageBroker.IteratorPattern;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -43,6 +44,19 @@ public class Program
         {
             Console.WriteLine(iterator.Current());
         }
+
+        var remote = new RemoteControl();
+        var light = new Light();
+
+        var lightOn = new LightOnCommand(light);
+        var lightoff = new LightOffCommand(light);
+        remote.SetCommand(lightOn);
+        remote.PressButton();
+
+        remote.SetCommand(lightoff);
+        remote.PressButton();
+        remote.PressUndo();
+        remote.PressUndo();
     }
 }
 
