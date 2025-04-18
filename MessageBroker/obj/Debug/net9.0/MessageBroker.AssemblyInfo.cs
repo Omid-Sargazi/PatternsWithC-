@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MessageBroker")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+254a3a48dcef8cd558d8e53b5d9e11a0f8c58cb3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4bfc694d0ba8fd19f5289bdf6f906a0b68f4a44")]
 [assembly: System.Reflection.AssemblyProductAttribute("MessageBroker")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MessageBroker")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
