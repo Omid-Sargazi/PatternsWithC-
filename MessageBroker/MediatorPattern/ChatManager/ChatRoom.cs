@@ -2,25 +2,27 @@ namespace MessageBroker.MediatorPattern.ChatManager
 {
     public class ChatRoom : IChatMediator
     {
-        private UserA _userA;
-        private UserB _userB;
-        public ChatRoom(UserA userA, UserB userB)
+        private List<IUser> _users = new();
+        
+        
+        public ChatRoom(List<IUser> users)
         {
-            _userA = userA;
-            _userB = userB;
-            _userB.SetMediator(this);
-            _userA.SetMediator(this);
+            _users = users;
         }
         public void Notify(object sender, string message)
         {
-            if(sender == _userA)
-            {
-                _userB.ReceiveMessage(message);
-            }
-            else if(sender == _userB)
-            {
-                _userA.ReceiveMessage(message);
-            }
+           foreach(var user in _users)
+           {
+                if(user !=sender)
+                {
+                    user.ReceiveMessage(message);
+                }
+           }
+        }
+
+        public void Register(IUser user)
+        {
+            _users.Add(user);
         }
     }
 }
