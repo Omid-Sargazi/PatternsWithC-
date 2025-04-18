@@ -68,6 +68,9 @@ public class Program
         Products = new[] { "لپ‌تاپ", "ماوس" }
         };
         orderSevice.PlaceOrder(newOrder);
+
+        var proccesor = new OrderProcessor();
+        proccesor.StartProcessing();
     }
 }
 
