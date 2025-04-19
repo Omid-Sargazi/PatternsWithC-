@@ -12,9 +12,32 @@ namespace MessageBroker.Observer
             _listeners.Add(new AnalyticsUpdater());
             _listeners.Add(new CacheClearer());
         }
+
+        public void Attach(IContentListener listener)
+        {
+            _listeners.Add(listener);
+        }
+
+        public void Detach(IContentListener listener)
+        {
+            _listeners.Remove(listener);
+        }
+
+        private void Notify(string title, string author, string content)
+        {
+            foreach (var item in _listeners)
+            {
+                item.OnContentPublished(title, author, content);
+            }
+        }
         public void PublishContent(string content, string author, string title)
         {
             SaveToDatabase(content, author, title);
+
+            
+            Notify(title, author, content);
+
+
             foreach(var item in _listeners)
             {
                 item.OnContentPublished(title, author, title);
