@@ -4,42 +4,27 @@ namespace MessageBroker.Observer
 {
     public class ContentManager 
     {
+        private List<IContentListener> _listeners = new List<IContentListener>();
+        public ContentManager()
+        {
+            _listeners.Add(new EmailNotifier());
+            _listeners.Add(new AdminNotifier());
+            _listeners.Add(new AnalyticsUpdater());
+            _listeners.Add(new CacheClearer());
+        }
         public void PublishContent(string content, string author, string title)
         {
-              SaveToDatabase(content, author, title);
-        
-        // اطلاع رسانی به سیستم های مختلف
-            SendEmailToSubscribers(title);
-            NotifyAdmins(title, author);
-            UpdateAnalytics(title);
-            ClearCache();
+            SaveToDatabase(content, author, title);
+            foreach(var item in _listeners)
+            {
+                item.OnContentPublished(title, author, title);
+            }
+            Console.WriteLine($"محتوای '{title}' منتشر شد!");
         }
 
-        private void SaveToDatabase(string content, string author, string title)
+        private void SaveToDatabase(string content, string autho, string title)
         {
             Console.WriteLine($"ذخیره محتوا در پایگاه داده: {title}");
-        }
-        private void SendEmailToSubscribers(string title)
-        {
-            Console.WriteLine($"ارسال ایمیل به مشترکین درباره: {title}");
-        }
-
-            private void NotifyAdmins(string title, string author)
-        {
-            // کد ارسال نوتیفیکیشن
-            Console.WriteLine($"ارسال نوتیفیکیشن به مدیران: {title} توسط {author}");
-        }
-        
-        private void UpdateAnalytics(string title)
-        {
-            // کد بروزرسانی آمار
-            Console.WriteLine($"بروزرسانی آمار برای: {title}");
-        }
-        
-        private void ClearCache()
-        {
-            // کد پاک کردن کش
-            Console.WriteLine("پاک کردن کش سایت");
         }
     }
 }
