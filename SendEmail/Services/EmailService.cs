@@ -10,7 +10,7 @@ namespace SendEmail.Services
         {
             // ساخت ایمیل
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("Your Name", "osargazi87@gmail.com"));
+            message.From.Add(new MailboxAddress("Omid Sargazi", "osargazi87@gmail.com"));
             message.To.Add(new MailboxAddress("", email.To));
             message.Subject = email.Subject;
 
