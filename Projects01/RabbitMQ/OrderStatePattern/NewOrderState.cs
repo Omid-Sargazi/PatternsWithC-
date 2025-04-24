@@ -19,7 +19,8 @@ namespace RabbitMQ.OrderStatePattern
 
         public void ProcessPayment(Order order)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("پرداخت انجام شد");
+            order.SetState(new PaidOrderState());
         }
 
         public void Ship(Order order)
