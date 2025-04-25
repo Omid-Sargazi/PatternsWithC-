@@ -42,4 +42,15 @@ namespace PatternsInCSharp.AbstractFactory.MilitaryVehicles
             return new Tractor();
         }
     }
+
+    public class Client
+    {
+        public void ShowVehicles(IVehicleFactory factory)
+        {
+            var airplane = factory.CreateAirPlain();
+            var tank = factory.CreateTank();
+            var ship = factory.CreateShip();
+             Console.WriteLine($"نمایش محصولات:\n✈️ {airplane.GetName()}\n⚙️ {tank.GetModel()}\n🚢 {ship.GetType()}");
+        }
+    }
 }
