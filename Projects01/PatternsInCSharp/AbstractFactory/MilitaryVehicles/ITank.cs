@@ -1,7 +1,7 @@
 namespace PatternsInCSharp.AbstractFactory.MilitaryVehicles
 {
-    public interface IAirplane
+    public interface ITank
     {
-        string GetName();
+        public string GetModel();
     }
 }
