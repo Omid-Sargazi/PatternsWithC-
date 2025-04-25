@@ -4,5 +4,8 @@ namespace PatternsInCSharp.AbstractFactory.PC
     {
         IOfficePC CreateOfficePC();
         IGamingPC CreateGamingPC();
+        IRAM CreateRAM();
+        IGraphicsCard CreateGraphicsCard();
+        IProcessor CreateProcessor();
     }
 }
