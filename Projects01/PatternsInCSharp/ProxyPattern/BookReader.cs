@@ -61,11 +61,14 @@ namespace PatternsInCSharp.ProxyPattern
         private readonly string _bookId;
         private BookReader _realReader;
         private Book _book;
+        private readonly bool _isVipUser;
 
-        public BookReaderProxy(string bookId)
+
+        public BookReaderProxy(string bookId, bool isVipUser)
         {
             _bookId = bookId;
             _book = new Book("Sample Title", "Sample Author", "This is the heavy content of the book...");
+            _isVipUser = isVipUser;
         }
         public string GetAuthor()
         {
@@ -74,6 +77,8 @@ namespace PatternsInCSharp.ProxyPattern
 
         public string GetContent()
         {
+            if(!_isVipUser)
+                throw new UnauthorizedAccessException("You are not authorized to access the content of this book.");
             _realReader ??=new BookReader(_bookId);
             return _realReader.GetContent();
         }
