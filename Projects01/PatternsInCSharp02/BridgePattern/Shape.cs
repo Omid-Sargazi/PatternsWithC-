@@ -36,6 +36,19 @@ namespace PatternsInCSharp02.BridgePattern
         }
     }
 
+    public class Triangle : Shape
+    {
+        public Triangle(Irendering irendering) : base(irendering)
+        {
+        }
+
+        public override void Draw()
+        {
+            Console.WriteLine("Drawing a triangle");
+            _irendering.Render();
+        }
+    }
+
     public interface Irendering
     {
         void Render();
