@@ -88,7 +88,7 @@ namespace PatternsInCSharp02.BridgePattern
             if (!platform.IsAvailable() || !media.ValidateMedia())
                 return PlaybackStatus.Failed;
 
-            PlaybackStatus status = platform.ExecutePlayback(media.GetDetails());
+            PlaybackStatus status = platform.ExecutePlayback(media.GetDetails);
             Console.WriteLine($"Playing {media.GetType().Name} on {platform.GetType().Name}: {status}");
             return status;
         }
