@@ -110,4 +110,46 @@ namespace PatternsInCSharp02.CommandPattern
             _growLight.TurnOn();
         }
     }
+
+    public class Heater
+    {
+        public void TurnOn()=> Console.WriteLine("Turn on Heater");
+        public void TurnOff()=> Console.WriteLine("Turn off Heater");
+    }
+
+    public class HeaterOnCommand : ICommand
+    {
+        private readonly Heater _heater;
+        public HeaterOnCommand(Heater heater)
+        {
+            _heater = heater;
+        }
+        public void Execute()
+        {
+            _heater.TurnOn();
+        }
+
+        public void Undo()
+        {
+            _heater.TurnOff();
+        }
+    }
+
+    public class HeaterOffCommand : ICommand
+    {
+        private readonly Heater _heater;
+        public HeaterOffCommand(Heater heater)
+        {
+            _heater = heater;
+        }
+        public void Execute()
+        {
+            _heater.TurnOff();
+        }
+
+        public void Undo()
+        {
+            _heater.TurnOn();
+        }
+    }
 }
