@@ -186,4 +186,34 @@ namespace PatternsInCSharp02.CommandPattern
             _irrigationSystem.StopIrrigation();
         }
     }
+
+    public class CommandProxy : ICommand
+    {
+        private readonly ICommand _commnad;
+        private readonly string _userRole;
+        public CommandProxy(ICommand command, string userRole)
+        {
+            _commnad = command;
+            _userRole = userRole;
+        }
+        public void Execute()
+        {
+            if(_userRole == "Admin")
+                _commnad.Execute();
+            else
+                Console.WriteLine("دسترسی غیرمجاز: فقط کاربران با نقش Admin می‌توانند این دستور را اجرا کنند.");
+        }
+
+        public void Undo()
+        {
+             if (_userRole == "Admin")
+        {
+            _commnad.Undo();
+        }
+        else
+        {
+            Console.WriteLine("دسترسی غیرمجاز: فقط کاربران با نقش Admin می‌توانند این دستور را لغو کنند.");
+        }
+        }
+    }
 }
