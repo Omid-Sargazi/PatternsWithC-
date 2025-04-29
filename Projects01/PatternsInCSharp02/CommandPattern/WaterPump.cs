@@ -152,4 +152,38 @@ namespace PatternsInCSharp02.CommandPattern
             _heater.TurnOn();
         }
     }
+
+    public class OldDripIrrigationSystem
+    {
+        public void StartIrrigation(int duration)
+        {
+            Console.WriteLine($"Starting irrigation for {duration} minutes.");
+        }
+
+        public void StopIrrigation()
+        {
+            Console.WriteLine("Stopping irrigation.");
+        }
+    }
+
+    public class DripIrrigationAdapter : ICommand
+    {
+        private readonly OldDripIrrigationSystem _irrigationSystem;
+        private readonly int _duration;
+
+        public DripIrrigationAdapter(OldDripIrrigationSystem oldDripIrrigationSystem, int duration)
+        {
+            _duration = duration;
+            _irrigationSystem = oldDripIrrigationSystem;
+        }
+        public void Execute()
+        {
+            _irrigationSystem.StartIrrigation(_duration);
+        }
+
+        public void Undo()
+        {
+            _irrigationSystem.StopIrrigation();
+        }
+    }
 }
