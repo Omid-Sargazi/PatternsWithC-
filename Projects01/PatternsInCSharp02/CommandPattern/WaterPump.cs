@@ -16,36 +16,98 @@ namespace PatternsInCSharp02.CommandPattern
 
     public class GreenhouseController
     {
+       private readonly List<ICommand> _commandHistory = new List<ICommand>();
+
+      
+
+       public void ExcecuteCommnad(ICommand command)
+       {
+            command.Execute();
+            _commandHistory.Add(command);
+       }
+
+       public void UndoCommnad(ICommand command)
+       {
+            if(_commandHistory.Count == 0) return;
+            var lastCommand = _commandHistory[^1];
+            lastCommand.Undo();
+            _commandHistory.RemoveAt(_commandHistory.Count - 1);
+       }
+    }
+
+    public interface ICommand
+    {
+        void Execute();
+        void Undo();
+    }
+
+    public class PumpOnCommand : ICommand
+    {
         private readonly WaterPump _waterPump;
-        private readonly GrowLight _growLight;
-        public GreenhouseController(WaterPump waterPump, GrowLight growLight)
+        public void Execute()
+        {
+            _waterPump.TurnOn();
+        }
+
+        public void Undo()
+        {
+            _waterPump.TurnOff();
+        }
+    }
+
+    public class PumpOffCommand : ICommand
+    {
+        private readonly WaterPump _waterPump;
+        public PumpOffCommand(WaterPump waterPump)
         {
             _waterPump = waterPump;
+        }
+
+        public void Execute()
+        {
+            _waterPump.TurnOff();
+        }
+
+        public void Undo()
+        {
+            _waterPump.TurnOn();
+        }
+    }
+
+    public class LightOnCommand : ICommand
+    {
+        private readonly GrowLight _growLight;
+        public LightOnCommand(GrowLight growLight)
+        {
             _growLight = growLight;
         }
-        
 
-        public void ExecuteCommand(string command)
+        public void Execute()
         {
-            switch(command)
-            {
-                case "PumpOn":
-                    _waterPump.TurnOn();
-                    break;
-                case "PumpOff":
-                    _waterPump.TurnOff();
-                    break;
-                case "LightOn":
-                    _growLight.TurnOn();
-                    break;
-                case "LightOff":
-                    _growLight.TurnOff();
-                    break;
+            _growLight.TurnOn();
+        }
 
-                default:
-                    Console.WriteLine("Invalid command");
-                    break;
-            }
+        public void Undo()
+        {
+            _growLight.TurnOff();
+        }
+    }
+
+    public class LightOffCommand : ICommand
+    {
+        private readonly GrowLight _growLight;
+        public LightOffCommand(GrowLight growLight)
+        {
+            _growLight = growLight;
+        }
+        public void Execute()
+        {
+            _growLight.TurnOff();
+        }
+
+        public void Undo()
+        {
+            _growLight.TurnOn();
         }
     }
 }
