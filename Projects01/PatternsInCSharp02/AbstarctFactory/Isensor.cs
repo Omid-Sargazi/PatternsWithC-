@@ -1,4 +1,6 @@
 
+using static PatternsInCSharp02.AbstarctFactory.AdapterRobotFactory;
+
 namespace PatternsInCSharp02.AbstarctFactory;
     public interface ISensor
     {
@@ -150,24 +152,25 @@ public class MinimalRobotFactory : IRobotFactory
     }
 }
 
-public class ClientRobot
+public class ClientRobot 
 {
-    private readonly ISensor _sensor;
-    private readonly IMotor _motor;
-    private readonly IInterface _robotInterface;
-    public ClientRobot(IRobotFactory robotFactory)
-    {
-        _sensor = robotFactory.CreateSensor();
-        _motor = robotFactory.CreateMotor();
-        _robotInterface = robotFactory.CreateInterface();
-    }
+    // private readonly ISensor _sensor;
+    // private readonly IMotor _motor;
+    // private readonly IInterface _robotInterface;
+    // public ClientRobot(IRobotFactory robotFactory)
+    // {
+    //     _sensor = robotFactory.CreateSensor();
+    //     _motor = robotFactory.CreateMotor();
+    //     _robotInterface = robotFactory.CreateInterface();
+    // }
 
-    public void CreateRobot()
-    {
-        _sensor.Detect();
-        _motor.Start();
-        _robotInterface.Show();
-    }
+    // public void CreateRobot()
+    // {
+    //     _sensor.Detect();
+    //     _motor.Start();
+    //     _robotInterface.Show();
+    // }
+    private readonly Robot robot;
 }
 
 public class LegacyComponentSystem
@@ -329,6 +332,20 @@ public class AdapterRobotFactory : IRobotFactory
         public override void Operate()
         {
             Console.WriteLine("ربات خانگی در حال کار...");
+            _robotImplementation.Detect(_sensor);
+            _robotImplementation.Start(_motor);
+            _robotImplementation.Show(_robotInterface);
+        }
+    }
+
+    public class IndustrialRobot : Robot
+    {
+        public IndustrialRobot(IRobotFactory robotFactory, IRobotImplementation robotImplementation) : base(robotFactory, robotImplementation)
+        {
+        }
+
+        public override void Operate()
+        {
             _robotImplementation.Detect(_sensor);
             _robotImplementation.Start(_motor);
             _robotImplementation.Show(_robotInterface);
