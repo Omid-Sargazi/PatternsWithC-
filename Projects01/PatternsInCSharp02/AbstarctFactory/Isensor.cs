@@ -257,5 +257,82 @@ public class AdapterRobotFactory : IRobotFactory
         }
     }
 
+    public interface IRobotImplementation
+    {
+        void Detect(ISensor sensor);
+        void Start(IMotor motor);
+        void Show(IInterface robotInterface);
+    }
+
+    public class DomesticRobotImplementation : IRobotImplementation
+    {
+        public void Detect(ISensor sensor)
+        {
+            Console.WriteLine("رفتار خانگی: اسکن محیط خانه...");
+            sensor.Detect();
+        }
+
+        public void Show(IInterface robotInterface)
+        {
+            Console.WriteLine("رفتار خانگی: نمایش ساده برای کاربر خانگی...");
+            robotInterface.Show();
+        }
+
+        public void Start(IMotor motor)
+        {
+            Console.WriteLine("رفتار خانگی: شروع آرام برای محیط خانه...");
+            motor.Start();
+        }
+    }
+
+    public class IndustrialRobotImplementation : IRobotImplementation
+    {
+        public void Detect(ISensor sensor)
+        {
+            sensor.Detect();
+        }
+
+        public void Show(IInterface robotInterface)
+        {
+            robotInterface.Show();
+        }
+
+        public void Start(IMotor motor)
+        {
+            motor.Start();
+        }
+    }
+
+    public abstract class Robot
+    {
+        protected  IRobotImplementation _robotImplementation;
+        protected readonly ISensor _sensor;
+        protected readonly IMotor _motor;
+        protected readonly IInterface _robotInterface;
+        public Robot(IRobotFactory robotFactory, IRobotImplementation robotImplementation)
+        {
+            _robotImplementation = robotImplementation;
+            _sensor = robotFactory.CreateSensor();
+            _motor = robotFactory.CreateMotor();
+            _robotInterface = robotFactory.CreateInterface();
+        }
+
+        public abstract void Operate();
+    }
+
+    public class DomesticRobot : Robot
+    {
+        public DomesticRobot(IRobotFactory robotFactory, IRobotImplementation robotImplementation) : base(robotFactory, robotImplementation)
+        {
+        }
+
+        public override void Operate()
+        {
+            Console.WriteLine("ربات خانگی در حال کار...");
+            _robotImplementation.Detect(_sensor);
+            _robotImplementation.Start(_motor);
+            _robotImplementation.Show(_robotInterface);
+        }
+    }
 }
 
