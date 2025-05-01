@@ -1,3 +1,4 @@
+
 namespace PatternsInCSharp02.AbstarctFactory;
     public interface ISensor
     {
@@ -109,7 +110,7 @@ public class ModernRobotFactory : IRobotFactory
 
     public ISensor CreateSensor()
     {
-        throw new NotImplementedException();
+        return new ModernSensor();
     }
 }
 
@@ -149,4 +150,112 @@ public class MinimalRobotFactory : IRobotFactory
     }
 }
 
+public class ClientRobot
+{
+    private readonly ISensor _sensor;
+    private readonly IMotor _motor;
+    private readonly IInterface _robotInterface;
+    public ClientRobot(IRobotFactory robotFactory)
+    {
+        _sensor = robotFactory.CreateSensor();
+        _motor = robotFactory.CreateMotor();
+        _robotInterface = robotFactory.CreateInterface();
+    }
+
+    public void CreateRobot()
+    {
+        _sensor.Detect();
+        _motor.Start();
+        _robotInterface.Show();
+    }
+}
+
+public class LegacyComponentSystem
+{
+    public string ProduceLegacySensor()
+    {
+        return "LEGACY_LIDAR_SENSOR";
+    }
+
+    public string ProduceLegacyMotor()
+    {
+        return "LEGACY_STANDARD_MOTOR";
+    }
+
+    public string ProduceLegacyInterface()
+    {
+        return "LEGACY_BUTTON_PANEL";
+    }
+}
+
+public class AdapterRobotFactory : IRobotFactory
+{
+    private readonly LegacyComponentSystem _legacyComponentSystem;
+
+    public AdapterRobotFactory(LegacyComponentSystem legacyComponentSystem)
+    {
+        _legacyComponentSystem = legacyComponentSystem;
+    }
+    public IInterface CreateInterface()
+    {
+        string legacyInterface = _legacyComponentSystem.ProduceLegacyInterface();
+        return new ClassicInterface(legacyInterface);
+    }
+
+    public IMotor CreateMotor()
+    {
+        string legacyMotor = _legacyComponentSystem.ProduceLegacyInterface();
+        return new ClassicMotor(legacyMotor);
+    }
+
+    public ISensor CreateSensor()
+    {
+        string legacySensor = _legacyComponentSystem.ProduceLegacySensor();
+        return new ClassicSensor(legacySensor);
+    }
+
+    public class ClassicSensor : ISensor
+    {
+        private readonly string _sensorDescription;
+        public ClassicSensor(string sensorDescription)
+        {
+            _sensorDescription = sensorDescription.Replace("LEGACY_", "کلاسیک_") + " (سازگار با سیستم جدید)";
+        }
+        public void Detect()
+        {
+            Console.WriteLine($"Classic Sensor: Detecting with {_sensorDescription}");
+        }
+    }
+
+    public class ClassicMotor : IMotor
+    {
+        private readonly string _motorDescription;
+
+        public ClassicMotor(string motorDescription)
+        {
+            _motorDescription = motorDescription.Replace("LEGACY_", "کلاسیک_") + " (سازگار با سیستم جدید)";
+        }
+
+        public void Start()
+        {
+            Console.WriteLine($"Classic Motor: Starting with {_motorDescription}");
+        }
+    }
+
+    public class ClassicInterface : IInterface
+    {
+       private readonly string _interfaceDescription;
+
+        public ClassicInterface(string interfaceDescription)
+        {
+            _interfaceDescription = interfaceDescription.Replace("LEGACY_", "کلاسیک_") + " (سازگار با سیستم جدید)";
+        }
+
+        public void Show()
+        {
+            Console.WriteLine($"Classic Interface: Displaying with {_interfaceDescription}");
+        }
+    }
+
+}
 
