@@ -15,7 +15,7 @@ namespace PatternsInCSharp02.ObserverPattern
             _observers.Add(stockObserver);
         }
 
-        public RemoveObserver(IStockObserver stockObserver)
+        public void RemoveObserver(IStockObserver stockObserver)
         {
             _observers.Remove(stockObserver);
         }
