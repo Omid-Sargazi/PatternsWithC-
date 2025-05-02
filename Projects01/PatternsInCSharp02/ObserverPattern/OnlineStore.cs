@@ -1,12 +1,25 @@
 namespace PatternsInCSharp02.ObserverPattern
 {
+    public interface IStockObserver
+    {
+        void Update(string productName, int stock);
+    }
    public class Product
    {
         private string _name;
         private int _stock;
-        private CustomerNotifier _customerNotifier = new CustomerNotifier();
-        private WarehouseManager _warehouseManager = new WarehouseManager();
-        private SalesManager _salesManager = new SalesManager();
+        private List<IStockObserver> _observers = new List<IStockObserver>();
+
+        public void AddObserver(IStockObserver stockObserver)
+        {
+            _observers.Add(stockObserver);
+        }
+
+        public RemoveObserver(IStockObserver stockObserver)
+        {
+            _observers.Remove(stockObserver);
+        }
+      
         public Product(string name, int stock)
         {
             _name = name;
@@ -18,30 +31,36 @@ namespace PatternsInCSharp02.ObserverPattern
         Console.WriteLine($"Product '{_name}' stock changed to {_stock}");
 
             // Directly notify all components
-            _customerNotifier.Notify(_name, _stock);
-            _warehouseManager.UpdateStock(_name, _stock);
-            _salesManager.GenerateReport(_name, _stock);
+          NotifyObservers();
+    }
+
+    private void NotifyObservers()
+    {
+        foreach(var observer in _observers)
+        {
+            observer.Update(_name, _stock);
+        }
     }
    }
-   public class CustomerNotifier
+   public class CustomerNotifier : IStockObserver
    {
-        public void Notify(string productName, int stock)
+        public void Update(string productName, int stock)
         {
             Console.WriteLine($"Customer notified: {productName} is {(stock > 0 ? "now in stock!" : "out of stock!")}");
         }
    }
 
-   public class WarehouseManager
+   public class WarehouseManager : IStockObserver
    {
-         public void UpdateStock(string productName, int stock)
+         public void Update(string productName, int stock)
         {
             Console.WriteLine($"Warehouse updated: {productName} stock set to {stock}");
         }
    }
 
-   public class SalesManager
+   public class SalesManager : IStockObserver
    {
-        public void GenerateReport(string productName, int stock)
+        public void Update(string productName, int stock)
         {
             Console.WriteLine($"Sales Manager notified: {productName} stock changed to {stock}");
         }
