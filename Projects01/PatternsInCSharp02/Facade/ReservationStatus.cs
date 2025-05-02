@@ -40,12 +40,12 @@ namespace PatternsInCSharp02.Facade
 
     public class FlightReservationFacade
     {
-        private FlightSearchService _flightSearchService;
+        private FlightSearchService _searchService;
         private ReservationService _reservationService;
         private PaymentService _paymentService;
         public FlightReservationFacade()
         {
-            _flightSearchService = new FlightSearchService();
+            _searchService = new FlightSearchService();
             _reservationService = new ReservationService();
             _paymentService = new PaymentService();
         }
