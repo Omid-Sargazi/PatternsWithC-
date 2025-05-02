@@ -66,40 +66,46 @@ namespace PatternsInCSharp02.AbstarctFactory
 
     public class WebCMSFactory : ICMSFactory
     {
+        private readonly Lazy<IUIRenderer> _uiRenderer = new Lazy<IUIRenderer>(()=> new WebUIRenderer());
+        private readonly Lazy<IDataStorage> _dataStorage = new Lazy<IDataStorage>(()=> new WebDataStorage());
         public IUIRenderer CreateUIRenderer()
         {
-            return new WebUIRenderer();
+            return _uiRenderer.Value;
         }
 
         public IDataStorage CreateDataStorage()
         {
-            return new WebDataStorage();
+            return _dataStorage.Value;
         }
     }
 
     public class MobileCMSFactory : ICMSFactory
     {
+        private readonly Lazy<IUIRenderer> _uIRenderer = new Lazy<IUIRenderer>(() => new MobileUIRenderer());
+        private readonly Lazy<IDataStorage> _dataStorage = new Lazy<IDataStorage>(() => new MobileDataStorage());
         public IUIRenderer CreateUIRenderer()
         {
-            return new MobileUIRenderer();
+            return _uIRenderer.Value;
         }
 
         public IDataStorage CreateDataStorage()
         {
-            return new MobileDataStorage();
+            return _dataStorage.Value;
         }
     }
 
     public class DesctopCMSFactory : ICMSFactory
     {
+        private readonly Lazy<IUIRenderer> _uIRenderer = new Lazy<IUIRenderer>(() => new DesctopUIRenderer());
+        private readonly Lazy<IDataStorage> _dataStorage = new Lazy<IDataStorage>(() => new DesctopDataStorage());
         public IUIRenderer CreateUIRenderer()
         {
-            return new DesctopUIRenderer();
+            return _uIRenderer.Value;
         }
 
         public IDataStorage CreateDataStorage()
         {
-            return new DesctopDataStorage();
+            return _dataStorage.Value;
         }
     }
 
