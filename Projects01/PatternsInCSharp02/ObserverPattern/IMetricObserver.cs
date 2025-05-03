@@ -4,11 +4,14 @@ namespace PatternsInCSharp02.ObserverPattern
 {
     public interface IMetricObserver
     {
+        List<string> InterestedMetrics {get;}
         void Update(string metricName, double value);
     }
 
     public class DashboardObserver : IMetricObserver
     {
+        public List<string> InterestedMetrics => new List<string> {"CPU"};
+
         public void Update(string metricName, double value)
         {
             if(value > 90)
@@ -20,6 +23,8 @@ namespace PatternsInCSharp02.ObserverPattern
 
     public class LoggingObserver : IMetricObserver
     {
+        public List<string> InterestedMetrics => new List<string>{"Memory"};
+
         public void Update(string metricName, double value)
         {
             Console.WriteLine($"LOG: {metricName} changed to {value}");
@@ -28,6 +33,8 @@ namespace PatternsInCSharp02.ObserverPattern
 
     public class AlertObserver : IMetricObserver
     {
+        public List<string> InterestedMetrics => new List<string>{"Disk"};
+
         public void Update(string metricName, double value)
         {
                 Console.WriteLine($"ALERT: {metricName} exceeded threshold: {value}");
@@ -51,7 +58,15 @@ namespace PatternsInCSharp02.ObserverPattern
         public void SetMetric(string name, double value)
         {
             _metrics[name] = value;
+            foreach(var observer in _observers)
+            {
+                if(observer.InterestedMetrics.Contains(name))
+                {
+                    observer.Update(name, value);
+                }
+            }
             NotifyObservers(name, value);
+
 
         }
 
