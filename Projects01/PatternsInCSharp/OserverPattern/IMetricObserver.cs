@@ -2,12 +2,15 @@ namespace PatternsInCSharp.ObserverPattern
 {
    public interface IMetricObserver
    {
-        void Update(string metricName, double value);
+        List<string> InterestedMetrics {get;}
+        Task Update(string metricName, double value);
    }
 
     public class DashboardObserver : IMetricObserver
     {
-        public void Update(string metricName, double value)
+        public List<string> InterestedMetrics => new List<string>{"CPU", "Memory", "Disk"};
+
+        public async Task Update(string metricName, double value)
         {
             Console.WriteLine($"Dashboard updated: {metricName} = {value}");
         }
@@ -15,7 +18,9 @@ namespace PatternsInCSharp.ObserverPattern
 
     public class AlertObserver : IMetricObserver
     {
-        public void Update(string metricName, double value)
+        public List<string> InterestedMetrics => new List<string> {"CPU", "Memory"};
+
+        public async Task Update(string metricName, double value)
         {
             Console.WriteLine($"ALERT: {metricName} exceeded threshold: {value}");
         }
@@ -23,7 +28,9 @@ namespace PatternsInCSharp.ObserverPattern
 
     public class LoggingObserver : IMetricObserver
     {
-        public void Update(string metricName, double value)
+        public List<string> InterestedMetrics => new List<string> {"CPU"};
+
+        public async Task  Update(string metricName, double value)
         {
             Console.WriteLine($"LOG: {metricName} changed to {value}");
         }
@@ -31,22 +38,32 @@ namespace PatternsInCSharp.ObserverPattern
 
     public class MetricSubject
     {
-        private List<IMetricObserver> _observer = new List<IMetricObserver>();
+        private List<WeakReference<IMetricObserver>> _observer = new List<WeakReference<IMetricObserver>>();
         private Dictionary<string, double> _metrics = new Dictionary<string, double>();
 
         public void Attach(IMetricObserver observer)
 
         {
-            _observer.Add(observer);
+            _observer.Add(new WeakReference<IMetricObserver>(observer));
         }
 
         public void Detach(IMetricObserver observer)
         {
-            _observer.Remove(observer);
+            _observer.Remove(new WeakReference<IMetricObserver>(observer));
         }
 
-        public void SetMetric(string name, double value)
+        public async Task SetMetricAsync(string name, double value)
         {
+
+            // var tasks = _observer.Select(o => o.Update(name, value));
+        // await Task.WhenAll(tasks);
+        //     foreach(var observer in _observer)
+        //     {
+        //         if(observer.InterestedMetrics.Contains(name))
+        //         {
+        //             observer.Update(name, value);
+        //         }
+        //     }
             _metrics[name] = value;
             NotifyObservers(name, value);
 
@@ -54,9 +71,11 @@ namespace PatternsInCSharp.ObserverPattern
 
         private void NotifyObservers(string name, double value)
         {
-            foreach (var observer in _observer)
+            foreach (var weakRef in _observer.ToList())
             {
-                observer.Update(name, value);
+                if(weakRef.TryGetTarget(out var observer))
+                    observer.Update(name, value);
+                // _observer.Remove(name, value);
             }
         }
     }
@@ -72,10 +91,10 @@ namespace PatternsInCSharp.ObserverPattern
 
             for(int i=0; i< 100; i++)
             {
-                _subject.SetMetric("CPU", new Random().NextDouble() * 100);
-                _subject.SetMetric("Memory", new Random().NextDouble() * 100);
-                _subject.SetMetric("Disk", new Random().NextDouble() * 100);
-                _subject.SetMetric("CPU", new Random().NextDouble() * 100);
+                _subject.SetMetricAsync("CPU", new Random().NextDouble() * 100);
+                _subject.SetMetricAsync("Memory", new Random().NextDouble() * 100);
+                _subject.SetMetricAsync("Disk", new Random().NextDouble() * 100);
+                _subject.SetMetricAsync("CPU", new Random().NextDouble() * 100);
 
                 Thread.Sleep(5000);
             }
