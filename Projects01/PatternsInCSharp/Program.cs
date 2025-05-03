@@ -1,8 +1,9 @@
-﻿using PatternsInCSharp.ObserverPattern;
+﻿using System.Threading.Tasks;
+using PatternsInCSharp.ObserverPattern;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         Console.WriteLine("Hello");
         // var MonitoringSystem = new MonitoringSystem();
@@ -21,6 +22,10 @@ public class Program
         newslette.PublishNews("sport", "Sport news3");
         newslette.PublishNews("sport", "Sport news4");
         newslette.PublishNews("tech", "Tech news");
+
+        var registaration = new UserRegistration();
+        await registaration.RegisterUserAsync("o@o.com");
+        Console.WriteLine("complete resgistration");
 
 
 
