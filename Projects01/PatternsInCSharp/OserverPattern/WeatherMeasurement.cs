@@ -94,4 +94,27 @@ namespace PatternsInCSharp.ObserverPattern
             });
         }
     }
+
+    public class CurrentConditionsDisplay : IWeatherObserver
+    {
+        private float _temperature;
+        private float _humidity;
+        public HashSet<WeatherDataType> InterestedDataTypes => new HashSet<WeatherDataType>
+        {
+            WeatherDataType.Temperature,
+            WeatherDataType.Humidity
+        };
+
+        public void Update(WeatherMeasurement measurement)
+        {
+            _temperature = measurement.Temperature;
+            _humidity = measurement.Humidity;
+            Display();
+        }
+
+        public void Display()
+    {
+        Console.WriteLine($"Current conditions: {_temperature}F degrees and {_humidity}% humidity");
+    }
+    }
 }
