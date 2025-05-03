@@ -1,8 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
 using PatternsInCSharp.ObserverPattern;
 
 public class Program
 {
+
+    public delegate void MyDelegate(string message);
     public static async Task Main(string[] args)
     {
         Console.WriteLine("Hello");
@@ -27,7 +30,13 @@ public class Program
         await registaration.RegisterUserAsync("o@o.com");
         Console.WriteLine("complete resgistration");
 
+        MyDelegate del = PrintMessage;
+        del("Hello from delegate");
 
+    }
 
+    public static void PrintMessage(string message)
+    {
+        Console.WriteLine($"Mesasag from delegate:{message}");
     }
 }
