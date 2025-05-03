@@ -9,12 +9,32 @@ namespace PatternsInCSharp.AbstractFactory.PC
     {
         public IGamingPC CreateGamingPC()
         {
-            return new GamingPC();
+            throw new NotImplementedException();
+        }
+
+        // public IGamingPC CreateGamingPC()
+        // {
+        //     return new GamingPC();
+        // }
+
+        public IGraphicsCard CreateGraphicsCard()
+        {
+            throw new NotImplementedException();
         }
 
         public IOfficePC CreateOfficePC()
         {
             return new OfficePC();
+        }
+
+        public IProcessor CreateProcessor()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IRAM CreateRAM()
+        {
+            throw new NotImplementedException();
         }
     }
 }
