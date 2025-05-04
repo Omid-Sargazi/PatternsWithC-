@@ -1,0 +1,15 @@
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/VisitorPattern/bin/Debug/net9.0/VisitorPattern
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/VisitorPattern/bin/Debug/net9.0/VisitorPattern.deps.json
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/VisitorPattern/bin/Debug/net9.0/VisitorPattern.runtimeconfig.json
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/VisitorPattern/bin/Debug/net9.0/VisitorPattern.dll
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/VisitorPattern/bin/Debug/net9.0/VisitorPattern.pdb
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/VisitorPattern/obj/Debug/net9.0/VisitorPattern.GeneratedMSBuildEditorConfig.editorconfig
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/VisitorPattern/obj/Debug/net9.0/VisitorPattern.AssemblyInfoInputs.cache
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/VisitorPattern/obj/Debug/net9.0/VisitorPattern.AssemblyInfo.cs
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/VisitorPattern/obj/Debug/net9.0/VisitorPattern.csproj.CoreCompileInputs.cache
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/VisitorPattern/obj/Debug/net9.0/VisitorPattern.sourcelink.json
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/VisitorPattern/obj/Debug/net9.0/VisitorPattern.dll
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/VisitorPattern/obj/Debug/net9.0/refint/VisitorPattern.dll
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/VisitorPattern/obj/Debug/net9.0/VisitorPattern.pdb
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/VisitorPattern/obj/Debug/net9.0/VisitorPattern.genruntimeconfig.cache
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/VisitorPattern/obj/Debug/net9.0/ref/VisitorPattern.dll

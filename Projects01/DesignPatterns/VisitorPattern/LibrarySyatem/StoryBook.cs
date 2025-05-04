@@ -101,4 +101,22 @@ namespace VisitorPattern.LibrarySystem
             }
         }
     }
+
+    public class SummaryVisitor : Visitor
+    {
+        public void Visit(StoryBook storyBook)
+        {
+            Console.WriteLine($"StoryBook: {storyBook.Title}, Pages: {storyBook.Pages}, Genre: {storyBook.Gener}");
+        }
+
+        public void Visit(SienceBook sienceBook)
+        {
+            Console.WriteLine($"ScienceBook: {sienceBook.Title}, Pages: {sienceBook.Pages}, Topic: {sienceBook.Topic}");
+        }
+
+        public void Visit(Magazine magazine)
+        {
+            Console.WriteLine($"Magazine: {magazine.Title}, Issue: {magazine.IssueNumber}, Year: {magazine.PublicationYear}");
+        }
+    }
 }

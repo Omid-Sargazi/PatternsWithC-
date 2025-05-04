@@ -9,5 +9,7 @@ library.AddItem(new SienceBook("A Brief History of Time", 256, "Physics"));
 library.AddItem(new Magazine("National Geographic", 5, 2023));
 
 var pageCountVisitor = new PageCountVisitor();
+var summaryVisitor = new SummaryVisitor();
 library.Accept(pageCountVisitor);
+library.Accept(summaryVisitor);
 Console.WriteLine($"Total Pages: {pageCountVisitor.totalPages}");
