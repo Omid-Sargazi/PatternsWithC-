@@ -84,4 +84,21 @@ namespace VisitorPattern.LibrarySystem
             totalPages += magazine.IssueNumber;
         }
     }
+
+    public class Library
+    {
+        private readonly List<LibraryItem> _items = new List<LibraryItem>();
+        public void AddItem(LibraryItem item)
+        {
+            _items.Add(item);
+        }
+
+        public void Accept(Visitor visitor)
+        {
+            foreach(var item in _items)
+            {
+                item.Accept(visitor);
+            }
+        }
+    }
 }
