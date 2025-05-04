@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Reflection.Metadata;
+using VisitorPattern.GameSystem;
 using VisitorPattern.LibrarySystem;
 
 Console.WriteLine("Hello, World!");
@@ -27,3 +28,9 @@ documnet.AddItem(new SpreadsheetDocument(5, 1000));
 
 var printVisitor = new PrintVisitor();
 documnet.Accept(printVisitor);
+
+/////////////////////////////////
+/// Visitor Pattern for Game System
+/// 
+var gameEngine = new GameEngine();
+gameEngine.AddEntity(new Player(10, 20));
