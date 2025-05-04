@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System.Reflection.Metadata;
 using VisitorPattern.LibrarySystem;
 
 Console.WriteLine("Hello, World!");
@@ -13,3 +14,16 @@ var summaryVisitor = new SummaryVisitor();
 library.Accept(pageCountVisitor);
 library.Accept(summaryVisitor);
 Console.WriteLine($"Total Pages: {pageCountVisitor.totalPages}");
+
+
+
+//////////////////////////
+/// Visitor Pattern for Document System
+
+var documnet = new Documents();
+documnet.AddItem(new PDFDocument(10, false));
+documnet.AddItem(new WordDocument(1000, true));
+documnet.AddItem(new SpreadsheetDocument(5, 1000));
+
+var printVisitor = new PrintVisitor();
+documnet.Accept(printVisitor);
