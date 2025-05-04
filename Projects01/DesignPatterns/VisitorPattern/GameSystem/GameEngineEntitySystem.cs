@@ -89,5 +89,105 @@ namespace VisitorPattern.GameSystem
             throw new NotImplementedException();
         }
     }
-    
+
+    public interface IEntityVisitor
+    {
+        void Visit(Player player);
+        void Visit(Enemy enemy);
+        void Visit(Item item);
+        void Visit(Obstacle obstacle);
+    }
+
+    public class RenderingVisitor : IEntityVisitor
+    {
+        public void Visit(Player player)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(Enemy enemy)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(Item item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(Obstacle obstacle)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class PhysicsVisitor : IEntityVisitor
+    {
+        public void Visit(Player player)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(Enemy enemy)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(Item item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(Obstacle obstacle)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class CollisionVisitor : IEntityVisitor
+    {
+        public void Visit(Player player)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(Enemy enemy)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(Item item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(Obstacle obstacle)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class SaveStateVisitor : IEntityVisitor
+    {
+        public void Visit(Player player)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(Enemy enemy)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(Item item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(Obstacle obstacle)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }
