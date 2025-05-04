@@ -18,7 +18,7 @@ namespace VisitorPattern.LibrarySystem
 
         public void Accept(Visitor visitor)
         {
-            throw new NotImplementedException();
+            visitor.Visit(this);
         }
     }
 
@@ -37,7 +37,7 @@ namespace VisitorPattern.LibrarySystem
 
         public void Accept(Visitor visitor)
         {
-            throw new NotImplementedException();
+            visitor.Visit(this);
         }
     }
 
@@ -55,7 +55,7 @@ namespace VisitorPattern.LibrarySystem
 
         public void Accept(Visitor visitor)
         {
-            throw new NotImplementedException();
+            visitor.Visit(this);
         }
     }
 
@@ -66,5 +66,22 @@ namespace VisitorPattern.LibrarySystem
         public void Visit(Magazine magazine);
     }
 
-    
+    public class PageCountVisitor : Visitor
+    {
+        public int totalPages {get; private set;}
+        public void Visit(StoryBook storyBook)
+        {
+            totalPages += storyBook.Pages;
+        }
+
+        public void Visit(SienceBook sienceBook)
+        {
+            totalPages += sienceBook.Pages;
+        }
+
+        public void Visit(Magazine magazine)
+        {
+            totalPages += magazine.IssueNumber;
+        }
+    }
 }
