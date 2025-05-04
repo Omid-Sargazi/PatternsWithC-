@@ -119,4 +119,43 @@ namespace VisitorPattern.LibrarySystem
             Console.WriteLine($"Magazine: {magazine.Title}, Issue: {magazine.IssueNumber}, Year: {magazine.PublicationYear}");
         }
     }
+
+    public class ValidityVisitor : Visitor
+    {
+        public void Visit(StoryBook storyBook)
+        {
+            if (storyBook.Pages < 0)
+            {
+                Console.WriteLine($"Invalid StoryBook: {storyBook.Title} has negative pages.");
+            }
+            else
+            {
+                Console.WriteLine($"Valid StoryBook: {storyBook.Title}");
+            }
+        }
+
+        public void Visit(SienceBook sienceBook)
+        {
+            if (sienceBook.Pages > 100)
+            {
+                Console.WriteLine($"Valid ScienceBook: {sienceBook.Title}");
+            }
+            else
+            {
+                Console.WriteLine($"Invalid ScienceBook: {sienceBook.Title} has negative pages.");
+            }
+        }
+
+        public void Visit(Magazine magazine)
+        {
+            if (magazine.PublicationYear > 2025)
+            {
+                Console.WriteLine($"Valid Magazine: {magazine.Title}");
+            }
+            else
+            {
+                Console.WriteLine($"Invalid Magazine: {magazine.Title} has negative issue number.");
+            }
+        }
+    }
 }
