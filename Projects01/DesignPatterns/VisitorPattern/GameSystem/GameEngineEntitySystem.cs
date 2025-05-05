@@ -9,7 +9,7 @@ namespace VisitorPattern.GameSystem
         Vector2 Size { get; set; }
         string Name { get; set; }
         bool IsActive { get; set; }
-        public void Accept();
+        public void Accept(IEntityVisitor entity);
     }
         public abstract class Entity : IEntity
         {
@@ -27,36 +27,47 @@ namespace VisitorPattern.GameSystem
                 IsActive = isActive;
             }
 
-        public abstract void Accept();
+        public abstract void Accept(IEntityVisitor entity);
     }
 
     public class Player : Entity
     {
+         public int Health { get; set; }
+        public int ManaPoints { get; set; }
+        public List<string> Inventory { get; set; }
         public Player(Vector2 position, Vector2 size, string name, bool isActive) : base(position, size, name, isActive)
         {
+            Health = 100;
+            ManaPoints = 50;
+            Inventory = new List<string>();
         }
-        public override void Accept()
+        public override void Accept(IEntityVisitor entity)
         {
+            entity.Visit(this);
             // Implement player-specific logic here
-            Console.WriteLine($"Player {Name} is at position {Position} with size {Size}");
         }
     }
 
     public class Enemy : Entity
     {
+        public int Health { get; set; }
+        public int Damage { get; set; }
+        public string EnemyType { get; set; }
         public Enemy(Vector2 position, Vector2 size, string name, bool isActive) : base(position, size, name, isActive)
         {
         }
 
-        public override void Accept()
+        public override void Accept(IEntityVisitor entity)
         {
-            throw new NotImplementedException();
+            entity.Visit(this);
         }
     }
 
     public class Item : Entity
     {
-        public Item(Vector2 position, Vector2 size, string name, bool isActive) : base(position, size, name, isActive)
+         public string ItemType { get; set; }
+        public bool IsCollectible { get; set; }
+        public Item(Vector2 position, Vector2 size,string itemType, bool isCollectible) : base(position, size, new Vector2(0.5f, 0.5f))
         {
         }
 
