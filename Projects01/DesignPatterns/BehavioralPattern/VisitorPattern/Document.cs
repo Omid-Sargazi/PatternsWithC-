@@ -5,66 +5,98 @@ namespace  BehavioralPattern.VisitorPattern
         public string Name {get; set;}
         public DateTime CreatedDate {get; set;}
 
-        public abstract void ExportToXml();
-        public abstract void ExportToJson();
-        public abstract void ExportToPlainText();
+       public abstract void Accept(IVisitor visitor);
 
     }
 
     public class TextDocument : Document
     {
         public string Content {get; set;}
-        public override void ExportToJson()
-        {
-            Console.WriteLine($"Exporting TextDocumnet {Content} to JSON format");
-        }
 
-        public override void ExportToPlainText()
+        public override void Accept(IVisitor visitor)
         {
-            Console.WriteLine($"Exporting textDocumnet {Content} to Plain Text");
-        }
-
-        public override void ExportToXml()
-        {
-            Console.WriteLine($"Exporting textDocument {Content} to Xml format");
+            visitor.Visit(this);
         }
     }
 
     public class PdfDocument : Document
     {
         public string Content {get; set;}
-        public override void ExportToJson()
-        {
-            Console.WriteLine($"Exporting PdfCocumnet {Content} to Json format.");
-        }
 
-        public override void ExportToPlainText()
+        public override void Accept(IVisitor visitor)
         {
-            Console.WriteLine($"Expotnig PdfCocumnet {Content} to PlainText.");
-        }
-
-        public override void ExportToXml()
-        {
-            Console.WriteLine($"Exporting PdfCocumnet {Content} to Xml format.");
+            visitor.Visit(this);
         }
     }
 
     public class ImageDocument : Document
     {
-        public string Resolution {get; set;}
-        public override void ExportToJson()
+        public string pixel {get; set;}
+        public override void Accept(IVisitor visitor)
         {
-            Console.WriteLine($"Exporting ImageDocument {Resolution} to Json format.");
+            visitor.Visit(this);
+        }
+    }
+
+ 
+    public interface IVisitor
+    {
+        void Visit(TextDocument document);
+        void Visit(PdfDocument pdfDocument);
+        void Visit(ImageDocument imageDocument);
+    }
+
+    public class XmlExportVisitor : IVisitor
+    {
+        public void Visit(TextDocument document)
+        {
+            Console.WriteLine($"Exporting TextDocument {document.Name} to Xml format");
         }
 
-        public override void ExportToPlainText()
+        public void Visit(PdfDocument pdfDocument)
         {
-            Console.WriteLine($"Exporting ImageDocumnet {Resolution} to PlainText format.");
+            Console.WriteLine($"Expoting PdfDocument {pdfDocument.Name} to Xml format.");
         }
 
-        public override void ExportToXml()
+        public void Visit(ImageDocument imageDocument)
         {
-            Console.WriteLine($"Exporting ImageDocumnet {Resolution} to Xml format.");
+            Console.WriteLine($"Exporting ImageDocumnet {imageDocument} to Xml format.");
+        }
+    }
+
+    public class JsonExportVisitor : IVisitor
+    {
+        public void Visit(TextDocument document)
+        {
+            Console.WriteLine($"Exporting TextDocumnet {document.Name} to Json format.");
+        }
+
+        public void Visit(PdfDocument pdfDocument)
+        {
+            Console.WriteLine($"Expoting PdfDocument {pdfDocument.Content} to Json format.");
+        }
+
+        public void Visit(ImageDocument imageDocument)
+        {
+            Console.WriteLine($"Exportnig ImageDocument {imageDocument.pixel} to json format.");
+        }
+    }
+
+    public class PlainTextExportVisitor : IVisitor
+    {
+        public void Visit(TextDocument document)
+        {
+            Console.WriteLine($"Exporting TetxDocument {document.Name} to Plain Text Format.");
+        }
+
+        public void Visit(PdfDocument pdfDocument)
+        {
+            Console.WriteLine($"Exporting PdfDocumnet {pdfDocument.Content} to Plain Text Format.");
+        }
+
+        public void Visit(ImageDocument imageDocument)
+        {
+            Console.WriteLine($"Exporting imageDocument {imageDocument.pixel} to Plain text Format.");
         }
     }
 }
