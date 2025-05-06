@@ -22,11 +22,23 @@ namespace BehavioralPattern.VisitorPattern
         public DateTime Date {get; set;}
         public decimal Amount {get; set;}
         public DocumentType Type {get; set;}
+
+        protected FinancialDocument(string id, DateTime date, decimal amount, DocumentType type)
+        {
+            Id = id;
+            Date = date;
+            Amount = amount;
+            Type = type;
+        }
         public abstract void Accept(IFinancialDocumentVisitor visitor);
     }
 
     public class Invoice : FinancialDocument
     {
+        public Invoice(string id, DateTime date, decimal amount, DocumentType type) : base(id, date, amount, type)
+        {
+        }
+
         public string CustomerName { get; set; }
         public List<string> Items { get; set; }
         public bool IsPaid { get; set; }
@@ -37,7 +49,11 @@ namespace BehavioralPattern.VisitorPattern
     }
     public class Receipt : FinancialDocument
     {
-         public string PaymentMethod { get; set; }
+        public Receipt(string id, DateTime date, decimal amount, DocumentType type) : base(id, date, amount, type)
+        {
+        }
+
+        public string PaymentMethod { get; set; }
         public string ReceivedFrom { get; set; }
         public override void Accept(IFinancialDocumentVisitor visitor)
         {
@@ -47,7 +63,11 @@ namespace BehavioralPattern.VisitorPattern
 
     public class Contract : FinancialDocument
     {
-         public string PartyName { get; set; }
+        public Contract(string id, DateTime date, decimal amount, DocumentType type) : base(id, date, amount, type)
+        {
+        }
+
+        public string PartyName { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Terms { get; set; }
@@ -59,6 +79,10 @@ namespace BehavioralPattern.VisitorPattern
 
     public class Payroll : FinancialDocument
     {
+        public Payroll(string id, DateTime date, decimal amount, DocumentType type) : base(id, date, amount, type)
+        {
+        }
+
         public string EmployeeName { get; set; }
         public int WorkingHours { get; set; }
         public decimal TaxAmount { get; set; }
