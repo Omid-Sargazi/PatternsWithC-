@@ -49,4 +49,9 @@ namespace VisitorPattern.ObserverPattern
         public void Update(Video video)
             => DashboardService.UpdateCount();
     }
+
+    public class Video
+    {
+        public string Title {get; set;}
+    }
 }
