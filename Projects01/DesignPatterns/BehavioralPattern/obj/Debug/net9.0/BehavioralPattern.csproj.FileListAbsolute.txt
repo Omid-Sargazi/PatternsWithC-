@@ -1,0 +1,15 @@
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/BehavioralPattern/bin/Debug/net9.0/BehavioralPattern
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/BehavioralPattern/bin/Debug/net9.0/BehavioralPattern.deps.json
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/BehavioralPattern/bin/Debug/net9.0/BehavioralPattern.runtimeconfig.json
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/BehavioralPattern/bin/Debug/net9.0/BehavioralPattern.dll
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/BehavioralPattern/bin/Debug/net9.0/BehavioralPattern.pdb
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/BehavioralPattern/obj/Debug/net9.0/BehavioralPattern.GeneratedMSBuildEditorConfig.editorconfig
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/BehavioralPattern/obj/Debug/net9.0/BehavioralPattern.AssemblyInfoInputs.cache
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/BehavioralPattern/obj/Debug/net9.0/BehavioralPattern.AssemblyInfo.cs
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/BehavioralPattern/obj/Debug/net9.0/BehavioralPattern.csproj.CoreCompileInputs.cache
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/BehavioralPattern/obj/Debug/net9.0/BehavioralPattern.sourcelink.json
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/BehavioralPattern/obj/Debug/net9.0/BehavioralPattern.dll
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/BehavioralPattern/obj/Debug/net9.0/refint/BehavioralPattern.dll
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/BehavioralPattern/obj/Debug/net9.0/BehavioralPattern.pdb
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/BehavioralPattern/obj/Debug/net9.0/BehavioralPattern.genruntimeconfig.cache
+/home/omidsa/Programmings/PatternsWithCSharp/Projects01/DesignPatterns/BehavioralPattern/obj/Debug/net9.0/ref/BehavioralPattern.dll
