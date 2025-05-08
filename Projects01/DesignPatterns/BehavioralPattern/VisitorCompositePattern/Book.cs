@@ -2,10 +2,18 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace BehavioralPattern.VisitorCompositePattern
 {
+
+    public interface IVisitorProducts
+    {
+        void Visit(Book book);
+        void Visit(Clothing clothing);
+        void Visit(Electronics electronics);
+    }
     public interface IProduct
     {
         string Name {get;}
         public double Price {get;}
+        void Accept(IVisitorProducts visitor);
     }
     public class Book : IProduct
     {
@@ -20,9 +28,9 @@ namespace BehavioralPattern.VisitorCompositePattern
             Discount = discount;
         }
 
-        public double CalculateFinalPrice()
+        public void Accept(IVisitorProducts visitor)
         {
-            return Price *(1- Discount/100);
+            visitor.Visit(this);
         }
     }
 
@@ -39,9 +47,9 @@ namespace BehavioralPattern.VisitorCompositePattern
             WarrantyCost = warrantyCost;
         }
 
-        public double CalculateFinalPrice()
+        public void Accept(IVisitorProducts visitor)
         {
-            return Price + WarrantyCost;
+            visitor.Visit(this);
         }
     }
 
@@ -58,30 +66,49 @@ namespace BehavioralPattern.VisitorCompositePattern
             ShippingCost = shippingCost;
         }
 
-        public double CalculateFinalPrice()
+        public void Accept(IVisitorProducts visitor)
         {
-            return Price + ShippingCost;
+            visitor.Visit(this);
         }
     }
 
-    public class PriceCalculator
+    // public class PriceCalculator
+    // {
+    //     public double CalculateFinalPrice(IProduct product)
+    //     {
+    //         if(product is Book book)
+    //         {
+    //             return book.Price * (1/book.Discount/100);
+    //         }
+    //         else if(product is Electronics electronics)
+    //         {
+    //             return electronics.Price + electronics.WarrantyCost;
+    //         }
+    //         else if(product is Clothing clothing)
+    //         {
+    //            return clothing.Price + clothing.ShippingCost;
+    //         }
+    //         else
+    //             throw new ArgumentException("Unknown product type");
+    //     }
+    // }
+
+    public class PriceCalculatorVisitor : IVisitorProducts
     {
-        public double CalculateFinalPrice(IProduct product)
+        public double FinalPrice {get; private set;}
+        public void Visit(Book book)
         {
-            if(product is Book book)
-            {
-                return book.Price * (1/book.Discount/100);
-            }
-            else if(product is Electronics electronics)
-            {
-                return electronics.Price + electronics.WarrantyCost;
-            }
-            else if(product is Clothing clothing)
-            {
-               return clothing.Price + clothing.ShippingCost;
-            }
-            else
-                throw new ArgumentException("Unknown product type");
+            FinalPrice = book.Price * (1-book.Discount/100);
+        }
+
+        public void Visit(Clothing clothing)
+        {
+            FinalPrice = clothing.Price + clothing.ShippingCost;
+        }
+
+        public void Visit(Electronics electronics)
+        {
+            FinalPrice = electronics.Price + electronics.WarrantyCost;
         }
     }
 }
