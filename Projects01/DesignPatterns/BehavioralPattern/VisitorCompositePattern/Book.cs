@@ -1,6 +1,13 @@
+using System.Security.Cryptography.X509Certificates;
+
 namespace BehavioralPattern.VisitorCompositePattern
 {
-    public class Book
+    public interface IProduct
+    {
+        string Name {get;}
+        public double Price {get;}
+    }
+    public class Book : IProduct
     {
         public string Name {get; set;}
         public double Price {get; set;}
@@ -19,7 +26,7 @@ namespace BehavioralPattern.VisitorCompositePattern
         }
     }
 
-    public class Electronics
+    public class Electronics : IProduct
     {
         public string Name { get; }
         public double Price { get; }
@@ -38,7 +45,7 @@ namespace BehavioralPattern.VisitorCompositePattern
         }
     }
 
-    public class Clothing
+    public class Clothing :IProduct
     {
         public string Name { get; }
         public double Price { get; }
@@ -54,6 +61,27 @@ namespace BehavioralPattern.VisitorCompositePattern
         public double CalculateFinalPrice()
         {
             return Price + ShippingCost;
+        }
+    }
+
+    public class PriceCalculator
+    {
+        public double CalculateFinalPrice(IProduct product)
+        {
+            if(product is Book book)
+            {
+                return book.Price * (1/book.Discount/100);
+            }
+            else if(product is Electronics electronics)
+            {
+                return electronics.Price + electronics.WarrantyCost;
+            }
+            else if(product is Clothing clothing)
+            {
+               return clothing.Price + clothing.ShippingCost;
+            }
+            else
+                throw new ArgumentException("Unknown product type");
         }
     }
 }
