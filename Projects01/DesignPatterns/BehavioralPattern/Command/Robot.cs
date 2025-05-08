@@ -36,4 +36,43 @@ namespace BehavioralPattern.Command
             _robot.TurnLeft();
         }
     }
+
+    public class TurnRightCommand : IRobotCommand
+    {
+        private Robot _robot;
+        public void Execute()
+        {
+            _robot.TurnRight();
+        }
+
+        public void Undo()
+        {
+            _robot.TurnLeft();
+        }
+    }
+
+    public class RobotController
+    {
+        private List<IRobotCommand> _command;
+        public RobotController()
+        {
+            _command = new List<IRobotCommand>();
+        }
+
+        public void AddCommand(IRobotCommand command)
+        {
+            _command.Add(command);
+        }
+
+        public void ExecuteCommands()
+
+        {
+            foreach(var command in _command)
+            {
+                command.Execute();
+            }
+        }
+
+
+    }
 }
