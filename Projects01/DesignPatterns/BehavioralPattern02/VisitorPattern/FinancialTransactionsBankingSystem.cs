@@ -71,4 +71,68 @@ namespace BehavioralPattern02.VisitorPattern
             visitor.Visit(this);
         }
     }
+
+    public class TransactionProcessorVisitor : IBankingVisitor
+    {
+        public void Visit(Deposit deposit)
+        {
+            Console.WriteLine($"Processing deposit of {deposit.Amount:C} to account {deposit.AccountId}");
+            UpdateAccountBalance(deposit.AccountId, deposit.Amount);
+            LogTransaction("Deposit", deposit.Amount, deposit.Date);
+        }
+
+        public void Visit(Withdrawal withdrawal)
+        {
+            Console.WriteLine($"Processing withdrawal of {withdrawal.Amount:C} from account {withdrawal.AccountId} with reference {withdrawal.ReferenceNumber}");
+                // Update account balance
+                UpdateAccountBalance(withdrawal.AccountId, -withdrawal.Amount);
+                // Log transaction
+                LogTransaction("Withdrawal", withdrawal.Amount, withdrawal.Date);
+        }
+
+        public void Visit(Transfer transfer)
+        {
+            Console.WriteLine($"Processing transfer of {transfer.Amount:C} from account {transfer.SourceAccountId} to account {transfer.DestinationAccountId}");
+                // Update source account
+                UpdateAccountBalance(transfer.SourceAccountId, -transfer.Amount);
+                // Update destination account
+                UpdateAccountBalance(transfer.DestinationAccountId, transfer.Amount);
+                // Log transaction
+                LogTransaction("Transfer", transfer.Amount, transfer.Date);
+        }
+
+        private void UpdateAccountBalance(string accountId, decimal amount)
+        {
+             Console.WriteLine($"Updated account {accountId} balance by {amount:C}");
+        }
+
+        private void LogTransaction(string type, decimal amount, DateTime date)
+        {
+            Console.WriteLine($"Logged {type} of {amount:C} on {date}");
+        }
+    }
+
+    public class GenerateReportVisitor : IBankingVisitor
+    {
+        decimal totalDeposits = 0;
+        decimal totalWithdrawals = 0;
+        decimal totalTransfers = 0;
+        public void Visit(Deposit deposit)
+        {
+            totalDeposits += deposit.Amount;
+            Console.WriteLine($"Total Deposits: {totalDeposits:C}");
+        }
+
+        public void Visit(Withdrawal withdrawal)
+        {
+            totalWithdrawals += withdrawal.Amount;
+             Console.WriteLine($"Total Withdrawals: {totalWithdrawals:C}");
+        }
+
+        public void Visit(Transfer transfer)
+        {
+            totalTransfers += transfer.Amount;
+            Console.WriteLine($"Total Transfers: {totalTransfers:C}");
+        }
+    }
 }
