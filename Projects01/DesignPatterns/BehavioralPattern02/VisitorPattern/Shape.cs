@@ -4,6 +4,7 @@ namespace BehavioralPattern02.VisitorPattern
     {
         public abstract double CalculateArea();
         public abstract double CalculatePerimeter();
+        public abstract void Draw();
     }
 
     public class Circle : Shape
@@ -21,6 +22,11 @@ namespace BehavioralPattern02.VisitorPattern
         public override double CalculatePerimeter()
         {
             return Math.PI * Radius * 2;
+        }
+
+        public override void Draw()
+        {
+            Console.WriteLine($"Drawing Circle with radius: {Radius}");
         }
     }
 
@@ -41,6 +47,11 @@ namespace BehavioralPattern02.VisitorPattern
         public override double CalculatePerimeter()
         {
             return 2*(Width + Height);
+        }
+
+        public override void Draw()
+        {
+            Console.WriteLine($"Drawing Rectangle with width: {Width}, height: {Height}");
         }
     }
 }
