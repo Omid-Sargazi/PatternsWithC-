@@ -1,10 +1,10 @@
+using System.Runtime.CompilerServices;
+
 namespace BehavioralPattern02.VisitorPattern
 {
     public abstract class Shape
     {
-        public abstract double CalculateArea();
-        public abstract double CalculatePerimeter();
-        public abstract void Draw();
+        
     }
 
     public class Circle : Shape
@@ -14,20 +14,7 @@ namespace BehavioralPattern02.VisitorPattern
         {
             Radius = radius;
         }
-        public override double CalculateArea()
-        {
-            return Math.PI * Radius * Radius;
-        }
-
-        public override double CalculatePerimeter()
-        {
-            return Math.PI * Radius * 2;
-        }
-
-        public override void Draw()
-        {
-            Console.WriteLine($"Drawing Circle with radius: {Radius}");
-        }
+       
     }
 
     public class Rectangle : Shape
@@ -39,19 +26,50 @@ namespace BehavioralPattern02.VisitorPattern
             Width = width;
             Height = height;
         }
-        public override double CalculateArea()
+       
+    }
+
+    public class ShapeOperations
+    {
+        public double CalculateArea(Shape shape)
         {
-            return Width * Height;
+            if(shape is Circle circle)
+            {
+                return Math.PI * circle.Radius * circle.Radius;
+            }
+            else if(shape is Rectangle rectangle)
+            {
+                return rectangle.Width * rectangle.Height;
+            }
+            throw new NotSupportedException("Shape not supported");
         }
 
-        public override double CalculatePerimeter()
+        public double CalculatePerimeter(Shape shape)
         {
-            return 2*(Width + Height);
+            if(shape is Circle circle)
+            {
+                return Math.PI * 2 * circle.Radius;
+            }
+            else if(shape is Rectangle rectangle)
+            {
+                return 2*(rectangle.Width + rectangle.Height);
+            }
+            throw new NotSupportedException("Shape not supported");
         }
 
-        public override void Draw()
+        public void Draw(Shape shape)
         {
-            Console.WriteLine($"Drawing Rectangle with width: {Width}, height: {Height}");
+            if(shape is Circle circle)
+            {
+                Console.WriteLine($"Drawing Circle with radius: {circle.Radius}");
+            }
+
+            else if(shape is Rectangle rectangle)
+            {
+                Console.WriteLine($"Drawing Rectangle with width: {rectangle.Width}, height: {rectangle.Height}");
+            }
+            else
+                throw new NotSupportedException("Shape not supported");
         }
     }
 }
