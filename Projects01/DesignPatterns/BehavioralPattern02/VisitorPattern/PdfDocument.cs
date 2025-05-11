@@ -4,6 +4,7 @@ namespace BehavioralPattern02.VisitorPattern
     {
         public abstract void DisplayInfo();
         public abstract double CalculateCompressedSize();
+        public abstract string ConvertFormat();
     }
 
     public class PdfDocument : Document
@@ -23,6 +24,11 @@ namespace BehavioralPattern02.VisitorPattern
         {
             Console.WriteLine($"PDF Document with {PageCount} pages");
         }
+
+        public override string ConvertFormat()
+        {
+            return "Converted PDF to Word format";
+        }
     }
 
     public class WordDocument : Document
@@ -41,6 +47,11 @@ namespace BehavioralPattern02.VisitorPattern
         public override void DisplayInfo()
         {
             Console.WriteLine($"Word Document with {WordCount} words");
+        }
+
+        public override string ConvertFormat()
+        {
+            return "Converted Word to PDF format";
         }
     }
 
