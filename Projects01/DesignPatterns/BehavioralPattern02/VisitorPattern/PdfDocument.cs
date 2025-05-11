@@ -1,11 +1,23 @@
+using Microsoft.VisualBasic;
+
 namespace BehavioralPattern02.VisitorPattern
 {
+    public interface IDocument
+    {
+        void Accept(IDocumentVisitor visitor);
+    }
+
+    public interface IDocumentVisitor
+    {
+        void Visit(PdfDocument pdfDocument);
+        void Visit(WordDocument wordDocument);
+    }
     public abstract class Document
     {
         
     }
 
-    public class PdfDocument : Document
+    public class PdfDocument : IDocument
     {
         public int PageCount {get;}
 
@@ -13,10 +25,14 @@ namespace BehavioralPattern02.VisitorPattern
         {
             PageCount = pageCount;
         }
-      
+
+        public void Accept(IDocumentVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 
-    public class WordDocument : Document
+    public class WordDocument : IDocument
     {
         public int WordCount {get;}
 
@@ -24,53 +40,42 @@ namespace BehavioralPattern02.VisitorPattern
         {
             WordCount = wordCount;
         }
-       
+
+        public void Accept(IDocumentVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
     }
 
-    public class DocumentOperations
+   
+  
+    
+
+    public class CalculateCompressedSize : IDocumentVisitor
     {
-        public void DisplayInfo(Document doc)
+        public double result; 
+        public void Visit(PdfDocument pdfDocument)
         {
-            if(doc is PdfDocument pdfDocument)
-            {
-                Console.WriteLine($"PDF Document with {pdfDocument.PageCount} pages");
-            }
-            else if(doc is WordDocument wordDocument)
-            {
-                Console.WriteLine($"Word Document with {wordDocument.WordCount} words");
-            }
-            else
-            {
-                throw new NotSupportedException("Document not supported");
-            }
+             var result = pdfDocument.PageCount * 0.1 * 0.5;
+
         }
 
-        public double CalculateCompressedSize(Document doc)
+        public void Visit(WordDocument wordDocument)
         {
-            if(doc is PdfDocument pdfDocument)
-            {
-                return pdfDocument.PageCount * 0.1 * 0.5;
-            }
-            else if(doc is WordDocument wordDocument)
-            {
-                return (wordDocument.WordCount / 1000.0) * 0.2 * 0.5;
-            }
-            throw new NotSupportedException("Document not supported");
-        }
-
-        public string ConvertFormat(Document doc)
-        {
-            if(doc is PdfDocument)
-            {
-                return "Converted PDF to Word format";
-            }
-            else if(doc is WordDocument)
-            {
-                return "Converted Word to PDF format";
-            }
-
-            throw new NotSupportedException("Document not supported");
+            var result = (wordDocument.WordCount / 1000.0) * 0.2 * 0.5;
         }
     }
 
+    public class ConvertFormat : IDocumentVisitor
+    {
+        public void Visit(PdfDocument pdfDocument)
+        {
+            Console.WriteLine($"PDF Document with {pdfDocument.PageCount} pages");
+        }
+
+        public void Visit(WordDocument wordDocument)
+        {
+            Console.WriteLine($"Word Document with {wordDocument.WordCount} words");
+        }
+    }
 }
