@@ -9,19 +9,34 @@ namespace BehavioralPattern02.ObserverPattern
         public float Temperature {get; private set;}
         public float Humidity {get; private set;}
 
-        private MobileAppDisplay _mobileAppDisplay;
-        private WebDashboardDisplay _webDashboardDisplay;
+        private List<IWeatherObserver> _weatherObservers;
         public WeatherStation()
         {
-            _mobileAppDisplay = new MobileAppDisplay();
-            _webDashboardDisplay = new WebDashboardDisplay();
+            _weatherObservers = new List<IWeatherObserver>();
+        }
+
+        public void Attach(IWeatherObserver observer)
+        {
+            _weatherObservers.Add(observer);
+        }
+        public void Detach(IWeatherObserver observer)
+        {
+            _weatherObservers.Remove(observer);
         }
         public void SetMeasurements(float temp, float humidity)
         {
             Temperature = temp;
             Humidity = humidity;
-            _mobileAppDisplay.Display(Temperature,Humidity);
-            _webDashboardDisplay.Display(Temperature,Humidity);
+            NotifyObservers();
+            
+        }
+
+        private void NotifyObservers()
+        {
+            foreach(var oberver in _weatherObservers)
+            {
+                oberver.Update(Temperature, Humidity);
+            }
         }
     }
 
