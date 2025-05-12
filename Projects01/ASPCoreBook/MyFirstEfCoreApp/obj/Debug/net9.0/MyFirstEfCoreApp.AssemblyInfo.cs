@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MyFirstEfCoreApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+18f7c1bc10ea7d38fea573a6a083787a6f691b3c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+79445aef437fcbdc2e782c7122578ab25e8c273f")]
 [assembly: System.Reflection.AssemblyProductAttribute("MyFirstEfCoreApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MyFirstEfCoreApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
