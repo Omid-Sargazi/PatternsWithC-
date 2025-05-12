@@ -29,10 +29,13 @@ namespace BehavioralPattern02.ObserverPattern
            
         }
 
-        public void SetPrice(decimal price)
+       
+        private void NotifyObservers()
         {
-            Price = price;
-            
+            foreach(var observer in _observer)
+            {
+                observer.Update(Symbol, Price);
+            }
         }
     }
 

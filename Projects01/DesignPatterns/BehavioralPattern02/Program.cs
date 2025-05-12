@@ -9,6 +9,6 @@ public class Program
         // stock.SetPrice(305.05m);
         // Console.WriteLine($"Stock: {stock.Symbol}, Price: {stock.Price}");
 
-        stock.SetPrice(155.03m);
+       
     }
 }
