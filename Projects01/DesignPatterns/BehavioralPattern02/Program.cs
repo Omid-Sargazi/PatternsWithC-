@@ -9,6 +9,10 @@ public class Program
         // stock.SetPrice(305.05m);
         // Console.WriteLine($"Stock: {stock.Symbol}, Price: {stock.Price}");
 
+        var station = new WeatherStation();
+        station.SetMeasurements(25.5f,60.6f);
+        Console.WriteLine($"temp {station.Temperature} Humidity:{station.Humidity}");
+
        
     }
 }
