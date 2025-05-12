@@ -20,5 +20,10 @@ public class Program
         {
             Console.WriteLine($"- {book.Title} by {book.Author}");
         }
+        books = db.Books.Where(b => b.Author == "Jon Skeet").ToList();
+        foreach(var book in books)
+        {
+            Console.WriteLine($"{book.Title} by {book.Author}");
+        }
     }
 }
