@@ -25,5 +25,8 @@ public class Program
         {
             Console.WriteLine($"{book.Title} by {book.Author}");
         }
+
+       var bookk = db.Books.FirstOrDefault(b => b.Title == "C# in depth");
+        Console.WriteLine($"{bookk?.Author ?? "Book Not Found"}");
     }
 }
