@@ -1,5 +1,6 @@
 namespace BehavioralPattern02.ObserverPattern
 {
+    
     public class Product
     {
         public string name {get; set;}
