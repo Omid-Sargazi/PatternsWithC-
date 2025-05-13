@@ -18,5 +18,20 @@ namespace BehavioralPattern02.LeetCodeProblems
 
             return Array.Empty<int>();
         }
+    public bool IsPalindrome(int number)
+    {
+        if(number < 0) return false;
+        int original  = number;
+        int reverse = 0;
+        while(number!=0)
+        {
+            int digit = number%10;
+            reverse = reverse*10+digit;
+            number/=10;
+        }
+
+        return original == reverse;
     }
+    }
+
 }
