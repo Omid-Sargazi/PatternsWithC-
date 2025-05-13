@@ -8,8 +8,13 @@ namespace BehavioralPattern02.PrototypePattern
         {
             Color = color;
         }
-        public abstract Shape Copy();
+        // public abstract Shape Copy();
         public abstract void Describe();
+
+        public Shape ShallowCopy()
+        {
+            return (Shape)MemberwiseClone();
+        }
     }
     public class Circle : Shape
     {
@@ -19,10 +24,10 @@ namespace BehavioralPattern02.PrototypePattern
             Radius = radius;
         }
 
-        public override Shape Copy()
-        {
-            return new Circle(Radius, Color);
-        }
+        // public override Shape Copy()
+        // {
+        //     return new Circle(Radius, Color);
+        // }
 
         public override void Describe()
         {
@@ -41,10 +46,10 @@ namespace BehavioralPattern02.PrototypePattern
         public double Width {get; set;}
         public double Height {get; set;}
 
-        public override Shape Copy()
-        {
-            return new Rectangle(Width, Height, Color);
-        }
+        // public override Shape Copy()
+        // {
+        //     return new Rectangle(Width, Height, Color);
+        // }
 
         public override void Describe()
         {
@@ -65,14 +70,14 @@ namespace BehavioralPattern02.PrototypePattern
         public double Side2 {get; set;}
         public double Side3 {get; set;}
 
-        public override Shape Copy()
-        {
-            return new Triangle(Side1, Side2, Side3, Color);
-        }
+        // public override Shape Copy()
+        // {
+        //     return new Triangle(Side1, Side2, Side3, Color);
+        // }
 
         public override void Describe()
         {
-            Console.WriteLine($"Triangle: Sides={Side1},{Side2},{Side3}, Color={Color}")
+            Console.WriteLine($"Triangle: Sides={Side1},{Side2},{Side3}, Color={Color}");
         }
     }
 }
