@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace BehavioralPattern02.VisitorPattern
 {
     public interface IAllDocuments
@@ -9,6 +11,7 @@ namespace BehavioralPattern02.VisitorPattern
     {
         void Visit(PdfAllDocument pdf);
         void Visit(WordAllDocumnet word);
+        void Visit(HtmlDocument html);
     }
 
     public interface ICompressionStrategy
@@ -40,6 +43,14 @@ namespace BehavioralPattern02.VisitorPattern
             visitor.Visit(this);
         }
     }
+    public class HtmlDocument : IAllDocuments
+    {
+        public string Content;
+        public void Accept(IAllDocumentsVisitor visitor)
+        {
+            visitor.Visit(this);
+        }
+    }
 
     public class WordAllDocumnet : IAllDocuments
     {
@@ -65,6 +76,49 @@ namespace BehavioralPattern02.VisitorPattern
         public void Visit(WordAllDocumnet word)
         {
             Console.WriteLine($"Compressing Word: {_compressionStrategy.Compress(word.Content)}");
+        }
+
+        public void Visit(HtmlDocument html)
+        {
+            Console.WriteLine($"Compressing html: {_compressionStrategy.Compress(html.Content)}");
+        }
+    }
+
+    public class TextExtractionVisitor : IAllDocumentsVisitor
+    {
+
+        public void Visit(PdfAllDocument pdf)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(WordAllDocumnet word)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(HtmlDocument html)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class AllSizeCalculatorVisitor : IAllDocumentsVisitor
+    {
+        public int TotalSize { get; private set; }
+        public void Visit(PdfAllDocument pdf)
+        {
+            TotalSize += pdf.Content.Length;
+        }
+
+        public void Visit(WordAllDocumnet word)
+        {
+            TotalSize += word.Content.Length;
+        }
+
+        public void Visit(HtmlDocument html)
+        {
+            throw new NotImplementedException();
         }
     }
 }
