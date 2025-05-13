@@ -17,6 +17,11 @@ namespace BehavioralPattern02.PrototypePattern
             Strength = other.Strength;
         }
 
+        public GameCharacter Clone()
+        {
+            return (GameCharacter)this.MemberwiseClone();
+        }
+
         public void Display()
         {
             Console.WriteLine($"[Character] {Name} - HP: {Health}, Mana: {Mana}, STR: {Strength}");

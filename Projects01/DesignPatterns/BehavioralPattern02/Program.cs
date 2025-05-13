@@ -33,21 +33,38 @@ public class Program
         // };
         // warrior02.Display();
 
-        var mageTemplate = new GameCharacter
-        {
-            Name = "MageTemplate",
-            Health = 80,
-            Mana = 150,
-            Strength = 30
-        };
+        // var mageTemplate = new GameCharacter
+        // {
+        //     Name = "MageTemplate",
+        //     Health = 80,
+        //     Mana = 150,
+        //     Strength = 30
+        // };
         
-        var mage1 = new GameCharacter(mageTemplate);
-        mage1.Name = "Mage1";
+        // var mage1 = new GameCharacter(mageTemplate);
+        // mage1.Name = "Mage1";
 
-        var mage2 = new GameCharacter(mageTemplate);
-        mage2.Name = "Mage2";
-        mage1.Display();
-        mage2.Display();
+        // var mage2 = new GameCharacter(mageTemplate);
+        // mage2.Name = "Mage2";
+        // mage1.Display();
+        // mage2.Display();
+
+        var rogueTemplate = new GameCharacter
+        {
+            Name = "RogueTemplate",
+            Health = 100,
+            Mana = 50,
+            Strength = 60
+        };
+
+        var rouge1 = rogueTemplate.Clone();
+        rouge1.Name = "Rogue1";
+
+        var rouge2 = rogueTemplate.Clone();
+        rouge2.Name = "Rogue2";
+
+        rouge1.Display();
+        rouge2.Display();
 
        
     }
