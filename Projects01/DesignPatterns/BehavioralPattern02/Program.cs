@@ -66,6 +66,23 @@ public class Program
         rouge1.Display();
         rouge2.Display();
 
+        var warriorTemplate = new GameCharacter
+        {
+            Name = "WarriorTemplate",
+            Health = 150,
+            Mana = 20,
+            Strength = 80
+        };
+
+        var warrior1 = warriorTemplate.Clone();
+        warrior1.Name = "Warrior1";
+
+        var warrior02 = warriorTemplate.Clone();
+        warrior02.Name="Warrior2";
+
+        warrior1.Display();
+        warrior1.Display();
+
        
     }
 }

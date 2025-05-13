@@ -1,6 +1,10 @@
 namespace BehavioralPattern02.PrototypePattern
 {
-    public class GameCharacter
+    public interface IPrototype<T>
+    {
+        T Clone();
+    }
+    public class GameCharacter : IPrototype<GameCharacter>
     {
         public string Name { get; set; }
         public int Health { get; set; }
