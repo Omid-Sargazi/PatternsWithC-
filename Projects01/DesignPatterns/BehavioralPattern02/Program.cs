@@ -87,9 +87,9 @@ public class Program
         Shape rectangle = new Rectangle(10,20,"Blue");
         Shape triangle = new Triangle(3, 4, 5,"Green");
 
-        Shape circleCopy = circle.ShallowCopy();
-        Shape rectangleCopy = rectangle.ShallowCopy();
-        Shape triangleCopy = triangle.ShallowCopy();
+        Shape circleCopy =(Shape) circle.Clone();
+        Shape rectangleCopy =(Shape) rectangle.Clone();
+        Shape triangleCopy = (Shape)triangle.Clone();
         circleCopy.Color = "Yellow";
 
 

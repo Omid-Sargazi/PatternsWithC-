@@ -1,7 +1,9 @@
 namespace BehavioralPattern02.PrototypePattern
 {
 
-    public abstract class Shape
+
+
+    public abstract class Shape : ICloneable
     {
         public string Color {get; set;}
         public Shape(string color)
@@ -11,9 +13,11 @@ namespace BehavioralPattern02.PrototypePattern
         // public abstract Shape Copy();
         public abstract void Describe();
 
-        public Shape ShallowCopy()
+       
+
+        public object Clone()
         {
-            return (Shape)MemberwiseClone();
+            return MemberwiseClone();
         }
     }
     public class Circle : Shape
