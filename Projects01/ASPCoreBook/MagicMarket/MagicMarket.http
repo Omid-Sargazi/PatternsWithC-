@@ -1,0 +1,6 @@
+@MagicMarket_HostAddress = http://localhost:5111
+
+GET {{MagicMarket_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
