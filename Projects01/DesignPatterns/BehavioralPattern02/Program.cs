@@ -14,24 +14,40 @@ public class Program
         // station.SetMeasurements(25.5f,60.6f);
         // Console.WriteLine($"temp {station.Temperature} Humidity:{station.Humidity}");
 
-        var warrior = new GameCharacter
-        {
-            Name = "Warrior1",
-            Health = 150,
-            Mana = 20,
-            Strength = 80,
-        };
+        // var warrior = new GameCharacter
+        // {
+        //     Name = "Warrior1",
+        //     Health = 150,
+        //     Mana = 20,
+        //     Strength = 80,
+        // };
 
-        warrior.Display();
+        // warrior.Display();
 
-        var warrior02 = new GameCharacter
+        // var warrior02 = new GameCharacter
+        // {
+        //     Name = "Warrior2",
+        //     Health = 150,
+        //     Mana = 20,
+        //     Strength = 80,
+        // };
+        // warrior02.Display();
+
+        var mageTemplate = new GameCharacter
         {
-            Name = "Warrior2",
-            Health = 150,
-            Mana = 20,
-            Strength = 80,
+            Name = "MageTemplate",
+            Health = 80,
+            Mana = 150,
+            Strength = 30
         };
-        warrior02.Display();
+        
+        var mage1 = new GameCharacter(mageTemplate);
+        mage1.Name = "Mage1";
+
+        var mage2 = new GameCharacter(mageTemplate);
+        mage2.Name = "Mage2";
+        mage1.Display();
+        mage2.Display();
 
        
     }
