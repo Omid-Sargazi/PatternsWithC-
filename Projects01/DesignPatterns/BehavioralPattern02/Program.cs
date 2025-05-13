@@ -83,6 +83,23 @@ public class Program
         warrior1.Display();
         warrior1.Display();
 
+        Circle circle = new Circle(5, "Red");
+        Rectangle rectangle = new Rectangle(10,20,"Blue");
+        Triangle triangle = new Triangle(3, 4, 5,"Green");
+
+        Circle circleCopy = circle.Copy();
+        Rectangle rectangleCopy = rectangle.Copy();
+        Triangle triangleCopy = triangle.Copy();
+        circleCopy.Color = "Yellow";
+
+        
+        circle.Describe();
+        circleCopy.Describe();
+        rectangle.Describe();
+        rectangleCopy.Describe();
+        triangle.Describe();
+        triangleCopy.Describe();
+
        
     }
 }
