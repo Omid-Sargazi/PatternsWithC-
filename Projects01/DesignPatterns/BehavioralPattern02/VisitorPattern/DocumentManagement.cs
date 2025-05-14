@@ -65,4 +65,24 @@ namespace BehavioralPattern02.VisitorPattern
             CompressedSize = (documentt.WordCount / 1000.0) * 0.2 * 0.5; // هر 1000 کلمه 0.2 مگابایت
         }
     }
+
+    public class LoggingVisitorDecorator : IDocumentVisitorr
+    {
+        private readonly IDocumentVisitorr _documentVisitorr;
+        public LoggingVisitorDecorator(IDocumentVisitorr documentVisitorr)
+        {
+            _documentVisitorr = documentVisitorr;
+        }
+        public void Visit(PdfDocumentt documentt)
+        {
+            Console.WriteLine($"[LOG] Processing PDF with {documentt.PageCount} pages at {DateTime.Now}");
+            _documentVisitorr.Visit(documentt);
+        }
+
+        public void Visit(WordDocumentt documentt)
+        {
+           Console.WriteLine($"[LOG] Processing Word with {documentt.WordCount} words at {DateTime.Now}");
+           _documentVisitorr.Visit(documentt);
+        }
+    }
 }
