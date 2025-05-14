@@ -5,6 +5,34 @@ namespace BehavioralPattern02.DecoratorPattern
         string GetDescription();
         double GetCost();
     }
+    public class SimpleCoffee : ICoffee
+    {
+        public double GetCost()
+        {
+            return 2.0;
+        }
+
+        public string GetDescription()
+        {
+            return "Plain Coffee";
+        }
+    }
+
+    public abstract class CoffeeDecorator : ICoffee
+    {
+        protected ICoffee _coffee;
+        public CoffeeDecorator(ICoffee coffee)
+        {
+            _coffee = coffee;
+        }
+        public virtual double GetCost()=>_coffee.GetCost();
+
+        public string GetDescription()
+        {
+            return _coffee.GetDescription();
+        }
+    }
+
     public class Coffee
     {
         public virtual string GetDescription() => "Plain Coffee";
