@@ -23,33 +23,33 @@ namespace BehavioralPattern02.BridgePattern
 
     public class Invoice
     {
+        private readonly IDocRenderer _docRenderer;
+        public Invoice(IDocRenderer docRenderer)
+        {
+            _docRenderer = docRenderer;
+        }
         public string Title {get; set;}  ="Invoice";
         public string Content {get; set;}  ="Invoice details ...";
 
-        public void RenderAsPdf()
+        public void Render()
         {
-            Console.WriteLine($"[PDF] {Title}: {Content}");
-        }
-
-        public void RenderAsHtml()
-        {
-            Console.WriteLine($"<html><h1>{Title}</h1><p>{Content}</p></html>");
+            _docRenderer.Render(Title, Content);
         }
     }
 
     public class Report
     {
+        public IDocRenderer _docRenderer;
+        public Report(IDocRenderer docRenderer)
+        {
+            _docRenderer = docRenderer;
+        }
          public string Title { get; set; } = "Report";
         public string Content { get; set; } = "Monthly stats...";
 
-         public void RenderAsPdf()
+        public void Render()
         {
-            Console.WriteLine($"[PDF] {Title}: {Content}");
-        }
-
-        public void RenderAsHtml()
-        {
-            Console.WriteLine($"<html><h1>{Title}</h1><p>{Content}</p></html>");
+            _docRenderer.Render(Title, Content);
         }
     }
 }
