@@ -1,5 +1,26 @@
 namespace BehavioralPattern02.BridgePattern
 {
+    public interface IRenderer
+    {
+        void RenderShape(string shapeType);
+    }
+
+    public class VectorRender : IRenderer
+    {
+        public void RenderShape(string shapeType)
+        {
+            Console.WriteLine($"Drawing {shapeType} with Vector rendering");
+        }
+    }
+
+    public class PixelRenderer : IRenderer
+    {
+        public void RenderShape(string shapeType)
+        {
+            Console.WriteLine($"Drawing {shapeType} with Pixel rendering");
+        }
+    }
+
     public class Renderer
     {
         public void RenderShape(string shapeType)
@@ -9,8 +30,8 @@ namespace BehavioralPattern02.BridgePattern
     }
     public abstract class Shape
     {
-        protected Renderer _renderer;
-        public Shape(Renderer renderer)
+        protected IRenderer _renderer;
+        public Shape(IRenderer renderer)
         {
             _renderer = renderer;
         }
@@ -20,9 +41,8 @@ namespace BehavioralPattern02.BridgePattern
     {
        private string _renderType;
 
-        public Circle(Renderer renderer) : base(renderer)
+        public Circle(IRenderer renderer) : base(renderer)
         {
-
         }
 
         public override void Draw()
@@ -44,7 +64,7 @@ namespace BehavioralPattern02.BridgePattern
     {
        private string _renderType;
 
-        public Square(Renderer renderer) : base(renderer)
+        public Square(IRenderer renderer) : base(renderer)
         {
         }
 
