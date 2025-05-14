@@ -27,42 +27,48 @@ namespace BehavioralPattern02.DecoratorPattern
         }
         public virtual double GetCost()=>_coffee.GetCost();
 
-        public string GetDescription()
+        public virtual string GetDescription()
         {
             return _coffee.GetDescription();
         }
     }
 
-    public class Coffee
-    {
-        public virtual string GetDescription() => "Plain Coffee";
-        public virtual double GetCost() => 2.0;
-    }
 
-    public class CoffeeWithMilk : Coffee
+
+    public class CoffeeWithMilk : CoffeeDecorator
     {
-        public override string GetDescription()
+        public CoffeeWithMilk(ICoffee coffee) : base(coffee)
         {
-            return "Coffee with Milk";
         }
-
+        
+        public override string GetDescription()=>base.GetDescription()+"Milk";
         public override double GetCost()
         {
-            return 2.5;
+            return base.GetCost();
         }
     }
 
-    public class CoffeeWithSugar  :Coffee
+    public class CoffeeWithSugar : CoffeeDecorator
     {
+        public CoffeeWithSugar(ICoffee coffee) : base(coffee)
+        {
+        }
         public override string GetDescription()
         {
-            return "Coffee with Sugar";
+            return base.GetDescription() + "Sugar";
         }
-        public override double GetCost()=>2.3;
+        public override double GetCost()
+        {
+            return base.GetCost() + 2.06;
+        }
     }
 
-    public class CoffeeWithMilkAndSugar : Coffee
+    public class CoffeeWithMilkAndSugar : CoffeeDecorator
     {
+        public CoffeeWithMilkAndSugar(ICoffee coffee) : base(coffee)
+        {
+        }
+
         public override string GetDescription()
         {
             return "Coffee with Milk and Sugar";
