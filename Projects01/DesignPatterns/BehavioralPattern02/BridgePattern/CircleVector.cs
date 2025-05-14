@@ -1,33 +1,51 @@
 namespace BehavioralPattern02.BridgePattern
 {
-    public class CircleVector
+    public abstract class Shape
     {
-        public void Draw()
+        public abstract void Draw();
+    }
+    public class Circle:Shape
+    {
+       private string _renderType;
+       public Circle(string renderType)
+       {
+            _renderType = renderType;
+       }
+
+        public override void Draw()
         {
-            Console.WriteLine("Drawing Circle with Vector rendering");
+            if(_renderType=="Vector")
+                Console.WriteLine("Drawing Circle with Vector rendering");
+            else if(_renderType == "Pixel")
+                Console.WriteLine("Drawing Circle with Pixel rendering");
         }
     }
 
-    public class CirclePixel
+
+
+    // public class CirclePixel
+    // {
+    //     public void Draw()
+    //     {
+    //         Console.WriteLine("Drawing Circle with Pixel rendering");
+    //     }
+    // }
+    public class Square : Shape
     {
-        public void Draw()
+       private string _renderType;
+
+        public Square(string renderType)
         {
-            Console.WriteLine("Drawing Circle with Pixel rendering");
+            _renderType = renderType;
         }
-    }
-    public class SquareVector
-    {
-        public void Draw()
+        public override void Draw()
         {
+           if (_renderType == "Vector")
             Console.WriteLine("Drawing Square with Vector rendering");
-        }
-    }
-
-    public class SquarePixel
-    {
-        public void Draw()
-        {
+        else if (_renderType == "Pixel")
             Console.WriteLine("Drawing Square with Pixel rendering");
         }
     }
+
+   
 }
