@@ -1,5 +1,10 @@
 namespace BehavioralPattern02.DecoratorPattern
 {
+    public interface ICoffee
+    {
+        string GetDescription();
+        double GetCost();
+    }
     public class Coffee
     {
         public virtual string GetDescription() => "Plain Coffee";
