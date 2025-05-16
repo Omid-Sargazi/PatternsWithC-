@@ -13,4 +13,9 @@ namespace DesignPatterns.Mediator
         }
 
     }
+
+    public interface IControlTowerr
+    {
+         void RequestLanding(Plane plane);
+    }
 }
