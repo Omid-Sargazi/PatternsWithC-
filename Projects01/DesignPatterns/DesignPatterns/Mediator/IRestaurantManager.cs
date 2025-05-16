@@ -11,4 +11,12 @@ namespace DesignPatterns.Mediator
             Description = description;
         }
     }
+
+    public interface IRestaurantManager
+    {
+         void RegisterChef(Chef chef);
+        void RegisterWaiter(Waiter waiter);
+        void SendOrder(Order order, Waiter waiter);
+        void NotifyFoodReady(Order order, Chef chef);
+    }
 }
