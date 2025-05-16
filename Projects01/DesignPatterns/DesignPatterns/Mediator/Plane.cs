@@ -3,9 +3,17 @@ namespace DesignPatterns.Mediator
     public class Plane
     {
         public string CallSign {get; set;}
-        public Plane(string callSign)
+        private IControlTowerr _tower;
+        public Plane(string callSign, IControlTowerr tower)
         {
             CallSign = callSign;
+            _tower = tower;
+            (_tower as ControlTowerr)?.RegisterPlane(this);
+        }
+         public void RequestLanding()
+        {
+            Console.WriteLine($"{CallSign}: Requesting to land...");
+            _tower.RequestLanding(this);
         }
         public void Land(Plane otherPlane)
         {
