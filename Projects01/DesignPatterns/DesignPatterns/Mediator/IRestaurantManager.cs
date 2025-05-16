@@ -73,4 +73,64 @@ namespace DesignPatterns.Mediator
             }
         }
     }
+
+    public class Chef : IColleague
+    {
+        private IRestaurantManager _restaurantManager;
+        public string Name { get; }
+
+        public Chef(string name)
+        {
+            Name = name;
+        }
+
+        public void SetRestaurantManager(IRestaurantManager manager)
+        {
+            _restaurantManager = manager;
+        }
+
+        public void ReceiveNotification(string message)
+        {
+            Console.WriteLine($"Chef {Name} received: {message}");
+            // فرض کنیم آشپز غذا رو آماده می‌کنه و خبر می‌ده
+            if (message.StartsWith("Order"))
+            {
+                int orderId = int.Parse(message.Split(':')[0].Replace("Order ", ""));
+                CompleteOrder(new Order(orderId, ""));
+            }
+        }
+
+        public void CompleteOrder(Order order)
+        {
+            Console.WriteLine($"Chef {Name} completed order {order.Id}.");
+            _restaurantManager.NotifyFoodReady(order, this);
+        }
+    }
+
+     public class Waiter : IColleague
+    {
+        private IRestaurantManager _restaurantManager;
+        public string Name { get; }
+
+        public Waiter(string name)
+        {
+            Name = name;
+        }
+
+        public void SetRestaurantManager(IRestaurantManager manager)
+        {
+            _restaurantManager = manager;
+        }
+
+        public void PlaceOrder(Order order)
+        {
+            Console.WriteLine($"Waiter {Name} placed order {order.Id}.");
+            _restaurantManager.SendOrder(order, this);
+        }
+
+        public void ReceiveNotification(string message)
+        {
+            Console.WriteLine($"Waiter {Name} received: {message}");
+        }
+    }
 }
