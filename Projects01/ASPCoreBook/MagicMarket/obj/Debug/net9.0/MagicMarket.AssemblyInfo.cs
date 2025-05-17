@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MagicMarket")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b8ca106a16bf6b590d777276eb526dff7918cb56")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf3435d8a05c2ed019d003988e56c0b089a29356")]
 [assembly: System.Reflection.AssemblyProductAttribute("MagicMarket")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MagicMarket")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
