@@ -4,23 +4,21 @@ namespace SolvingProblems.Problems
 {
     public class Problems
     {
-        public Dictionary<int, int> keyValuePairs = new();
+        public Dictionary<int, int> valueIndexMap = new();
         public int[] TwoSum(int[] nums, int target)
         {
             int[] result;
             for (int i = 0; i <= nums.Length - 1; i++)
             {
                 int complement = target - nums[i];
-                if (keyValuePairs.ContainsKey(complement))
+                if (valueIndexMap.ContainsKey(complement))
                 {
-                    return [keyValuePairs[complement], i];
+                    return new int[] { valueIndexMap[complement], i };
                 }
-                else
-                {
-                    keyValuePairs[complement] = i;
-                }
+                if (!valueIndexMap.ContainsKey(nums[i]))
+                    valueIndexMap.Add(nums[i], i);
             }
-            return [];
+            return new int[0];
         }
     }
 }
