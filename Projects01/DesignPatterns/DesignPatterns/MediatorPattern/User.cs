@@ -1,5 +1,10 @@
 namespace DesignPatterns.MediatorPattern
 {
+    public interface IChatRoom
+    {
+        void RegisterUser(User user);
+        void SendMessage(string message, User user);
+    }
     public class User
     {
         private string _name;
