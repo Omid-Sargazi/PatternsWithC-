@@ -25,12 +25,14 @@ namespace DesignPatterns.MediatorPattern
 
     public class RestaurantManager : IRestaurantManager
     {
+        
         public List<Chef> _chefs = new List<Chef>();
         public List<Server> _servers = new List<Server>();
+        public Dictionary<int, Server> _orderToServer = new Dictionary<int, Server>();
 
         public void NotifyFoodReady(Order order, Chef chef)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Restaurant Manager: Order {order.Id} ready by {chef.Name}.");
         }
 
         public void RegisterChef(Chef chef)
@@ -50,11 +52,20 @@ namespace DesignPatterns.MediatorPattern
 
         public void SendOrder(Order order, Server server)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Restaurant Manager received order {order.Id} from {server.Name}.");
+            _orderToServer[order.Id] = server;
+            if (_chefs.Count > 0)
+            {
+                Chef chef = _chefs[0];
+            }
+            else
+            {
+                Console.WriteLine("No chefs available.");
+            }
         }
     }
 
-    public class Chef 
+    public class Chef : IColleague
     {
         public IRestaurantManager _restaurantManager;
         public string Name;
@@ -62,6 +73,15 @@ namespace DesignPatterns.MediatorPattern
         {
             Name = name;
         }
+
+        public void ReceiveNotification(string message)
+        {
+            Console.WriteLine($"Chef {Name} received: {message}");
+             int orderId = int.Parse(message.Split(':')[0].Replace("Order ", ""));
+            if (message.StartsWith("Order"))
+                _restaurantManager.NotifyFoodReady(new Order(orderId, ""), this);
+        }
+
         public void SetRestaurantManager(IRestaurantManager restaurantManager)
         {
             _restaurantManager = restaurantManager;
@@ -69,7 +89,7 @@ namespace DesignPatterns.MediatorPattern
 
     }
 
-    public class Server
+    public class Server : IColleague
     {
         public IRestaurantManager _restaurantManager;
         public string Name;
@@ -77,6 +97,12 @@ namespace DesignPatterns.MediatorPattern
         {
             Name = server;
         }
+
+        public void ReceiveNotification(string message)
+        {
+            Console.WriteLine($"Waiter {Name} received: {message}");
+        }
+
         public void SetRestaurantManager(IRestaurantManager restaurantManager)
         {
             _restaurantManager = restaurantManager;
