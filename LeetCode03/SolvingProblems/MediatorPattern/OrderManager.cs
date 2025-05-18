@@ -21,12 +21,24 @@ namespace SolvingProblems.MediatorPattern
         public Cart(IOrderMediator orderMediator, string name) : base(orderMediator, name)
         {
         }
+
+        public void ConfirmCart()
+        {
+            Console.WriteLine($"{Name}: Cart confirmed.");
+            _orderMediator.Notify(this, "CartConfirmed.");
+        }
     }
 
     public class Inventory : Component
     {
         public Inventory(IOrderMediator orderMediator, string name) : base(orderMediator, name)
         {
+        }
+
+        public void CheckInventory()
+        {
+            Console.WriteLine($"{Name}: Inventory checked.");
+            _orderMediator.Notify(this, "InventoryAvailable");
         }
     }
 
@@ -35,12 +47,22 @@ namespace SolvingProblems.MediatorPattern
         public Payment(IOrderMediator orderMediator, string name) : base(orderMediator, name)
         {
         }
+        public void ProcessPayment()
+        {
+            Console.WriteLine($"{Name}: Payment processed.");
+            _orderMediator.Notify(this, "PaymentProcessed");
+        }
     }
 
     public class Notification : Component
     {
         public Notification(IOrderMediator orderMediator, string name) : base(orderMediator, name)
         {
+        }
+
+        public void SendNotification()
+        {
+            Console.WriteLine($"{Name}: Notification sent.");
         }
     }
 }
