@@ -65,4 +65,31 @@ namespace SolvingProblems.MediatorPattern
             Console.WriteLine($"{Name}: Notification sent.");
         }
     }
+
+    public class OrderMediator : IOrderMediator
+    {
+        private Cart _cart;
+        private Inventory _inventory;
+        private Payment _payment;
+        private Notification _notification;
+        public void SetCart(Cart cart) => _cart = cart;
+        public void SetInvetory(Inventory inventory) => _inventory = inventory;
+        public void SetPayment(Payment payment) => _payment = payment;
+        public void SetNotification(Notification notification) => _notification = notification;
+        public void Notify(Component sender, string eventName)
+        {
+            if (eventName == "CartConfirmed" && sender == _cart)
+            {
+                _inventory.CheckInventory();
+            }
+            else if (eventName == "InventoryAvailable" && sender == _inventory)
+            {
+                _payment.ProcessPayment();
+            }
+            else if (eventName == "PaymentProcessed" && sender == _payment)
+            {
+                _notification.SendNotification();
+            }
+        }
+    }
 }
