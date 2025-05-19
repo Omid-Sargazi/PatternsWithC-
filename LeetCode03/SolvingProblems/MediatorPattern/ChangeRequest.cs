@@ -86,6 +86,11 @@ namespace SolvingProblems.MediatorPattern
             Specialty = specialty;
             Name = name;
         }
+        public void SubmitProgressReport(ProgressReport report)
+        {
+            Console.WriteLine($"Employee {Name} submitted progress report for task {report.TaskId}.");
+            _projectManager.SendProgressRepost(report, this);
+        }
         
         public void SetProjectManager(IProjectManager projectManager)
         {
