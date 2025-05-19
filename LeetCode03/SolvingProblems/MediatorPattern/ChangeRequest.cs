@@ -34,7 +34,10 @@ namespace SolvingProblems.MediatorPattern
 
         public void SendChangeRequest(ChangeRequest changeRequest, Client client)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Project Manager received change request {changeRequest.Id} from {client.Name}.");
+            _requestToClient[changeRequest.Id] = client;
+            Employee targetEmployee = _employees.Find(e => e.Specialty == changeRequest.Description) ?? _employees[0];
+            targetEmployee.ReceiveNotification($"Change Request{changeRequest.Id}:{changeRequest.Description}");
         }
 
         public void SendProgressRepost(ProgressReport progressReport, Employee employee)
