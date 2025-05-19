@@ -7,7 +7,10 @@ namespace SolvingProblems.MediatorPattern
         void SendChangeRequest();
         void SendProgressRepost();
     }
-   
+    public interface IColleague
+    {
+        void ReceiveNotification(string message);
+    }
     public class ChangeRequest
     {
         public int Id { get; set; }
