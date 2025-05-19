@@ -1,5 +1,13 @@
 namespace SolvingProblems.MediatorPattern
 {
+    public interface IProjectManager
+    {
+        void RegisterEmployee();
+        void RegisterClient();
+        void SendChangeRequest();
+        void SendProgressRepost();
+    }
+   
     public class ChangeRequest
     {
         public int Id { get; set; }
