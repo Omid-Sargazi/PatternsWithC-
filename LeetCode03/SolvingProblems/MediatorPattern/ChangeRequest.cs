@@ -106,6 +106,12 @@ namespace SolvingProblems.MediatorPattern
         {
             Name = name;
         }
+
+        public void SubmitChangeRequest(ChangeRequest request)
+        {
+            Console.WriteLine($"Client {Name} submitted change request {request.Id}.");
+            _projectManager.SendChangeRequest(request, this);
+        }
        
         public void SetProjectManager(IProjectManager projectManager)
         {
@@ -113,7 +119,7 @@ namespace SolvingProblems.MediatorPattern
         }
         public void ReceiveNotification(string message)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Client {Name} received: {message}");
         }
     }
 }
