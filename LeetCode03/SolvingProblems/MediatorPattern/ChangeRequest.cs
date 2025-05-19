@@ -11,5 +11,14 @@ namespace SolvingProblems.MediatorPattern
         }
     }
 
-   
+    public class ProgressReport
+    {
+        public int TaskId { get; }
+        public string Status { get; }
+        public ProgressReport(int taskId, string status)
+        {
+            TaskId = taskId;
+            Status = status;
+        }
+    }
 }
