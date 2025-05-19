@@ -42,7 +42,15 @@ namespace SolvingProblems.MediatorPattern
 
         public void SendProgressRepost(ProgressReport progressReport, Employee employee)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Project Manager received progress report for task {progressReport.TaskId} from {employee.Name}.");
+             if (_requestToClient.TryGetValue(progressReport.TaskId, out Client client))
+            {
+                client.ReceiveNotification($"Progress Report for task {progressReport.TaskId}: {progressReport.Status}");
+            }
+            else
+            {
+                Console.WriteLine($"No client found for task {progressReport.TaskId}.");
+            }
         }
     }
 
