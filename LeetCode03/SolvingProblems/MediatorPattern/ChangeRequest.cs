@@ -21,12 +21,15 @@ namespace SolvingProblems.MediatorPattern
         public void RegisterClient(Client client)
         {
             _clients.Add(client);
+            client.SetProjectManager(this);
             Console.WriteLine($"Client {client.Name} registered.");
         }
 
         public void RegisterEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            _employees.Add(employee);
+            employee.SetProjectManager(this);
+            Console.WriteLine($"Employee {employee.Name} registered.");
         }
 
         public void SendChangeRequest(ChangeRequest changeRequest, Client client)
@@ -64,14 +67,19 @@ namespace SolvingProblems.MediatorPattern
 
     public class Employee : IColleague
     {
-        private readonly IProjectManager _projectManager;
-        public Employee(IProjectManager projectManager)
+        public string Name { get; }
+        public string Specialty { get; }
+        private  IProjectManager _projectManager;
+        public Employee(string name, string specialty)
         {
-            _projectManager = projectManager;
+            Specialty = specialty;
+            Name = name;
         }
-        public void SetProjectManager()
+        
+        public void SetProjectManager(IProjectManager projectManager)
         {
-            _projectManager.RegisterEmployee(this);
+
+            _projectManager = projectManager;
         }
         public void ReceiveNotification(string message)
         {
@@ -80,15 +88,17 @@ namespace SolvingProblems.MediatorPattern
     }
 
     public class Client : IColleague
-    {
-        private readonly IProjectManager _projectManager1;
-        public Client(IProjectManager projectManager)
+    {   
+        public string Name { get; }
+        private  IProjectManager _projectManager;
+        public Client(string name)
         {
-            _projectManager1 = projectManager;
+            Name = name;
         }
-        public void SetProjectManager()
+       
+        public void SetProjectManager(IProjectManager projectManager)
         {
-            _projectManager1.RegisterClient(this);
+            _projectManager = projectManager;
         }
         public void ReceiveNotification(string message)
         {
