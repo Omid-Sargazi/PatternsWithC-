@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SQLServerTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f882d9aeb273cd11492260c22e0328ec526f64f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+63407afdccb119ed360d1a3cb8cc3ea185094650")]
 [assembly: System.Reflection.AssemblyProductAttribute("SQLServerTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SQLServerTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
