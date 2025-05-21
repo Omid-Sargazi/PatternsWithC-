@@ -54,9 +54,16 @@ namespace SQLServerTest.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CategoryDto>> CreateCategory(CategoryDto category)
+        public async Task<ActionResult<CategoryDto>> CreateCategory(CategoryDto categoryDto)
         {
-
+            var category = new Category
+            {
+                Name = categoryDto.Name,
+            };
+            _context.Categories.Add(category);
+            await _context.SaveChangesAsync();
+            categoryDto.Id = category.Id;
+            return CreatedAtAction(nameof(GetCategory), new { id = categoryDto.Id }, categoryDto);
         }
     }
 }
