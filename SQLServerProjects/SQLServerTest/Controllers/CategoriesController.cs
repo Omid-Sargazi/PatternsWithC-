@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using SQLServerTest.Models;
 
 namespace SQLServerTest.Controllers
@@ -16,7 +17,7 @@ namespace SQLServerTest.Controllers
         public async Task<ActionResult<IEnumerable<CategoryDto>>> GetCategories()
         {
             var categories = await _context.Categories
-            .Include(c=>c.Books).Select(c=>new CategoryDto
+            .Include(c => c.Books).Select(c => new CategoryDto
             {
                 Id = c.Id,
                 Name = c.Name,
@@ -30,7 +31,7 @@ namespace SQLServerTest.Controllers
 
 
             }).ToListAsync();
-                return categories;
+            return categories;
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<CategoryDto>> GetCategory(int id)
@@ -64,6 +65,35 @@ namespace SQLServerTest.Controllers
             await _context.SaveChangesAsync();
             categoryDto.Id = category.Id;
             return CreatedAtAction(nameof(GetCategory), new { id = categoryDto.Id }, categoryDto);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCategory(int id, CategoryDto categoryDto)
+        {
+            if (id != categoryDto.Id) return BadRequest();
+            var category = await _context.Categories.FindAsync(id);
+            if (category == null) return NotFound();
+            category.Name = categoryDto.Name;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (_context.Categories.Any(c => c.Id == id)) return NotFound();
+                throw;
+            }
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+            var category = await _context.Categories.FindAsync();
+            if (category == null) return NotFound();
+            _context.Categories.Remove(category);
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
     }
 }
