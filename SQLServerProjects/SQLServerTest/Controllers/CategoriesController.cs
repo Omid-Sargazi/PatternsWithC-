@@ -35,7 +35,22 @@ namespace SQLServerTest.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<CategoryDto>> GetCategory(int id)
         {
-
+            var category = await _context.Categories
+            .Include(c => c.Books)
+            .Select(c => new CategoryDto
+            {
+                Id = c.Id,
+                Name = c.Name,
+                Books = c.Books.Select(b => new BookDto
+                {
+                    Id = b.Id,
+                    Title = b.Title,
+                    AuthorId = b.AuthorId,
+                    CategoryId = b.CategoryId
+                }).ToList()
+            }).FirstOrDefaultAsync(c => c.Id == id);
+            if (category == null) return NotFound();
+            return category;
         }
 
         [HttpPost]
