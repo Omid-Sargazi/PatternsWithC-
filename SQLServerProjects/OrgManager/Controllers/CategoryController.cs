@@ -50,5 +50,19 @@ namespace OrgManager.Controllers
             });
             return Ok(result);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CategoryDto categoryDto)
+        {
+            var category = new Category
+            {
+                Name = categoryDto.Name,
+                ParentCategoryId = categoryDto.ParentCategoryId
+            };
+
+            _context.Categories.Add(category);
+            await _context.SaveChangesAsync();
+            return Ok(new { Message = "Category created.", category.Id });
+        }
     }
 }
