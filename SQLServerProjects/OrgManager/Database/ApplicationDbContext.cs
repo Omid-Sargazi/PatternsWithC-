@@ -8,7 +8,10 @@ namespace OrgManager.Database
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
 
-        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Employee> Employees => Set<Employee>();
+        public DbSet<Department> Departments => Set<Department>();
+        public DbSet<TaskItem> TaskItems => Set<TaskItem>();
+        public DbSet<Category> Categories => Set<Category>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
