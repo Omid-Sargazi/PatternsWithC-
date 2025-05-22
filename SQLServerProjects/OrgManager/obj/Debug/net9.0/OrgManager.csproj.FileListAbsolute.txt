@@ -164,3 +164,10 @@
 /home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/OrgManager/obj/Debug/net9.0/OrgManager.pdb
 /home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/OrgManager/obj/Debug/net9.0/OrgManager.genruntimeconfig.cache
 /home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/OrgManager/obj/Debug/net9.0/ref/OrgManager.dll
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/OrgManager/bin/Debug/net9.0/Microsoft.AspNetCore.JsonPatch.dll
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/OrgManager/bin/Debug/net9.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/OrgManager/bin/Debug/net9.0/Newtonsoft.Json.dll
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/OrgManager/bin/Debug/net9.0/Newtonsoft.Json.Bson.dll
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/OrgManager/bin/Debug/net9.0/Swashbuckle.AspNetCore.Swagger.dll
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/OrgManager/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/OrgManager/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll

@@ -15,7 +15,20 @@ namespace OrgManager.Controllers
             _applicationDbContext = applicationDbContext;
         }
         [HttpGet]
-        public async Task<IActionResult> GetAll() => Ok(await _applicationDbContext.Employees.Include(e => e.Manager).ToListAsync());
+        // public async Task<IActionResult> GetAll() => Ok(await _applicationDbContext.Employees.Include(e => e.Manager).ToListAsync());
+        public async Task<IActionResult> GetAll()
+        {
+            var employees = await _applicationDbContext.Employees
+            .Include(e => e.Manager)
+            .Select(e => new EmployeeDto
+            {
+                Id = e.Id,
+                FullName = e.FullName,
+                ManagerId = e.ManagerId,
+                ManagerName = e.Manager != null ? e.Manager.FullName : null
+            }).ToListAsync();
+            return Ok(employees);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create(Employee employee)
