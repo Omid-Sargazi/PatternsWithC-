@@ -29,5 +29,26 @@ namespace OrgManager.Controllers
             }).ToListAsync();
             return Ok(categories);
         }
+
+        [HttpGet("tree")]
+        public async Task<IActionResult> GetTree()
+        {
+            var rootCategories = await _context.Categories
+            .Where(c => c.ParentCategoryId == null)
+            .Include(c => c.SubCategories)
+            .ToListAsync();
+
+            var result = rootCategories.Select(c => new CategoryDto
+            {
+                Id = c.Id,
+                Name = c.Name,
+                SubCategories = c.SubCategories.Select(sc => new SubCategoryDto
+                {
+                    Id = sc.Id,
+                    Name = sc.Name,
+                }).ToList()
+            });
+            return Ok(result);
+        }
     }
 }
