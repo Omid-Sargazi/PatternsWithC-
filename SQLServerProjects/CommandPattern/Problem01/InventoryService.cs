@@ -60,7 +60,7 @@ namespace CommandPattern.Problem01
             private readonly string _productId;
             private readonly int _quantity;
 
-            public CreateOrderCommand(OrderService orderService, InventoryService inventoryService, 
+            public CreateOrderCommand(OrderService orderService, InventoryService inventoryService,
                                     NotificationService notificationService, string orderId, string productId, int quantity)
             {
                 _orderService = orderService;
@@ -84,6 +84,25 @@ namespace CommandPattern.Problem01
                 await _notificationService.SendNotificationAsync($"Order {_orderId} cancelled.");
             }
         }
+
+        public class OrderProcessor
+        {
+            private readonly Stack<ICommandInventory> _commandHistory = new Stack<ICommandInventory>();
+            public async Task ExecuteCommandAsync(ICommandInventory command)
+            {
+                await command.ExecuteAsync();
+                _commandHistory.Push(command);
+            }
+        public async Task UndoLastCommandAsync()
+        {
+            if (_commandHistory.Count > 0)
+            {
+                var command = _commandHistory.Pop();
+                await command.UndoAsync();
+            }
+        }
+        }
+
     }
 
 
