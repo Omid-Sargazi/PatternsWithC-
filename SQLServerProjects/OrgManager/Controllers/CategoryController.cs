@@ -15,7 +15,7 @@ namespace OrgManager.Controllers
         {
             _context = context;
         }
-        [HttpGet]
+        [HttpGet("flat")]
         public async Task<IActionResult> GetAll()
         {
             var categories = await _context.Categories
