@@ -27,29 +27,64 @@ namespace CommandPattern.Problem01
 
     }
 
-        public class OrderService
-        {
-            public Task CreateOrderAsync(string orderId, string productId, int quantity)
-            {
-                Console.WriteLine($"Order created: {orderId} for {productId} (Quantity: {quantity})");
-                return Task.CompletedTask;
-            }
-
-            public Task CancelOrderAsync(string orderId)
-            {
-                Console.WriteLine($"Order cancelled: {orderId}");
-                return Task.CompletedTask;
-            }
-        
-        public class NotificationService
+    public class OrderService
     {
-        public Task SendNotificationAsync(string message)
+        public Task CreateOrderAsync(string orderId, string productId, int quantity)
         {
-            Console.WriteLine($"Notification sent: {message}");
+            Console.WriteLine($"Order created: {orderId} for {productId} (Quantity: {quantity})");
             return Task.CompletedTask;
         }
+
+        public Task CancelOrderAsync(string orderId)
+        {
+            Console.WriteLine($"Order cancelled: {orderId}");
+            return Task.CompletedTask;
+        }
+
+        public class NotificationService
+        {
+            public Task SendNotificationAsync(string message)
+            {
+                Console.WriteLine($"Notification sent: {message}");
+                return Task.CompletedTask;
+            }
+        }
+
+
+        public class CreateOrderCommand : ICommandInventory
+        {
+            private readonly OrderService _orderService;
+            private readonly InventoryService _inventoryService;
+            private readonly NotificationService _notificationService;
+            private readonly string _orderId;
+            private readonly string _productId;
+            private readonly int _quantity;
+
+            public CreateOrderCommand(OrderService orderService, InventoryService inventoryService, 
+                                    NotificationService notificationService, string orderId, string productId, int quantity)
+            {
+                _orderService = orderService;
+                _inventoryService = inventoryService;
+                _notificationService = notificationService;
+                _orderId = orderId;
+                _productId = productId;
+                _quantity = quantity;
+            }
+            public async Task ExecuteAsync()
+            {
+                await _orderService.CreateOrderAsync(_orderId, _productId, _quantity);
+                await _inventoryService.UpdateInventoryAsync(_orderId, _quantity);
+                await _notificationService.SendNotificationAsync($"Order {_orderId} created successfully.");
+            }
+
+            public async Task UndoAsync()
+            {
+                await _orderService.CancelOrderAsync(_orderId);
+                await _inventoryService.RestoreInventoryAsync(_productId, _quantity);
+                await _notificationService.SendNotificationAsync($"Order {_orderId} cancelled.");
+            }
+        }
     }
-}
 
 
 }
