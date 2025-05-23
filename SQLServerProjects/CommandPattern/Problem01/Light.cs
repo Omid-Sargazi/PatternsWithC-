@@ -1,5 +1,10 @@
 namespace CommandPattern.Problem01
 {
+    public interface ICommandControllerLight
+    {
+        void Execute();
+        void Undo();
+    }
     public class Light
     {
         public void TurnOn() => Console.WriteLine($"Light is On");
