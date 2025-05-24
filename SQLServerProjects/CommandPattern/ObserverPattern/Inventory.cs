@@ -11,9 +11,10 @@ namespace CommandPattern.ObserverPattern
         void RemoveObserver(IObserver observer);
         void NotifyObservers();
     }
-    public class Inventory
+    public class Inventory : ISubject
     {
         private int _stock;
+        private readonly List<IObserver> _observers = new List<IObserver>();
         public void UpdateStock(int newStock)
         {
             _stock = newStock;
@@ -31,6 +32,36 @@ namespace CommandPattern.ObserverPattern
         private void NotifyNotificationSystem()
         {
             Console.WriteLine("Notification System: Stock changed!");
+        }
+
+        public void RegisterObserver(IObserver observer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveObserver(IObserver observer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void NotifyObservers()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class WarehouseManager : IObserver
+    {
+        public void Update(int stock)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class NotificationSystem : IObserver
+    {
+        public void Update(int stock)
+        {
+            throw new NotImplementedException();
         }
     }
 }
