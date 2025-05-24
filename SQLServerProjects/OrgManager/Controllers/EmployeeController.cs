@@ -33,6 +33,14 @@ namespace OrgManager.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Employee employee)
         {
+            if (employee.ManagerId.HasValue)
+            {
+                var managerExists = await _applicationDbContext.Employees.AnyAsync(e => e.Id == employee.ManagerId.Value);
+                if (!managerExists)
+                {
+                    return BadRequest("Manager with given ID does not exist.");
+                }
+            }
             var deptExists = await _applicationDbContext.Departments.AnyAsync(d => d.Id == employee.DepartmentId);
             if(!deptExists)
                 return BadRequest("Invalid DepartmentId");
