@@ -15,38 +15,30 @@ namespace CommandPattern.ObserverPattern
     {
         private int _stock;
         private readonly List<IObserver> _observers = new List<IObserver>();
-        public void UpdateStock(int newStock)
-        {
-            _stock = newStock;
-            Console.WriteLine($"Stock updated to :{newStock}");
-            NotifyNotificationSystem();
-            NotifyWarehouseManager();
-
-        }
-
-        private void NotifyWarehouseManager()
-        {
-            Console.WriteLine("Warehouse Manager: Stock changed!");
-        }
-
-        private void NotifyNotificationSystem()
-        {
-            Console.WriteLine("Notification System: Stock changed!");
-        }
 
         public void RegisterObserver(IObserver observer)
         {
-            throw new NotImplementedException();
+            _observers.Add(observer);
         }
 
         public void RemoveObserver(IObserver observer)
         {
-            throw new NotImplementedException();
+            _observers.Remove(observer);
         }
 
         public void NotifyObservers()
         {
-            throw new NotImplementedException();
+            foreach (var observer in _observers)
+            {
+                observer.Update(_stock);
+            }
+        }
+
+        public void UpdateStock(int newStock)
+        {
+            _stock = newStock;
+            Console.WriteLine($"Stock updated to: {_stock}");
+            NotifyObservers();
         }
     }
 
@@ -54,14 +46,14 @@ namespace CommandPattern.ObserverPattern
     {
         public void Update(int stock)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Warehouse Manager: Stock changed to {stock}");
         }
     }
     public class NotificationSystem : IObserver
     {
         public void Update(int stock)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Notification System: Stock changed to {stock}");
         }
     }
 }
