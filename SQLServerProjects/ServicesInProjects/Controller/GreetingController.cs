@@ -16,8 +16,16 @@ namespace ServicesInProjects.Controller
         [HttpGet]
         public IActionResult Get()
         {
-            var message = _greetingService.GetGreeting();
+           try
+           {
+             var message = _greetingService.GetGreeting();
             return Ok(message);
+           }
+           catch (Exception)
+           {
+                Console.WriteLine("Occured a message");
+            throw;
+           }
         }
     }
 }
