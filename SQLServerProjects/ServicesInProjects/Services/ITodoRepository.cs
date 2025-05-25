@@ -14,6 +14,7 @@ namespace ServicesInProjects.Services
     public class TodoRepository : ITodoRepository
     {
         private readonly AppDbContext _context;
+        
         public TodoRepository(AppDbContext context)
         {
             _context = context;

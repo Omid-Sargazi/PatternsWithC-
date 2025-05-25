@@ -13,12 +13,15 @@ namespace ServicesInProjects.Services
     public class TodoService : ITodoService
     {
         private readonly ITodoRepository _repository;
-        public TodoService(ITodoRepository repository)
+        private readonly ILogger<TodoService> _logger;
+        public TodoService(ITodoRepository repository, ILogger<TodoService> logger)
         {
             _repository = repository;
+            _logger = logger;
         }
         public async Task AddAsync(TodoItem item)
         {
+            _logger.LogInformation("Add new Todo item:{Title}", item.Title);
             if (string.IsNullOrWhiteSpace(item.Title))
                 throw new AggregateException("Title must be fiiled");
             await _repository.AddAsync(item);
