@@ -17,6 +17,9 @@ public class Program
         builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
         builder.Services.AddScoped<ITodoRepository, TodoRepository>();
         builder.Services.AddScoped<ITodoService, TodoService>();
+        builder.Services.AddScoped<IProjectRepository, ProjectRepository>();
+        builder.Services.AddScoped<IProjectService, ProjectService>();
+        builder.Services.AddSingleton<IValidationService, ValidationService>();
         builder.Services.AddControllers();
 
         var app = builder.Build();
