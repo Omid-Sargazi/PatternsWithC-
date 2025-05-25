@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ServicesInProjects.Models;
 using ServicesInProjects.Services;
@@ -15,22 +16,23 @@ namespace ServicesInProjects.Controller
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return Ok(_todoService.GetAll());
+            var todos = await _todoService.GetAllAsync();
+            return Ok(todos);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var todo = _todoService.GetById(id);
+            var todo = await _todoService.GetByIdAsync(id);
             if (todo == null) return NotFound();
             return Ok(todo);
         }
         [HttpPost]
-        public IActionResult Add(TodoItem item)
+        public async Task<IActionResult> Add(TodoItem item)
         {
-            _todoService.Add(item);
+            await _todoService.AddAsync(item);
             return CreatedAtAction(nameof(GetById), new { id = item.Id }, item);
         }
 
