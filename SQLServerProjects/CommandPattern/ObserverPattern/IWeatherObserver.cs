@@ -24,13 +24,20 @@ namespace CommandPattern.ObserverPattern
             _observers.Remove(observer);
         }
 
-        public void NotificationObserver()
+        private void NotificationObserver()
         {
             foreach (var observer in _observers)
             {
                 observer.Update(_temp);
             }
         }
+
+        public void SetTemperature(string newTemp)
+        {
+            _temp = newTemp;
+            NotificationObserver();
+        }
+        
 
 
 
