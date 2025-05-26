@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using ServicesInProjects.Data;
+using ServicesInProjects.Middlewares;
 using ServicesInProjects.Services;
 
 public class Program
@@ -23,6 +24,7 @@ public class Program
         builder.Services.AddControllers();
 
         var app = builder.Build();
+        app.UseMiddleware<CustomHeaderMiddleware>();
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
