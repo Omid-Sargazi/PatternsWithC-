@@ -1,5 +1,9 @@
 namespace CommandPattern.MediatorPattern
 {
+    public interface IWarningObserver
+    {
+        void ReceiveWarning(string message, Airplane sender);
+    }
     public interface IControlTower
     {
         void RegisterAirplane(Airplane airplane);
@@ -36,11 +40,17 @@ namespace CommandPattern.MediatorPattern
 
         public void SendMessgae(string message, Airplane sender)
         {
-            throw new NotImplementedException();
+            foreach (var airplane in _airplanes)
+        {
+            if (airplane != sender && Math.Abs(airplane.Altitude - sender.Altitude) < 2000)
+            {
+                airplane.ReceiveWarning(message, sender);
+            }
+        }
         }
     }
 
-    public class Airplane
+    public class Airplane : IWarningObserver
     {
         public string Id { get; }
         public int Altitude { get; private set; }
@@ -71,6 +81,11 @@ namespace CommandPattern.MediatorPattern
         public void UpdateAltitude(int newAltitude)
         {
             Altitude = newAltitude;
+        }
+
+        public void ReceiveWarning(string message, Airplane sender)
+        {
+           Console.WriteLine($"{Id} received warning: {message}");
         }
     }
 }
