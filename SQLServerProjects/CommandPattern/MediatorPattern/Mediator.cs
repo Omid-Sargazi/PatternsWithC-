@@ -1,5 +1,24 @@
 namespace CommandPattern.MediatorPattern
 {
+    public interface IChatRoom
+    {
+        void RegisterUser(User user);
+        void SendMessage(string message, User sender);
+    }
+
+    public class ChatRoom : IChatRoom
+    {
+        public void RegisterUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SendMessage(string message, User sender)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class User
     {
         public string Name { get; set; }
