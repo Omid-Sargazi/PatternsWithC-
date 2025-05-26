@@ -8,38 +8,40 @@ namespace CommandPattern.MediatorPattern
 
     public class ChatRoom : IChatRoom
     {
+        private List<User> _users = new List<User>();
         public void RegisterUser(User user)
         {
-            throw new NotImplementedException();
+            _users.Add(user);
+            Console.WriteLine($"{user.Name} joined the chat room.");
         }
 
         public void SendMessage(string message, User sender)
         {
-            throw new NotImplementedException();
+            foreach (var user in _users)
+            {
+                if (user != sender)
+                {
+                    user.ReceiveMessage(message, sender);
+                }
+            }
         }
     }
 
     public class User
     {
         public string Name { get; set; }
-        private List<User> _contacts { get; set; } = new List<User>();
-        public User(string name)
+        private IChatRoom _chatRoom;
+        public User(string name, IChatRoom chatRoom)
         {
             Name = name;
+            _chatRoom = chatRoom;
         }
-
-        private void AddContect(User user)
-        {
-            _contacts.Add(user);
-        }
+        
 
         public void SendMessage(string message)
         {
             Console.WriteLine($"{Name} sends:{message}");
-            foreach (var user in _contacts)
-            {
-                user.ReceiveMessage(user.Name, this);
-            }
+            _chatRoom.SendMessage(message, this);
         }
 
         public void ReceiveMessage(string message, User user)
