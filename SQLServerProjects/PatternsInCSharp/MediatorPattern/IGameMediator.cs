@@ -49,27 +49,48 @@ namespace PatternsInCSharp.MediatorPattern
 
     public class GameServer
     {
-        public void NotifyGameServer(string message)
-        {
 
-        }
 
         public void UpdateGameState(string eventDetails)
         {
-
+            Console.WriteLine($"سرور بازی: به‌روزرسانی وضعیت - {eventDetails}");
         }
     }
 
     public class ChatSystem
     {
-        public void NotifyChatSystem(string message)
-        {
 
-        }
 
         public void BroadcastMessage(string message)
         {
-
+            Console.WriteLine($"سیستم چت: پخش پیام - {message}");
         }
+    }
+
+    public class Player
+    {
+        private readonly IGameMediator _mediator;
+        public string Name { get; }
+        public Player(string name, IGameMediator gameMediator)
+        {
+            _mediator = gameMediator;
+            Name = name;
+        }
+
+        public void Move(string position)
+        {
+            _mediator.PlayerMove(Name, position);
+        }
+
+        public void SendMassage(string message)
+        {
+            _mediator.PlayerSendMessage(Name, message);
+        }
+
+        public void CollectItem(string item)
+        {
+            _mediator.PlayerCollectItem(Name, item);
+        }
+
     }
 }
