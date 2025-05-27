@@ -1,0 +1,15 @@
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/CommandPattern/bin/Debug/net9.0/CommandPattern
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/CommandPattern/bin/Debug/net9.0/CommandPattern.deps.json
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/CommandPattern/bin/Debug/net9.0/CommandPattern.runtimeconfig.json
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/CommandPattern/bin/Debug/net9.0/CommandPattern.dll
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/CommandPattern/bin/Debug/net9.0/CommandPattern.pdb
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/CommandPattern/obj/Debug/net9.0/CommandPattern.GeneratedMSBuildEditorConfig.editorconfig
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/CommandPattern/obj/Debug/net9.0/CommandPattern.AssemblyInfoInputs.cache
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/CommandPattern/obj/Debug/net9.0/CommandPattern.AssemblyInfo.cs
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/CommandPattern/obj/Debug/net9.0/CommandPattern.csproj.CoreCompileInputs.cache
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/CommandPattern/obj/Debug/net9.0/CommandPattern.sourcelink.json
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/CommandPattern/obj/Debug/net9.0/CommandPattern.dll
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/CommandPattern/obj/Debug/net9.0/refint/CommandPattern.dll
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/CommandPattern/obj/Debug/net9.0/CommandPattern.pdb
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/CommandPattern/obj/Debug/net9.0/CommandPattern.genruntimeconfig.cache
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/CommandPattern/obj/Debug/net9.0/ref/CommandPattern.dll
