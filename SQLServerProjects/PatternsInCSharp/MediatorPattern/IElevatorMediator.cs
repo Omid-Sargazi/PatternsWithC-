@@ -126,18 +126,18 @@ namespace PatternsInCSharp.MediatorPattern
     public class FloorButton : ElevatorComponent
     {
         public int Floor { get; }
-    public Direction Direction { get; }
-         public FloorButton(int floor, Direction dir, IElevatorMediator mediator)
+        public Directionn Directionn { get; }
+         public FloorButton(int floor, Directionn dir, IElevatorMediator mediator)
         : base($"Button[{floor},{dir}]", mediator)
     {
         Floor = floor;
-        Direction = dir;
+        Directionn = dir;
     }
 
     public void Press()
     {
         Console.WriteLine($"[{Name}] pressed");
-        (_mediator as IElevatorMediator)!.RequestElevator(Floor, Direction);
+        (_mediator as IElevatorMediator)!.RequestElevator(Floor, Directionn);
     }
 
         public override void Receive(string message)
