@@ -10,5 +10,7 @@ namespace AdventureWorksLT2019.Models
         public string? LastName { get; set; }
         public string? CompanyName { get; set; }
         public string? EmailAddress { get; set; }
+
+        public ICollection<SalesOrderHeader>? SalesOrderHeaders { get; set; }
     }
 }

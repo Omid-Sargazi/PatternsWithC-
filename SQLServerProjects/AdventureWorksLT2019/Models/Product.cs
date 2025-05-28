@@ -20,5 +20,8 @@ namespace AdventureWorksLT2019.Models
         public int CustomerID { get; set; }
         public string? SalesOrderNumber { get; set; }
         public DateTime OrderDate { get; set; }
+
+        [ForeignKey("CustomerID")]
+        public Customer? Customer { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using AdventureWorksLT2019.Data;
+﻿using System.Security.AccessControl;
+using AdventureWorksLT2019.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -63,6 +64,24 @@ namespace AdventureWorksApp
             foreach (var result in customerOrders)
             {
                 Console.WriteLine($"Customer: {result.CustomerName}, Order: {result.OrderNumber}, Date: {result.OrderDate}");
+            }
+
+            Console.WriteLine("\n=== تعداد سفارشات هر مشتری ===");
+            var orderCounts = context.SalesOrderHeaders
+            .Include(o => o.Customer)
+            .GroupBy(o => new { o.CustomerID, o.Customer.FirstName, o.Customer.LastName })
+            .Select(g => new
+            {
+                CustomerName = g.Key.FirstName + " " + g.Key.LastName,
+                OrderCount = g.Count()
+            })
+            .OrderByDescending(x => x.OrderCount)
+            .Take(10)
+            .ToList();
+
+            foreach (var result in orderCounts)
+            {
+                Console.WriteLine($"Customer: {result.CustomerName}, Orders: {result.OrderCount}");
             }
         }
     }
