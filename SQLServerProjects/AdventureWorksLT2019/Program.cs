@@ -35,6 +35,18 @@ namespace AdventureWorksApp
             {
                 Console.WriteLine($"Customer: {customer.FirstName} {customer.LastName}, Company: {customer.CompanyName}");
             }
+
+            Console.WriteLine("\n=== 10 محصول گران‌تر از 100 ===");
+            var expensiveProducts = context.Products
+            .Where(p => p.ListPrice > 100)
+            .OrderByDescending(p => p.ListPrice)
+            .Take(10)
+            .ToList();
+
+            foreach (var product in expensiveProducts)
+            {
+                Console.WriteLine($"Product: {product.Name}, Price: {product.ListPrice}");
+            }
         }
     }
 }

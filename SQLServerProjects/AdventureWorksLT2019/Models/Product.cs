@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AdventureWorksLT2019.Models
@@ -6,17 +7,18 @@ namespace AdventureWorksLT2019.Models
     public class Product
     {
         public int ProductId { get; set; }
-        public string Name { get; set; }
-        public string ProductNumber { get; set; }
-        public decimal ListPrice { get; set; }
+        public string? Name { get; set; }
+        public string? ProductNumber { get; set; }
+        public decimal? ListPrice { get; set; }
     }
 
     [Table("SalesOrderHeader", Schema = "SalesLT")]
     public class SalesOrderHeader
     {
+        [Key]
         public int SalesOrderID { get; set; }
         public int CustomerID { get; set; }
-        public string SalesOrderNumber { get; set; }
+        public string? SalesOrderNumber { get; set; }
         public DateTime OrderDate { get; set; }
     }
 }
