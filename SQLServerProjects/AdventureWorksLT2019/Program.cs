@@ -47,6 +47,23 @@ namespace AdventureWorksApp
             {
                 Console.WriteLine($"Product: {product.Name}, Price: {product.ListPrice}");
             }
+
+            Console.WriteLine("\n=== سفارشات مشتری‌ها ===");
+            var customerOrders = context.Customers
+            .Join(context.SalesOrderHeaders, customer => customer.CustomerID, order => order.CustomerID,
+            (customer, order) => new
+            {
+                CustomerName = customer.FirstName,
+                OrderNumber = order.SalesOrderNumber,
+                OrderDate = order.OrderDate
+            }
+            ).Take(10)
+            .ToList();
+
+            foreach (var result in customerOrders)
+            {
+                Console.WriteLine($"Customer: {result.CustomerName}, Order: {result.OrderNumber}, Date: {result.OrderDate}");
+            }
         }
     }
 }
