@@ -10,6 +10,10 @@ namespace AdventureWorksLT2019.Models
         public string? Name { get; set; }
         public string? ProductNumber { get; set; }
         public decimal? ListPrice { get; set; }
+        public int? ProductCategoryID { get; set; }
+         
+         [ForeignKey("ProductCategoryID")]
+         public ProductCategory? ProductCategory { get; set; }
     }
 
     [Table("SalesOrderHeader", Schema = "SalesLT")]
@@ -20,8 +24,10 @@ namespace AdventureWorksLT2019.Models
         public int CustomerID { get; set; }
         public string? SalesOrderNumber { get; set; }
         public DateTime OrderDate { get; set; }
+       
 
         [ForeignKey("CustomerID")]
         public Customer? Customer { get; set; }
+        
     }
 }

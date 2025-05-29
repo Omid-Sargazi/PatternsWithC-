@@ -140,6 +140,22 @@ namespace AdventureWorksApp
                 Console.WriteLine($"Customer: {order.CustomerName}, Order: {order.SalesOrderNumber}, Date: {order.OrderDate}, Total: {order.TotalDue}");
             }
             Console.WriteLine("\n=== محصولات در دسته‌بندی Bikes ===");
+            var bikes = context.Products
+            .Where(p => p.ProductCategoryID == 1)
+            .Join(context.productCategories,
+                product => product.ProductCategoryID,
+                category => category.ProductCategoryID,
+                (product, category) => new
+                {
+                    ProductName = product.Name,
+                    CategoryName = category.Name,
+                    product.ListPrice
+                }
+            ).OrderBy(p => p.ListPrice).ToList();
+            foreach (var bike in bikes)
+            {
+                Console.WriteLine($"Product: {bike.ProductName}, Category: {bike.CategoryName}, Price: {bike.ListPrice}");
+            }
 
         }
     }
