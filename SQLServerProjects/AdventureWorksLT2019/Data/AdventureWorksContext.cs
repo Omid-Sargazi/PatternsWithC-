@@ -7,7 +7,10 @@ namespace AdventureWorksLT2019.Data
     {
         public DbSet<Models.Customer> Customers { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<SalesOrderHeader> SalesOrderHeaders { get; set; }
+        public DbSet<SalesOrderHeader> salesOrderHeaders { get; set; }
+        public DbSet<SalesOrderDetail>  salesOrderDetails { get; set; }
+        public DbSet<ProductCategory> productCategories { get; set; }
+
         public AdventureWorksContext(DbContextOptions<AdventureWorksContext> options)
             : base(options)
         {
