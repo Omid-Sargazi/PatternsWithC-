@@ -1,5 +1,7 @@
-﻿using System.Security.AccessControl;
+﻿using System.Runtime.Serialization;
+using System.Security.AccessControl;
 using AdventureWorksLT2019.Data;
+using AdventureWorksLT2019.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -83,6 +85,62 @@ namespace AdventureWorksApp
             {
                 Console.WriteLine($"Customer: {result.CustomerName}, Orders: {result.OrderCount}");
             }
+
+            Console.WriteLine("\n=== 5 محصول پرفروش ===");
+            var topProducts = context.SalesOrderDetails
+            .GroupBy(d => d.ProductID)
+            .Select(g => new
+            {
+                ProductId = g.Key,
+                TotalQuantitySold = g.Sum(d => d.OrderQty)
+            }).Join(context.Products, sale => sale.ProductId, product => product.ProductId, (sale, product) => new
+            {
+                ProductName = product.Name,
+                sale.TotalQuantitySold
+            }).OrderByDescending(x => x.TotalQuantitySold)
+            .Take(5).ToList();
+
+
+            foreach (var product in topProducts)
+            {
+                Console.WriteLine($"Product: {product.ProductName}, Sold: {product.TotalQuantitySold}");
+            }
+            Console.WriteLine("\n======================== 5 محصول پرفروش ===============");
+            var TopProducts = context.SalesOrderDetails
+            .Include(d => d.Product)
+            .GroupBy(d => d.Product.ProductId)
+            .Select(g => new
+            {
+                ProductName = g.First().Product.Name,
+                TotalQuantitySold = g.Sum(d => d.OrderQty)
+            }).OrderByDescending(x => x.TotalQuantitySold)
+            .Take(5).ToList();
+
+            foreach (var product in TopProducts)
+            {
+                Console.WriteLine($"Product: {product.ProductName}, Sold: {product.TotalQuantitySold}");
+            }
+
+            Console.WriteLine("\n=== سفارشات مشتری با ID 1 ===");
+            var CustomerOrders = context.SalesOrderHeaders
+            .Where(o => o.CustomerID == 1)
+            .Join(context.Customers,
+                order => order.CustomerID,
+                customer => customer.CustomerID,
+                (order, customer) => new
+                {
+                    CustomerName = customer.FirstName + " " + customer.LastName,
+                    order.SalesOrderNumber,
+                    order.OrderDate,
+                }
+            ).ToList();
+
+            foreach (var order in CustomerOrders)
+            {
+                Console.WriteLine($"Customer: {order.CustomerName}, Order: {order.SalesOrderNumber}, Date: {order.OrderDate}, Total: {order.TotalDue}");
+            }
+            Console.WriteLine("\n=== محصولات در دسته‌بندی Bikes ===");
+
         }
     }
 }
