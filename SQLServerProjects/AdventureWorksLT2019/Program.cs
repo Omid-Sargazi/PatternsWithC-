@@ -137,7 +137,7 @@ namespace AdventureWorksApp
 
             foreach (var order in CustomerOrders)
             {
-                Console.WriteLine($"Customer: {order.CustomerName}, Order: {order.SalesOrderNumber}, Date: {order.OrderDate}, Total: {order.TotalDue}");
+                Console.WriteLine($"Customer: {order.CustomerName}, Order: {order.SalesOrderNumber}, Date: {order.OrderDate}, Total:");
             }
             Console.WriteLine("\n=== محصولات در دسته‌بندی Bikes ===");
             var bikes = context.Products
