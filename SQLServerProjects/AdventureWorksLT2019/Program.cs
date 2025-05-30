@@ -157,6 +157,28 @@ namespace AdventureWorksApp
                 Console.WriteLine($"Product: {bike.ProductName}, Category: {bike.CategoryName}, Price: {bike.ListPrice}");
             }
 
+            Console.WriteLine("\n=== آدرس‌های مشتریان در Seattle ===");
+            var seattleCustomers = context.customerAddresses
+            .Join(context.Addresses,
+            ca => ca.AddressID,
+            a => a.AddressID,
+            (ca, a) => new { ca, a }
+            ).Join(context.Customers,
+                x => x.ca.CustomerID,
+                c => c.CustomerID,
+                (x, c) => new
+                {
+                    CustomerName = c.FirstName + " " + c.LastName,
+                    x.a.AddressLine1,
+                    x.a.City,
+                    x.a.StateProvince
+                }
+            ).Where(x => x.City == "Seattle").ToList();
+            foreach (var customer in seattleCustomers)
+{
+    Console.WriteLine($"Customer: {customer.CustomerName}, Address: {customer.AddressLine1}, {customer.City}, {customer.StateProvince}");
+}
+
         }
     }
 }
