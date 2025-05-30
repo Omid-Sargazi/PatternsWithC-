@@ -93,7 +93,7 @@ namespace AdventureWorksApp
             {
                 ProductId = g.Key,
                 TotalQuantitySold = g.Sum(d => d.OrderQty)
-            }).Join(context.Products, sale => sale.ProductId, product => product.ProductId, (sale, product) => new
+            }).Join(context.Products, sale => sale.ProductId, product => product.ProductID, (sale, product) => new
             {
                 ProductName = product.Name,
                 sale.TotalQuantitySold
@@ -108,7 +108,7 @@ namespace AdventureWorksApp
             Console.WriteLine("\n======================== 5 محصول پرفروش ===============");
             var TopProducts = context.SalesOrderDetails
             .Include(d => d.Product)
-            .GroupBy(d => d.Product.ProductId)
+            .GroupBy(d => d.Product.ProductID)
             .Select(g => new
             {
                 ProductName = g.First().Product.Name,
@@ -193,6 +193,35 @@ namespace AdventureWorksApp
             })
             .ToList();
 
+
+            Console.WriteLine("\n=== تعداد سفارشات در هر سال ===");
+
+            var ordersByYear = context.SalesOrderHeaders
+            .GroupBy(o => o.OrderDate.Year)
+            .Select(g => new
+            {
+                Year = g.Key,
+                OrderCount = g.Count()
+            }).OrderBy(x => x.Year)
+            .ToList();
+
+
+            Console.WriteLine("\n=== مشتریان با چندین آدرس ===");
+
+            var multiAddressCustomers = context.customerAddresses
+            .GroupBy(ca => ca.CustomerID)
+            .Where(g => g.Count() > 1)
+            .Join(context.Customers,
+                g => g.Key,
+                c => c.CustomerID,
+                (g, c) => new
+                {
+                    CustomerName = c.FirstName + " " + c.LastName,
+                    AddressCount = g.Count()
+                }
+            ).ToList();
+
+            
         }
     }
 }
