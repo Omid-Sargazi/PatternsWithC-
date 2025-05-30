@@ -221,7 +221,25 @@ namespace AdventureWorksApp
                 }
             ).ToList();
 
-            
+            Console.WriteLine("\n=== میانگین قیمت محصولات فروخته‌شده ===");
+            var averagePrice = context.SalesOrderDetails
+            .Join(context.Products,
+                sod => sod.ProductID,
+                p => p.ProductID,
+                (sod, p) => new
+                {
+                    ProductName = p.Name,
+                    sod.UnitPrice,
+                }
+            ).GroupBy(x => x.ProductName)
+            .Select(g => new
+            {
+                ProductName = g.Key,
+                AveragePrice = g.Average(x => x.UnitPrice)
+            }
+            ).OrderByDescending(x => x.AveragePrice)
+            .Take(5)
+            .ToList();
         }
     }
 }
