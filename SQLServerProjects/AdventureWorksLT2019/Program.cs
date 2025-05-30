@@ -175,9 +175,23 @@ namespace AdventureWorksApp
                 }
             ).Where(x => x.City == "Seattle").ToList();
             foreach (var customer in seattleCustomers)
-{
-    Console.WriteLine($"Customer: {customer.CustomerName}, Address: {customer.AddressLine1}, {customer.City}, {customer.StateProvince}");
-}
+            {
+                Console.WriteLine($"Customer: {customer.CustomerName}, Address: {customer.AddressLine1}, {customer.City}, {customer.StateProvince}");
+            }
+
+            Console.WriteLine("\n=== محصولات بدون فروش ===");
+            var unsoldProducts = context.Products
+            .GroupJoin(context.SalesOrderDetails,
+                p => p.ProductID,
+                sod => sod.ProductID,
+                (p, sod) => new { Product = p, Sales = sod })
+            .Where(x => !x.Sales.Any())
+            .Select(x => new
+            {
+                ProductName = x.Product.Name,
+                x.Product.ListPrice
+            })
+            .ToList();
 
         }
     }

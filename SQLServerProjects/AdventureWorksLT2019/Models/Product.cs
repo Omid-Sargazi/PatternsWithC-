@@ -6,7 +6,7 @@ namespace AdventureWorksLT2019.Models
     [Table("Product", Schema = "SalesLT")]
     public class Product
     {
-        public int ProductId { get; set; }
+        public int ProductID { get; set; }
         public string? Name { get; set; }
         public string? ProductNumber { get; set; }
         public decimal? ListPrice { get; set; }
