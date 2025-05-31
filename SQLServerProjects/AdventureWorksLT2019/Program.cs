@@ -254,6 +254,21 @@ namespace AdventureWorksApp
                 ModelName = x.ProductModel.Name,
                 x.Product.ListPrice
             }).ToList();
-        }
+
+            Console.WriteLine("\n=== مشتریان بدون آدرس ===");
+            var customersNoAddress = context.Customers
+            .GroupJoin(context.customerAddresses,
+            c => c.CustomerID,
+            ca => ca.CustomerID,
+            (c, ca) => new { Customer = c, Address = ca })
+            .Where(x => !x.Address.Any())
+            .Select(x => new
+            {
+                CustomerName = x.Customer.FirstName + " " + x.Customer.LastName,
+                x.Customer.EmailAddress
+            }).ToList();
+
+            
+            }
     }
 }
