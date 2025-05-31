@@ -12,6 +12,7 @@ namespace AdventureWorksLT2019.Data
         public DbSet<ProductCategory> productCategories { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<CustomerAddress> customerAddresses { get; set; }
+        public DbSet<ProductModel> ProductModels { get; set; }
 
         public AdventureWorksContext(DbContextOptions<AdventureWorksContext> options)
             : base(options)

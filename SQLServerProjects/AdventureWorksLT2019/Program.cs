@@ -242,7 +242,18 @@ namespace AdventureWorksApp
             .ToList();
 
             Console.WriteLine("\n=== محصولات با مدل Classic ===");
-            
+            var classicProducts = context.Products
+            .Join(context.ProductModels,
+                p => p.ProductModelID,
+                pm => pm.ProductModelID,
+                (p, pm) => new { Product = p, ProductModel = pm }
+            ).Where(x => x.ProductModel.Name.Contains("Classic"))
+            .Select(x => new
+            {
+                ProductName = x.Product.Name,
+                ModelName = x.ProductModel.Name,
+                x.Product.ListPrice
+            }).ToList();
         }
     }
 }
