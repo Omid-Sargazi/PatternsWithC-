@@ -11,9 +11,12 @@ namespace AdventureWorksLT2019.Models
         public string? ProductNumber { get; set; }
         public decimal? ListPrice { get; set; }
         public int? ProductCategoryID { get; set; }
-         
-         [ForeignKey("ProductCategoryID")]
-         public ProductCategory? ProductCategory { get; set; }
+        public int? ProductModelID { get; set; }
+
+        [ForeignKey("ProductCategoryID")]
+        public ProductCategory? ProductCategory { get; set; }
+        [ForeignKey("ProductModelID")]
+         public ProductModel? ProductModel { get; set; }
     }
 
     [Table("SalesOrderHeader", Schema = "SalesLT")]

@@ -240,6 +240,9 @@ namespace AdventureWorksApp
             ).OrderByDescending(x => x.AveragePrice)
             .Take(5)
             .ToList();
+
+            Console.WriteLine("\n=== محصولات با مدل Classic ===");
+            
         }
     }
 }
