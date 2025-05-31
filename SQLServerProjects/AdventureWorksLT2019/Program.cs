@@ -268,7 +268,24 @@ namespace AdventureWorksApp
                 x.Customer.EmailAddress
             }).ToList();
 
-            
+            Console.WriteLine("\n=== سفارشات با تخفیف ===");
+            var discountedOrders = context.SalesOrderDetails
+            .Join(context.Products,
+                sod => sod.ProductID,
+                p => p.ProductID,
+                (sod, p) => new
+                {
+                    sod.SalesOrderID,
+                    ProductName = p.Name,
+                    sod.UnitPrice,
+                    p.ListPrice,
+                    Discount = p.ListPrice - sod.UnitPrice
+
+                }
+            ).Where(x => x.UnitPrice < x.ListPrice).
+            OrderByDescending(x => x.Discount)
+            .Take(5)
+            .ToList();
             }
     }
 }
