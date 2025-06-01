@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AdventureWorksLT2019-2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2823b211469bf0f4ddf76d6d465204865c6f90a0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bbd46b170cb6b7e371b6185aa77b5f9361572849")]
 [assembly: System.Reflection.AssemblyProductAttribute("AdventureWorksLT2019-2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AdventureWorksLT2019-2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
