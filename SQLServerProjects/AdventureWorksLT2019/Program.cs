@@ -286,6 +286,23 @@ namespace AdventureWorksApp
             OrderByDescending(x => x.Discount)
             .Take(5)
             .ToList();
-            }
+
+            Console.WriteLine("\n=== دسته‌بندی‌های با بیشترین محصولات ===");
+            var topCategories = context.Products
+            .GroupBy(p => p.ProductCategoryID)
+            .Join(context.productCategories,
+                g => g.Key,
+                pc => pc.ProductCategoryID,
+                (g, pc) => new
+                {
+                    CategoryName = pc.Name,
+                    ProductCount = g.Count()
+                }
+            ).OrderByDescending(x => x.ProductCount)
+            .Take(5)
+            .ToList();
+        }
+            
+
     }
 }
