@@ -74,7 +74,7 @@ namespace AdventureWorksApp
             .GroupBy(o => new { o.CustomerID, o.Customer.FirstName, o.Customer.LastName })
             .Select(g => new
             {
-                CustomerName = g.Key.FirstName + " " + g.Key.LastName,
+                CustomerName = (g.Key.FirstName??"") + " " + (g.Key.LastName??""),
                 OrderCount = g.Count()
             })
             .OrderByDescending(x => x.OrderCount)
@@ -208,18 +208,23 @@ namespace AdventureWorksApp
 
             Console.WriteLine("\n=== مشتریان با چندین آدرس ===");
 
-            var multiAddressCustomers = context.customerAddresses
-            .GroupBy(ca => ca.CustomerID)
-            .Where(g => g.Count() > 1)
-            .Join(context.Customers,
-                g => g.Key,
-                c => c.CustomerID,
-                (g, c) => new
+           var multiAddressCustomers = context.customerAddresses
+                .GroupBy(ca => ca.CustomerID)
+                .Select(g => new
                 {
-                    CustomerName = c.FirstName + " " + c.LastName,
+                    CustomerID = g.Key,
                     AddressCount = g.Count()
-                }
-            ).ToList();
+                })
+                .Where(x => x.AddressCount > 1)
+                .Join(context.Customers,
+                    x => x.CustomerID,
+                    c => c.CustomerID,
+                    (x, c) => new
+                    {
+                        CustomerName = (c.FirstName ?? "") + " " + (c.LastName ?? ""),
+                        x.AddressCount
+                    })
+                .ToList();
 
             Console.WriteLine("\n=== میانگین قیمت محصولات فروخته‌شده ===");
             var averagePrice = context.SalesOrderDetails
@@ -301,6 +306,8 @@ namespace AdventureWorksApp
             ).OrderByDescending(x => x.ProductCount)
             .Take(5)
             .ToList();
+
+            Console.WriteLine("\n=== مشتریان با سفارشات اخیر ===");
         }
             
 

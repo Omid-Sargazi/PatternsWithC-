@@ -1,14 +1,16 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace AdventureWorksLT2019.Models
 {
     [Table("CustomerAddress", Schema = "SalesLT")]
+    [PrimaryKey(nameof(CustomerID), nameof(AddressID))]
     public class CustomerAddress
     {
-        [Key]
+
         public int CustomerID { get; set; }
-        [Key]
+
         public int AddressID { get; set; }
         [ForeignKey("CustomerID")]
         public Customer? Customer { get; set; }
