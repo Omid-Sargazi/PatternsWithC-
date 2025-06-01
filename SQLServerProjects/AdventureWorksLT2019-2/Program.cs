@@ -85,6 +85,20 @@ namespace AdventureWorksLT2019_2
                 Console.WriteLine($"🔥 Top Product: {top.ProductName}, Sold: {top.TotalSold}");
             }
 
+            Console.WriteLine("\n=== سفارشات مشتری با ID 1 ===");
+            var customerOrders = context.SalesOrderHeaders
+            .Where(o => o.CustomerID == 1)
+            .Join(context.Customers,
+                o => o.CustomerID,
+                c => c.CustomerID,
+                (o, c) => new
+                {
+                    CustomerName = (c.FirstName ?? "") + " " + (c.LastName ?? ""),
+                    o.SalesOrderNumber,
+                    o.OrderDate
+                }
+            ).ToList();
+
 
     }
 }
