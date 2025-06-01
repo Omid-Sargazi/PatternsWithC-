@@ -1,6 +1,10 @@
 namespace AdventureWorksLT2019_2.PatternsInCSharp
 {
-    
+    public interface ICommandLight
+    {
+        public void Run();
+        public void Undo();
+    }
     public class Light
     {
         public void TurnOn()
@@ -14,16 +18,14 @@ namespace AdventureWorksLT2019_2.PatternsInCSharp
         }
     }
 
-
-    public class Client
+    public class TurnOnLight : ICommandLight
     {
         private Light _light;
-        public Client(Light light)
+        public TurnOnLight(Light light)
         {
             _light = light;
         }
-
-        public void Remote()
+        public void Run()
         {
             _light.TurnOn();
         }
@@ -31,6 +33,28 @@ namespace AdventureWorksLT2019_2.PatternsInCSharp
         public void Undo()
         {
             _light.TurnOff();
+        }
+    }
+
+    
+
+    public class Control
+    {
+        private TurnOnLight _turnOnLight;
+        public Control(TurnOnLight turnOnLight)
+        {
+            _turnOnLight = turnOnLight;
+        }
+        
+
+        public void Remote()
+        {
+            _turnOnLight.Run();
+        }
+
+        public void Undo()
+        {
+            _turnOnLight.Undo();
         }
     }
 }
