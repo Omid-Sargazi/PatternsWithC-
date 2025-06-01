@@ -14,6 +14,7 @@ namespace AdventureWorksLT2019_2.Models
         public string? CompanyName { get; set; }
     }
 
+    [Table("Product", Schema = "SalesLT")]
     public class Product
     {
         [Key]
@@ -27,5 +28,19 @@ namespace AdventureWorksLT2019_2.Models
         public ProductCategory? ProductCategory { get; set; }
         [ForeignKey("ProductModelID")]
         public ProductModel? ProductModel { get; set; }
+    }
+
+
+    [Table("SalesOrderHeader", Schema = "SalesLT")]
+    public class SalesOrderHeader
+    {
+        [Key]
+        public int SalesOrderID { get; set; }
+        public string? SalesOrderNumber { get; set; }
+        public int CustomerID { get; set; }
+        public DateTime OrderDate { get; set; }
+        public decimal TotalDue { get; set; }
+        [ForeignKey("CustomerID")]
+        public Customer? Customer { get; set; }
     }
 }
