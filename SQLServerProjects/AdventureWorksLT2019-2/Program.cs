@@ -1,2 +1,40 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using AdventureWorksLT2019_2.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace AdventureWorksLT2019_2
+{
+    public class Program
+{
+        public static void Main(string[] args)
+        {
+            IConfiguration configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+
+            // تنظیم Service Provider
+            var services = new ServiceCollection();
+            services.AddDbContext<AdventureWorksContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            var serviceProvider = services.BuildServiceProvider();
+
+            // نمونه‌سازی DbContext
+            using var scope = serviceProvider.CreateScope();
+            var context = scope.ServiceProvider.GetRequiredService<AdventureWorksContext>();
+            
+             // نمونه کوئری: نمایش 10 مشتری
+            var customers = context.Customers
+                .Where(c => c.CompanyName != null)
+                .Take(10)
+                .ToList();
+
+            foreach (var customer in customers)
+            {
+                Console.WriteLine($"Customer: {customer.FirstName} {customer.LastName}, Company: {customer.CompanyName}");
+            }
+
+    }
+}
+}
