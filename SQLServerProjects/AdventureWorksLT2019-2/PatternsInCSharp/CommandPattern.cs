@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 namespace AdventureWorksLT2019_2.PatternsInCSharp
 {
     public interface ICommandLight
@@ -36,25 +38,46 @@ namespace AdventureWorksLT2019_2.PatternsInCSharp
         }
     }
 
-    
-
-    public class Control
+    public class TurnOffLight : ICommandLight
     {
-        private TurnOnLight _turnOnLight;
-        public Control(TurnOnLight turnOnLight)
+        private Light _light;
+        public TurnOffLight(Light light)
         {
-            _turnOnLight = turnOnLight;
+            _light = light;
         }
-        
-
-        public void Remote()
+        public void Run()
         {
-            _turnOnLight.Run();
+            _light.TurnOff();
         }
 
         public void Undo()
         {
-            _turnOnLight.Undo();
+            _light.TurnOn();
+        }
+    }
+
+    public class RemoteControl
+    {
+        private Stack<ICommandLight> _commandLights = new Stack<ICommandLight>();
+        public void ExecuteCommand(ICommandLight commandLight)
+        {
+            commandLight.Run();
+            _commandLights.Push(commandLight);
+        }
+        private TurnOnLight _turnOnLight;
+        public RemoteControl(TurnOnLight turnOnLight)
+        {
+            _turnOnLight = turnOnLight;
+        }
+
+
+        public void UndoLastCommand()
+        {
+            if (_commandLights.Count > 0)
+            {
+                var command = _commandLights.Pop();
+                command.Undo();
+            }
         }
     }
 }
