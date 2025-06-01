@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace AdventureWorksLT2019_2.Models
 {
@@ -42,5 +43,63 @@ namespace AdventureWorksLT2019_2.Models
         public decimal TotalDue { get; set; }
         [ForeignKey("CustomerID")]
         public Customer? Customer { get; set; }
+    }
+
+    [Table("SalesOrderDetail", Schema = "SalesLT")]
+    public class SalesOrderDetail
+    {
+        [Key]
+        public int SalesOrderDetailID { get; set; }
+        public int SalesOrderID { get; set; }
+        public int ProductID { get; set; }
+        public short OrderQty { get; set; }
+        public decimal UnitPrice { get; set; }
+        [ForeignKey("SalesOrderID")]
+        public SalesOrderHeader? SalesOrderHeader { get; set; }
+        [ForeignKey("ProductID")]
+        public Product? Product { get; set; }
+    }
+
+    [Table("ProductCategory", Schema = "SalesLT")]
+    public class ProductCategory
+    {
+        [Key]
+        public int ProductCategoryID { get; set; }
+        public string? Name { get; set; }
+    }
+
+    [Table("Address", Schema = "SalesLT")]
+    public class Address
+    {
+        [Key]
+        public int AddressID { get; set; }
+        public string? AddressLine1 { get; set; }
+        public string? City { get; set; }
+        public string? StateProvince { get; set; }
+        public string? CountryRegion { get; set; }
+        public string? PostalCode { get; set; }
+    }
+
+    [Table("CustomerAddress", Schema = "SalesLT")]
+    [PrimaryKey(nameof(CustomerID), nameof(AddressID))]
+    public class CustomerAddress
+    {
+        public int CustomerID { get; set; }
+        public int AddressID { get; set; }
+        public string? AddressType { get; set; }
+
+        [ForeignKey("CustomerID")]
+        public Customer? Customer { get; set; }
+
+        [ForeignKey("AddressID")]
+        public Address? Address { get; set; }
+    }
+
+    [Table("ProductModel", Schema = "SalesLT")]
+    public class ProductModel
+    {
+        [Key]
+        public int ProductModelID { get; set; }
+        public string? Name { get; set; }
     }
 }
