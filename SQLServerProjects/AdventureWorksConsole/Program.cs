@@ -14,7 +14,15 @@ var productsAZ = context.Products.OrderBy(p => p.Name).ToList();
 var productsIn2013 = context.Products.FirstOrDefault(p => p.SellStartDate.Year >= 2013);
 Console.WriteLine($"Product is:{productsIn2013.ProductId}");
 
-foreach (var p in productsAZ)
+
+var productbetween500and1500 = context.Products.Where(p => p.ListPrice >= 500 && p.ListPrice <= 1500).ToList();
+
+var productIncludeBike = context.Products.Where(p => p.Name.Contains("Bike")).ToList();
+
+var numberOfProducts = context.Products.Count();
+Console.WriteLine($"number Of Products is: {numberOfProducts}");
+
+foreach (var p in productIncludeBike)
 {
-    // Console.WriteLine($"{p.Name} - {p.ListPrice}");
+    Console.WriteLine($"{p.Name} - {p.ListPrice}");
 }
