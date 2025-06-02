@@ -30,7 +30,9 @@ var productWithModel = context.Products
     (p, pm) => new { p.Name, ModelName = pm.Name }
 ).Take(5).ToList();
 
-foreach (var p in productWithModel)
+var orderMoreThan3 = context.SalesOrderDetails.Where(s => s.OrderQty > 3).Take(5)
+.ToList();
+foreach (var p in orderMoreThan3)
 {
-    Console.WriteLine($"ProcutWithModel:  {p.Name} ----- {p.ModelName}");
+    Console.WriteLine($"ProcutWithModel:  {p.ProductId} ----- {p.SalesOrderId}");
 }
