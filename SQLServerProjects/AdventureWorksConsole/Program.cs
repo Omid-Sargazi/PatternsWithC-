@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using AdventureWorksConsole.Data;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 Console.WriteLine("Hello, World!");
 
@@ -29,6 +30,11 @@ var productWithModel = context.Products
     pm => pm.ProductModelId,
     (p, pm) => new { p.Name, ModelName = pm.Name }
 ).Take(5).ToList();
+
+var OrderLessThan500 = context.SalesOrderDetails.Where(s => s.UnitPrice < 500).ToList();
+
+var totalPriceOfOrders = context.SalesOrderDetails.Sum(o => o.UnitPrice * o.OrderQty);
+var SellProductAtleatOnce = context.SalesOrderDetails.Select(s => s.ProductId).Distinct().Count();
 
 var orderMoreThan3 = context.SalesOrderDetails.Where(s => s.OrderQty > 3).Take(5)
 .ToList();
