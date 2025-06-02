@@ -11,6 +11,8 @@ namespace AdventureWorksConsole.Models
         public decimal ListPrice { get; set; }
         public bool MakeFlag { get; set; }
         public DateTime SellStartDate { get; set; }
+        [Column("ProductModelID")]
+         public int? ProductModelId { get; set; }
     }
 
     [Table("ProductModel", Schema = "Production")]

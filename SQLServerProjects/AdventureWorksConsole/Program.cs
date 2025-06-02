@@ -22,7 +22,15 @@ var productIncludeBike = context.Products.Where(p => p.Name.Contains("Bike")).To
 var numberOfProducts = context.Products.Count();
 Console.WriteLine($"number Of Products is: {numberOfProducts}");
 
-foreach (var p in productIncludeBike)
+////////////////////////////////Join///////////////////////////////////
+var productWithModel = context.Products
+.Join(context.ProductModels,
+    p => p.ProductModelId,
+    pm => pm.ProductModelId,
+    (p, pm) => new { p.Name, ModelName = pm.Name }
+).Take(5).ToList();
+
+foreach (var p in productWithModel)
 {
-    Console.WriteLine($"{p.Name} - {p.ListPrice}");
+    Console.WriteLine($"ProcutWithModel:  {p.Name} ----- {p.ModelName}");
 }
