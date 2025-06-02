@@ -31,14 +31,25 @@ var productWithModel = context.Products
     (p, pm) => new { p.Name, ModelName = pm.Name }
 ).Take(5).ToList();
 
+
+
 var OrderLessThan500 = context.SalesOrderDetails.Where(s => s.UnitPrice < 500).ToList();
 
 var totalPriceOfOrders = context.SalesOrderDetails.Sum(o => o.UnitPrice * o.OrderQty);
 var SellProductAtleatOnce = context.SalesOrderDetails.Select(s => s.ProductId).Distinct().Count();
+Console.WriteLine($"orderMoreThan3 {SellProductAtleatOnce}");
 
 var orderMoreThan3 = context.SalesOrderDetails.Where(s => s.OrderQty > 3).Take(5)
 .ToList();
-foreach (var p in orderMoreThan3)
+
+// 16. تعداد سفارش برای هر ProductId
+var OrderForEachProductId = context.SalesOrderDetails
+.GroupBy(s => s.ProductId)
+.Select(g => new { PriductId = g.Key, Count = g.Count() })
+.Take(5).ToList();
+
+
+foreach (var p in OrderForEachProductId)
 {
-    Console.WriteLine($"ProcutWithModel:  {p.ProductId} ----- {p.SalesOrderId}");
+    Console.WriteLine($"ProcutWithModel:  {p.Count} ----- {p.PriductId}");
 }
