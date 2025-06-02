@@ -11,7 +11,10 @@ var MakeFlag = context.Products.Where(p => p.MakeFlag).ToList();
 
 var productsAZ = context.Products.OrderBy(p => p.Name).ToList();
 
+var productsIn2013 = context.Products.FirstOrDefault(p => p.SellStartDate.Year >= 2013);
+Console.WriteLine($"Product is:{productsIn2013.ProductId}");
+
 foreach (var p in productsAZ)
 {
-    Console.WriteLine($"{p.Name} - {p.ListPrice}");
+    // Console.WriteLine($"{p.Name} - {p.ListPrice}");
 }
