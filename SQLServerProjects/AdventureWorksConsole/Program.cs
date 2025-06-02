@@ -48,8 +48,21 @@ var OrderForEachProductId = context.SalesOrderDetails
 .Select(g => new { PriductId = g.Key, Count = g.Count() })
 .Take(5).ToList();
 
+var moreOderForAProduct = context.SalesOrderDetails
+.GroupBy(s => s.ProductId)
+.Select(g => g.Sum(s => s.OrderQty)).Max();
 
-foreach (var p in OrderForEachProductId)
+Console.WriteLine($"moreOderForAProduct:{moreOderForAProduct}");
+
+var soldProductIds = context.SalesOrderDetails.Select(s => s.ProductId).Distinct();
+var unsoldProducts = context.Products.Where(p => !soldProductIds.Contains(p.ProductId)).ToList();
+
+
+context.Customers.Where(c => c.AccountNumber != null).Take(5).ToList();
+
+context.Customers.Count();
+
+foreach (var p in unsoldProducts)
 {
-    Console.WriteLine($"ProcutWithModel:  {p.Count} ----- {p.PriductId}");
+    Console.WriteLine($"ProcutWithModel:  {p.Name} ----- {p.ProductId}");
 }
