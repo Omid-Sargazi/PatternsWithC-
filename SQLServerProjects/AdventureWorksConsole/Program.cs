@@ -79,13 +79,33 @@ var emails = context.Customers
         })
     .Take(10).ToList();
 
-    var californiaCustomers = context.Customers
-    .Where(c=>c.PersonId !=null)
-    .Join(context.People,
-        c=>c.PersonId,
-        p=>p.BusinessEntityId,
-        (c,p)=>new {c.CustomerId,Person=p}
-    ).Join(context)
+var californiaCustomers = context.Customers
+.Where(c => c.PersonId != null)
+.Join(context.People,
+    c => c.PersonId,
+    p => p.BusinessEntityId,
+    (c, p) => new { c.CustomerId, Person = p }
+).Join(context.BusinessEntityAddress,
+    cp => cp.Person.BusinessEntityId,
+    bea => bea.BusinessEntityId,
+    (cp, bea) => new { cp.CustomerId, cp.Person, bea }
+
+).Join(context.Addresses,
+    cpbea => cpbea.bea.AddressId,
+    a => a.AddressId,
+    (cpbea, address) => new { cpbea.CustomerId, cpbea.Person, address }
+).Join(context.StateProvinces,
+     cpbea => cpbea.address.StateProvinceId,
+     sp => sp.StateProvinceId,
+     (cpbea, sp) => new
+     {
+         CustomerID = cpbea.CustomerId,
+         FirstName = cpbea.Person.FirstName,
+         LastName = cpbea.Person.LastName,
+         AddressLine1 = cpbea.address.AddressLine1,
+         StateProvinceCode = sp.StateProvinceCode
+     }
+).Where(x => x.StateProvinceCode == "CA").ToList();
 
 foreach (var p in emails)
 {
