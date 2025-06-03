@@ -62,7 +62,15 @@ context.Customers.Where(c => c.AccountNumber != null).Take(5).ToList();
 
 context.Customers.Count();
 
-foreach (var p in unsoldProducts)
+var people = context.Customers
+.Where(c => c.PersonId != null).
+Join(context.People,
+    c => c.PersonId,
+    p => p.BusinessEntityId,
+    (c, p) => new { p.FirstName, p.LastName }
+).Take(10).ToList();
+
+foreach (var p in people)
 {
-    Console.WriteLine($"ProcutWithModel:  {p.Name} ----- {p.ProductId}");
+    Console.WriteLine($"ProcutWithModel:  {p.FirstName} ----- {p.LastName}");
 }

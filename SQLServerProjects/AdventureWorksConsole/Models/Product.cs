@@ -39,13 +39,14 @@ namespace AdventureWorksConsole.Models
         [Key]
         public int CustomerId { get; set; }
         public string? AccountNumber { get; set; }
-        
+
         public int? PersonId { get; set; }
     }
 
     [Table("Person", Schema = "Person")]
     public class Person
     {
+        [Key]
         public int BusinessEntityId { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
