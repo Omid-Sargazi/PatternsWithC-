@@ -82,6 +82,57 @@ namespace AdventureWorksConsole.Models
         [MaxLength(15)]
         public string? PostalCode { get; set; }
 
-        
+    }
+
+    [Table("BusinessEntityAddress", Schema = "Person")]
+    public class BusinessEntityAddress
+    {
+        [Key]
+        public int BusinessEntityId { get; set; }
+
+        public int AddressId { get; set; }
+
+        public int AddressTypeId { get; set; }
+
+        // ✅ Navigation Properties
+        [ForeignKey("BusinessEntityId")]
+        public Person? Person { get; set; }  // یا Store یا Employee بسته به استفاده
+
+        [ForeignKey("AddressId")]
+        public Address? Address { get; set; }
+
+        [ForeignKey("AddressTypeId")]
+        public AddressType? AddressType { get; set; }
+    }
+
+    [Table("StateProvince", Schema = "Person")]
+    public class StateProvince
+    {
+        [Key]
+        public int StateProvinceId { get; set; }
+
+        [MaxLength(3)]
+        public string? StateProvinceCode { get; set; }
+
+        [MaxLength(50)]
+        public string? Name { get; set; }
+
+        public int CountryRegionId { get; set; }
+
+        // ✅ Navigation
+        public ICollection<Address>? Addresses { get; set; }
+    }
+
+    [Table("AddressType", Schema = "Person")]
+    public class AddressType
+    {
+        [Key]
+        public int AddressTypeId { get; set; }
+
+        [MaxLength(50)]
+        public string? Name { get; set; }
+
+        // ✅ Navigation
+        public ICollection<BusinessEntityAddress>? BusinessEntityAddresses { get; set; }
     }
 }

@@ -10,6 +10,10 @@ namespace AdventureWorksConsole.Data
         public DbSet<SalesOrderDetail> SalesOrderDetails => Set<SalesOrderDetail>();
         public DbSet<Customer> Customers => Set<Customer>();
         public DbSet<Person> People => Set<Person>();
+        public DbSet<AddressType> AddressTypes => Set<AddressType>();
+        public DbSet<StateProvince> StateProvinces => Set<StateProvince>();
+        public DbSet<BusinessEntityAddress> BusinessEntityAddress => Set<BusinessEntityAddress>();
+        public DbSet<Address> Addresses => Set<Address>();
 
         public DbSet<EmailAddress> EmailAddresses => Set<EmailAddress>();
 
