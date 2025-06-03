@@ -12,7 +12,7 @@ namespace AdventureWorksConsole.Models
         public bool MakeFlag { get; set; }
         public DateTime SellStartDate { get; set; }
         [Column("ProductModelID")]
-         public int? ProductModelId { get; set; }
+        public int? ProductModelId { get; set; }
     }
 
     [Table("ProductModel", Schema = "Production")]
@@ -39,5 +39,15 @@ namespace AdventureWorksConsole.Models
         [Key]
         public int CustomerId { get; set; }
         public string? AccountNumber { get; set; }
+        
+        public int? PersonId { get; set; }
+    }
+
+    [Table("Person", Schema = "Person")]
+    public class Person
+    {
+        public int BusinessEntityId { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
     }
 }
