@@ -107,6 +107,19 @@ var californiaCustomers = context.Customers
      }
 ).Where(x => x.StateProvinceCode == "CA").ToList();
 
+
+var peopleWithEmails = context.People
+.Join(context.EmailAddresses,
+    person => person.BusinessEntityId,
+    email => email.BusinessEntityId,
+    (person, email) => new
+    {
+        person.LastName,
+        person.FirstName,
+        email.Email
+    }
+).ToList();
+
 foreach (var p in emails)
 {
     Console.WriteLine($"ProcutWithModel:  {p.FirstName} ----- {p.LastName}");
