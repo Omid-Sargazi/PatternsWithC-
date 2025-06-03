@@ -11,6 +11,8 @@ namespace AdventureWorksConsole.Data
         public DbSet<Customer> Customers => Set<Customer>();
         public DbSet<Person> People => Set<Person>();
 
+        public DbSet<EmailAddress> EmailAddresses => Set<EmailAddress>();
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlServer("Server=localhost;Database=AdventureWorks2019;User Id=sa;Password=15935755Omid$@;Encrypt=False;");
 

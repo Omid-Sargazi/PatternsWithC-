@@ -62,15 +62,32 @@ context.Customers.Where(c => c.AccountNumber != null).Take(5).ToList();
 
 context.Customers.Count();
 
-var people = context.Customers
-.Where(c => c.PersonId != null).
-Join(context.People,
-    c => c.PersonId,
-    p => p.BusinessEntityId,
-    (c, p) => new { p.FirstName, p.LastName }
-).Take(10).ToList();
+var emails = context.Customers
+    .Where(c => c.PersonId != null)
+    .Join(context.People,
+        c => c.PersonId,
+        p => p.BusinessEntityId,
+        (c, p) => new { p.BusinessEntityId, p.FirstName, p.LastName })
+    .Join(context.EmailAddresses,
+        p => p.BusinessEntityId,
+        e => e.BusinessEntityId,
+        (p, e) => new
+        {
+            p.FirstName,
+            p.LastName,
+            e.Email
+        })
+    .Take(10).ToList();
 
-foreach (var p in people)
+    var californiaCustomers = context.Customers
+    .Where(c=>c.PersonId !=null)
+    .Join(context.People,
+        c=>c.PersonId,
+        p=>p.BusinessEntityId,
+        (c,p)=>new {c.CustomerId,Person=p}
+    ).Join(context)
+
+foreach (var p in emails)
 {
     Console.WriteLine($"ProcutWithModel:  {p.FirstName} ----- {p.LastName}");
 }

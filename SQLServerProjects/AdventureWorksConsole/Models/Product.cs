@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace AdventureWorksConsole.Models
 {
@@ -41,6 +42,7 @@ namespace AdventureWorksConsole.Models
         public string? AccountNumber { get; set; }
 
         public int? PersonId { get; set; }
+        public string? State { get; set; }
     }
 
     [Table("Person", Schema = "Person")]
@@ -50,5 +52,36 @@ namespace AdventureWorksConsole.Models
         public int BusinessEntityId { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
+    }
+
+    [Table("EmailAddress", Schema = "Person")]
+    public class EmailAddress
+    {
+        [Key]
+        public int EmailAddressID { get; set; }
+        public int BusinessEntityId { get; set; }
+        [Column("EmailAddress")]
+        public string? Email { get; set; }
+    }
+
+    [Table("Address", Schema = "Person")]
+    public class Address
+    {
+        [Key]
+        public int AddressId { get; set; }
+        [MaxLength(60)]
+        public string? AddressLine1 { get; set; }
+
+        [MaxLength(60)]
+        public string? AddressLine2 { get; set; }
+
+        [MaxLength(30)]
+        public string? City { get; set; }
+
+        public int StateProvinceId { get; set; }
+        [MaxLength(15)]
+        public string? PostalCode { get; set; }
+
+        
     }
 }
