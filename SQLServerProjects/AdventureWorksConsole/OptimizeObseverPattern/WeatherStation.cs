@@ -13,9 +13,11 @@ namespace AdventureWorksConsole.OptimizeObseverPattern
 
     public class MobileDisplay
     {
+        private WeatherStation _station;
         public void Subscribe(WeatherStation station)
         {
-            station.TemperatureChanged += Update;
+            _station = station;
+            _station.TemperatureChanged += Update;
         }
 
         public void Update(float temp)
