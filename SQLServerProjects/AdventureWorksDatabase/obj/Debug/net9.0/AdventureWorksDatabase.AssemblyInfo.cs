@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AdventureWorksDatabase")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f3c8bdacb0efd64a5330b577bf1a41341aff3625")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+faa6737987d19fe4c9bb795a7128a44a3a640cef")]
 [assembly: System.Reflection.AssemblyProductAttribute("AdventureWorksDatabase")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AdventureWorksDatabase")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
