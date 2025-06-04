@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AdventureWorksConsole")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4b68344e293fed2c606e9e87db450bd1d1deb9eb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee010c9759d1593bcc6bf2ed7e4c29edb5ede8ec")]
 [assembly: System.Reflection.AssemblyProductAttribute("AdventureWorksConsole")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AdventureWorksConsole")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
