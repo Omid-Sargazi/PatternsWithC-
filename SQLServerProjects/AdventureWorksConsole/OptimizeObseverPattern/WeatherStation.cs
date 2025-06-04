@@ -37,9 +37,20 @@ namespace AdventureWorksConsole.OptimizeObseverPattern
 
     public class WebDisplay
     {
+        private WeatherStation _station;
         public void Subscribe(WeatherStation station)
         {
-            station.TemperatureChanged += Update;
+            _station = station;
+            _station.TemperatureChanged += Update;
+        }
+
+        public void Unsubscribe()
+        {
+            if (_station != null)
+            {
+                _station.TemperatureChanged -= Update;
+                _station = null;
+            }
         }
 
         private void Update(float temp)
