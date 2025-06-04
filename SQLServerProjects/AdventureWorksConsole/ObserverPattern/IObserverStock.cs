@@ -53,3 +53,11 @@ public class TradingApp : IObserver
         throw new NotImplementedException();
     }
 }
+
+public class WebDashboard : IObserverStock
+{
+    public void Update(string stockSymbol, decimal price)
+    {
+        Console.WriteLine($"داشبورد وب: قیمت {stockSymbol} به {price:C} رسید.");
+    }
+}
