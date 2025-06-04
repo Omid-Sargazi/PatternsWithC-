@@ -120,6 +120,8 @@ var peopleWithEmails = context.People
     }
 ).ToList();
 
+
+
 foreach (var p in emails)
 {
     Console.WriteLine($"ProcutWithModel:  {p.FirstName} ----- {p.LastName}");
