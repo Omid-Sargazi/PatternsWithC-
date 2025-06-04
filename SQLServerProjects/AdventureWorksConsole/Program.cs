@@ -120,7 +120,18 @@ var peopleWithEmails = context.People
     }
 ).ToList();
 
-
+var customerNames = context.Customers
+.Where(c => c.CustomerId != null)
+.Join(context.People,
+    c => c.PersonId,
+    p => p.BusinessEntityId,
+    (c, p) => new
+    {
+        c.CustomerId,
+        p.LastName,
+        p.FirstName
+    }
+).ToList();
 
 foreach (var p in emails)
 {
