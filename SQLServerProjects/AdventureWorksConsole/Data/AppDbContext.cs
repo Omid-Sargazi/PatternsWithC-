@@ -17,6 +17,7 @@ namespace AdventureWorksConsole.Data
 
         public DbSet<EmailAddress> EmailAddresses => Set<EmailAddress>();
         public DbSet<SalesOrderHeader> salesOrderHeaders => Set<SalesOrderHeader>();
+        public DbSet<ProductSubcategory> productSubcategories => Set<ProductSubcategory>();
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlServer("Server=localhost;Database=AdventureWorks2019;User Id=sa;Password=15935755Omid$@;Encrypt=False;");

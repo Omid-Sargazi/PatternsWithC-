@@ -14,6 +14,7 @@ namespace AdventureWorksConsole.Models
         public DateTime SellStartDate { get; set; }
         [Column("ProductModelID")]
         public int? ProductModelId { get; set; }
+        public int ProductSubcategoryID { get; set; }
     }
 
     [Table("ProductModel", Schema = "Production")]
@@ -134,5 +135,26 @@ namespace AdventureWorksConsole.Models
 
         // ✅ Navigation
         public ICollection<BusinessEntityAddress>? BusinessEntityAddresses { get; set; }
+    }
+
+    public class SalesOrderHeader
+    {
+        [Key]
+        public int SalesOrderId { get; set; }
+        public DateTime OrderDate { get; set; }
+        public DateTime DueDate { get; set; }
+        public int CustomerID { get; set; }
+        public decimal TotalDue { get; set; }
+
+    }
+
+    [Table("ProductSubcategory",Schema ="Production")]
+    public class ProductSubcategory
+    {
+        [Key]
+        public int ProductSubcategoryID { get; set; }
+        public int ProductCategoryID { get; set; }
+        public string Name { get; set; }
+
     }
 }

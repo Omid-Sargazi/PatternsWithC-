@@ -133,6 +133,44 @@ var customerNames = context.Customers
     }
 ).ToList();
 
+
+var ordersWithCustomerName = context.salesOrderHeaders
+.Join(context.Customers,
+    order => order.CustomerID,
+    customer => customer.CustomerId,
+    (order, customer) => new { order, customer }
+)
+.Where(x => x.customer.PersonId != null)
+.Join(context.People,
+    x => x.customer.PersonId,
+    person => person.BusinessEntityId,
+    (x, person) => new
+    {
+        x.order.SalesOrderId,
+        x.order.OrderDate,
+        x.order.TotalDue,
+        CustomerName = person.FirstName + " " + person.LastName
+    }
+).ToList();
+
+var productsWithCategory = context.Products
+.Where(p => p.ProductSubcategoryID != null)
+.Join(context.productSubcategories,
+    product => product.ProductSubcategoryID,
+    subcat => subcat.ProductSubcategoryID,
+    (product, subcat) => new { product, subcat }
+).Join(context.productSubcategories,
+    ps => ps.subcat.ProductCategoryID,
+    cat => cat.ProductCategoryID,
+    (ps, cat) => new
+    {
+        productName = ps.product.Name,
+        ps.product.ListPrice,
+        SubcategoryName = ps.subcat.Name,
+        CategoryName = cat.Name
+    }
+).ToList();
+
 foreach (var p in emails)
 {
     Console.WriteLine($"ProcutWithModel:  {p.FirstName} ----- {p.LastName}");
