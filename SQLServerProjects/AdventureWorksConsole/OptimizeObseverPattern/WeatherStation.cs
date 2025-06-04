@@ -20,6 +20,15 @@ namespace AdventureWorksConsole.OptimizeObseverPattern
             _station.TemperatureChanged += Update;
         }
 
+        public void Unsubscribe()
+        {
+            if (_station != null)
+            {
+                _station.TemperatureChanged -= Update;
+                _station = null;
+            }
+        }
+
         public void Update(float temp)
         {
             Console.WriteLine($"نمایشگر موبایل: دما {temp}°C است.");
