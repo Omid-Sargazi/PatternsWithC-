@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+
 namespace AdventureWorksConsole.ObserverPattern
 {
     public interface IObserver
@@ -14,19 +16,41 @@ namespace AdventureWorksConsole.ObserverPattern
 
     public class WeatherStation : ISubject
     {
+        private List<IObserver> _observers = new List<IObserver>();
+        private float _temp;
+
         public void NotifyObserver()
         {
-            throw new NotImplementedException();
+            foreach (var observer in _observers)
+            {
+                observer.Update(_temp);
+            }
         }
 
         public void RegisterObserver(IObserver observer)
         {
-            throw new NotImplementedException();
+            _observers.Add(observer);
         }
 
         public void RemoveObserver(IObserver observer)
         {
-            throw new NotImplementedException();
+            _observers.Remove(observer);
+        }
+    }
+
+    public class MobileDisplay : IObserver
+    {
+        public void Update(float temp)
+        {
+            Console.WriteLine($"نمایشگر موبایل: دما {temp}°C است.");
+        }
+    }
+
+    public class WebDisplay : IObserver
+    {
+        public void Update(float temp)
+        {
+            Console.WriteLine($"نمایشگر وب‌سایت: دما {temp}°C است.");
         }
     }
 }
