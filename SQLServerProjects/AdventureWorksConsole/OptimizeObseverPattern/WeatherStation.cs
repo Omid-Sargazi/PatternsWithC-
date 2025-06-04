@@ -1,13 +1,26 @@
 namespace AdventureWorksConsole.OptimizeObseverPattern
 {
+
+    public class WeatherData
+    {
+        public float Temperature { get; }
+        public DateTime Timestamp { get; }
+        public WeatherData(float temp)
+        {
+            Temperature = temp;
+            Timestamp = DateTime.Now;
+        }
+    }
     public class WeatherStation
     {
         private float _temp;
-        public event Action<float> TemperatureChanged;
+        public event Action<WeatherData> WeatherChanged;
+
+       
         public void SetTemperature(float temp)
         {
             _temp = temp;
-            TemperatureChanged?.Invoke(_temp);
+            WeatherChanged?.Invoke(new WeatherData(_temp));
         }
     }
 
@@ -17,19 +30,19 @@ namespace AdventureWorksConsole.OptimizeObseverPattern
         public void Subscribe(WeatherStation station)
         {
             _station = station;
-            _station.TemperatureChanged += Update;
+            _station.WeatherChanged += Update;
         }
 
         public void Unsubscribe()
         {
             if (_station != null)
             {
-                _station.TemperatureChanged -= Update;
+                _station.WeatherChanged -= Update;
                 _station = null;
             }
         }
 
-        public void Update(float temp)
+        public void Update(WeatherData temp)
         {
             Console.WriteLine($"نمایشگر موبایل: دما {temp}°C است.");
         }
@@ -41,19 +54,19 @@ namespace AdventureWorksConsole.OptimizeObseverPattern
         public void Subscribe(WeatherStation station)
         {
             _station = station;
-            _station.TemperatureChanged += Update;
+            _station.WeatherChanged += Update;
         }
 
         public void Unsubscribe()
         {
             if (_station != null)
             {
-                _station.TemperatureChanged -= Update;
+                _station.WeatherChanged -= Update;
                 _station = null;
             }
         }
 
-        private void Update(float temp)
+        private void Update(WeatherData temp)
         {
             Console.WriteLine($"نمایشگر وب‌سایت: دما {temp}°C است.");
         }
