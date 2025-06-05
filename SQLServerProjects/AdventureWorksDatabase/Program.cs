@@ -1,13 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using AdventureWorksDatabase.Data;
+using AdventureWorksDatabase.Models;
 
 Console.WriteLine("Hello, World!");
 var context = new AppDbContext();
-var products = context.products.Take(5).ToList();
+var products = context.Products.Take(5).ToList();
 
 //////////////////////
 var productReviews = context.ProductReviews
-.Join(context.products,
+.Join(context.Products,
     review => review.ProductID,
     product => product.ProductID,
     (review, product) => new
@@ -19,7 +20,11 @@ var productReviews = context.ProductReviews
     }
 ).ToList();
 
+
+
 foreach (var p in productReviews)
 {
     Console.WriteLine($"products are {p.ProductName},{p.ReviewDate}");
 }
+
+
