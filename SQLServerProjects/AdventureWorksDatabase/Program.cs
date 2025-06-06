@@ -58,9 +58,20 @@ var customerOrders = context.Customers
 ).ToList();
 
 
-foreach (var p in query02)
+var orders = context.SalesOrderHeaders
+.Where(soh => soh.OrderDate >= new DateTimeOffset(2014, 1, 1,0,0,0,TimeSpan.Zero)
+    && soh.OrderDate < new DateTimeOffset(2015, 1, 1,0,0,0,TimeSpan.Zero)
+).Select(soh => new
 {
-    Console.WriteLine($"products are {p.CustomerName},{p.CustomerName}");
+    soh.Customer.Person.FirstName,
+    soh.Customer.Person.LastName,
+    soh.SalesOrderID,
+    soh.OrderDate
+}).ToList();
+
+foreach (var p in orders)
+{
+    Console.WriteLine($"products are {p.FirstName},{p.LastName}");
 }
 
 
