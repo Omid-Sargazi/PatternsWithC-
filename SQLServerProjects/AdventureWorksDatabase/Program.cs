@@ -38,9 +38,19 @@ var query = context.Customers
     })
     .ToList();
 
-foreach (var p in query)
+var query02 = context.Customers
+    .Where(c => c.Person != null)
+    .SelectMany(c => c.SalesOrdersHeaders, (c, order) => new { c, order })
+    .SelectMany(co => co.order.SalesOrderDetails, (co, detail) => new
+    {
+        CustomerName = co.c.Person.FirstName + " " + co.c.Person.LastName,
+        ProductName = detail.Product.Name
+    })
+    .ToList();
+
+foreach (var p in query02)
 {
-    Console.WriteLine($"products are {p.CustomerName},{p.SalesOrderNumber}");
+    Console.WriteLine($"products are {p.CustomerName},{p.CustomerName}");
 }
 
 
