@@ -81,9 +81,23 @@ var customerOrderss = context.Customers
 Console.WriteLine($"All orders are :{customerOrderss.Count()}");
 
 
-// foreach (var p in orders)
-// {
-//     Console.WriteLine($"products are {p.FirstName},{p.LastName}");
-// }
+var productSales = context.SalesOrderDetails
+.Where(sod => sod.SalesOrderHeader.OrderDate.Year == 2014 &&
+sod.SalesOrderHeader.Customer.Person.LastName.StartsWith("S"))
+.GroupBy(sod => sod.Product.Name)
+.Where(g => g.Sum(x => x.OrderQty * x.UnitPrice) > 10000)
+.OrderByDescending(g => g.Sum(x => x.OrderQty * x.UnitPrice))
+.Select(g => new
+{
+    ProductName = g.Key,
+    OrderCount = g.Select(x => x.SalesOrderHeader.SalesOrderID).Distinct().Count(),
+    TotalSales = g.Sum(x => x.OrderQty * x.UnitPrice)
+
+}
+);
+foreach (var p in productSales)
+{
+    Console.WriteLine($"products are {p.ProductName},{p.TotalSales}");
+}
 
 
