@@ -36,6 +36,11 @@ namespace AdventureWorksDatabase.Data
             .HasOne(s => s.SalesOrderHeader)
             .WithMany(sh => sh.SalesOrderDetails)
             .HasForeignKey(s => s.SalesOrderDetailID);
+
+            modelBuilder.Entity<SalesOrderDetail>()
+            .HasOne(s => s.Product)
+            .WithMany(p => p.SalesOrderDetails)
+            .HasForeignKey(s => s.ProductID);
         }
     }
 }

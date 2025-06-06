@@ -25,6 +25,8 @@ namespace AdventureWorksDatabase.Models
         [Key]
         public int ProductID { get; set; }
         public string? Name { get; set; }
+        public string ProductNumber { get; set; }
+        public decimal ListPrice { get; set; }
         public ICollection<SalesOrderDetail> SalesOrderDetails = new List<SalesOrderDetail>();
 
     }
