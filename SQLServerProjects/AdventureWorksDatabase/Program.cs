@@ -59,8 +59,8 @@ var customerOrders = context.Customers
 
 
 var orders = context.SalesOrderHeaders
-.Where(soh => soh.OrderDate >= new DateTimeOffset(2014, 1, 1,0,0,0,TimeSpan.Zero)
-    && soh.OrderDate < new DateTimeOffset(2015, 1, 1,0,0,0,TimeSpan.Zero)
+.Where(soh => soh.OrderDate >= new DateTimeOffset(2014, 1, 1, 0, 0, 0, TimeSpan.Zero)
+    && soh.OrderDate < new DateTimeOffset(2015, 1, 1, 0, 0, 0, TimeSpan.Zero)
 ).Select(soh => new
 {
     soh.Customer.Person.FirstName,
@@ -69,9 +69,21 @@ var orders = context.SalesOrderHeaders
     soh.OrderDate
 }).ToList();
 
-foreach (var p in orders)
+var customerOrderss = context.Customers
+.Select(c => new
 {
-    Console.WriteLine($"products are {p.FirstName},{p.LastName}");
+    c.CustomerId,
+    c.Person.LastName,
+    c.Person.FirstName,
+    OrderCount = c.SalesOrdersHeaders.Count()
 }
+);
+Console.WriteLine($"All orders are :{customerOrderss.Count()}");
+
+
+// foreach (var p in orders)
+// {
+//     Console.WriteLine($"products are {p.FirstName},{p.LastName}");
+// }
 
 
