@@ -20,11 +20,27 @@ var productReviews = context.ProductReviews
     }
 ).ToList();
 
+// var query = context.Customers
+// .Where(c => c.PersonId != null)
+// .SelectMany(c => c.SalesOrdersHeaders, (c, order) => new
+// {
+//     CustomerName = c.Person.FirstName + " " + c.Person.LastName,
+//     order.SalesOrderNumber
+// }
+// ).ToList();
 
+var query = context.Customers
+    .Where(c => c.Person != null)
+    .SelectMany(c => c.SalesOrdersHeaders, (c, order) => new
+    {
+        CustomerName = c.Person.FirstName + " " + c.Person.LastName,
+        order.SalesOrderNumber
+    })
+    .ToList();
 
-foreach (var p in productReviews)
+foreach (var p in query)
 {
-    Console.WriteLine($"products are {p.ProductName},{p.ReviewDate}");
+    Console.WriteLine($"products are {p.CustomerName},{p.SalesOrderNumber}");
 }
 
 
