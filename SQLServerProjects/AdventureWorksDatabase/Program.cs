@@ -48,6 +48,16 @@ var query02 = context.Customers
     })
     .ToList();
 
+var customerOrders = context.Customers
+.Where(c => c.Person != null)
+.SelectMany(c => c.SalesOrdersHeaders, (customer, order) => new
+{
+    CustomerName = customer.Person.FirstName + " " + customer.Person.LastName,
+    OrderDate = order.OrderDate
+}
+).ToList();
+
+
 foreach (var p in query02)
 {
     Console.WriteLine($"products are {p.CustomerName},{p.CustomerName}");
