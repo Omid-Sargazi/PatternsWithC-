@@ -37,6 +37,7 @@ namespace AdventureWorksDatabase.Models
         [ForeignKey("PersonId")]
         public int? PersonId { get; set; }
         public Person Person { get; set; }
+        public string AccountNumber { get; set; }
         public ICollection<SalesOrderHeader> SalesOrdersHeaders { get; set; } = new List<SalesOrderHeader>();
 
     }
@@ -45,6 +46,7 @@ namespace AdventureWorksDatabase.Models
     {
         [Key]
         public int BusinessEntityID { get; set; }
+        public string PersonType { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public ICollection<Customer> Customers { get; set; } = new List<Customer>();
@@ -61,6 +63,7 @@ namespace AdventureWorksDatabase.Models
         public int CustomerId { get; set; }
         public Customer? Customer { get; set; }
         public int? SalesPersonID { get; set; }
+        public decimal SubTotal { get; set; }
         public ICollection<SalesOrderDetail> SalesOrderDetails { get; set; } = new List<SalesOrderDetail>();
     }
 
@@ -75,6 +78,7 @@ namespace AdventureWorksDatabase.Models
         public int SalesOrderDetailID { get; set; }
         public int ProductID { get; set; }
         public int OrderQty { get; set; }
+        public decimal UnitPrice { get; set; }
 
         public decimal LineTotal { get; set; }
         [ForeignKey("ProductID")]

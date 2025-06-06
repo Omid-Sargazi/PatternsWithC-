@@ -21,6 +21,21 @@ namespace AdventureWorksDatabase.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<SalesOrderDetail>()
             .HasKey(sod => new { sod.SalesOrderID, sod.SalesOrderDetailID });
+
+            modelBuilder.Entity<Customer>()
+            .HasOne(c => c.Person)
+            .WithMany(p => p.Customers)
+            .HasForeignKey(c => c.PersonId);
+
+            modelBuilder.Entity<SalesOrderHeader>()
+            .HasOne(s => s.Customer)
+            .WithMany(c => c.SalesOrdersHeaders)
+            .HasForeignKey(s => s.CustomerId);
+
+            modelBuilder.Entity<SalesOrderDetail>()
+            .HasOne(s => s.SalesOrderHeader)
+            .WithMany(sh => sh.SalesOrderDetails)
+            .HasForeignKey(s => s.SalesOrderDetailID);
         }
     }
 }
