@@ -95,6 +95,14 @@ sod.SalesOrderHeader.Customer.Person.LastName.StartsWith("S"))
 
 }
 );
+var customers = context.Customers
+.Select(c => new
+{
+    c.CustomerId,
+    c.Person.LastName,
+    c.Person.FirstName
+});
+
 foreach (var p in productSales)
 {
     Console.WriteLine($"products are {p.ProductName},{p.TotalSales}");
