@@ -113,8 +113,12 @@ var productSaless = context.SalesOrderDetails
 {
     ProductName = g.Key,
     OrderCount = g.Select(x => x.SalesOrderHeader.SalesOrderID).Distinct().Count(),
-    TotalCount = g.Sum(x=>x.OrderQty * x.UnitPrice)
+    TotalCount = g.Sum(x => x.OrderQty * x.UnitPrice)
 });
+
+var customerss = context.Customers
+.Where(c => c.SalesOrdersHeaders.Any())
+.Select(c => new { c.CustomerId, c.Person.FirstName, c.Person.LastName });
 
 foreach (var p in customers)
 {
