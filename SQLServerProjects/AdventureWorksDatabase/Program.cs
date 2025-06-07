@@ -130,7 +130,9 @@ var productsBetween100and500 = context.Products
 var orderCount = context.SalesOrderHeaders
 .Count(soh => soh.OrderDate.Year == 2014);
 
-
+var customersStartWithS = context.Customers
+.Where(c => c.Person.LastName.StartsWith("S"))
+.Select(c => new { c.CustomerId, c.Person.FirstName, c.Person.LastName });
 foreach (var p in customers)
 {
     Console.WriteLine($"products are {p.CustomerId},{p.LastName}");
