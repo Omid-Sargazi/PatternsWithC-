@@ -120,6 +120,12 @@ var customerss = context.Customers
 .Where(c => c.SalesOrdersHeaders.Any())
 .Select(c => new { c.CustomerId, c.Person.FirstName, c.Person.LastName });
 
+
+var productsBetween100and500 = context.Products
+.Where(p => p.ListPrice >= 100 && p.ListPrice <= 500)
+.OrderBy(p => p.ListPrice)
+.Select(p => new { p.ProductID, p.Name, p.ListPrice });
+
 foreach (var p in customers)
 {
     Console.WriteLine($"products are {p.CustomerId},{p.LastName}");
