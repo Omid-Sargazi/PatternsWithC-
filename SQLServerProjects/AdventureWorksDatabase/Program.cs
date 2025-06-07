@@ -126,6 +126,11 @@ var productsBetween100and500 = context.Products
 .OrderBy(p => p.ListPrice)
 .Select(p => new { p.ProductID, p.Name, p.ListPrice });
 
+
+var orderCount = context.SalesOrderHeaders
+.Count(soh => soh.OrderDate.Year == 2014);
+
+
 foreach (var p in customers)
 {
     Console.WriteLine($"products are {p.CustomerId},{p.LastName}");
