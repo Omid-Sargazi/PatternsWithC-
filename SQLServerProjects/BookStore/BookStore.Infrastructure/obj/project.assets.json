@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net9.0": {}
+    "net9.0": {
+      "BookStore.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/BookStore.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BookStore.Domain.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "BookStore.Domain/1.0.0": {
+      "type": "project",
+      "path": "../BookStore.Domain/BookStore.Domain.csproj",
+      "msbuildProject": "../BookStore.Domain/BookStore.Domain.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net9.0": []
+    "net9.0": [
+      "BookStore.Domain >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "/home/omidsa/.nuget/packages/": {}
@@ -31,7 +50,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/BookStore/BookStore.Domain/BookStore.Domain.csproj": {
+              "projectPath": "/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/BookStore/BookStore.Domain/BookStore.Domain.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
