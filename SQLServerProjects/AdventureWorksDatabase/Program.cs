@@ -134,6 +134,10 @@ var customersStartWithS = context.Customers
 .Where(c => c.Person.LastName.StartsWith("S"))
 .Select(c => new { c.CustomerId, c.Person.FirstName, c.Person.LastName });
 
+var unsoldProducts = context.Products
+.Where(p => !p.SalesOrderDetails.Any())
+.Select(p => new { p.ProductID, p.Name });
+
 var customerSales = context.SalesOrderHeaders
 .GroupBy(soh => soh.CustomerId)
 .Select(g => new { CustomerID = g.Key, TotalSale = g.Sum(soh => soh.SubTotal) });
