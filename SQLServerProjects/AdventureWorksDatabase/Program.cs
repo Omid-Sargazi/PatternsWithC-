@@ -167,6 +167,14 @@ var result = context.SalesOrderHeaders
 .Select(x => new { x.CustomerId, x.SubTotal })
 .ToList();
 
+var customersHaveOrdersmorethan3 = context.Customers
+.Where(c => context.SalesOrderHeaders.Count(soh => soh.CustomerId == c.CustomerId) > 3)
+.Select(c => new
+{
+    c.CustomerId,
+    CustomerName = c.Person.FirstName + " " + c.Person.LastName
+}).ToList();
+
 foreach (var p in customers)
 {
     Console.WriteLine($"products are {p.CustomerId},{p.LastName}");
