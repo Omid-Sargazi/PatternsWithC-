@@ -161,6 +161,12 @@ var customersWithManyOrders = context.Customers
     OrderCount = g.Count()
 }).ToList();
 
+var avgSubtotal = context.SalesOrderHeaders.Average(x => x.SubTotal);
+var result = context.SalesOrderHeaders
+.Where(x => x.SubTotal > avgSubtotal)
+.Select(x => new { x.CustomerId, x.SubTotal })
+.ToList();
+
 foreach (var p in customers)
 {
     Console.WriteLine($"products are {p.CustomerId},{p.LastName}");
