@@ -142,6 +142,11 @@ var customerSales = context.SalesOrderHeaders
 .GroupBy(soh => soh.CustomerId)
 .Select(g => new { CustomerID = g.Key, TotalSale = g.Sum(soh => soh.SubTotal) });
 
+var customersMoreThan3Orders = context.SalesOrderHeaders
+.GroupBy(soh => soh.CustomerId)
+.Where(g => g.Count() > 3)
+.Select(g => new { CustomerID = g.Key, OrderCount = g.Count() });
+
 foreach (var p in customers)
 {
     Console.WriteLine($"products are {p.CustomerId},{p.LastName}");
