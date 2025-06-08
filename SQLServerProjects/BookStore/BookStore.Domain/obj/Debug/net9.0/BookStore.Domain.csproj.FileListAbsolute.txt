@@ -1,0 +1,12 @@
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/BookStore/BookStore.Domain/bin/Debug/net9.0/BookStore.Domain.deps.json
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/BookStore/BookStore.Domain/bin/Debug/net9.0/BookStore.Domain.dll
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/BookStore/BookStore.Domain/bin/Debug/net9.0/BookStore.Domain.pdb
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/BookStore/BookStore.Domain/obj/Debug/net9.0/BookStore.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/BookStore/BookStore.Domain/obj/Debug/net9.0/BookStore.Domain.AssemblyInfoInputs.cache
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/BookStore/BookStore.Domain/obj/Debug/net9.0/BookStore.Domain.AssemblyInfo.cs
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/BookStore/BookStore.Domain/obj/Debug/net9.0/BookStore.Domain.csproj.CoreCompileInputs.cache
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/BookStore/BookStore.Domain/obj/Debug/net9.0/BookStore.Domain.sourcelink.json
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/BookStore/BookStore.Domain/obj/Debug/net9.0/BookStore.Domain.dll
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/BookStore/BookStore.Domain/obj/Debug/net9.0/refint/BookStore.Domain.dll
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/BookStore/BookStore.Domain/obj/Debug/net9.0/BookStore.Domain.pdb
+/home/omidsa/Programmings/PatternsWithCSharp/SQLServerProjects/BookStore/BookStore.Domain/obj/Debug/net9.0/ref/BookStore.Domain.dll
