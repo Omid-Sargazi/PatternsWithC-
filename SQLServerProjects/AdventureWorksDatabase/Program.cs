@@ -147,6 +147,20 @@ var customersMoreThan3Orders = context.SalesOrderHeaders
 .Where(g => g.Count() > 3)
 .Select(g => new { CustomerID = g.Key, OrderCount = g.Count() });
 
+
+var customersWithManyOrders = context.Customers
+.Join(context.SalesOrderHeaders,
+    c => c.CustomerId,
+    soh => soh.CustomerId,
+    (c, soh) => new { c.CustomerId, soh.SalesOrderID }
+).GroupBy(x => x.CustomerId)
+.Where(g => g.Count() > 3)
+.Select(g => new
+{
+    CustomerId = g.Key,
+    OrderCount = g.Count()
+}).ToList();
+
 foreach (var p in customers)
 {
     Console.WriteLine($"products are {p.CustomerId},{p.LastName}");
