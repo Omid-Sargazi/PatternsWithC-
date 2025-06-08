@@ -133,6 +133,11 @@ var orderCount = context.SalesOrderHeaders
 var customersStartWithS = context.Customers
 .Where(c => c.Person.LastName.StartsWith("S"))
 .Select(c => new { c.CustomerId, c.Person.FirstName, c.Person.LastName });
+
+var customerSales = context.SalesOrderHeaders
+.GroupBy(soh => soh.CustomerId)
+.Select(g => new { CustomerID = g.Key, TotalSale = g.Sum(soh => soh.SubTotal) });
+
 foreach (var p in customers)
 {
     Console.WriteLine($"products are {p.CustomerId},{p.LastName}");
