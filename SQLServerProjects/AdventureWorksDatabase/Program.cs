@@ -208,8 +208,22 @@ var topSellingProducts = context.Products
 .Select(p => new
 {
     p.Name,
-    TotalSales = p.SalesOrderDetails.Sum(sod=>sod.LineTotal),
+    TotalSales = p.SalesOrderDetails.Sum(sod => sod.LineTotal),
 });
+
+var topSellingProductss = context.SalesOrderDetails
+.Join(context.Products,
+    sod => sod.ProductID,
+    p => p.ProductID,
+    (sod, p) => new { p.Name, sod.LineTotal }
+)
+.GroupBy(x => x.Name)
+.Where(g => g.Sum(x => x.LineTotal) > 20000)
+.Select(g => new
+{
+    ProductName = g.Key,
+    TotalSales = g.Sum(x => x.LineTotal)
+}).ToList();
 
 foreach (var p in customers)
 {
