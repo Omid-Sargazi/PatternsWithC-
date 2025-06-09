@@ -200,7 +200,15 @@ var richCustomers = context.Customers
 .Select(c => new
 {
     CustomerName = c.Person.FirstName + " " + c.Person.LastName,
-    TotalSpent = c.SalesOrdersHeaders.Sum(soh=>soh.TotalDue),
+    TotalSpent = c.SalesOrdersHeaders.Sum(soh => soh.TotalDue),
+});
+
+var topSellingProducts = context.Products
+.Where(p => p.SalesOrderDetails.Sum(sod => sod.LineTotal) > 20000)
+.Select(p => new
+{
+    p.Name,
+    TotalSales = p.SalesOrderDetails.Sum(sod=>sod.LineTotal),
 });
 
 foreach (var p in customers)
