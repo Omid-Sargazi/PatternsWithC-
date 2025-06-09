@@ -195,6 +195,14 @@ var productsMoreThan10 = context.Products
 });
 
 
+var richCustomers = context.Customers
+.Where(c => c.SalesOrdersHeaders.Sum(soh => soh.TotalDue) > 10000)
+.Select(c => new
+{
+    CustomerName = c.Person.FirstName + " " + c.Person.LastName,
+    TotalSpent = c.SalesOrdersHeaders.Sum(soh=>soh.TotalDue),
+});
+
 foreach (var p in customers)
 {
     Console.WriteLine($"products are {p.CustomerId},{p.LastName}");

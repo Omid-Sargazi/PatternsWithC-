@@ -66,6 +66,7 @@ namespace AdventureWorksDatabase.Models
         public Customer? Customer { get; set; }
         public int? SalesPersonID { get; set; }
         public decimal SubTotal { get; set; }
+        public decimal TotalDue { get; set; }
         public ICollection<SalesOrderDetail> SalesOrderDetails { get; set; } = new List<SalesOrderDetail>();
     }
 
