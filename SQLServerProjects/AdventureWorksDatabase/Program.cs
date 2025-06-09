@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using AdventureWorksDatabase.Data;
 using AdventureWorksDatabase.Models;
+using Microsoft.EntityFrameworkCore;
 
 Console.WriteLine("Hello, World!");
 var context = new AppDbContext();
@@ -174,6 +175,16 @@ var customersHaveOrdersmorethan3 = context.Customers
     c.CustomerId,
     CustomerName = c.Person.FirstName + " " + c.Person.LastName
 }).ToList();
+
+var noOrders = context.Customers
+.Include(c => c.Person)
+.Where(c => !c.SalesOrdersHeaders.Any())
+.Select(c => new
+{
+    c.CustomerId,
+    c.Person.LastName,
+    c.Person.FirstName
+});
 
 foreach (var p in customers)
 {
