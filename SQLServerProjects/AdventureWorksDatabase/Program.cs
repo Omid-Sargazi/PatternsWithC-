@@ -186,6 +186,15 @@ var noOrders = context.Customers
     c.Person.FirstName
 });
 
+var productsMoreThan10 = context.Products
+.Where(p => p.SalesOrderDetails.Sum(sod => sod.OrderQty) > 10)
+.Select(p => new
+{
+    p.Name,
+    TotalQty = p.SalesOrderDetails.Sum(sod => sod.OrderQty)
+});
+
+
 foreach (var p in customers)
 {
     Console.WriteLine($"products are {p.CustomerId},{p.LastName}");
