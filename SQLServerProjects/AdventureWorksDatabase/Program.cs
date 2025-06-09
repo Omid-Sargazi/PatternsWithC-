@@ -225,6 +225,17 @@ var topSellingProductss = context.SalesOrderDetails
     TotalSales = g.Sum(x => x.LineTotal)
 }).ToList();
 
+var customersWithManyOrderss = context.Customers
+.Where(c => c.Person != null && c.SalesOrdersHeaders.Count > 3)
+.Select(c => new
+{
+    FullName = c.Person.FirstName + " " + c.Person.LastName,
+    city = c.Person.BusinessEntityAddresses
+    .Select(bea => bea.Address.City)
+    .FirstOrDefault(),
+    orderCount = c.SalesOrdersHeaders.Count
+}).ToList();
+
 foreach (var p in customers)
 {
     Console.WriteLine($"products are {p.CustomerId},{p.LastName}");

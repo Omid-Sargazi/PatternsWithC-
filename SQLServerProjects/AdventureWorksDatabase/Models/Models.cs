@@ -51,6 +51,8 @@ namespace AdventureWorksDatabase.Models
         public string PersonType { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
+        public virtual ICollection<BusinessEntityAddress> BusinessEntityAddresses { get; set; }
+
         public ICollection<Customer> Customers { get; set; } = new List<Customer>();
     }
 
@@ -88,6 +90,92 @@ namespace AdventureWorksDatabase.Models
         public Product? Product { get; set; }
         [ForeignKey("SalesOrderID")]
         public SalesOrderHeader? SalesOrderHeader { get; set; }
+    }
+
+   [Table("BusinessEntityAddress", Schema = "Person")]
+    public class BusinessEntityAddress
+    {
+        [Key]
+        [Column(Order = 0)]
+        public int BusinessEntityId { get; set; }
+
+        [Key]
+        [Column(Order = 1)]
+        public int AddressId { get; set; }
+
+        [Key]
+        [Column(Order = 2)]
+        public int AddressTypeId { get; set; }
+
+        // ⛓ Navigation Properties
+        public virtual BusinessEntity BusinessEntity { get; set; }  // مثل Person
+        public virtual Address Address { get; set; }
+        public virtual AddressType AddressType { get; set; }
+    }
+    [Table("Address", Schema = "Person")]
+    public class Address
+    {
+        [Key]
+        public int AddressId { get; set; }
+
+        [Required]
+        [MaxLength(60)]
+        public string AddressLine1 { get; set; }
+
+        [MaxLength(60)]
+        public string AddressLine2 { get; set; }
+
+        [Required]
+        [MaxLength(30)]
+        public string City { get; set; }
+
+        public int StateProvinceId { get; set; }
+
+        [Required]
+        [MaxLength(15)]
+        public string PostalCode { get; set; }
+
+        public System.Guid RowGuid { get; set; }
+
+        public DateTime ModifiedDate { get; set; }
+
+        // 🔁 Navigation
+        // public virtual StateProvince StateProvince { get; set; }
+
+        public virtual ICollection<BusinessEntityAddress> BusinessEntityAddresses { get; set; }
+    }
+    [Table("AddressType", Schema = "Person")]
+    public class AddressType
+    {
+        [Key]
+        public int AddressTypeId { get; set; }
+
+        [Required]
+        [MaxLength(50)]
+        public string Name { get; set; }
+
+        public System.Guid RowGuid { get; set; }
+
+        public DateTime ModifiedDate { get; set; }
+
+        // 🔁 Navigation
+        public virtual ICollection<BusinessEntityAddress> BusinessEntityAddresses { get; set; }
+    }
+    [Table("BusinessEntity", Schema = "Person")]
+    public class BusinessEntity
+    {
+        [Key]
+        public int BusinessEntityId { get; set; }
+
+        public bool RowGuid { get; set; }
+
+        public DateTime ModifiedDate { get; set; }
+
+        //  Navigation
+        public virtual ICollection<BusinessEntityAddress> BusinessEntityAddresses { get; set; }
+
+        // اگر این BusinessEntity درواقع Person هست:
+        public virtual Person Person { get; set; }
     }
 
 
