@@ -1,16 +1,17 @@
 using AdventureWorksDatabase.Models;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace AdventureWorksDatabase.Data
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<Product> Products => Set<Product>();
-        public DbSet<ProductReview> ProductReviews => Set<ProductReview>();
-        public DbSet<Customer> Customers => Set<Customer>();
-        public DbSet<SalesOrderDetail> SalesOrderDetails => Set<SalesOrderDetail>();
-        public DbSet<SalesOrderHeader> SalesOrderHeaders => Set<SalesOrderHeader>();
-        public DbSet<Person> Persons => Set<Person>();
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductReview> ProductReviews { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<SalesOrderDetail> SalesOrderDetails { get; set; }
+        public DbSet<SalesOrderHeader> SalesOrderHeaders { get; set; }
+        public DbSet<Person> Persons { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=localhost;Database=AdventureWorks2019;User Id=sa;Password=15935755Omid$@;Encrypt=False;");
@@ -41,6 +42,10 @@ namespace AdventureWorksDatabase.Data
             .HasOne(s => s.Product)
             .WithMany(p => p.SalesOrderDetails)
             .HasForeignKey(s => s.ProductID);
+
+          
+
+
         }
     }
 }
