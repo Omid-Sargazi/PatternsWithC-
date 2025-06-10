@@ -236,6 +236,18 @@ var customersWithManyOrderss = context.Customers
     orderCount = c.SalesOrdersHeaders.Count
 }).ToList();
 
+
+var customersMoreThan1000 = context.Customers
+    .Include(c => c.Person)
+    .Where(c => c.SalesOrdersHeaders.Any(soh => soh.SubTotal > 10000))
+    .Select(c => new
+    {
+        c.CustomerId,
+        c.Person.FirstName,
+        c.Person.LastName
+    });
+
+
 foreach (var p in customers)
 {
     Console.WriteLine($"products are {p.CustomerId},{p.LastName}");
