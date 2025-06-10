@@ -46,4 +46,19 @@ namespace InterviewQuestions.Day01
         public BusinessService(ILoggerService logger) => _logger = logger;
         public void Run() => _logger.Log("Business logic executed");
     }
+
+    public interface IAppInfoService
+    {
+        string GetAppName();
+    }
+
+    public class AppInfoService : IAppInfoService
+    {
+        private readonly IConfiguration _config;
+        public AppInfoService(IConfiguration config) => _config = config;
+        public string GetAppName()
+        {
+            return _config["AppName"];
+        }
+    }
 }

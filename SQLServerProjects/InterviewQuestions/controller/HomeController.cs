@@ -8,10 +8,12 @@ namespace InterviewQuestions.controller
     {
         private readonly IGreetingService _greating;
         private readonly ITimeService _time;
-        public HomeController(IGreetingService greeting, ITimeService time)
+        private readonly IAppInfoService _appInfo;
+        public HomeController(IGreetingService greeting, ITimeService time, IAppInfoService appInfo)
         {
             _greating = greeting;
             _time = time;
+            _appInfo = appInfo;
         }
 
         [HttpGet]
@@ -25,6 +27,12 @@ namespace InterviewQuestions.controller
         {
             var time = _time.GetCurrentTime();
             return Content(time);
+        }
+        [HttpGet("config")]
+        public IActionResult Config()
+        {
+            var appInfo = _appInfo.GetAppName();
+            return Content(appInfo);
         }
     }
 }
