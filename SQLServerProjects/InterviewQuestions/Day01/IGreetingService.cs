@@ -26,4 +26,24 @@ namespace InterviewQuestions.Day01
             return _time;
         }
     }
+
+    public interface ILoggerService
+    {
+        void Log(string msg);
+    }
+
+    public class LoggerService : ILoggerService
+    {
+        public void Log(string msg)
+        {
+            Console.WriteLine($"[Log] {msg}");
+        }
+    }
+
+    public class BusinessService
+    {
+        private readonly ILoggerService _logger;
+        public BusinessService(ILoggerService logger) => _logger = logger;
+        public void Run() => _logger.Log("Business logic executed");
+    }
 }
