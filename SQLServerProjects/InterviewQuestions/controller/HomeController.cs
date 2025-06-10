@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InterviewQuestions.controller
 {
-    [ApiController]
-    [Route("api/root")]
+   [Route("api/[controller]")]
     public class HomeController : Controller
     {
         private readonly IGreetingService _greating;
@@ -13,6 +12,7 @@ namespace InterviewQuestions.controller
             _greating = greeting;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             var msg = _greating.GetMessage();
