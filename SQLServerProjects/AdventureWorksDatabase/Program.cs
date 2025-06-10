@@ -255,6 +255,16 @@ var noDetails = context.SalesOrderHeaders
     soh.OrderDate
 });
 
+var seattlePeople = context.Persons
+.SelectMany(p => p.BusinessEntityAddresses, (p, bea) => new { p, bea })
+.Where(x => x.bea.Address.City == "seattle")
+.Select(x => new
+{
+    FullName = x.p.FirstName + " " + x.p.LastName,
+    x.bea.Address.City,
+    AddressType = x.bea.AddressType.Name
+});
+
 foreach (var p in customers)
 {
     Console.WriteLine($"products are {p.CustomerId},{p.LastName}");
