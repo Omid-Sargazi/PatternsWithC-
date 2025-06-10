@@ -247,6 +247,13 @@ var customersMoreThan1000 = context.Customers
         c.Person.LastName
     });
 
+var noDetails = context.SalesOrderHeaders
+.Where(soh => soh.SalesOrderDetails.Any())
+.Select(soh => new
+{
+    soh.SalesOrderID,
+    soh.OrderDate
+});
 
 foreach (var p in customers)
 {
