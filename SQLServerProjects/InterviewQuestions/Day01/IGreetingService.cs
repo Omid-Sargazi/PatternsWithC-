@@ -12,4 +12,18 @@ namespace InterviewQuestions.Day01
             return "Hello from DI";
         }
     }
+
+    public interface ITimeService
+    {
+        string GetCurrentTime();
+    }
+
+    public class TimeService : ITimeService
+    {
+        private readonly string _time = DateTime.Now.ToString();
+        public string GetCurrentTime()
+        {
+            return _time;
+        }
+    }
 }

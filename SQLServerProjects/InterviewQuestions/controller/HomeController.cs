@@ -3,13 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace InterviewQuestions.controller
 {
-   [Route("api/[controller]")]
+    [Route("api/[controller]")]
     public class HomeController : Controller
     {
         private readonly IGreetingService _greating;
-        public HomeController(IGreetingService greeting)
+        private readonly ITimeService _time;
+        public HomeController(IGreetingService greeting, ITimeService time)
         {
             _greating = greeting;
+            _time = time;
         }
 
         [HttpGet]
@@ -17,6 +19,12 @@ namespace InterviewQuestions.controller
         {
             var msg = _greating.GetMessage();
             return Content(msg);
+        }
+        [HttpGet("time")]
+        public IActionResult Time()
+        {
+            var time = _time.GetCurrentTime();
+            return Content(time);
         }
     }
 }

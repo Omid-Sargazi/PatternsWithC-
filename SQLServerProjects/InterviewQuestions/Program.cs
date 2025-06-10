@@ -11,6 +11,7 @@ builder.Services.AddSwaggerGen();
 
 
 builder.Services.AddScoped<IGreetingService, GreetingService>();
+builder.Services.AddTransient<ITimeService, TimeService>();
 
 
 builder.Services.AddOpenApi();
