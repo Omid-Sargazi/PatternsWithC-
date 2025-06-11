@@ -31,5 +31,29 @@ namespace AdvantureWorksDatabse02.ExtensionMethod
         }
     }
 
+    public static class DateTimeExtensions
+    {
+        public static string ToPersianDate(this DateTime date)
+        {
+            var persianCalendar = new System.Globalization.PersianCalendar();
+            var year = persianCalendar.GetYear(date);
+            var month = persianCalendar.GetMonth(date);
+            var day = persianCalendar.GetDayOfMonth(date);
+
+            return $"{year}/{month:00}/{day:00}";
+        }
+            
+            public static bool IsWeekend(this DateTime date)
+        {
+            return date.DayOfWeek == DayOfWeek.Friday || 
+                date.DayOfWeek == DayOfWeek.Saturday;
+        }
+        
+        public static DateTime StartOfWeek(this DateTime date)
+        {
+            int diff = (7 + (date.DayOfWeek - DayOfWeek.Saturday)) % 7;
+            return date.AddDays(-1 * diff).Date;
+        }
+    }
 
 }
