@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using InterviewQuestions.Day01;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,11 +10,16 @@ namespace InterviewQuestions.controller
         private readonly IGreetingService _greating;
         private readonly ITimeService _time;
         private readonly IAppInfoService _appInfo;
-        public HomeController(IGreetingService greeting, ITimeService time, IAppInfoService appInfo)
+        private readonly IGitHubService _gitHub;
+        public HomeController(IGreetingService greeting,
+        ITimeService time, IAppInfoService appInfo,
+        IGitHubService gitHub
+        )
         {
             _greating = greeting;
             _time = time;
             _appInfo = appInfo;
+            _gitHub = gitHub;
         }
 
         [HttpGet]
@@ -33,6 +39,13 @@ namespace InterviewQuestions.controller
         {
             var appInfo = _appInfo.GetAppName();
             return Content(appInfo);
+        }
+
+        [HttpGet("gitapi")]
+        public async Task<IActionResult> GitApi()
+        {
+            var gitApi =  await _gitHub.GetReposAsync();
+            return Content(gitApi);
         }
     }
 }

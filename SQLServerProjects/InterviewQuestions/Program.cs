@@ -15,6 +15,8 @@ builder.Services.AddTransient<ITimeService, TimeService>();
 builder.Services.AddScoped<ILoggerService, LoggerService>();
 builder.Services.AddScoped<BusinessService>();
 builder.Services.AddScoped<IAppInfoService, AppInfoService>();
+builder.Services.AddHttpClient<IGitHubService, GitHubService>();
+builder.Services.AddScoped<IGitHubService, GitHubService>();
 
 
 builder.Services.AddOpenApi();

@@ -61,4 +61,23 @@ namespace InterviewQuestions.Day01
             return _config["AppName"];
         }
     }
+
+    public interface IGitHubService
+    {
+        Task<string> GetReposAsync();
+    }
+
+    public class GitHubService : IGitHubService
+    {
+        private readonly HttpClient _httpClient;
+        public GitHubService(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
+        public async Task<string> GetReposAsync()
+        {
+            var response = await _httpClient.GetStringAsync("https://api.github.com/users/octocat/repos");
+            return response;
+        }
+    }
 }

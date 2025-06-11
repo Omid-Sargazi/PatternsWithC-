@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InterviewQuestions")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d548b587230b71ccdfe621b74431a05764e6a2f6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a2879d3dbc1386e4773d8b4400eea88eda7987ac")]
 [assembly: System.Reflection.AssemblyProductAttribute("InterviewQuestions")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InterviewQuestions")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
