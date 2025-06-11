@@ -1,4 +1,6 @@
-﻿using AdvantureWorksDatabse02.StrategyPattern;
+﻿using System.Runtime.Intrinsics.X86;
+using AdvantureWorksDatabse02.Delegate;
+using AdvantureWorksDatabse02.StrategyPattern;
 using Microsoft.VisualBasic;
 
 namespace AdvantureWorksDatabse02
@@ -41,6 +43,10 @@ public delegate int Calculator(int a, int b);
             process.ProcessPayment(100, "credit");
             process.ProcessPayment(520, "paypall");
 
+            ProcessBusinessLogic b1 = new ProcessBusinessLogic();
+            b1.ProcessCompleted = ShowMessage;
+            b1.StartProcess();
+
         }
 
         public static int Add(int x, int y)
@@ -59,7 +65,13 @@ public delegate int Calculator(int a, int b);
 
         public static int Divide(int x, int y) => x / y;
         public static int Subtract(int x, int y) => x - y;
-        
 
+
+      
+        
+        static void ShowMessage()
+    {
+        Console.WriteLine("Process Completed Successfully!");
+    }
     }
 }
