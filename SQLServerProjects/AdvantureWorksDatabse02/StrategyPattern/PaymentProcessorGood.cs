@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
 namespace AdvantureWorksDatabse02.StrategyPattern
 {
     public class PaymentProcessorGood
@@ -9,7 +11,7 @@ namespace AdvantureWorksDatabse02.StrategyPattern
             paymentMethods = new Dictionary<string, PaymentMethod>
             {
                 ["credit"] = ProcessCreditCard,
-                ["paypal"] = ProcessPayPal,
+                ["paypal"] = ProcessPaypal,
                 ["bank"] = ProcessBankTransfer
             };
         }
@@ -24,26 +26,24 @@ namespace AdvantureWorksDatabse02.StrategyPattern
             }
         }
 
-        public void AddPaymentMethod(string name, PaymentMethod method)
+        public void AddPaymantMethod(string name, PaymentMethod method)
         {
             paymentMethods[name] = method;
-        }
-
-        private void ProcessCreditCard(decimal amount)
-        {
-            Console.WriteLine($"Processing ${amount} via Credit Card");
-        }
-
-        private void ProcessPayPal(decimal amount)
-        {
-            Console.WriteLine($"Processing ${amount} via PayPal");
         }
 
         private void ProcessBankTransfer(decimal amount)
         {
             Console.WriteLine($"Processing ${amount} via Bank Transfer");
         }
-        
-        
+
+        private void ProcessPaypal(decimal amount)
+        {
+            Console.WriteLine($"Processing ${amount} via PayPal");
+        }
+
+        private void ProcessCreditCard(decimal amount)
+        {
+            Console.WriteLine($"Processing ${amount} via Credit Card");
+        }
     }
 }
