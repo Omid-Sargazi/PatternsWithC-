@@ -1,4 +1,7 @@
-﻿namespace AdvantureWorksDatabse02
+﻿using AdvantureWorksDatabse02.StrategyPattern;
+using Microsoft.VisualBasic;
+
+namespace AdvantureWorksDatabse02
 {
     
     // See https://aka.ms/new-console-template for more information
@@ -13,7 +16,7 @@ public delegate int Calculator(int a, int b);
                 ["add"] = Add,
                 ["multiply"] = Multiple,
                 ["subtract"] = Subtract,
-                ["divide"]=Divide
+                ["divide"] = Divide
             };
 
             string operation = "multiply";
@@ -34,6 +37,10 @@ public delegate int Calculator(int a, int b);
             // result = calc(5, 3);
             // Console.WriteLine(result);
 
+            var process = new PaymentProcessorGood();
+            process.ProcessPayment(100, "credit");
+            process.ProcessPayment(520, "paypall");
+
         }
 
         public static int Add(int x, int y)
@@ -52,6 +59,7 @@ public delegate int Calculator(int a, int b);
 
         public static int Divide(int x, int y) => x / y;
         public static int Subtract(int x, int y) => x - y;
+        
 
     }
 }
