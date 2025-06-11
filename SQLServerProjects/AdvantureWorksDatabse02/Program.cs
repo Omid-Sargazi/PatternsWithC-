@@ -7,16 +7,33 @@ public delegate int Calculator(int a, int b);
     {
         public static void Main(string[] args)
         {
+
+            var operations = new Dictionary<string, Calculator>
+            {
+                ["add"] = Add,
+                ["multiply"] = Multiple,
+                ["subtract"] = Subtract,
+                ["divide"]=Divide
+            };
+
+            string operation = "multiply";
+            int a = 10, b = 5;
+
+            if (operations.ContainsKey(operation))
+            {
+                int result = operations[operation](a, b);
+                Console.WriteLine($"{operation}:{result}");
+            }
             Console.WriteLine("Hello, World!");
 
-            Calculator calc = Add;
-            int result = calc(5, 3);
-            Console.WriteLine(result);
+            // Calculator calc = Add;
+            // int result = calc(5, 3);
+            // Console.WriteLine(result);
 
-            calc = Multiple;
-            result = calc(5, 3);
-            Console.WriteLine(result);
-            
+            // calc = Multiple;
+            // result = calc(5, 3);
+            // Console.WriteLine(result);
+
         }
 
         public static int Add(int x, int y)
@@ -32,5 +49,9 @@ public delegate int Calculator(int a, int b);
             Console.WriteLine($"Multiple is:{mul}");
             return mul;
         }
+
+        public static int Divide(int x, int y) => x / y;
+        public static int Subtract(int x, int y) => x - y;
+
     }
 }
