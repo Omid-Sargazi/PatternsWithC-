@@ -1,5 +1,8 @@
 ﻿using System.Runtime.Intrinsics.X86;
+using System.Threading.Tasks;
+using AdvantureWorksDatabse02.Data;
 using AdvantureWorksDatabse02.Delegate;
+using AdvantureWorksDatabse02.Models;
 using AdvantureWorksDatabse02.StrategyPattern;
 using Microsoft.VisualBasic;
 
@@ -10,8 +13,18 @@ namespace AdvantureWorksDatabse02
 public delegate int Calculator(int a, int b);
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
+            using var context = new AdventureWorksContext();
+            var queries = new AdventureWorksQueries(context);
+
+            var categorySales = await queries.GetCategorySalesAsync();
+            Console.WriteLine("==============================Category Sales========");
+            foreach (var item in categorySales)
+            {
+                Console.WriteLine($"{item.CategoryName}");
+            }
+
 
             var operations = new Dictionary<string, Calculator>
             {
