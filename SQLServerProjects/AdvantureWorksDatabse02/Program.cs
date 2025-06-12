@@ -77,6 +77,17 @@ public delegate int Calculator(int a, int b);
                 Console.WriteLine($"event numbers are:{num}");
             }
 
+
+            var onlineShop = new OnlineShop();
+            var sendMessage = new SendMessage();
+            var logMessage = new LogMessage();
+            var sendEmail = new SendEmail();
+            onlineShop.BuyIvent += sendMessage.message;
+            onlineShop.BuyIvent += logMessage.messageLog;
+            onlineShop.BuyIvent += sendEmail.emailSend;
+
+            onlineShop.buy("hiiii");
+           
         }
 
         public static int Add(int x, int y)

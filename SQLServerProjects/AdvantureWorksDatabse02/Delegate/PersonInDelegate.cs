@@ -116,4 +116,39 @@ namespace AdvantureWorksDatabse02.Delegate
             Console.WriteLine($"Email sent for: {item}");
         }
     }
+
+
+    public class OnlineShop
+    {
+        public delegate void sendNotify(string message);
+        public event sendNotify BuyIvent;
+        public void buy(string message)
+        {
+            BuyIvent?.Invoke(message);
+        }
+    }
+
+    public class SendMessage
+    {
+        public void message(string message)
+        {
+            Console.WriteLine($"sent email:{message}");
+        }
+    }
+
+    public class LogMessage
+    {
+        public void messageLog(string messae)
+        {
+            Console.WriteLine($"recorded log:{messae}");
+        }
+    }
+
+    public class SendEmail
+    {
+        public void emailSend(string message)
+        {
+            Console.WriteLine($"sent email{message}");
+        }
+    }
 }
