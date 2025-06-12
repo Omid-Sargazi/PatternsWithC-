@@ -63,6 +63,20 @@ public delegate int Calculator(int a, int b);
             PersonProcessor.FIlter adultFilter = p => p.Age > 38;
             processor.PrintFiltered(people, adultFilter);
 
+            var publisher = new Publisher();
+            var subscriber = new Subscriber();
+
+            publisher.OnPublish += subscriber.Handle;
+            publisher.Publish();
+
+            Func<int, bool> isEvent = n => n % 2 == 0;
+            var numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
+            var eventNumbers = numbers.Where(isEvent);
+            foreach (var num in eventNumbers)
+            {
+                Console.WriteLine($"event numbers are:{num}");
+            }
+
         }
 
         public static int Add(int x, int y)
