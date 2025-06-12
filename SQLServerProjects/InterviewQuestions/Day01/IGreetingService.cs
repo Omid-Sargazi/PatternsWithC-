@@ -1,16 +1,27 @@
+using InterviewQuestions.Day02;
+
 namespace InterviewQuestions.Day01
 {
+
+    public interface IProcessNotifier
+    {
+        event Action ProcessCompleted;
+        void StartProcess();
+    }
     public interface IGreetingService
     {
         string GetMessage();
+
     }
 
     public class GreetingService : IGreetingService
     {
+        ProcessBusinessLogic b1 = new ProcessBusinessLogic();
         public string GetMessage()
         {
             return "Hello from DI";
         }
+
     }
 
     public interface ITimeService
@@ -80,4 +91,6 @@ namespace InterviewQuestions.Day01
             return response;
         }
     }
+
+
 }

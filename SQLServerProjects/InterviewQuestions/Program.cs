@@ -1,4 +1,5 @@
 using InterviewQuestions.Day01;
+using InterviewQuestions.Day02;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Services.AddScoped<BusinessService>();
 builder.Services.AddScoped<IAppInfoService, AppInfoService>();
 builder.Services.AddHttpClient<IGitHubService, GitHubService>();
 builder.Services.AddScoped<IGitHubService, GitHubService>();
+builder.Services.AddScoped<IProcessNotifier, ProcessBusinessLogic>();
 
 
 builder.Services.AddOpenApi();
