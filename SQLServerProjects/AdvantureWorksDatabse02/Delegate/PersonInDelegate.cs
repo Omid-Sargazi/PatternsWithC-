@@ -151,4 +151,40 @@ namespace AdvantureWorksDatabse02.Delegate
             Console.WriteLine($"sent email{message}");
         }
     }
+
+    public class BillPaymentSystem
+    {
+        public delegate void PaymentHandler(string message);
+        public event PaymentHandler onPaymentSuccess;
+
+        public void PayBill(string messae, decimal amount)
+        {
+            Console.WriteLine($"💸 Payment of {amount} for {messae} submitted.");
+            onPaymentSuccess?.Invoke($"Payment for {messae} was successful.");
+        }
+    }
+
+    public class SmsService
+    {
+        public void sendSms(string message)
+        {
+            Console.WriteLine($"📱 SMS: {message}");
+        }
+    }
+
+    public class EmailService
+    {
+         public void SendEmail(string message)
+    {
+        Console.WriteLine($"📧 Email: {message}");
+    }
+    }
+
+    public class Logger
+    {
+        public void Log(string message)
+    {
+        Console.WriteLine($"📝 Log: {message}");
+    }
+    }
 }

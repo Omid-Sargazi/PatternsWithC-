@@ -87,6 +87,16 @@ public delegate int Calculator(int a, int b);
             onlineShop.BuyIvent += sendEmail.emailSend;
 
             onlineShop.buy("hiiii");
+
+
+            var billPaymentSystem = new BillPaymentSystem();
+            var smsService = new SmsService();
+            var emailService = new EmailService();
+            var logger = new Logger();
+            billPaymentSystem.onPaymentSuccess += smsService.sendSms;
+            billPaymentSystem.onPaymentSuccess += logger.Log;
+            billPaymentSystem.onPaymentSuccess += emailService.SendEmail;
+            billPaymentSystem.PayBill("buy a laptop", 100); 
            
         }
 

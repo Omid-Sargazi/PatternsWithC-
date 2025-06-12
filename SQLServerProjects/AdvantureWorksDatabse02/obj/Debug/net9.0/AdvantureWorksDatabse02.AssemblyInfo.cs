@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AdvantureWorksDatabse02")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+43a19c5f55e4ddf254d1bf7c5a8b403102fe6d05")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91019a348f695c49f9bd410f8f2abd1004559464")]
 [assembly: System.Reflection.AssemblyProductAttribute("AdvantureWorksDatabse02")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AdvantureWorksDatabse02")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
