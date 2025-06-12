@@ -98,4 +98,22 @@ namespace AdvantureWorksDatabse02.Delegate
             Console.WriteLine("Subscriber received notification.");
         }
     }
+
+    public class Shop
+    {
+        public event Action<string> onOrderPlaced;
+        public void PlacedOrder(string item)
+        {
+            Console.WriteLine($"Order placed for {item}");
+            onOrderPlaced?.Invoke(item);
+        }
+    }
+
+    public class NotificationService
+    {
+        public void SendEmail(string item)
+        {
+            Console.WriteLine($"Email sent for: {item}");
+        }
+    }
 }
