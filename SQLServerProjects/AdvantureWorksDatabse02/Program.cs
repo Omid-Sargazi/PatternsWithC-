@@ -47,6 +47,22 @@ public delegate int Calculator(int a, int b);
             b1.ProcessCompleted = ShowMessage;
             b1.StartProcess();
 
+            Console.WriteLine("\n--- Calculator Example ---");
+            var calc = new Calculatorr();
+            calc.calculator(5, 3, "add");
+
+
+            var people = new List<PersonInDelegate>
+            {
+                new PersonInDelegate{Name = "Omid",Age=42},
+                new PersonInDelegate{Name = "Saeed", Age=38},
+                new PersonInDelegate {Name = "Vahid", Age=36}
+            };
+
+            var processor = new PersonProcessor();
+            PersonProcessor.FIlter adultFilter = p => p.Age > 38;
+            processor.PrintFiltered(people, adultFilter);
+
         }
 
         public static int Add(int x, int y)

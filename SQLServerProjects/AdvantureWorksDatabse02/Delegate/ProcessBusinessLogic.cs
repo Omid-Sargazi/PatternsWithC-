@@ -24,11 +24,11 @@ namespace AdvantureWorksDatabse02.Delegate
     }
 
 
-    public class Calculator
+    public class Calculatorr
     {
         public delegate int Calc(int x, int y);
         private Dictionary<string, Calc> dicCalc;
-        public Calculator()
+        public Calculatorr() 
         {
             dicCalc = new Dictionary<string, Calc>
             {
