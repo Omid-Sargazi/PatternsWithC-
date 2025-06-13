@@ -14,8 +14,11 @@ public class Program
 
         var processBusinessLogic = new ProcessBusinessLogic();
         processBusinessLogic.ProcessCompleted = ShowMessage;
-        processBusinessLogic.StartProcess();    
+        processBusinessLogic.StartProcess();
 
+        /////////////////////////////////////////////////
+        var calc = new Calculator();
+        calc.ShowResult(10, 20, "multiply");
 
     }
 
@@ -24,4 +27,6 @@ public class Program
     {
         Console.WriteLine("Process Completed Successfully!");
     }
+
+
 }
