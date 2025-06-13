@@ -1,4 +1,5 @@
-﻿        // See https://aka.ms/new-console-template for more information
+﻿// See https://aka.ms/new-console-template for more information
+using System.Linq.Expressions;
 using AdventureWorksDatabase.Data;
 using AdventureWorksDatabase.Delegates;
 using AdventureWorksDatabase.Models;
@@ -66,6 +67,16 @@ public class Program
         onlineshop.BuyIvent += message.sendMessage;
         onlineshop.BuyIvent += email.emailSend;
         onlineshop.buy("Laptop");
+        ///////////////////////////////////////
+        var bill = new BillPaymentSystem();
+        var smsService = new SmsService();
+        var emeilService = new EmailService();
+        var logger = new Logger();
+        bill.OnPaymentSuccess += smsService.SendSMS;
+        bill.OnPaymentSuccess += emeilService.SendEmail;
+        bill.OnPaymentSuccess += logger.LogMessage;
+        bill.PayBill("Billllllllll");
+
     }
 
 
@@ -74,5 +85,6 @@ public class Program
         Console.WriteLine("Process Completed Successfully!");
     }
 
+    
 
 }

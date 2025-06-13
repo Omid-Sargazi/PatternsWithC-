@@ -201,28 +201,71 @@ namespace AdventureWorksDatabase.Delegates
         }
 
     }
-        public class SendMessage
+    public class SendMessage
+    {
+        public void sendMessage(string message)
         {
-            public void sendMessage(string message)
-            {
-                Console.WriteLine($"📱 SMS sent: {message}");
-            }
+            Console.WriteLine($"📱 SMS sent: {message}");
         }
+    }
 
-        public class LogMessage
+    public class LogMessage
+    {
+        public void messageLog(string message)
         {
-            public void messageLog(string message)
-            {
-                Console.WriteLine($"📝 Log recorded: {message}");
-            }
+            Console.WriteLine($"📝 Log recorded: {message}");
         }
+    }
 
-        public class SendEmail
+    public class SendEmail
+    {
+        public void emailSend(string message)
         {
-            public void emailSend(string message)
-            {
-                Console.WriteLine($"📧 Email sent: {message}");
-            }
+            Console.WriteLine($"📧 Email sent: {message}");
         }
+    }
+
+    public class BillPaymentSystem
+    {
+
+        public event Action<string> OnPaymentSuccess;
+        public void PayBill(string message)
+        {
+            OnPaymentSuccess?.Invoke(message);
+        }
+    }
+
+    public class SmsService
+    {
+        public void SendSMS(string message)
+        {
+            Console.WriteLine($"Sent SMS: {message}");
+        }
+    }
+
+    public class EmailService
+    {
+        public void SendEmail(string message)
+        {
+            Console.WriteLine($"📧 Email: {message}");
+        }
+    }
+
+    public class Logger
+    {
+        public void LogMessage(string message)
+        {
+            Console.WriteLine($"Log Message: {message}");
+        }
+    }
+
+
+    public class MultiPrinter
+    {
+        public delegate void PrintHandler();
+        public void Print1() => Console.WriteLine("🖨️ Print1 executed");
+        public void Print2() => Console.WriteLine("🖨️ Print2 executed");
+        public void Print3() => Console.WriteLine("🖨️ Print3 executed");
+    }
     
 }
