@@ -36,6 +36,10 @@ public class Program
         var intProcessor = new IntProcessor();
         IntProcessor.filterNumbers eventNumbers = numbers => numbers.Where(n => n % 2 == 0).ToList();
         intProcessor.showResult(nums, eventNumbers);
+        //////////////////////////////////////////////
+        var report = new ReportGenerator();
+        List<int> list = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        report.ShowResult(list, "sum"); 
     }
 
 

@@ -136,6 +136,7 @@ namespace AdventureWorksDatabase.Delegates
             {
                 result += num;
             }
+            Console.WriteLine($"Sum is{result}");
 
             return result;
         }
