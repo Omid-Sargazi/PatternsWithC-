@@ -20,6 +20,19 @@ public class Program
         var calc = new Calculator();
         calc.ShowResult(10, 20, "multiply");
 
+        ////////////////////////////////////////////////////
+        var delegatePerson = new List<DelegatePerson>
+        {
+            new DelegatePerson{Name="Omid", Age=42},
+            new DelegatePerson{Name="Saeed", Age=38},
+            new DelegatePerson{Name="Vahid", Age=36},
+        };
+
+        var personProcessor = new PersonProcessor();
+        var filter = personProcessor.filterr = p => p.Age > 40;
+        personProcessor.PrintFiltered(delegatePerson, filter);
+        //////////////////////////////////////
+
     }
 
 
