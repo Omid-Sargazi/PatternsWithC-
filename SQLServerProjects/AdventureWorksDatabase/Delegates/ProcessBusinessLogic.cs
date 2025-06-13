@@ -113,7 +113,7 @@ namespace AdventureWorksDatabase.Delegates
             {
                 ["sum"] = SumList,
                 ["average"] = Average,
-                ["big"]=Biggest,
+                ["big"] = Biggest,
             };
         }
 
@@ -152,6 +152,26 @@ namespace AdventureWorksDatabase.Delegates
             Console.WriteLine($"the Biggest number in the list.");
             return 10;
         }
+
     }
+    public class Publisher
+    {
+        public delegate void Notify();
+        public event Notify onPublish;
+        public void Publish()
+        {
+            Console.WriteLine("Publishing...");
+            onPublish.Invoke();
+        }
+    }
+
+    public class Subscriber
+    {
+        public void Handle()
+        {
+            Console.WriteLine("Subscriber received notification.");
+        }
+    }
+        
     
 }

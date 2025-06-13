@@ -39,7 +39,13 @@ public class Program
         //////////////////////////////////////////////
         var report = new ReportGenerator();
         List<int> list = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-        report.ShowResult(list, "sum"); 
+        report.ShowResult(list, "sum");
+
+        ///////////////////////////////////////////////
+        var publisher = new Publisher();
+        var subscriber = new Subscriber();
+        publisher.onPublish += subscriber.Handle;
+        publisher.Publish();
     }
 
 
