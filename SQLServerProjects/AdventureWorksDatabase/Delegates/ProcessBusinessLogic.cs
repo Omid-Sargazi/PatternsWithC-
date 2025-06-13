@@ -172,6 +172,23 @@ namespace AdventureWorksDatabase.Delegates
             Console.WriteLine("Subscriber received notification.");
         }
     }
-        
+
+    public class Shop
+    {
+        public event Action<string> OnOrderPlaced;
+        public void PlaceOrder(string item)
+        {
+            Console.WriteLine($"Order placed for {item}");
+            OnOrderPlaced?.Invoke(item);
+        }
+    }
+
+    public class NotificationService
+    {
+        public void SendEmail(string item)
+        {
+            Console.WriteLine($"Email sent for: {item}");
+        }
+    }
     
 }

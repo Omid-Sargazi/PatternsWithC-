@@ -50,6 +50,11 @@ public class Program
         Func<int, bool> isEven = n => n % 2 == 0;
         var numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8 };
         var evenNumbers = numbers.Where(isEven);
+        ///////////////////////////////////////////////
+        var shop = new Shop();
+        var notify = new NotificationService();
+        shop.OnOrderPlaced += notify.SendEmail;
+        shop.PlaceOrder("laptop");
     }
 
 
