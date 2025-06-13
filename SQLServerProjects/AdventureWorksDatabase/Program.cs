@@ -3,6 +3,7 @@ using AdventureWorksDatabase.Data;
 using AdventureWorksDatabase.Delegates;
 using AdventureWorksDatabase.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 public class Program
 {
     public static void Main(string[] args)
@@ -55,6 +56,16 @@ public class Program
         var notify = new NotificationService();
         shop.OnOrderPlaced += notify.SendEmail;
         shop.PlaceOrder("laptop");
+
+        //////////////////////////////////////////
+        var onlineshop = new OnlineShop();
+        var log = new LogMessage();
+        var message = new SendMessage();
+        var email = new SendEmail();
+        onlineshop.BuyIvent += log.messageLog;
+        onlineshop.BuyIvent += message.sendMessage;
+        onlineshop.BuyIvent += email.emailSend;
+        onlineshop.buy("Laptop");
     }
 
 

@@ -200,6 +200,7 @@ namespace AdventureWorksDatabase.Delegates
             BuyIvent?.Invoke(message);
         }
 
+    }
         public class SendMessage
         {
             public void sendMessage(string message)
@@ -223,6 +224,5 @@ namespace AdventureWorksDatabase.Delegates
                 Console.WriteLine($"📧 Email sent: {message}");
             }
         }
-    }
     
 }
