@@ -90,11 +90,12 @@ namespace AdventureWorksDatabase.Delegates
     public class IntProcessor
     {
         public delegate List<int> filterNumbers(List<int> nums);
-        public filterNumbers filter;
 
         public void showResult(List<int> nums, filterNumbers filter)
         {
-            foreach (var num in nums)
+            var filterNumbers = filter(nums);
+           
+            foreach (var num in filterNumbers)
             {
                 Console.WriteLine($"the result is {num} after filtering");
             }

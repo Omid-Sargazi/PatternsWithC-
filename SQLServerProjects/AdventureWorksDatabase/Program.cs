@@ -32,7 +32,10 @@ public class Program
         var filter = personProcessor.filterr = p => p.Age > 40;
         personProcessor.PrintFiltered(delegatePerson, filter);
         //////////////////////////////////////
-
+        List<int> nums = new List<int> { 1, 2, 3, 4, 5, 6 };
+        var intProcessor = new IntProcessor();
+        IntProcessor.filterNumbers eventNumbers = numbers => numbers.Where(n => n % 2 == 0).ToList();
+        intProcessor.showResult(nums, eventNumbers);
     }
 
 
