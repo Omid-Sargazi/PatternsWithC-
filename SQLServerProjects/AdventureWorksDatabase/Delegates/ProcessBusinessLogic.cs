@@ -190,5 +190,39 @@ namespace AdventureWorksDatabase.Delegates
             Console.WriteLine($"Email sent for: {item}");
         }
     }
+
+    public class OnlineShop
+    {
+        public event Action<string> BuyIvent;
+        public void buy(string message)
+        {
+            Console.WriteLine("Buying process started...");
+            BuyIvent?.Invoke(message);
+        }
+
+        public class SendMessage
+        {
+            public void sendMessage(string message)
+            {
+                Console.WriteLine($"📱 SMS sent: {message}");
+            }
+        }
+
+        public class LogMessage
+        {
+            public void messageLog(string message)
+            {
+                Console.WriteLine($"📝 Log recorded: {message}");
+            }
+        }
+
+        public class SendEmail
+        {
+            public void emailSend(string message)
+            {
+                Console.WriteLine($"📧 Email sent: {message}");
+            }
+        }
+    }
     
 }
