@@ -94,11 +94,62 @@ namespace AdventureWorksDatabase.Delegates
         public void showResult(List<int> nums, filterNumbers filter)
         {
             var filterNumbers = filter(nums);
-           
+
             foreach (var num in filterNumbers)
             {
                 Console.WriteLine($"the result is {num} after filtering");
             }
+        }
+    }
+
+
+    public class ReportGenerator
+    {
+        public delegate int transformList(List<int> nums);
+        private Dictionary<string, transformList> _operators;
+        public ReportGenerator()
+        {
+            _operators = new Dictionary<string, transformList>
+            {
+                ["sum"] = SumList,
+                ["average"] = Average,
+                ["big"]=Biggest,
+            };
+        }
+
+        public void ShowResult(List<int> list, string operation)
+        {
+            if (_operators.ContainsKey(operation))
+            {
+                _operators[operation](list);
+            }
+            else
+            {
+                Console.WriteLine("There isn't operation. please correct operation.");
+            }
+        }
+
+        private int SumList(List<int> nums)
+        {
+            int result = 0;
+            foreach (int num in nums)
+            {
+                result += num;
+            }
+
+            return result;
+        }
+
+        private int Average(List<int> nums)
+        {
+            Console.WriteLine("Average");
+            return 2;
+        }
+
+        private int Biggest(List<int> nums)
+        {
+            Console.WriteLine($"the Biggest number in the list.");
+            return 10;
         }
     }
     
