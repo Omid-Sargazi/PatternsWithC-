@@ -1,92 +1,27 @@
 namespace AdvantureWorksDatabse02.CommandPattern
 {
-    public interface ICommand01
+    public class Light
     {
-        void Execute();
+        public void TurnOn()=>Console.WriteLine();
+        public void TurnOff()=>Console.WriteLine();
     }
 
-    public class SimpleCommand : ICommand01
+    public class RemoteControl
     {
-        private string _payload = string.Empty;
-        public SimpleCommand(string payload)
+        private Light _light;
+        public RemoteControl(Light light)
         {
-            _payload = payload;
+            _light = light;
         }
-        public void Execute()
+
+        public void PressOnButton()
         {
-            Console.WriteLine($"SimpleCommand: See, I can do simple things like printing ({this._payload})");
+            _light.TurnOn();
+        }
+
+        public void PressOffButton()
+        {
+            _light.TurnOff();
         }
     }
-
-    public class ComplexCommand : ICommand01
-    {
-        private string _a;
-        private string _b;
-        private Receiver _receiver;
-        public ComplexCommand(Receiver receiver, string a, string b)
-        {
-            _a = a;
-            _b = b;
-            _receiver = receiver;
-
-        }
-        public void Execute()
-        {
-            Console.WriteLine("ComplexCommand: Complex stuff should be done by a receiver object.");
-            _receiver.DoSomething(a);
-            _receiver.DoSomethingElse(b);
-        }
-    }
-
-
-    public class Receiver
-    {
-        public void DoSomething(string a)
-        {
-            Console.WriteLine($"Receiver: Working on ({a}.)");
-        }
-
-        public void DoSomethingElse(string b)
-        {
-            Console.WriteLine($"Receiver: Also working on ({b}.)");
-        }
-    }
-
-
-    class Invoker
-    {
-        private ICommand01 _onStart;
-
-        private ICommand01 _onFinish;
-
-        // Initialize commands.
-        public void SetOnStart(ICommand01 command)
-        {
-            this._onStart = command;
-        }
-
-        public void SetOnFinish(ICommand01 command)
-        {
-            this._onFinish = command;
-        }
-    }
-
-
-    public void DoSomethingImportant()
-        {
-            Console.WriteLine("Invoker: Does anybody want something done before I begin?");
-            if (this._onStart is ICommand01)
-            {
-                this._onStart.Execute();
-            }
-            
-            Console.WriteLine("Invoker: ...doing something really important...");
-            
-            Console.WriteLine("Invoker: Does anybody want something done after I finish?");
-            if (this._onFinish is ICommand01)
-            {
-                this._onFinish.Execute();
-            }
-        }
-
 }
