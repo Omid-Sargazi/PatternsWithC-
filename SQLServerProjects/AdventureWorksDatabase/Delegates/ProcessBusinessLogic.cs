@@ -263,9 +263,38 @@ namespace AdventureWorksDatabase.Delegates
     public class MultiPrinter
     {
         public delegate void PrintHandler();
+        public PrintHandler printHandler;
         public void Print1() => Console.WriteLine("🖨️ Print1 executed");
         public void Print2() => Console.WriteLine("🖨️ Print2 executed");
         public void Print3() => Console.WriteLine("🖨️ Print3 executed");
+
+        public void ExecuteAll()
+        {
+            printHandler?.Invoke();
+        }
+    }
+
+    public class EventBus
+    {
+        private Dictionary<string, Action<string>> _events = new();
+
+        public void Subscribe(string eventName, Action<string> handler)
+        {
+            if (!_events.ContainsKey(eventName))
+            {
+                _events[eventName] = handler;
+            }
+            _events[eventName] += handler;
+        }
+
+        public void Publish(string eventName, string message)
+        {
+            if (_events.ContainsKey(eventName))
+            {
+                _events[eventName]?.Invoke(message);
+            }
+        }
+
     }
     
 }

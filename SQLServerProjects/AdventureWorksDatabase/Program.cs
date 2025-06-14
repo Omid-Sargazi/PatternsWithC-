@@ -76,7 +76,18 @@ public class Program
         bill.OnPaymentSuccess += emeilService.SendEmail;
         bill.OnPaymentSuccess += logger.LogMessage;
         bill.PayBill("Billllllllll");
+        ///////////////////////////////
+        var print = new MultiPrinter();
+        print.printHandler += print.Print1;
+        print.printHandler += print.Print2;
+        print.printHandler += print.Print3;
+        print.ExecuteAll();
+        /////////////////////////////////////
+        var bus = new EventBus();
+        bus.Subscribe("order", msg => Console.WriteLine($"order handled:{msg}"));
+        bus.Subscribe("order", msg => Console.WriteLine($"order handled:{msg}"));
 
+        bus.Publish("order", "Product #123 ordered");
     }
 
 
@@ -85,6 +96,6 @@ public class Program
         Console.WriteLine("Process Completed Successfully!");
     }
 
-    
+
 
 }
