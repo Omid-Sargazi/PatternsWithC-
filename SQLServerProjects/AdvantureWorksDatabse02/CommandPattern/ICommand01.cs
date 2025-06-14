@@ -24,4 +24,10 @@ namespace AdvantureWorksDatabse02.CommandPattern
             _light.TurnOff();
         }
     }
+
+    public interface  ICommand
+    {
+        void Execute();
+        void Undo();
+    }
 }
