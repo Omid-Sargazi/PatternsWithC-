@@ -32,7 +32,9 @@ namespace AdvantureWorksDatabse02.CommandPattern
         }
         public void Execute()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("ComplexCommand: Complex stuff should be done by a receiver object.");
+            _receiver.DoSomething(a);
+            _receiver.DoSomethingElse(b);
         }
     }
 
@@ -49,5 +51,24 @@ namespace AdvantureWorksDatabse02.CommandPattern
             Console.WriteLine($"Receiver: Also working on ({b}.)");
         }
     }
+
+
+     class Invoker
+    {
+        private ICommand01 _onStart;
+
+        private ICommand01 _onFinish;
+
+        // Initialize commands.
+        public void SetOnStart(ICommand01 command)
+        {
+            this._onStart = command;
+        }
+
+        public void SetOnFinish(ICommand01 command)
+        {
+            this._onFinish = command;
+        }
+
 
 }
