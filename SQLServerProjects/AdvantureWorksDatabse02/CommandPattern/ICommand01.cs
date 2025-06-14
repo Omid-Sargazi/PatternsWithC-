@@ -1,3 +1,5 @@
+using System.Net.NetworkInformation;
+
 namespace AdvantureWorksDatabse02.CommandPattern
 {
     public class Light
@@ -6,24 +8,7 @@ namespace AdvantureWorksDatabse02.CommandPattern
         public void TurnOff() => Console.WriteLine();
     }
 
-    public class RemoteControl
-    {
-        private Light _light;
-        public RemoteControl(Light light)
-        {
-            _light = light;
-        }
 
-        public void PressOnButton()
-        {
-            _light.TurnOn();
-        }
-
-        public void PressOffButton()
-        {
-            _light.TurnOff();
-        }
-    }
 
     public interface ICommand
     {
@@ -66,4 +51,40 @@ namespace AdvantureWorksDatabse02.CommandPattern
             _light.TurnOn();
         }
     }
+
+    public class RemoteControl
+    {
+        private ICommand _onCommnad;
+        private ICommand _offCommand;
+        private Stack<ICommand> _commandHistory = new Stack<ICommand>();
+
+        public void SetCommands(ICommand onCommand, ICommand offCommnad)
+        {
+            _onCommnad = onCommand;
+            _offCommand = offCommnad;
+        }
+
+
+        public void PressOnButton()
+        {
+            _onCommnad.Execute();
+            _commandHistory.Push(_onCommnad);
+        }
+
+        public void PressOffButton()
+        {
+            _offCommand.Execute();
+            _commandHistory.Push(_offCommand);
+        }
+
+        public void PressUndo()
+        {
+            if (_commandHistory.Count() > 0)
+            {
+                var lastCommand = _commandHistory.Pop();
+                lastCommand.Undo();
+            }
+        }
+    }
+    
 }
