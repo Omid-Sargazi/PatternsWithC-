@@ -53,7 +53,7 @@ namespace AdvantureWorksDatabse02.CommandPattern
     }
 
 
-     class Invoker
+    class Invoker
     {
         private ICommand01 _onStart;
 
@@ -69,6 +69,24 @@ namespace AdvantureWorksDatabse02.CommandPattern
         {
             this._onFinish = command;
         }
+    }
 
+
+    public void DoSomethingImportant()
+        {
+            Console.WriteLine("Invoker: Does anybody want something done before I begin?");
+            if (this._onStart is ICommand01)
+            {
+                this._onStart.Execute();
+            }
+            
+            Console.WriteLine("Invoker: ...doing something really important...");
+            
+            Console.WriteLine("Invoker: Does anybody want something done after I finish?");
+            if (this._onFinish is ICommand01)
+            {
+                this._onFinish.Execute();
+            }
+        }
 
 }
