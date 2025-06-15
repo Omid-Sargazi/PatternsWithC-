@@ -55,17 +55,36 @@ namespace AdvantureWorksDatabse02.Models
             .Join(_context.SalesOrderDetails,
                 p => p.ProductID,
                 sod => sod.ProductID,
-                (p, sod) => new { p,sod}
+                (p, sod) => new { p, sod }
             ).GroupBy(x => new { x.p.ProductID, x.p.Name })
             .Select(g => new TopProducts
             {
-               ProductId= g.Key.ProductID,
+                ProductId = g.Key.ProductID,
                 ProductName = g.Key.Name,
                 TotalSales = g.Count(),
                 TotalRevenue = g.Sum(x => x.sod.LineTotal)
             }).OrderByDescending(x => x.TotalSales).Take(10).ToListAsync();
             return topProducts;
 
+        }
+
+        public class OrdersOfCustomersMoreThanTwo
+        {
+            public int CustomerId { get; set; }
+            public int countSalesOrderId { get; set; }
+        }
+
+        public async Task<List<OrdersOfCustomersMoreThanTwo>> GetOrdersOfCustomersMoreThanTwosAsync()
+        {
+            var result = await _context.Customers
+            .Where(c => c.SalesOrders.Count > 2)
+            .Select(c => new OrdersOfCustomersMoreThanTwo
+            {
+                CustomerId = c.CustomerID,
+                countSalesOrderId = c.SalesOrders.Count
+            }).ToListAsync();
+
+            return result;
         }
     }
 
