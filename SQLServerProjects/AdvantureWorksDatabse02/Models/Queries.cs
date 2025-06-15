@@ -43,9 +43,10 @@ namespace AdvantureWorksDatabse02.Models
 
         public class TopProducts
         {
+            public int ProductId { get; set; }
             public string ProductName { get; set; }
             public int TotalSales { get; set; }
-            public int TotalRevenue { get; set; }
+            public decimal TotalRevenue { get; set; }
         }
 
         public async Task<List<TopProducts>> GetTopProductAsync()
@@ -56,13 +57,13 @@ namespace AdvantureWorksDatabse02.Models
                 sod => sod.ProductID,
                 (p, sod) => new { p,sod}
             ).GroupBy(x => new { x.p.ProductID, x.p.Name })
-            .Select(g => new
+            .Select(g => new TopProducts
             {
-                g.Key.ProductID,
+               ProductId= g.Key.ProductID,
                 ProductName = g.Key.Name,
                 TotalSales = g.Count(),
                 TotalRevenue = g.Sum(x => x.sod.LineTotal)
-            }).OrderByDescending(x => x.totalSales).Take(10).ToListAsync();
+            }).OrderByDescending(x => x.TotalSales).Take(10).ToListAsync();
             return topProducts;
 
         }
