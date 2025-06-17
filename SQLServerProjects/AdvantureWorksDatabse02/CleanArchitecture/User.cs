@@ -1,5 +1,12 @@
 namespace AdvantureWorksDatabse02.CleanArchitecture
 {
+    public class SqlUserRepository : IUserRepository
+    {
+        public User GetById(int id)
+        {
+            return new User { Id = id, Email = "test@email.com" };
+        }
+    }
     public class User
     {
         public int Id { get; set; }
