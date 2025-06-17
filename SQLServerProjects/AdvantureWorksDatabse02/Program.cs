@@ -17,6 +17,7 @@ public delegate int Calculator(int a, int b);
         {
             using var context = new AdventureWorksContext();
             var queries = new AdventureWorksQueries(context);
+            
 
             var categorySales = await queries.GetCategorySalesAsync();
             Console.WriteLine("==============================Category Sales========");

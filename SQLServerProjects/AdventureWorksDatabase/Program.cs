@@ -89,7 +89,7 @@ public class Program
 
         bus.Publish("order", "Product #123 ordered");
     }
-
+    
 
     public static void ShowMessage()
     {
