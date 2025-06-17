@@ -93,4 +93,17 @@ namespace AdvantureWorksDatabse02.CommandPattern
     }
 }
 
+public class CommandManager
+{
+    private Stack<ICalculateCommand> _undoCommand = new Stack<ICalculateCommand>();
+    private Stack<ICalculateCommand> _redoStack = new Stack<ICalculateCommand>();
+
+    public void ExecuteCommand(ICalculateCommand command)
+    {
+        command.Execute();
+        _undoCommand.push(command);
+        _redoStack.Clear();
+    }
+}
+
 }
