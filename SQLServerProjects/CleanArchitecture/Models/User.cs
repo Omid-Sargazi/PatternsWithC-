@@ -43,4 +43,23 @@ namespace CleanArchitecture.Models
         public string NewEmail { get; set; }
         public DateTime ChangedAt { get; set; }
     }
+
+    public interface IUserRepository
+    {
+        Task<User> GetByIdAsync(int id);
+        Task<User> GetByEmailAsync(string email);
+        Task SaveAsync(User user);
+        Task<bool> ExistsAsync(int id);
+    }
+
+    public interface IEmailService
+    {
+        Task SendWelcomeEmailAsync(string email);
+    }
+
+    public interface ILogger
+    {
+        void LogInfo(string message);
+        void LogError(string message, Exception ex);
+    }
 }
