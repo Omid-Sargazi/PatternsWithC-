@@ -20,19 +20,27 @@ namespace CleanArchitecture.Models
 
             Email = newEmail;
         }
-        
-         public static User Create(string email)
+
+        public static User Create(string email)
         {
-            var user = new User 
-            { 
-                Email = email, 
-                CreatedAt = DateTime.UtcNow 
+            var user = new User
+            {
+                Email = email,
+                CreatedAt = DateTime.UtcNow
             };
-            
+
             if (!user.IsValidEmail(email))
                 throw new ArgumentException("ایمیل نامعتبر");
-                
+
             return user;
         }
+    }
+
+    public class UserEmailChanged
+    {
+        public int UserId { get; set; }
+        public string OldEmail { get; set; }
+        public string NewEmail { get; set; }
+        public DateTime ChangedAt { get; set; }
     }
 }
