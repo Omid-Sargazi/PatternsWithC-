@@ -62,4 +62,31 @@ namespace CleanArchitecture.Models
         void LogInfo(string message);
         void LogError(string message, Exception ex);
     }
+
+    public class CreateUserUseCase
+    {
+        private readonly IUserRepository _userRepository;
+        private readonly IEmailService _emailService;
+        private readonly ILogger _logger;
+
+        public CreateUserUseCase(IUserRepository userRepository,
+        IEmailService emailService, ILogger logger)
+        {
+            _emailService = emailService;
+            _logger = logger;
+            _userRepository = userRepository;
+        }
+
+        public class CreateUserRequest
+        {
+            public string Email { get; set; }
+        }
+
+        public class CreateUserResponse
+        {
+             public int UserId { get; set; }
+        public bool Success { get; set; }
+        public string Message { get; set; }
+        }
+    }
 }
