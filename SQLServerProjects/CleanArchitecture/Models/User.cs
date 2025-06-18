@@ -84,9 +84,62 @@ namespace CleanArchitecture.Models
 
         public class CreateUserResponse
         {
-             public int UserId { get; set; }
-        public bool Success { get; set; }
-        public string Message { get; set; }
+            public int UserId { get; set; }
+            public bool Success { get; set; }
+            public string Message { get; set; }
+        }
+    }
+
+    public class SqlUserRepository : IUserRepository
+    {
+
+        private readonly string _connectionString;
+        public SqlUserRepository(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
+
+
+        public Task<bool> ExistsAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<User> GetByEmailAsync(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<User> GetByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SaveAsync(User user)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class SmtpEmailService : IEmailService
+    {
+        public Task SendWelcomeEmailAsync(string email)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class FileLogger : ILogger
+    {
+        public void LogError(string message, Exception ex)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LogInfo(string message)
+        {
+            throw new NotImplementedException();
         }
     }
 }
