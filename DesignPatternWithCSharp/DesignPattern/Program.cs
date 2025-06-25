@@ -11,6 +11,24 @@ public class Program
         BasicCar bc1;
         bc1 = nano_base.Clone();
         bc1.Price = nano_base.Price + BasicCar.SetPrice();
-        Console.WriteLine($"Car is {0}, and it's price is Rs.{1}"+bc1.ModelName+" "+ bc1.Price);
+        Console.WriteLine($"Car is {0}, and it's price is Rs.{1}" + bc1.ModelName + " " + bc1.Price);
+
+
+        Employee original1 = new Employee();
+        original1.Name = "Omid";
+        original1.Department = "Software";
+        original1.Address = "1232 Main St Australia";
+
+        Console.WriteLine("Original Employee");
+        original1.Display();
+
+        Employee clone = (Employee)original1.Clone();
+        clone.Address = "NYC";
+        clone.Name = "Saeed";
+        Console.WriteLine("\nOriginal Employee after cloning");
+        clone.Display();
+
+        Console.WriteLine("\nOriginal Employee after cloning");
+        original1.Display();
     }
 }
