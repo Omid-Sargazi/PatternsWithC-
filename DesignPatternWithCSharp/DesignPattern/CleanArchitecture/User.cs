@@ -30,17 +30,32 @@ namespace DesignPattern.CleanArchitecture
             _userRepository = userRepository;
         }
         public void Execute(string email, string password)
-    {
-        if (_userRepository.EmailExists(email))
-            throw new Exception("Email already registered!");
+        {
+            if (_userRepository.EmailExists(email))
+                throw new Exception("Email already registered!");
 
-        var user = new User(email, password);
+            var user = new User(email, password);
 
-        if (!user.IsValid())
-            throw new Exception("Invalid user data!");
+            if (!user.IsValid())
+                throw new Exception("Invalid user data!");
 
-        _userRepository.Save(user);
-        Console.WriteLine("✅ User registered successfully.");
+            _userRepository.Save(user);
+            Console.WriteLine("✅ User registered successfully.");
+        }
     }
+
+    public class InMemoryUserRepository : IUserRepository
+    {
+        private List<User> _users = new List<User>();
+        public bool EmailExists(string email)
+        {
+            return _users.Any(u => u.Email == email);
+        }
+
+        public void Save(User user)
+        {
+            _users.Add(user);
+            Console.WriteLine($"[Saved]: {user.Email}");
+        }
     }
 }
