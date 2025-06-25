@@ -15,4 +15,28 @@ namespace DesignPattern.PrototypePattern
 
         public abstract BasicCar Clone();
     }
+
+    public class Nano : BasicCar
+    {
+        public Nano(string m)
+        {
+            ModelName = m;
+        }
+        public override BasicCar Clone()
+        {
+            return (Nano)this.MemberwiseClone();
+        }
+    }
+
+    public class Ford : BasicCar
+    {
+        public Ford(string m)
+        {
+            ModelName = m;
+        }
+        public override BasicCar Clone()
+        {
+            return (Ford)this.MemberwiseClone();
+        }
+    }
 }
