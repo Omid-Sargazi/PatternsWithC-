@@ -46,7 +46,7 @@ namespace DesignPattern.BuilderPattern
 
         public void EndOperations()
         {
-            
+
         }
 
         public Product GetVehicle()
@@ -62,6 +62,60 @@ namespace DesignPattern.BuilderPattern
         public void StartUpOperations()
         {
             _product.Add($"Car Model name {_brandName}");
+        }
+    }
+
+    public class MotorCycle : IBuilder
+    {
+        private string _brandName;
+        private Product _product;
+
+        public MotorCycle(string brandName, Product product)
+        {
+            _brandName = brandName;
+            _product = product;
+        }
+        public void AddHeadlights()
+        {
+            _product.Add("1 Headlights are added");
+        }
+
+        public void BuildBody()
+        {
+            _product.Add("This is a body of a Motorcycle");
+        }
+
+        public void EndOperations()
+        {
+            _product.Add($"Motorcycle Model name : {_brandName}");
+        }
+
+        public Product GetVehicle()
+        {
+            return _product;
+        }
+
+        public void InserWheels()
+        {
+            _product.Add("2 wheels are added");
+        }
+
+        public void StartUpOperations()
+        {
+
+        }
+    }
+
+
+    public class Directorr
+    {
+        public void Construct(IBuilder builder)
+        {
+            builder.StartUpOperations();
+            builder.BuildBody();
+            builder.InserWheels();
+            builder.AddHeadlights();
+            builder.EndOperations();
         }
     }
 }
