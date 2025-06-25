@@ -88,8 +88,10 @@ public class Program
         bus.Subscribe("order", msg => Console.WriteLine($"order handled:{msg}"));
 
         bus.Publish("order", "Product #123 ordered");
+
+        /////////////////////////////////////////////
     }
-    
+
 
     public static void ShowMessage()
     {
