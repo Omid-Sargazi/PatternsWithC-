@@ -1,4 +1,5 @@
-﻿using DesignPattern.PrototypePattern;
+﻿using DesignPattern.BuilderPattern;
+using DesignPattern.PrototypePattern;
 
 public class Program
 {
@@ -30,5 +31,13 @@ public class Program
 
         Console.WriteLine("\nOriginal Employee after cloning");
         original1.Display();
+
+        Console.WriteLine("***************************Builder****************");
+        var builder = new CheeseBurgerBuilder();
+        var chef = new BurgerChef(builder);
+
+        chef.MakeBuilder();
+        var burger = builder.GetBurger();
+        burger.Display();
     }
 }
