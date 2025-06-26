@@ -64,6 +64,21 @@ public class Program
         copy.Display();
         prototype.Display();
 
+        Console.WriteLine("***************************Prototype Pattern Example****************");
+
+        IEmailTemplate emailTemplate = new CampaignManager("bzar", "black", "13.6", "C#");
+        ((EmailTemplate)emailTemplate).Links.Add("https://exa01.com");
+        ((EmailTemplate)emailTemplate).Links.Add("https://exa02.com");
+
+
+        IEmailTemplate emailCopy = emailTemplate.DeepClone();
+        ((EmailTemplate)emailCopy).Subject = "C++ and C#";
+        ((EmailTemplate)emailCopy).Links[0] = "https://example03.com";
+
+        emailTemplate.Display();
+        emailCopy.Display();
+
+
 
 
     }

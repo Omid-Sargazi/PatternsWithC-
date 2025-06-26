@@ -50,4 +50,5 @@ namespace DesignPattern.PrototypePattern
             return copy;
         }
     }
+
 }
