@@ -3,6 +3,7 @@ namespace DesignPattern.PrototypePattern
     public interface IInvitationCard
     {
         public IInvitationCard Clone();
+        public IInvitationCard DeepClone();
         public void Display();
     }
     public abstract class InvitationCard : IInvitationCard
@@ -30,6 +31,11 @@ namespace DesignPattern.PrototypePattern
         {
             Console.WriteLine($"Card: {Title}");
             Console.WriteLine($"Message: {Message}");
+        }
+
+        public IInvitationCard DeepClone()
+        {
+            throw new NotImplementedException();
         }
     }
 

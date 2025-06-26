@@ -50,7 +50,19 @@ public class Program
         // ((InvitationCard)customer02).Message = "Happy Birthday to Tina";
         // customer02.Display();
 
-        
+        IInvitationCard prototype = new DBirthdayCard("BirthdayCard", "Happy Birthday to",
+         "Blue", "Verdana", "Sam");
+        ((DInvitationCard)prototype).ImageUrls.Add("https://example.com/sam1.png");
+        ((DInvitationCard)prototype).ImageUrls.Add("https://example.com/sam2.png");
+
+        prototype.Display();
+
+        IInvitationCard copy = prototype.DeepClone();
+        ((DInvitationCard)copy).Message = "happy Birthday to Tina";
+        ((DInvitationCard)copy).ImageUrls[0] = "https://example.com/tina1.png";
+
+        copy.Display();
+        prototype.Display();
 
 
 
