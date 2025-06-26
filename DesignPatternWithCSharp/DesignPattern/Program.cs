@@ -42,13 +42,15 @@ public class Program
         Console.WriteLine("***************************Prototype Pattern****************");
 
 
-        IInvitationCard prototype = new BirthdayCard("BirthdayCard",
-        "Happy Birthday to", "", "", "Sam");
-        prototype.Display();
+        // IInvitationCard prototype = new BirthdayCard("BirthdayCard",
+        // "Happy Birthday to", "", "", "Sam");
+        // prototype.Display();
 
-        IInvitationCard customer02 = prototype.Clone();
-        ((InvitationCard)customer02).Message = "Happy Birthday to Tina";
-        customer02.Display();
+        // IInvitationCard customer02 = prototype.Clone();
+        // ((InvitationCard)customer02).Message = "Happy Birthday to Tina";
+        // customer02.Display();
+
+        
 
 
 
