@@ -1,4 +1,5 @@
 ﻿using DesignPattern.BuilderPattern;
+using DesignPattern.LeetCode;
 using DesignPattern.PrototypePattern;
 using DesignPattern.ProxyPattern;
 
@@ -83,6 +84,12 @@ public class Program
         Console.WriteLine("Proxy created.");
         Console.WriteLine("...doing other stuff...");
         video.Play();
+
+
+        var solution010 = new Problem01();
+        int[] nums = { 3, 4, 5, 1, 2 };
+        Console.WriteLine(solution010.FindMin(nums));
+
 
 
 
