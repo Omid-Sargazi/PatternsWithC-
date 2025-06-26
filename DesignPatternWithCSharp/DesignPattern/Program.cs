@@ -39,5 +39,12 @@ public class Program
         chef.MakeBuilder();
         var burger = builder.GetBurger();
         burger.Display();
+        Console.WriteLine("***************************Prototype Pattern****************");
+
+
+        IInvitationCard customer01 = new BirthdayCard("BirthdayCard",
+        "Happy Birthday to", "", "", "Sam");
+        customer01.Display();
+
     }
 }
