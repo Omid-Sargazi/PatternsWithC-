@@ -5,5 +5,6 @@ namespace Application.Interfaces
     {
         void Save(User user);
         bool EmailExists(string email);
+        User? Authenticate(string email, string password);
     }
 }

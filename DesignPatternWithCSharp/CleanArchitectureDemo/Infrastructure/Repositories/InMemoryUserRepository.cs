@@ -7,6 +7,13 @@ namespace Infrastructure.Repositories
     {
         private readonly List<User> _users = new();
 
+        public User? Authenticate(string email, string password)
+        {
+            return _users.FirstOrDefault(u =>
+                u.Email.Equals(email, StringComparison.OrdinalIgnoreCase) && u.Password == password
+            );
+        }
+
         public bool EmailExists(string email)
         {
             return _users.Any(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
