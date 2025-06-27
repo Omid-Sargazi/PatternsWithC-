@@ -34,6 +34,22 @@ namespace Tests.UseCases
             result.Message.Should().Be("Welcome, john@example.com");
         }
 
+        [Fact]
+        public void Should_Fail_When_Email_Is_Invalid()
+        {
+            var useCase = new LoginUserUseCase(_repo);
+            var request = new LoginUserRequest
+            {
+                Email = "wrong@example.com",
+                Password = "Password123",
+            };
+
+            var result = useCase.Execute(request);
+
+            result.Success.Should().BeFalse();
+            result.Message.Should().Be("Invalid email or password.");
+        }
+
 
        
     }
