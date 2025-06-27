@@ -37,5 +37,22 @@ namespace Tests.UseCases
             result.Success.Should().BeFalse();
             result.Message.Should().Be("Email already registered!");
         }
+
+        [Fact]
+        public void Should_Fail_When_UserData_Is_Invalid()
+        {
+            var repo = new InMemoryUserRepository();
+            var useCase = new RegisterUserUseCase(repo);
+            var request = new RegisterUserRequest
+            {
+                Email = "Invaid Email",
+                Password = "133"
+            };
+
+            var result = useCase.Execute(request);
+
+            result.Success.Should().BeFalse();
+            result.Message.Should().Be("Invalid user data!");
+        }
     }
 }
