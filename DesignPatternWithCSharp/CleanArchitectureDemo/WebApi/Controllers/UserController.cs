@@ -10,10 +10,12 @@ namespace WebApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly RegisterUserUseCase _registerUserUseCase;
+        private readonly LoginUserUseCase _loginUserUseCase;
 
         public UserController(IUserRepository userRepository)
         {
             _registerUserUseCase = new RegisterUserUseCase(userRepository);
+            _loginUserUseCase = new LoginUserUseCase(userRepository);
         }
 
         [HttpPost("register")]
@@ -25,6 +27,16 @@ namespace WebApi.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
+        }
+
+
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] LoginUserRequest request)
+        {
+            var result = _loginUserUseCase.Execute(request);
+            if (result.Success)
+                return Ok(result);
+            return Unauthorized(result);
         }
        
 
