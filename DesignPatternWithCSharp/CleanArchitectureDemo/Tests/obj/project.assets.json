@@ -8,6 +8,19 @@
           "build/netstandard2.0/coverlet.collector.targets": {}
         }
       },
+      "FluentAssertions/8.4.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/FluentAssertions.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/FluentAssertions.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "Microsoft.CodeCoverage/17.11.1": {
         "type": "package",
         "compile": {
@@ -522,6 +535,31 @@
         "coverlet.collector.nuspec"
       ]
     },
+    "FluentAssertions/8.4.0": {
+      "sha512": "EL0ckSJMGfJTiDF0EFU48bV/iIsgFKCaHEpp5LxqjNO0RhfF3WxQuNWosX2L/Xwt8VRRLE8TgN4tSzTTiZAfdA==",
+      "type": "package",
+      "path": "fluentassertions/8.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "FluentAssertions.png",
+        "LICENSE",
+        "fluentassertions.8.4.0.nupkg.sha512",
+        "fluentassertions.nuspec",
+        "lib/net47/FluentAssertions.dll",
+        "lib/net47/FluentAssertions.pdb",
+        "lib/net47/FluentAssertions.xml",
+        "lib/net6.0/FluentAssertions.dll",
+        "lib/net6.0/FluentAssertions.pdb",
+        "lib/net6.0/FluentAssertions.xml",
+        "lib/netstandard2.0/FluentAssertions.dll",
+        "lib/netstandard2.0/FluentAssertions.pdb",
+        "lib/netstandard2.0/FluentAssertions.xml",
+        "lib/netstandard2.1/FluentAssertions.dll",
+        "lib/netstandard2.1/FluentAssertions.pdb",
+        "lib/netstandard2.1/FluentAssertions.xml"
+      ]
+    },
     "Microsoft.CodeCoverage/17.11.1": {
       "sha512": "nPJqrcA5iX+Y0kqoT3a+pD/8lrW/V7ayqnEJQsTonSoPz59J8bmoQhcSN4G8+UJ64Hkuf0zuxnfuj2lkHOq4cA==",
       "type": "package",
@@ -989,6 +1027,7 @@
   "projectFileDependencyGroups": {
     "net9.0": [
       "Application >= 1.0.0",
+      "FluentAssertions >= 8.4.0",
       "Infrastructure >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 17.11.1",
       "coverlet.collector >= 6.0.2",
@@ -1046,6 +1085,10 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
+          "FluentAssertions": {
+            "target": "Package",
+            "version": "[8.4.0, )"
+          },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
             "version": "[17.11.1, )"

@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "GtKW+KhwNJY=",
+  "dgSpecHash": "GMrC1nRR7D4=",
   "success": true,
   "projectFilePath": "/home/omidsa/Programmings/PatternsWithCSharp/DesignPatternWithCSharp/CleanArchitectureDemo/Tests/Tests.csproj",
   "expectedPackageFiles": [
     "/home/omidsa/.nuget/packages/coverlet.collector/6.0.2/coverlet.collector.6.0.2.nupkg.sha512",
+    "/home/omidsa/.nuget/packages/fluentassertions/8.4.0/fluentassertions.8.4.0.nupkg.sha512",
     "/home/omidsa/.nuget/packages/microsoft.codecoverage/17.11.1/microsoft.codecoverage.17.11.1.nupkg.sha512",
     "/home/omidsa/.nuget/packages/microsoft.net.test.sdk/17.11.1/microsoft.net.test.sdk.17.11.1.nupkg.sha512",
     "/home/omidsa/.nuget/packages/microsoft.testplatform.objectmodel/17.11.1/microsoft.testplatform.objectmodel.17.11.1.nupkg.sha512",
