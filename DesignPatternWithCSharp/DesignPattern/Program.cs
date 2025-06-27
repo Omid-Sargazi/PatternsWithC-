@@ -1,4 +1,5 @@
 ﻿using DesignPattern.BuilderPattern;
+using DesignPattern.CSharpBook;
 using DesignPattern.LeetCode;
 using DesignPattern.PrototypePattern;
 using DesignPattern.ProxyPattern;
@@ -90,9 +91,10 @@ public class Program
         int[] nums = { 3, 4, 5, 1, 2 };
         Console.WriteLine(solution010.FindMin(nums));
 
+        var sum = (int a, int b) => a + b;
+        Console.WriteLine($"sum is:{sum(10, 15)}");
 
-
-
-
+        var person = new Person("omid", "Sa");
+        Console.WriteLine(person.GetFullName());
     }
 }
