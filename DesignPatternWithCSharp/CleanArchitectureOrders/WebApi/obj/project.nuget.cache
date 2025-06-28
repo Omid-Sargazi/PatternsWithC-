@@ -1,11 +1,18 @@
 {
   "version": 2,
-  "dgSpecHash": "ZeeJT8ArGog=",
+  "dgSpecHash": "zi4gnPUSaXU=",
   "success": true,
   "projectFilePath": "/home/omidsa/Programmings/PatternsWithCSharp/DesignPatternWithCSharp/CleanArchitectureOrders/WebApi/WebApi.csproj",
   "expectedPackageFiles": [
     "/home/omidsa/.nuget/packages/microsoft.aspnetcore.openapi/9.0.0-rc.2.24474.3/microsoft.aspnetcore.openapi.9.0.0-rc.2.24474.3.nupkg.sha512",
     "/home/omidsa/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
+    }
+  ]
 }
