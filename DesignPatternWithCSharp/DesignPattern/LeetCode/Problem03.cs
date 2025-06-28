@@ -21,10 +21,26 @@ namespace DesignPattern.LeetCode
                 if (map.ContainsKey(complement))
                 {
                     return new int[] { map[complement], i };
-                    
+
                 }
             }
-            return new  int[0];
+            return new int[0];
         }
+
+        // public IList<IList<int>> TwoSumPairs(int[] nums, int target)
+        // {
+        //     HashSet<int> seen = new HashSet<int>();
+        //     HashSet<string> uniquePairs = new HashSet<string>();
+        //     List<IList<int>> result = new List<IList<int>>();
+
+        //     foreach (int num in nums)
+        //     {
+        //         int complement = target - num;
+        //         if (seen.Contains(complement))
+        //         {
+
+        //         }
+        //     }
+        // }
     }
 }
