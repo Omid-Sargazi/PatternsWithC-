@@ -81,20 +81,27 @@ public class Program
         // emailTemplate.Display();
         // emailCopy.Display();
 
-        var video = new VideoProxy("Lecture01.mp4");
-        Console.WriteLine("Proxy created.");
-        Console.WriteLine("...doing other stuff...");
-        video.Play();
+        // var video = new VideoProxy("Lecture01.mp4");
+        // Console.WriteLine("Proxy created.");
+        // Console.WriteLine("...doing other stuff...");
+        // video.Play();
 
 
-        var solution010 = new Problem01();
-        int[] nums = { 3, 4, 5, 1, 2 };
-        Console.WriteLine(solution010.FindMin(nums));
+        // var solution010 = new Problem01();
+        // int[] nums = { 3, 4, 5, 1, 2 };
+        // Console.WriteLine(solution010.FindMin(nums));
 
-        var sum = (int a, int b) => a + b;
-        Console.WriteLine($"sum is:{sum(10, 15)}");
+        // var sum = (int a, int b) => a + b;
+        // Console.WriteLine($"sum is:{sum(10, 15)}");
 
-        var person = new Person("omid", "Sa");
-        Console.WriteLine(person.GetFullName());
+        // var person = new Person("omid", "Sa");
+        // Console.WriteLine(person.GetFullName());
+
+
+        var sol = new Problem03();
+        int[] nums = { 20, 70, 11, 15 };
+        int target = 90;
+        int[] result = sol.TwoSum(nums, target);
+        Console.WriteLine($"[{result[0]}, {result[1]}]");
     }
 }
