@@ -56,6 +56,19 @@
         "runtime": {
           "bin/placeholder/Domain.dll": {}
         }
+      },
+      "Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -100,11 +113,17 @@
       "type": "project",
       "path": "../Domain/Domain.csproj",
       "msbuildProject": "../Domain/Domain.csproj"
+    },
+    "Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Infrastructure/Infrastructure.csproj",
+      "msbuildProject": "../Infrastructure/Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
       "Application >= 1.0.0",
+      "Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 9.0.0-rc.2.24474.3"
     ]
   },
@@ -135,6 +154,9 @@
           "projectReferences": {
             "/home/omidsa/Programmings/PatternsWithCSharp/DesignPatternWithCSharp/CleanArchitectureOrders/Application/Application.csproj": {
               "projectPath": "/home/omidsa/Programmings/PatternsWithCSharp/DesignPatternWithCSharp/CleanArchitectureOrders/Application/Application.csproj"
+            },
+            "/home/omidsa/Programmings/PatternsWithCSharp/DesignPatternWithCSharp/CleanArchitectureOrders/Infrastructure/Infrastructure.csproj": {
+              "projectPath": "/home/omidsa/Programmings/PatternsWithCSharp/DesignPatternWithCSharp/CleanArchitectureOrders/Infrastructure/Infrastructure.csproj"
             }
           }
         }
