@@ -7,38 +7,48 @@ namespace Application.UseCases
     public class RegisterUserUseCase
     {
         private readonly IUserRepository _userRepository;
-        public RegisterUserUseCase(IUserRepository userRepository)
+        private readonly IRegisterUserOutput _presenter;
+        public RegisterUserUseCase(IUserRepository userRepository
+        , IRegisterUserOutput presenter)
         {
             _userRepository = userRepository;
+            _presenter = presenter;
         }
 
-        public RegisterUserResponse Execute(RegisterUserRequest request)
+        public void Execute(RegisterUserRequest request)
         {
+
+            var response = new RegisterUserResponse();
+            if (request == null)
+            {
+                response.Success = false;
+                response.Message = "Request is null";
+                _presenter.Present(response);
+                return;
+            }
+            
+            
             if (_userRepository.EmailExists(request.Email))
             {
-                return new RegisterUserResponse
-                {
-                    Success = false,
-                    Message = "Email already registered!"
-                };
+                response.Success = false;
+                response.Message = "Email already registered!";
+                _presenter.Present(response);
+                return;
             }
+
             var user = new User(request.Email, request.Password);
             if (!user.IsValid())
             {
-                return new RegisterUserResponse
-                {
-                    Success = false,
-                    Message = "Invalid user data!",
-                };
+                response.Success = false;
+                response.Message = "Invalid user data!";
+                _presenter.Present(response);
+                return;
             }
 
             _userRepository.Save(user);
-
-            return new RegisterUserResponse
-            {
-                Success = true,
-                Message = "User registered successfully."
-            };
+            response.Success = true;
+            response.Message = "User registered successfully!";
+            _presenter.Present(response);
         }
     }
 }
