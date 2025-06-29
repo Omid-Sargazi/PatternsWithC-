@@ -1,5 +1,6 @@
 using Application.Interfaces;
 using Infrastructure.Repositories;
+using WebApi.Presenters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IUserRepository, InMemoryUserRepository>();
+builder.Services.AddSingleton<IRegisterUserOutput, WebApiRegisterUserPresenter>();
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

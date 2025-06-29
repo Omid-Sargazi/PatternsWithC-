@@ -1,7 +1,9 @@
 using Application.DTOs;
 using Application.Interfaces;
 using Application.UseCases;
+using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Presenters;
 
 namespace WebApi.Controllers
 {
@@ -9,35 +11,27 @@ namespace WebApi.Controllers
     [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly RegisterUserUseCase _registerUserUseCase;
-        private readonly LoginUserUseCase _loginUserUseCase;
+        private readonly IUserRepository _userRepository;
+        private readonly WebApiRegisterUserPresenter _presenter;
 
-        public UserController(IUserRepository userRepository)
+        public UserController(IUserRepository userRepository, IRegisterUserOutput presenter)
         {
-            _registerUserUseCase = new RegisterUserUseCase(userRepository);
-            _loginUserUseCase = new LoginUserUseCase(userRepository);
+            _userRepository = userRepository;
+            _presenter = (WebApiRegisterUserPresenter)presenter;
         }
 
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterUserRequest request)
         {
-            var result = _registerUserUseCase.Execute(request);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            
+            var useCase = new RegisterUserUseCase(_userRepository, _presenter);
+
+            useCase.Execute(request);
+           return _presenter.Result ?? StatusCode(500, "Unexpected error: Presenter returned null.");
         }
 
 
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginUserRequest request)
-        {
-            var result = _loginUserUseCase.Execute(request);
-            if (result.Success)
-                return Ok(result);
-            return Unauthorized(result);
-        }
+       
        
 
     }

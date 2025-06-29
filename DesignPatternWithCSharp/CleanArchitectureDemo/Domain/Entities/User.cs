@@ -8,6 +8,7 @@ namespace Domain.Entities
 
         public User(string email, string password)
         {
+            Id = Guid.NewGuid();
             Password = password;
             Email = email;
         }
