@@ -105,4 +105,79 @@ namespace DesignPattern.AbstractFactory
             Console.WriteLine($"Mac checkbox toggled to {_isChecked}");
         }
     }
+
+
+    public interface IUIFactory
+    {
+        IButton CreateButton();
+        ICheckBox CreateCheckBox();
+        ITextBox CreateTextBox();
+    }
+
+    public class WinUIFactory : IUIFactory
+    {
+        public IButton CreateButton()
+        {
+            return new WinButton();
+        }
+
+        public ICheckBox CreateCheckBox()
+        {
+            return new WinCheckBox();
+        }
+
+        public ITextBox CreateTextBox()
+        {
+            return new WinTextBox();
+        }
+    }
+
+    public class MacUIFactory : IUIFactory
+    {
+        public IButton CreateButton()
+        {
+            return new MacButton();
+        }
+
+        public ICheckBox CreateCheckBox()
+        {
+            return new MacCheckBox();
+        }
+
+        public ITextBox CreateTextBox()
+        {
+            return new MacTextBox();
+        }
+    }
+
+    public class ClientUI
+    {
+        private readonly IButton _button;
+        private readonly ICheckBox _checkBox;
+        private readonly ITextBox _textBox;
+
+        public ClientUI(IUIFactory factory)
+        {
+            _button = factory.CreateButton();
+            _checkBox = factory.CreateCheckBox();
+            _textBox = factory.CreateTextBox();
+        }
+
+        public void RenderUI()
+        {
+            _button.Render();
+            _checkBox.Render();
+            _textBox.Render();
+        }
+
+        public void SimulateUserInteraction()
+        {
+            _button.OnClick(() => Console.WriteLine("Button CLicked."));
+            _checkBox.Toggle();
+            _textBox.SetTextBox("Hello Abstract Factory!");
+        }
+
+
+    }
+    
 }
