@@ -1,4 +1,5 @@
-﻿using DesignPattern.BuilderPattern;
+﻿using DesignPattern.AbstractFactory;
+using DesignPattern.BuilderPattern;
 using DesignPattern.CSharpBook;
 using DesignPattern.LeetCode;
 using DesignPattern.PrototypePattern;
@@ -103,5 +104,20 @@ public class Program
         int target = 90;
         int[] result = sol.TwoSum(nums, target);
         Console.WriteLine($"[{result[0]}, {result[1]}]");
+
+
+        Console.WriteLine("Which OS? (1) Windows (2) Mac");
+        var input = Console.ReadLine();
+
+        IUIFactory factory = input switch
+        {
+            "1" => new WinUIFactory(),
+            "2" => new MacUIFactory(),
+            _ => throw new ArgumentException("Invalid OS selection")
+        };
+
+        var app = new ClientUI(factory);
+        app.RenderUI();
+        app.SimulateUserInteraction();
     }
 }
