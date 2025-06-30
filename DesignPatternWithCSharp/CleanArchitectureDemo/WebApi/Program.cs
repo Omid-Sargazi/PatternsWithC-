@@ -10,6 +10,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IUserRepository, InMemoryUserRepository>();
 builder.Services.AddSingleton<IRegisterUserOutput, WebApiRegisterUserPresenter>();
+builder.Services.AddScoped<ILoginUserOutput, WebApiLoginUserPresenter>();
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi

@@ -23,14 +23,24 @@ namespace WebApi.Controllers
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterUserRequest request)
         {
-            
+
             var useCase = new RegisterUserUseCase(_userRepository, _presenter);
 
             useCase.Execute(request);
-           return _presenter.Result ?? StatusCode(500, "Unexpected error: Presenter returned null.");
+            return _presenter.Result ?? StatusCode(500, "Unexpected error: Presenter returned null.");
         }
 
 
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] LoginUserRequest request)
+        {
+            var loginPresenter = new WebApiLoginUserPresenter();
+            var loginUseCase = new LoginUserUseCase(_userRepository, loginPresenter);
+
+            loginUseCase.Execute(request);
+
+            return loginPresenter.Result ?? StatusCode(500, "Unexpected error.");
+        }
        
        
 
