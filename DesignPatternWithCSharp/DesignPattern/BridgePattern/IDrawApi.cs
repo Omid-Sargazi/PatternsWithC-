@@ -70,4 +70,16 @@ namespace DesignPattern.BridgePattern
             _drawShapes.DrawCircle();
         }
     }
+
+    public class Rectangle : ShapeMethod
+    {
+        public Rectangle(IDrawShapes drawShapes) : base(drawShapes)
+        {
+        }
+
+        public override void Draw()
+        {
+            _drawShapes.DrawRectangle();
+        }
+    }
 }
