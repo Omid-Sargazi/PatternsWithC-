@@ -18,5 +18,91 @@ namespace DesignPattern.AbstractFactory
         void Render();
         void SetTextBox(string text);
     }
-    
+
+    public class WinButton : IButton
+    {
+        public void OnClick(Action action)
+        {
+            Console.WriteLine("Windows button click event attached");
+            action?.Invoke();
+        }
+
+        public void Render()
+        {
+            Console.WriteLine("Rendering a Windows-style button");
+        }
+    }
+
+    public class WinTextBox : ITextBox
+    {
+        public void Render()
+        {
+            Console.WriteLine("Rendering a Windows-style textbox");
+        }
+
+        public void SetTextBox(string text)
+        {
+            Console.WriteLine($"Windows textbox set to {text}");
+        }
+    }
+
+    public class WinCheckBox : ICheckBox
+    {
+        private bool _isChecked;
+
+        public void Render()
+        {
+            Console.WriteLine($"Rendering Windows checkbox. Checked: {_isChecked}");
+        }
+
+        public void Toggle()
+        {
+            _isChecked = !_isChecked;
+            Console.WriteLine($"Windows checkbox toggled to {_isChecked}");
+        }
+    }
+
+
+    public class MacButton : IButton
+    {
+        public void OnClick(Action action)
+        {
+            Console.WriteLine("Mac button click event attached");
+            action?.Invoke();
+        }
+
+        public void Render()
+        {
+            Console.WriteLine("Rendering a Mac-style button");
+        }
+    }
+
+    public class MacTextBox : ITextBox
+    {
+        public void Render()
+        {
+            Console.WriteLine("Rendering a Mac-style textbox");
+        }
+
+        public void SetTextBox(string text)
+        {
+            Console.WriteLine($"Windows textbox set to {text}");
+        }
+    }
+
+    public class MacCheckBox : ICheckBox
+    {
+        private bool _isChecked;
+
+        public void Render()
+        {
+            Console.WriteLine($"Rendering Mac checkbox. Checked: {_isChecked}");
+        }
+
+        public void Toggle()
+        {
+            _isChecked = !_isChecked;
+            Console.WriteLine($"Mac checkbox toggled to {_isChecked}");
+        }
+    }
 }
