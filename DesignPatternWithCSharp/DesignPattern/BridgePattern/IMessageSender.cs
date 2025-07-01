@@ -62,4 +62,30 @@ namespace DesignPattern.BridgePattern
             return $"Message via {_messageSender.GetPlatformInfo()}";
         }
     }
+
+    public class TextMessagee : Messagee
+    {
+        public TextMessagee(IMessageSender messageSender) : base(messageSender)
+        {
+        }
+
+        public override void Send(string content, string recipient)
+        {
+            Console.WriteLine("📝 Text Message:");
+            _messageSender.SendMessage(content, recipient);
+        }
+    }
+
+    public class EmailMessagee : Messagee
+    {
+        public EmailMessagee(IMessageSender messageSender) : base(messageSender)
+        {
+        }
+
+        public override void Send(string content, string recipient)
+        {
+            Console.WriteLine("📧 Email Message:");
+            _messageSender.SendMessage(content, recipient);
+        }
+    }
 }
