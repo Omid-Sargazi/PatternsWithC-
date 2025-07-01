@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
 namespace DesignPattern.BridgePattern
@@ -46,7 +47,7 @@ namespace DesignPattern.BridgePattern
 
         public void GenerateFooter(string footerText)
         {
-             _content.Add($"Excel Footer: {footerText}");
+            _content.Add($"Excel Footer: {footerText}");
         }
 
         public void GenerateHeader(string title)
@@ -56,8 +57,44 @@ namespace DesignPattern.BridgePattern
 
         public byte[] GetFormatRepoter()
         {
-             Console.WriteLine("Generating Excel report...");
-             return Encoding.UTF8.GetBytes(string.Join("\t", _content));
+            Console.WriteLine("Generating Excel report...");
+            return Encoding.UTF8.GetBytes(string.Join("\t", _content));
+        }
+    }
+
+    public abstract class Report
+    {
+        protected readonly IReportFormatter _report;
+        public Report(IReportFormatter report)
+        {
+            _report = report;
+        }
+
+        public abstract void GenerateReport();
+        public byte[] GetReport() => _report.GetFormatRepoter();
+    }
+
+    public class ProductReport : Report
+    {
+        public ProductReport(IReportFormatter report) : base(report)
+        {
+        }
+
+        public override void GenerateReport()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class UserReport : Report
+    {
+        public UserReport(IReportFormatter report) : base(report)
+        {
+        }
+
+        public override void GenerateReport()
+        {
+            throw new NotImplementedException();
         }
     }
 }
