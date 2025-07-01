@@ -1,6 +1,8 @@
-﻿using DesignPattern.AbstractFactory;
+﻿using System.Security.Cryptography.X509Certificates;
+using DesignPattern.AbstractFactory;
 using DesignPattern.BuilderPattern;
 using DesignPattern.CSharpBook;
+using DesignPattern.Delegate;
 using DesignPattern.LeetCode;
 using DesignPattern.PrototypePattern;
 using DesignPattern.ProxyPattern;
@@ -99,25 +101,35 @@ public class Program
         // Console.WriteLine(person.GetFullName());
 
 
-        var sol = new Problem03();
-        int[] nums = { 20, 70, 11, 15 };
-        int target = 90;
-        int[] result = sol.TwoSum(nums, target);
-        Console.WriteLine($"[{result[0]}, {result[1]}]");
+        // var sol = new Problem03();
+        // int[] nums = { 20, 70, 11, 15 };
+        // int target = 90;
+        // int[] result = sol.TwoSum(nums, target);
+        // Console.WriteLine($"[{result[0]}, {result[1]}]");
 
 
-        Console.WriteLine("Which OS? (1) Windows (2) Mac");
-        var input = Console.ReadLine();
+        // Console.WriteLine("Which OS? (1) Windows (2) Mac");
+        // var input = Console.ReadLine();
 
-        IUIFactory factory = input switch
-        {
-            "1" => new WinUIFactory(),
-            "2" => new MacUIFactory(),
-            _ => throw new ArgumentException("Invalid OS selection")
-        };
+        // IUIFactory factory = input switch
+        // {
+        //     "1" => new WinUIFactory(),
+        //     "2" => new MacUIFactory(),
+        //     _ => throw new ArgumentException("Invalid OS selection")
+        // };
 
-        var app = new ClientUI(factory);
-        app.RenderUI();
-        app.SimulateUserInteraction();
+        // var app = new ClientUI(factory);
+        // app.RenderUI();
+        // app.SimulateUserInteraction();
+
+        ProcessBusinessLogic b1 = new ProcessBusinessLogic();
+        b1.ProcessCompleted = ShowMessage;
+        b1.StartProcess();
+
+
     }
+        public static void ShowMessage()
+        {
+        Console.WriteLine("Process complete successfully.");
+        }
 }
