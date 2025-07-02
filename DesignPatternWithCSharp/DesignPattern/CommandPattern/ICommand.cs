@@ -47,4 +47,26 @@ namespace DesignPattern.CommandPattern
             _light.On();
         }
     }
+
+    public class RemoteControl
+    {
+        private ICommand _slot;
+        private ICommand _lastSlot;
+
+        public void SetCommand(ICommand command)
+        {
+            _slot = command;
+        }
+
+        public void PessButton()
+        {
+            _slot.Execute();
+            _lastSlot = _slot;
+        }
+
+        public void PressUndo()
+        {
+            _lastSlot?.Undo();
+        }
+    }
 }
