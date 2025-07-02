@@ -79,4 +79,29 @@ namespace DesignPattern.BridgePattern
             _television.TurnOn();
         }
     }
+
+    public class SmartRemote : Remote
+    {
+        public SmartRemote(ITelevision television) : base(television)
+        {
+        }
+
+        public override void SetChannel(int channel)
+        {
+            Console.WriteLine($"[Voice] Set channel to {channel}");
+            _television.SetChannel(channel);
+        }
+
+        public override void TurnOff()
+        {
+            Console.WriteLine("[Voice] Turning TV off...");
+            _television.TurnOff();
+        }
+
+        public override void TurnOn()
+        {
+            Console.WriteLine("[Voice] Turning TV on...");
+            _television.TurnOn();
+        }
+    }
 }
