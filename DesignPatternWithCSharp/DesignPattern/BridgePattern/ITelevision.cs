@@ -103,5 +103,10 @@ namespace DesignPattern.BridgePattern
             Console.WriteLine("[Voice] Turning TV on...");
             _television.TurnOn();
         }
+
+        public void Mute()
+        {
+            Console.WriteLine("TV is now muted (simulated)");
+        }
     }
 }
