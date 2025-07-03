@@ -18,16 +18,16 @@ namespace DesignPattern.MediatorPattern
     public class User
     {
         public string Name { get; set; }
-        public List<User> Contacts = new();
-        public User(string name)
+        private IChatRoom _chatRoom;
+        public User(string name, IChatRoom chatRoom)
         {
             Name = name;
+            _chatRoom = chatRoom;
         }
 
         public void SendMessage(string message, User receiver)
         {
-            Console.WriteLine($"{Name} sends message to {receiver.Name}: {message}");
-            receiver.ReceiveMessage(message, this);
+            _chatRoom.ShowMessage(message, this, receiver);
 
         }
 
