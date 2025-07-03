@@ -1,3 +1,5 @@
+using System.Reflection.Metadata;
+
 namespace DesignPattern.Delegate
 {
     public class DelegateProblem02
@@ -73,6 +75,30 @@ namespace DesignPattern.Delegate
         protected string Join1(string s1, string s2)
         {
             return $"{s1} + {s2}";
+        }
+    }
+
+    public class Personn
+    {
+        public string Name { get; set; }
+        public int Age { get; set; }
+    }
+
+    public class PersonProcessor
+    {
+    public delegate bool Filter(Personn person);
+
+        public Filter filter;
+
+        public void PrintFiltered(List<Personn> people, Filter filter)
+        {
+            foreach (var person in people)
+            {
+                if (filter(person))
+                {
+                    Console.WriteLine($"{person.Name}, {person.Age}");
+                }
+            }
         }
     }
 }

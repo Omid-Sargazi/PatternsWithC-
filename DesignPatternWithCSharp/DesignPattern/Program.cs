@@ -145,6 +145,20 @@ public class Program
         var ss = delegate04.ShowResult("omi", "sa");
         Console.WriteLine(ss);
 
+
+        var people = new List<Personn>
+        {
+            new Personn { Name = "Ali", Age = 25 },
+            new Personn{ Name = "Sara", Age = 17 },
+            new Personn { Name = "Maryam", Age = 30 }
+        };
+
+        var personProcessor = new PersonProcessor();
+        var rresult = personProcessor.filter = p => p.Age > 18;
+
+        personProcessor.PrintFiltered(people, rresult); 
+
+
     }
 
     public static void ShowMessage()
