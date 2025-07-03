@@ -126,10 +126,30 @@ public class Program
         delegate02.ProcessCompleted = ShowMessage;
         delegate02.StartProcess();
 
+        var delegate03 = new DelegateProblem03();
+        var n = delegate03.Calculate;
+        n(4, 3);
+        var result = delegate03.cal = Cal;
+        Console.WriteLine($"{result(10, 100)}");
+
+        var calculateDelegate = new CalculateDelegate();
+        calculateDelegate.Calculator("+");
+        if (calculateDelegate.calculate != null)
+        {
+            int resultt = calculateDelegate.calculate(10, 20);
+            Console.WriteLine($"Result is: {resultt}");
+
+        }
+
     }
 
     public static void ShowMessage()
     {
         Console.WriteLine($"This show is from delegate");
+    }
+
+    public static int Cal(int a, int b)
+    {
+        return a * b;
     }
 }
