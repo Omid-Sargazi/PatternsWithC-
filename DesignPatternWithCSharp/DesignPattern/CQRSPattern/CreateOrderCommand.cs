@@ -11,4 +11,17 @@ namespace DesignPattern.CQRSPattern
             Quantity = quantity;
         }
     }
+
+    public interface ICommandHandler<TCommand>
+    {
+        void Handle(TCommand command);
+    }
+
+    public class CreateOrderHandler : ICommandHandler<CreateOrderCommand>
+    {
+        public void Handle(CreateOrderCommand command)
+        {
+            Console.WriteLine($"Order created: {command.ProductName} x{command.Quantity}");
+        }
+    }
 }
