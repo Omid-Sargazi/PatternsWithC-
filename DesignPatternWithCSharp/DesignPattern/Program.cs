@@ -122,14 +122,14 @@ public class Program
         // app.RenderUI();
         // app.SimulateUserInteraction();
 
-        ProcessBusinessLogic b1 = new ProcessBusinessLogic();
-        b1.ProcessCompleted = ShowMessage;
-        b1.StartProcess();
-
+        var delegate02 = new DelegateProblem02();
+        delegate02.ProcessCompleted = ShowMessage;
+        delegate02.StartProcess();
 
     }
-        public static void ShowMessage()
-        {
-        Console.WriteLine("Process complete successfully.");
-        }
+
+    public static void ShowMessage()
+    {
+        Console.WriteLine($"This show is from delegate");
+    }
 }
