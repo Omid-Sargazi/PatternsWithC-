@@ -53,5 +53,17 @@ namespace DesignPattern.CommandPattern
         public void Clean() => Console.WriteLine("Cleaning floor....");
     }
 
-   
+    public class CommandInvoker
+    {
+        private ICommandRobot _commandRobot;
+        public void SetComamnd(ICommandRobot commandRobot)
+        {
+            _commandRobot = commandRobot;
+        }
+
+        public void ExecuteCommand()
+        {
+            _commandRobot.Execute();
+        }
+    }
 }
