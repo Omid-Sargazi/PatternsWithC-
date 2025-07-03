@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 namespace DesignPattern.CQRSPattern
 {
     public class CreateOrderCommand
@@ -22,6 +24,25 @@ namespace DesignPattern.CQRSPattern
         public void Handle(CreateOrderCommand command)
         {
             Console.WriteLine($"Order created: {command.ProductName} x{command.Quantity}");
+        }
+    }
+
+    public class SimpleMediator
+    {
+        private Dictionary<Type, Object> _handlers = new();
+
+        public void Register<TCommand>(ICommandHandler<TCommand> handler)
+        {
+            _handlers[typeof(TCommand)] = handler;
+        }
+
+        public void Send<TCommand>(TCommand command)
+        {
+            if (_handlers.TryGetValue(typeof(TCommand), out var handlerObj))
+            {
+                var handler = (ICommandHandler<TCommand>)handlerObj;
+                handler.Handle(command);
+            }
         }
     }
 }
