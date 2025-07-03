@@ -86,11 +86,22 @@ namespace DesignPattern.Delegate
 
     public class PersonProcessor
     {
-    public delegate bool Filter(Personn person);
+        public delegate bool Filter(Personn person);
 
-        
+
 
         public void PrintFiltered(List<Personn> people, Filter filter)
+        {
+            foreach (var person in people)
+            {
+                if (filter(person))
+                {
+                    Console.WriteLine($"{person.Name}, {person.Age}");
+                }
+            }
+        }
+
+        public void PrintFiltered02(List<Personn> people, Func<Personn, bool> filter)
         {
             foreach (var person in people)
             {

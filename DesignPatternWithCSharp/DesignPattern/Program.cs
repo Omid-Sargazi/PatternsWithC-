@@ -155,6 +155,8 @@ public class Program
 
         var personProcessor = new PersonProcessor();
 
+        personProcessor.PrintFiltered02(people, p => p.Name.StartsWith("A"));
+
         PersonProcessor.Filter adultFilter = p => p.Age > 20;
         personProcessor.PrintFiltered(people, p => p.Age > 20);
 
