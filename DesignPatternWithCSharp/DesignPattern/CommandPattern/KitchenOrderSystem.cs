@@ -66,4 +66,23 @@ namespace DesignPattern.CommandPattern
             _commandRobot.Execute();
         }
     }
+
+    public class QueueInvoker
+    {
+        private Queue<ICommandRobot> _commandQueue = new();
+
+        public void AddCommand(ICommandRobot commandRobot)
+        {
+            _commandQueue.Enqueue(commandRobot);
+        }
+
+        public void Run()
+        {
+            while (_commandQueue.Count > 0)
+            {
+                var cmd = _commandQueue.Dequeue();
+                cmd.Execute();
+            }
+        }
+    }
 }
