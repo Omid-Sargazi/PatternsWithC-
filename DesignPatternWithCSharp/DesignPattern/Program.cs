@@ -141,6 +141,10 @@ public class Program
 
         }
 
+        var delegate04 = new DelegateProblem04();
+        var ss = delegate04.ShowResult("omi", "sa");
+        Console.WriteLine(ss);
+
     }
 
     public static void ShowMessage()

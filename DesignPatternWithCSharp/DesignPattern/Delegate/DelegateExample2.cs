@@ -48,12 +48,31 @@ namespace DesignPattern.Delegate
             if (method == "+")
             {
                 calculate = Add;
-                
+
             }
             else if (method == "-")
             {
                 calculate = Minus;
             }
-       }
+        }
+    }
+
+    public class DelegateProblem04
+    {
+        public delegate string JoinWords(string s1, string s2);
+
+        public JoinWords joinWords;
+
+        public string ShowResult(string s1, string s2)
+        {
+            joinWords = Join1;
+            return joinWords(s1, s2);
+        }
+
+
+        protected string Join1(string s1, string s2)
+        {
+            return $"{s1} + {s2}";
+        }
     }
 }
