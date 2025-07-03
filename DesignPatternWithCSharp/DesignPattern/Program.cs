@@ -154,10 +154,9 @@ public class Program
         };
 
         var personProcessor = new PersonProcessor();
-        var rresult = personProcessor.filter = p => p.Age > 18;
 
-        personProcessor.PrintFiltered(people, rresult); 
-
+        PersonProcessor.Filter adultFilter = p => p.Age > 20;
+        personProcessor.PrintFiltered(people, p => p.Age > 20);
 
     }
 

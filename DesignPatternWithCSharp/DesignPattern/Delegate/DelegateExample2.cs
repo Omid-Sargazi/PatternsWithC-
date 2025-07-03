@@ -88,7 +88,7 @@ namespace DesignPattern.Delegate
     {
     public delegate bool Filter(Personn person);
 
-        public Filter filter;
+        
 
         public void PrintFiltered(List<Personn> people, Filter filter)
         {
