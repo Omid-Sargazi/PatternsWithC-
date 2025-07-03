@@ -85,4 +85,20 @@ namespace DesignPattern.CommandPattern
             }
         }
     }
+
+    public class MacroCommand : ICommandRobot
+    {
+        private List<ICommandRobot> _commands;
+        public MacroCommand(List<ICommandRobot> commands)
+        {
+            _commands = commands;
+        }
+        public void Execute()
+        {
+            foreach (var cmd in _commands)
+            {
+                cmd.Execute();
+            }
+        }
+    }
 }
