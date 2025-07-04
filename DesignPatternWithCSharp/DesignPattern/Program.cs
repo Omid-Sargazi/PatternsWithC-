@@ -196,6 +196,22 @@ public class Program
         Console.WriteLine($"Average rating: {average}");
         //==========================================
 
+        //==========================================
+
+        Console.WriteLine("=====================Dlegate===================");
+
+        var userss = new List<Usserr>
+        {
+            new Usserr {Name="Omid",Age=42},
+            new Usserr {Name="Saeed",Age=28},
+        };
+
+        var userDelegate = new UserDelagate();
+
+        UserDelagate.PrintUsers(userss,user=>Console.WriteLine($"{user.Name},{user.Age}"));
+
+        //==========================================
+
 
 
     }
