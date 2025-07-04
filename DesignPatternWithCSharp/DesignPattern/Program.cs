@@ -168,6 +168,11 @@ public class Program
         var sumdelegate = new SumAverage();
         var rrr = sumdelegate.SumFunc(new[] { 10, 20, 30, 40 });
         Console.WriteLine($"Result:{rrr}");
+
+
+        var processor = new OrderProcessor();
+        CalculatePrice standardCalc = processor.ApplyStandardDiscount;
+        processor.ProcessOrder(100, standardCalc);
         
         
 
