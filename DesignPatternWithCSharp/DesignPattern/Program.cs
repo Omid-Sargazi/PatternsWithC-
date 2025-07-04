@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Reflection.Metadata;
+using System.Security.Cryptography.X509Certificates;
 using DesignPattern.AbstractFactory;
 using DesignPattern.BuilderPattern;
 using DesignPattern.CSharpBook;
@@ -173,6 +174,13 @@ public class Program
         var processor = new OrderProcessor();
         CalculatePrice standardCalc = processor.ApplyStandardDiscount;
         processor.ProcessOrder(100, standardCalc);
+
+        var advancedProcessor = new AdvancedOrderProcessor();
+        Func<decimal, decimal> summerSale = price => price * 0.7m;
+        Func<decimal, decimal> vatCalculator = price => price * 1.05m;
+
+        var finalPrice = advancedProcessor.ProcessOrder(100, summerSale, vatCalculator);
+        Console.WriteLine(finalPrice);
         
         
 

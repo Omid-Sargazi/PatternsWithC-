@@ -11,5 +11,17 @@ namespace DesignPattern.Delegate
             decimal finalPrice = calculator(basePrice);
             Console.WriteLine($"Final Price:{finalPrice}");
         }
-    }   
+    }
+
+
+    public class AdvancedOrderProcessor
+    {
+        public decimal ProcessOrder(decimal basePrice,
+        Func<decimal, decimal> priceCalculator, Func<decimal, decimal> taxCalculator)
+        {
+            var priceAfterDiscount = priceCalculator(basePrice);
+            var finalPrice = taxCalculator(priceAfterDiscount);
+            return finalPrice;
+        }
+    } 
 }
