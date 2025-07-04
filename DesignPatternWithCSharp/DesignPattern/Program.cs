@@ -160,6 +160,13 @@ public class Program
         PersonProcessor.Filter adultFilter = p => p.Age > 20;
         personProcessor.PrintFiltered(people, p => p.Age > 20);
 
+        var aveDelegate = new AveDelegate();
+        aveDelegate.average = aveDelegate.AveageInt;
+        var resulttt = aveDelegate.average(10, 20, 30, 40);
+        Console.WriteLine($"resultt:{resulttt}");
+        
+        
+
     }
 
     public static void ShowMessage()

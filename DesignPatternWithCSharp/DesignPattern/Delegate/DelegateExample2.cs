@@ -112,4 +112,20 @@ namespace DesignPattern.Delegate
             }
         }
     }
+
+    public class AveDelegate
+    {
+        public delegate int Average(params int[] nums);
+        public Average average;
+
+        public int AveageInt(params int[] nums)
+        {
+            var result = 0;
+            foreach (var num in nums)
+            {
+                result += num;
+            }
+            return result;
+        }
+    }
 }
