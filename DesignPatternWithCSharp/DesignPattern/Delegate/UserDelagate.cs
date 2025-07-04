@@ -29,4 +29,27 @@ namespace DesignPattern.Delegate
             return numbers.Select(operation).ToList();   
         }
     }
+
+    public class OrderDelegate
+    {
+        public int Id { get; set; }
+        public double Amount { get; set; }
+        public string Customer { get; set; }
+    }
+
+
+    public class ProcessOrderDelegate
+    {
+        public static void ProcessOrders(List<OrderDelegate> orders,
+            Predicate<OrderDelegate> filter,
+            Func<OrderDelegate, double> getAmount,
+            Action<string> notify
+        )
+        {
+            var filteredOrders = orders.FindAll(filter);
+            double total = filteredOrders.Sum(getAmount);
+
+            notify($"Total for {filteredOrders.Count} orders:{total}");
+        }
+    }
 }
