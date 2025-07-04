@@ -8,7 +8,7 @@ namespace DesignPattern.Delegate
         public int Age {get;set;}
     }
 
-    
+
     public class UserDelagate
     {
         public delegate void PrintUser(Usserr user);
@@ -19,6 +19,14 @@ namespace DesignPattern.Delegate
             {
                 printMethod(user);
             }
+        }
+    }
+
+    public class TransformList
+    {
+        public static List<int> Transform(List<int> numbers, Func<int,int> operation)
+        {
+            return numbers.Select(operation).ToList();   
         }
     }
 }

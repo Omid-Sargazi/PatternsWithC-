@@ -212,6 +212,13 @@ public class Program
 
         //==========================================
 
+        var list = new List<int> {1,2,3};
+        var doubled = TransformList.Transform(list,x=>x*2);
+        foreach(var item in doubled)
+        {
+            Console.WriteLine(item);
+        }
+
 
 
     }
