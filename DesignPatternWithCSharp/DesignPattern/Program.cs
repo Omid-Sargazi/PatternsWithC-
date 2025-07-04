@@ -219,6 +219,23 @@ public class Program
             Console.WriteLine(item);
         }
 
+        //==========================================
+
+        //==========================================
+        var orders = new List<OrderDelegate>
+        {
+            new OrderDelegate { Id = 1, Amount = 250, Customer = "Omid" },
+            new OrderDelegate { Id = 2, Amount = 80, Customer = "Ali" },
+            new OrderDelegate { Id = 3, Amount = 120, Customer = "Sara" }
+        };
+
+        ProcessOrderDelegate.ProcessOrders(orders,
+            o=>o.Amount>100,
+            o=>o.Amount,
+            msg=>Console.WriteLine(" "+ msg)
+        );
+        //==========================================
+
 
 
     }
