@@ -1,3 +1,5 @@
+using Microsoft.VisualBasic;
+
 namespace DesignPattern.Delegate
 {
     public class OrderSystem
@@ -27,6 +29,5 @@ namespace DesignPattern.Delegate
             );
         }
 
-        
     }
 }

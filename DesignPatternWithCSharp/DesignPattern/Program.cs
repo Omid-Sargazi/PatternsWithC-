@@ -181,8 +181,22 @@ public class Program
 
         var finalPrice = advancedProcessor.ProcessOrder(100, summerSale, vatCalculator);
         Console.WriteLine(finalPrice);
-        
-        
+
+
+        //==========================================
+        var product = new ProductRating();
+        product.OnRatingAdded += r => Console.WriteLine($"New rating:{r}");
+
+        product.AddRating(4);
+        product.AddRating(5);
+        product.AddRating(3);
+
+
+        double average = product.Calculate(ratings => ratings.Average());
+        Console.WriteLine($"Average rating: {average}");
+        //==========================================
+
+
 
     }
 
