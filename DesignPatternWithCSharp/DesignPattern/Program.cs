@@ -164,6 +164,10 @@ public class Program
         aveDelegate.average = aveDelegate.AveageInt;
         var resulttt = aveDelegate.average(10, 20, 30, 40);
         Console.WriteLine($"resultt:{resulttt}");
+
+        var sumdelegate = new SumAverage();
+        var rrr = sumdelegate.SumFunc(new[] { 10, 20, 30, 40 });
+        Console.WriteLine($"Result:{rrr}");
         
         
 

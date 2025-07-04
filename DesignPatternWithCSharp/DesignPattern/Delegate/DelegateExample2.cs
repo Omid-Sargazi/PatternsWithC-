@@ -128,4 +128,19 @@ namespace DesignPattern.Delegate
             return result;
         }
     }
+
+    public class SumAverage
+    {
+        public Func<int[], int> SumFunc;
+
+        public SumAverage()
+        {
+            SumFunc = SumInt;
+        }
+
+        protected int SumInt(params int[] nums)
+        {
+            return (int)nums.Sum();
+        }
+    }
 }
