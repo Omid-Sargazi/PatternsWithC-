@@ -42,9 +42,9 @@ namespace DesignPattern.BridgePattern
     public abstract void ProcessPayment(decimal amount);
     }
 
-    public class CreditCardPayment : PaymentMethod
+    public class CreditCardPaymentt : PaymentMethod
     {
-        public CreditCardPayment(IPaymentGateway paymentGateway) : base(paymentGateway) { }
+        public CreditCardPaymentt(IPaymentGateway paymentGateway) : base(paymentGateway) { }
 
     public override void ProcessPayment(decimal amount)
     {
@@ -53,9 +53,9 @@ namespace DesignPattern.BridgePattern
     }
     }
 
-    public class PayPalPayment : PaymentMethod
+    public class PayPalPaymentt : PaymentMethod
     {
-        public PayPalPayment(IPaymentGateway paymentGateway) : base(paymentGateway) { }
+        public PayPalPaymentt(IPaymentGateway paymentGateway) : base(paymentGateway) { }
 
     public override void ProcessPayment(decimal amount)
     {
