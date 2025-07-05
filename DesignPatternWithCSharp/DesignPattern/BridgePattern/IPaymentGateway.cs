@@ -29,4 +29,16 @@ namespace DesignPattern.BridgePattern
         Console.WriteLine($"Processing payment of {amount} via PayPal Gateway.");
     }
     }
+
+    public abstract class PaymentMethod
+    {
+        protected IPaymentGateway _paymentGateway;
+
+    protected PaymentMethod(IPaymentGateway paymentGateway)
+    {
+        _paymentGateway = paymentGateway;
+    }
+
+    public abstract void ProcessPayment(decimal amount);
+    }
 }
