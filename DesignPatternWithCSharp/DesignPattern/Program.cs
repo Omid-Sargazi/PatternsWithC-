@@ -7,6 +7,8 @@ using DesignPattern.Delegate;
 using DesignPattern.LeetCode;
 using DesignPattern.PrototypePattern;
 using DesignPattern.ProxyPattern;
+using DesignPattern.ThreadConcept;
+using System.Threading;
 
 public class Program
 {
@@ -234,6 +236,20 @@ public class Program
             o=>o.Amount,
             msg=>Console.WriteLine(" "+ msg)
         );
+        //==========================================
+        //==========================================
+
+        Thread t1 = new Thread(Problem10.Increament);
+        Thread t2 = new Thread(Problem10.Increament);
+
+        t1.Start();
+        t1.Start();
+        t1.Join();
+        t2.Start();
+        t1.Join();
+        t2.Join();
+
+        
         //==========================================
 
 
