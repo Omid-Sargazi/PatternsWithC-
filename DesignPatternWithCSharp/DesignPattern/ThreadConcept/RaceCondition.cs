@@ -2,13 +2,17 @@ namespace DesignPattern.ThreadConcept
 {
     public class Problem10
     {
-        public static void Increament()
+       public object _lock = new object();
+            public int counter=0;
+        public void Increament()
         {
-            int counter=0;
 
             for(int i=0; i<=1000; i++)
             {
-                counter++;
+               lock (_lock)
+               {
+                     counter++;
+               }
             }
 
             Console.WriteLine($"Counter:{counter}");

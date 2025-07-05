@@ -238,13 +238,11 @@ public class Program
         );
         //==========================================
         //==========================================
-
-        Thread t1 = new Thread(Problem10.Increament);
-        Thread t2 = new Thread(Problem10.Increament);
+        Problem10 obj = new Problem10();
+        Thread t1 = new Thread(obj.Increament);
+        Thread t2 = new Thread(obj.Increament);
 
         t1.Start();
-        t1.Start();
-        t1.Join();
         t2.Start();
         t1.Join();
         t2.Join();
