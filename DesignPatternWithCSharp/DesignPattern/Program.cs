@@ -9,6 +9,7 @@ using DesignPattern.PrototypePattern;
 using DesignPattern.ProxyPattern;
 using DesignPattern.ThreadConcept;
 using System.Threading;
+using DesignPattern.MediatorPattern;
 
 public class Program
 {
@@ -210,13 +211,13 @@ public class Program
 
         var userDelegate = new UserDelagate();
 
-        UserDelagate.PrintUsers(userss,user=>Console.WriteLine($"{user.Name},{user.Age}"));
+        UserDelagate.PrintUsers(userss, user => Console.WriteLine($"{user.Name},{user.Age}"));
 
         //==========================================
 
-        var list = new List<int> {1,2,3};
-        var doubled = TransformList.Transform(list,x=>x*2);
-        foreach(var item in doubled)
+        var list = new List<int> { 1, 2, 3 };
+        var doubled = TransformList.Transform(list, x => x * 2);
+        foreach (var item in doubled)
         {
             Console.WriteLine(item);
         }
@@ -232,9 +233,9 @@ public class Program
         };
 
         ProcessOrderDelegate.ProcessOrders(orders,
-            o=>o.Amount>100,
-            o=>o.Amount,
-            msg=>Console.WriteLine(" "+ msg)
+            o => o.Amount > 100,
+            o => o.Amount,
+            msg => Console.WriteLine(" " + msg)
         );
         //==========================================
         //==========================================
@@ -247,11 +248,21 @@ public class Program
         t1.Join();
         t2.Join();
 
-        
+
         //==========================================
 
 
+        var chatroomm = new ChatRoomMediator();
 
+        var alice = new Userr("Alice");
+        var bob = new Userr("Bob");
+        var carol = new Userr("Carol");
+
+        chatroomm.Register(alice);
+        chatroomm.Register(bob);
+        chatroomm.Register(carol);
+
+        alice.Send("hi all");
     }
 
     public static void ShowMessage()

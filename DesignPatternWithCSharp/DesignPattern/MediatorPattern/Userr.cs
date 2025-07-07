@@ -10,10 +10,11 @@ namespace DesignPattern.MediatorPattern
     {
         private List<Userr> _users = new();
 
-       
+
         public void Register(Userr user)
         {
             _users.Add(user);
+            user.SetMediator(this);
             
         }
 
@@ -32,9 +33,9 @@ namespace DesignPattern.MediatorPattern
     {
         public string Name {get; set;}
         private IChatRoomMediator _mediator;
-        public Userr(IChatRoomMediator mediator)
+        public Userr(string name)
         {
-            _mediator = mediator;
+            Name = name;
         }
 
 
