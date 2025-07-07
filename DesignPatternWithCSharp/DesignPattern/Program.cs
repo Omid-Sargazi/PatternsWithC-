@@ -13,9 +13,22 @@ using DesignPattern.MediatorPattern;
 
 public class Program
 {
-    public static void Main(string[] args)
+
+        static async Task<string> GetWebsiteContentAsync()
+        {
+            Console.WriteLine("Calling website...");
+            HttpClient client = new HttpClient();
+            string content = await client.GetStringAsync("https://example.com");
+            Console.WriteLine("Website response received.");
+            return content;
+        }
+    public static async Task Main(string[] args)
     {
         Console.WriteLine($"DesignPattern");
+        Console.WriteLine("Start Main");
+         string resultttt = await GetWebsiteContentAsync();
+         Console.WriteLine("Content length: " + resultttt.Length);
+            Console.WriteLine("End Main");
 
         // BasicCar nano_base = new Nano("Grean Nano") { Price = 100000 };
         // BasicCar ford_base = new Ford("Ford Yellow") { Price = 500000 };
