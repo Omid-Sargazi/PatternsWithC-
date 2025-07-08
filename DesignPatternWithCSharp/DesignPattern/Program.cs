@@ -14,14 +14,14 @@ using DesignPattern.MediatorPattern;
 public class Program
 {
 
-        // static async Task<string> GetWebsiteContentAsync()
-        // {
-        //     Console.WriteLine("Calling website...");
-        //     HttpClient client = new HttpClient();
-        //     string content = await client.GetStringAsync("https://example.com");
-        //     Console.WriteLine("Website response received.");
-        //     return content;
-        // }
+    // static async Task<string> GetWebsiteContentAsync()
+    // {
+    //     Console.WriteLine("Calling website...");
+    //     HttpClient client = new HttpClient();
+    //     string content = await client.GetStringAsync("https://example.com");
+    //     Console.WriteLine("Website response received.");
+    //     return content;
+    // }
     public static async Task Main(string[] args)
     {
         // Console.WriteLine($"DesignPattern");
@@ -47,8 +47,8 @@ public class Program
 
         //==========================
         var tower = new ControlTower();
-        var flight1 = new Aircraft("Flight123",tower);
-        var flight2 = new Aircraft("Flight456",tower);
+        var flight1 = new Aircraft("Flight123", tower);
+        var flight2 = new Aircraft("Flight456", tower);
 
         flight1.RequestLanding();
         //==========================
@@ -299,6 +299,14 @@ public class Program
         chatroomm.Register(carol);
 
         alice.Send("hi all");
+
+        //===================================
+        Console.WriteLine("Yeild in C#=============");
+        foreach (var num in GetNumbers())
+        {
+            Console.WriteLine(num);
+        }
+    //===================================
     }
 
     public static void ShowMessage()
@@ -309,6 +317,18 @@ public class Program
     public static int Cal(int a, int b)
     {
         return a * b;
+    }
+
+
+   
+
+
+    public static IEnumerable<int> GetNumbers()
+    {
+        yield return 1;
+        yield return 2;
+        yield return 3;
+        yield return 4;
     }
 
     
