@@ -45,6 +45,14 @@ public class Program
         var vahid = new UserMediator("Vahid", chatRum);
         omid.SendMessage("hii there");
 
+        //==========================
+        var tower = new ControlTower();
+        var flight1 = new Aircraft("Flight123",tower);
+        var flight2 = new Aircraft("Flight456",tower);
+
+        flight1.RequestLanding();
+        //==========================
+
         // BasicCar nano_base = new Nano("Grean Nano") { Price = 100000 };
         // BasicCar ford_base = new Ford("Ford Yellow") { Price = 500000 };
         // BasicCar bc1;
