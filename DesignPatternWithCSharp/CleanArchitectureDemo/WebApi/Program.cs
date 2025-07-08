@@ -1,5 +1,6 @@
 using Application.Interfaces;
 using Infrastructure.Repositories;
+using WebApi.Middlewares;
 using WebApi.Presenters;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,8 @@ builder.Services.AddScoped<ILoginUserOutput, WebApiLoginUserPresenter>();
 // builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+app.UseMiddleware<LoggingMiddleware>();
 
 app.UseSwagger();
 app.UseSwaggerUI();
