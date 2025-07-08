@@ -23,7 +23,7 @@ namespace DesignPattern.MediatorPattern
             {
                 if (item != user)
                 {
-                    item.SendMessage(message);
+                    item.ReceiveMessage(message);
             }
            }
         }
