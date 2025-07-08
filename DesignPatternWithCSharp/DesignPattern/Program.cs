@@ -306,7 +306,13 @@ public class Program
         {
             Console.WriteLine(num);
         }
-    //===================================
+        //===================================
+
+        var odds = new OddNumbers().GenerateOdd(10);
+        foreach (var num in odds)
+        {
+            Console.WriteLine($"odds are {num}");
+        }
     }
 
     public static void ShowMessage()
