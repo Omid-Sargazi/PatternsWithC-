@@ -19,6 +19,7 @@ builder.Services.AddScoped<ILoginUserOutput, WebApiLoginUserPresenter>();
 
 var app = builder.Build();
 app.UseMiddleware<MyCustomMiddleware>();
+app.UseMiddleware<CultureMiddleware>();
 // app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 // app.MapGet("/throw-test", () =>
