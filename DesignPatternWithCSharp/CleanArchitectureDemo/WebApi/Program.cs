@@ -18,6 +18,7 @@ builder.Services.AddScoped<ILoginUserOutput, WebApiLoginUserPresenter>();
 // builder.Services.AddOpenApi();
 
 var app = builder.Build();
+app.UseMiddleware<MyCustomMiddleware>();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapGet("/throw-test", () =>
