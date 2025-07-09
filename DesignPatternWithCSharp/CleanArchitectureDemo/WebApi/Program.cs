@@ -19,11 +19,16 @@ builder.Services.AddScoped<ILoginUserOutput, WebApiLoginUserPresenter>();
 
 var app = builder.Build();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
-app.UseMiddleware<RequestTimingMiddleware>();
-app.UseMiddleware<JwtValidationMiddleware>();
-app.UseMiddleware<FirstMiddleware>();
-app.UseMiddleware<LoggingMiddleware>();
-app.UseMiddleware<TerminalMiddleware>();
+
+app.MapGet("/throw-test", () =>
+{
+    throw new InvalidOperationException("this is an error for testing");
+});
+// app.UseMiddleware<RequestTimingMiddleware>();
+// app.UseMiddleware<JwtValidationMiddleware>();
+// app.UseMiddleware<FirstMiddleware>();
+// app.UseMiddleware<LoggingMiddleware>();
+// app.UseMiddleware<TerminalMiddleware>();
 
 
 app.UseSwagger();

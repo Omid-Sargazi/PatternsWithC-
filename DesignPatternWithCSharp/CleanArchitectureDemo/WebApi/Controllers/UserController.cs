@@ -41,6 +41,13 @@ namespace WebApi.Controllers
 
             return loginPresenter.Result ?? StatusCode(500, "Unexpected error.");
         }
+
+
+        [HttpGet("boom")]
+        public IActionResult Boom()
+        {
+            throw new Exception("this is a test exception");
+        }
        
        
 
