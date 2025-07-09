@@ -20,9 +20,11 @@ builder.Services.AddScoped<ILoginUserOutput, WebApiLoginUserPresenter>();
 var app = builder.Build();
 
 app.UseMiddleware<RequestTimingMiddleware>();
+app.UseMiddleware<JwtValidationMiddleware>();
 app.UseMiddleware<FirstMiddleware>();
 app.UseMiddleware<LoggingMiddleware>();
 app.UseMiddleware<TerminalMiddleware>();
+
 
 app.UseSwagger();
 app.UseSwaggerUI();
