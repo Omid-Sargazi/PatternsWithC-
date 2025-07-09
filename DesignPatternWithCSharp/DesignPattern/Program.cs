@@ -168,6 +168,8 @@ public class Program
 
        await RestaurantTasks.MakeFood();
 
+        await RestaurantTasks.MakeFoodRegularly();
+
         //====================================
 
         var delegate02 = new DelegateProblem02();

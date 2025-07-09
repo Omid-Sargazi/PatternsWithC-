@@ -23,5 +23,29 @@ namespace DesignPattern.Tasks
             await Task.Delay(1000);
             Console.WriteLine("Pasta is done");
         }
+
+
+        public static async Task MakeFoodRegularly()
+        {
+            Console.WriteLine("start");
+            Task t1 = Task.Run(() => CookFood("A1", 1));
+            Task t2 = Task.Run(() => CookFood("A2", 2));
+            Task t3 = Task.Run(() => CookFood("A3", 3));
+            Task t4 = Task.Run(() => CookFood("A4", 3));
+            Task t5 = Task.Run(() => CookFood("A5", 2));
+            Task t6 = Task.Run(() => CookFood("A6", 1));
+            Task t7 = Task.Run(() => CookFood("A7", 1));
+            Task t8 = Task.Run(() => CookFood("A8", 1));
+            Task t9 = Task.Run(() => CookFood("A9", 1));
+            Task t10 = Task.Run(() => CookFood("A10", 1));
+            Task t11 = Task.Run(() => CookFood("A11", 1));
+        }
+
+        private static async Task CookFood(string nameFood, int second)
+        {
+            Console.WriteLine($"{nameFood} is reading....");
+            await Task.Delay(second * 1000);
+            Console.WriteLine($"{nameFood} is done");
+        }
     }
 }
