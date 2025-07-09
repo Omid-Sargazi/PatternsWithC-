@@ -39,6 +39,7 @@ namespace DesignPattern.Tasks
             Task t9 = Task.Run(() => CookFood("A9", 1));
             Task t10 = Task.Run(() => CookFood("A10", 1));
             Task t11 = Task.Run(() => CookFood("A11", 1));
+            await Task.WhenAll(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11);
         }
 
         private static async Task CookFood(string nameFood, int second)
