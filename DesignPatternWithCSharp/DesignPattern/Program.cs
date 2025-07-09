@@ -11,6 +11,7 @@ using DesignPattern.ThreadConcept;
 using System.Threading;
 using DesignPattern.MediatorPattern;
 using DesignPattern.Tasks;
+using DesignPattern.YeldExample;
 
 public class Program
 {
@@ -166,9 +167,11 @@ public class Program
         Console.WriteLine("==================Tasks========");
         //TaskExample.RunTasks();
 
-       await RestaurantTasks.MakeFood();
+        //    await RestaurantTasks.MakeFood();
 
-        await RestaurantTasks.MakeFoodRegularly();
+        //     await RestaurantTasks.MakeFoodRegularly();
+
+        SimpleYieldExample.Run();
 
         //====================================
 
