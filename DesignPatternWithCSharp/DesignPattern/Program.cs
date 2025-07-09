@@ -164,7 +164,9 @@ public class Program
         // app.SimulateUserInteraction();
         //====================================
         Console.WriteLine("==================Tasks========");
-        TaskExample.RunTasks();
+        //TaskExample.RunTasks();
+
+       await RestaurantTasks.MakeFood();
 
         //====================================
 
