@@ -12,12 +12,16 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<IUserRepository, InMemoryUserRepository>();
 builder.Services.AddSingleton<IRegisterUserOutput, WebApiRegisterUserPresenter>();
 builder.Services.AddScoped<ILoginUserOutput, WebApiLoginUserPresenter>();
+builder.Services.AddMemoryCache();
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 // builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+app.UseMiddleware<RateLimitingMiddleware>();
+
 app.UseMiddleware<MyCustomMiddleware>();
 app.UseMiddleware<CultureMiddleware>();
 // app.UseMiddleware<ExceptionHandlingMiddleware>();
