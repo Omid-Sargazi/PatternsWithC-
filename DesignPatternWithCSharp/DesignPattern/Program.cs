@@ -10,6 +10,7 @@ using DesignPattern.ProxyPattern;
 using DesignPattern.ThreadConcept;
 using System.Threading;
 using DesignPattern.MediatorPattern;
+using DesignPattern.Tasks;
 
 public class Program
 {
@@ -161,6 +162,11 @@ public class Program
         // var app = new ClientUI(factory);
         // app.RenderUI();
         // app.SimulateUserInteraction();
+        //====================================
+        Console.WriteLine("==================Tasks========");
+        TaskExample.RunTasks();
+
+        //====================================
 
         var delegate02 = new DelegateProblem02();
         delegate02.ProcessCompleted = ShowMessage;
