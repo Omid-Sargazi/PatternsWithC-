@@ -12,6 +12,7 @@ using System.Threading;
 using DesignPattern.MediatorPattern;
 using DesignPattern.Tasks;
 using DesignPattern.YeldExample;
+using DesignPattern.LINQ;
 
 public class Program
 {
@@ -174,6 +175,12 @@ public class Program
         SimpleYieldExample.Run();
 
         //====================================
+
+        //======================================
+        Console.WriteLine("//===================LINq=========================//");
+        var linqExampel = new LINQExample();
+        linqExampel.RunLINQ();
+        //======================================
 
         var delegate02 = new DelegateProblem02();
         delegate02.ProcessCompleted = ShowMessage;
