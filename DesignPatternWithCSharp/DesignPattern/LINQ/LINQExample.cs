@@ -18,11 +18,17 @@ namespace DesignPattern.LINQ
     {
         List<Customer> customers = new List<Customer>
         {
-            new Customer{Id=1,Name = "Omid",City="Tehran"},
-            new Customer{Id=2,Name = "Saeed",City="Lux"},
-            new Customer{Id=3,Name = "Vahid",City="Gorgan"},
-            new Customer{Id=4,Name = "Vahid",City="Esfahan"},
-            new Customer{Id=5,Name = "Vahid",City="Shiraz"},
+            new Customer { Id= 1,Name = "Omid",City="Tehran"},
+            new Customer { Id= 2,Name = "Saeed",City="Lux"},
+            new Customer { Id= 3,Name = "Vahid",City="Gorgan"},
+            new Customer { Id= 4,Name = "Vahid",City="Esfahan"},
+            new Customer { Id= 5,Name = "Vahid",City="Shiraz"},
+            new Customer { Id = 6, Name = "Amir", City = "Tehran" },
+            new Customer { Id = 7, Name = "Ali", City = "Tehran" },
+            new Customer { Id = 8, Name = "Sara", City = "Shiraz" },
+            new Customer { Id = 9, Name = "Reza", City = "Tehran" },
+            new Customer { Id = 10, Name = "Maryam", City = "Isfahan" },
+            new Customer { Id = 11, Name = "Mehdi", City = "Shiraz" },
         };
 
         public void RunLINQ()
@@ -52,6 +58,32 @@ namespace DesignPattern.LINQ
                                   select c;
             var groups = from c in customers
                          group c by c.City;
+
+            foreach (var group in groups)
+            {
+                Console.WriteLine($"City:{group.Key}");
+                foreach (var customer in group)
+                {
+                    Console.WriteLine($"-{customer.Name}");
+                }
+            }
+
+
+            var cityCounts = from c in customers
+                             group c by c.City into g
+                             select new { City = g.Key, Count = g.Count() };
+
+            foreach (var item in cityCounts)
+            {
+                Console.WriteLine($"{item.City} : {item.Count}");
+            }
+
+
+            var popularCities = from c in customers
+                                group c by c.City into g
+                                where g.Count() > 1
+                                select new { City = g.Key, Count = g.Count() };
+            
             
 
 
