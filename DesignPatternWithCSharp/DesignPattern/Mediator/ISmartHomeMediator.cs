@@ -40,9 +40,26 @@ namespace DesignPattern.Mediator
 
     public class SmartHomeController : ISmartHomeMediator
     {
+        private Light _light;
+        private Thermostat _thermostat;
+
+        public SmartHomeController(Light light, Thermostat thermostat)
+        {
+            _light = light;
+            _thermostat = thermostat;
+        }
         public void Notify(object sender, string evt)
         {
-            throw new NotImplementedException();
+            if (evt == "DoorLocked")
+            {
+                _light.TurnOff();
+                _thermostat.TurnOff();
+            }
+
+            if (evt == "DoorUnlocked")
+            {
+                _light.TurnOn();
+            }
         }
     }
 }
