@@ -47,7 +47,14 @@ namespace DesignPattern.LINQ
                             where c.Name.Length > 4
                             select c.Name;
 
+            var VNameFromGorgan = from c in customers
+                                  where c.Name.StartsWith("V") && c.City == "Gorgan"
+                                  select c;
+            var groups = from c in customers
+                         group c by c.City;
             
+
+
             
             foreach (var name in moreThan4)
             {
