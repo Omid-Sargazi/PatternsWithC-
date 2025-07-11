@@ -56,7 +56,49 @@ namespace DesignPattern.Tasks
                 Console.WriteLine($"داده دریافت‌شده: {prev.Result}");
             });
         }
+    }
 
 
+    public class UserAsync
+    {
+        public string Name { get; set; }
+        public bool IsActive { get; set; }
+
+
+        public static async Task CreateUser()
+        {
+            Task<List<UserAsync>> t5 = Task.Run(() =>
+            {
+                return new List<UserAsync>
+
+               {
+                    new UserAsync { Name = "Omid", IsActive = true },
+                    new UserAsync { Name = "Sara", IsActive = false },
+                    new UserAsync { Name = "Vahid", IsActive = false },
+                    new UserAsync { Name = "Saeed", IsActive = true },
+                    new UserAsync { Name = "Reza", IsActive = true },
+                };
+            });
+
+            Task<List<UserAsync>> filterActive = t5.ContinueWith(prev =>
+            {
+                var users = prev.Result;
+                return users.Where(u => u.IsActive).ToList();
+            });
+
+            Task printActive = filterActive.ContinueWith(prev =>
+            {
+                var activeUsers = prev.Result;
+                Console.WriteLine("Active users");
+                foreach (var user in activeUsers)
+                {
+                    Console.WriteLine($"-{user.Name}");
+
+                }
+            });
+
+            printActive.Wait();
+            
+        }
     }
 }

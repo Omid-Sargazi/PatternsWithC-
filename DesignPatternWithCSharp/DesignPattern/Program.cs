@@ -174,7 +174,7 @@ public class Program
 
         //SimpleYieldExample.Run();
 
-        await TaskExample2.RunTask2();
+        await UserAsync.CreateUser();
 
         //====================================
 
