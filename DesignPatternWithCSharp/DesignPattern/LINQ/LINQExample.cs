@@ -83,15 +83,28 @@ namespace DesignPattern.LINQ
                                 group c by c.City into g
                                 where g.Count() > 1
                                 select new { City = g.Key, Count = g.Count() };
-            
-            
+
+            var nameGroups = from c in customers
+                             group c by c.Name[0] into g
+                             orderby g.Key
+                             select new { FirstLetter = g.Key, Count = g.Count(), Names = g };
+
+            foreach (var group in nameGroups)
+            {
+                Console.WriteLine($"Names starting with:{group.FirstLetter}: {group.Count}");
+                foreach (var c in group.Names)
+                {
+                    Console.WriteLine($"- {c.Name}");
+                }
+
+            }
 
 
             
             foreach (var name in moreThan4)
-            {
-                Console.WriteLine($"{name}");
-            }
+                {
+                    Console.WriteLine($"{name}");
+                }
         }
     }
 }
