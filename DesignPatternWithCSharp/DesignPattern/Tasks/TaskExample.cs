@@ -212,6 +212,7 @@ namespace DesignPattern.Tasks
                 {
                     throw new ArgumentException("negative number is not valid.");
                 }
+                Console.WriteLine($"✅ عدد وارد شده: {input}");
             });
 
             try
@@ -221,11 +222,45 @@ namespace DesignPattern.Tasks
             catch (AggregateException ex)
             {
                 Console.WriteLine($"error:{ex.InnerException.Message}");
-                throw;
+
             }
 
         }
 
+    }
+
+    public class FileNFoundException
+    {
+        public static async Task RunException()
+        {
+            string filePath = "data.txt";
+
+            Task<string> readFileTask = Task.Run(() =>
+            {
+                if (!File.Exists(filePath))
+                {
+                    throw new FileNotFoundException("file not found", filePath);
+                }
+                string content = File.ReadAllText(filePath);
+                return content;
+            });
+
+
+            try
+            {
+                string content = readFileTask.Result;
+                Console.WriteLine("content of file");
+                Console.WriteLine(content);
+            }
+            catch (AggregateException ex)
+            {
+
+                foreach (var inner in ex.InnerExceptions)
+                {
+                    Console.WriteLine($"error:{inner.GetType().Name}=>{inner.Message}");
+                }
+            }
+        }
     }
         
 }

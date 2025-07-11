@@ -180,7 +180,8 @@ public class Program
         //await TaskException.RunException();
         //await TaskException.RunException();
 
-        await NegativeNumber.RunException();
+        //await NegativeNumber.RunException();
+        await FileNFoundException.RunException();
 
         //====================================
 
