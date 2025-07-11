@@ -176,7 +176,11 @@ public class Program
 
         //await UserAsync.CreateUser();
 
-        await GenerateNumbers.generateNumbers();
+        //await GenerateNumbers.generateNumbers();
+        //await TaskException.RunException();
+        //await TaskException.RunException();
+
+        await NegativeNumber.RunException();
 
         //====================================
 

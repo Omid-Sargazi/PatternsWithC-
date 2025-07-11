@@ -177,5 +177,55 @@ namespace DesignPattern.Tasks
             printTop5.Wait();
 
         }
+
     }
+    public class TaskException
+    {
+        public static async Task RunException()
+        {
+            Task t = Task.Run(() =>
+            {
+                throw new InvalidOperationException("This is a test for task");
+            });
+
+            try
+            {
+                t.Wait();
+            }
+            catch (AggregateException ex)
+            {
+
+                Console.WriteLine($"Error{ex.InnerException.Message}");
+            }
+        }
+
+    }
+
+    public class NegativeNumber
+    {
+        public static async Task RunException()
+        {
+            int input = -5;
+            Task negative = Task.Run(() =>
+            {
+                if (input < 0)
+                {
+                    throw new ArgumentException("negative number is not valid.");
+                }
+            });
+
+            try
+            {
+                negative.Wait();
+            }
+            catch (AggregateException ex)
+            {
+                Console.WriteLine($"error:{ex.InnerException.Message}");
+                throw;
+            }
+
+        }
+
+    }
+        
 }
