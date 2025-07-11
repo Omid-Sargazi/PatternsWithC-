@@ -1,3 +1,5 @@
+using System.Security.Cryptography.X509Certificates;
+
 namespace DesignPattern.Tasks
 {
     public static class TaskExample
@@ -98,7 +100,31 @@ namespace DesignPattern.Tasks
             });
 
             printActive.Wait();
-            
+
+        }
+    }
+
+    public class SquareOfANumber
+    {
+
+        public static async Task SquareTask()
+        {
+            int num = 7;
+
+            Task<int> squareTask = Task.Run(() =>
+            {
+                int square = num * num;
+                Console.WriteLine($"square of numer is :{square}");
+                return num;
+            });
+
+
+            Task<string> checkEvenTask = squareTask.ContinueWith(prev =>
+            {
+                int original = prev.Result;
+                string result = (original % 2 == 0) ? "odd" : "event";
+                return $"number {original} {result}";
+            });
         }
     }
 }
