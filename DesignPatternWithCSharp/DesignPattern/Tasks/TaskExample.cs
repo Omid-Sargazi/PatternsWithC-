@@ -134,4 +134,48 @@ namespace DesignPattern.Tasks
             finalPrint.Wait();
         }
     }
+
+    public class GenerateNumbers
+    {
+        public static async Task generateNumbers()
+        {
+            Task<int[]> numbers = Task.Run(() =>
+            {
+                Random rand = new Random();
+                int[] number = new int[1000];
+                for (int i = 0; i < number.Length; i++)
+                {
+                    number[i] = rand.Next(1, 10000);
+                }
+                Console.WriteLine("✅ مرحله 1: آرایه تولید شد");
+                return number;
+            });
+
+
+            Task<int[]> filterEvens = numbers.ContinueWith(prev =>
+            {
+                int[] evens = prev.Result.Where(e => e % 2 == 0).ToArray();
+                Console.WriteLine($"✅ مرحله 2: تعداد اعداد زوج: {evens.Length}");
+                return evens;
+            });
+
+
+            Task<int[]> sortEvens = filterEvens.ContinueWith(prev =>
+            {
+                int[] soretd = prev.Result.OrderBy(n => n).ToArray();
+                return soretd;
+            });
+
+            Task printTop5 = sortEvens.ContinueWith(prev =>
+            {
+                foreach (var item in prev.Result.Take(5))
+                {
+                    Console.WriteLine($"Even: {item}");
+                }
+            });
+
+            printTop5.Wait();
+
+        }
+    }
 }

@@ -174,7 +174,9 @@ public class Program
 
         //SimpleYieldExample.Run();
 
-        await UserAsync.CreateUser();
+        //await UserAsync.CreateUser();
+
+        await GenerateNumbers.generateNumbers();
 
         //====================================
 
