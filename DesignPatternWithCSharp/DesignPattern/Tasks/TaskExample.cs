@@ -125,6 +125,13 @@ namespace DesignPattern.Tasks
                 string result = (original % 2 == 0) ? "odd" : "event";
                 return $"number {original} {result}";
             });
+
+            Task finalPrint = checkEvenTask.ContinueWith(prev =>
+            {
+                Console.WriteLine($"{prev.Result}");
+            });
+
+            finalPrint.Wait();
         }
     }
 }
