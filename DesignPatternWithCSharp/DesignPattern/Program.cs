@@ -172,7 +172,9 @@ public class Program
 
         //     await RestaurantTasks.MakeFoodRegularly();
 
-        SimpleYieldExample.Run();
+        //SimpleYieldExample.Run();
+
+        await TaskExample2.RunTask2();
 
         //====================================
 

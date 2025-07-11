@@ -29,4 +29,34 @@ namespace DesignPattern.Tasks
 
         }
     }
+
+
+
+    public class TaskExample2
+    {
+        public static async Task RunTask()
+        {
+            Task t1 = Task.Run(() => Console.WriteLine("Get all information of user"));
+
+            Task t2 = t1.ContinueWith(prev => Console.WriteLine("save data in database"));
+            Task t3 = t2.ContinueWith(prev => Console.WriteLine("send email"));
+
+            t3.Wait();
+        }
+
+
+        public static async Task RunTask2()
+        {
+            Task<string> t4 = Task.Run(() =>
+        {
+            return "اطلاعات کاربر";
+        });
+            Task processData = t4.ContinueWith(prev =>
+            {
+                Console.WriteLine($"داده دریافت‌شده: {prev.Result}");
+            });
+        }
+
+
+    }
 }
