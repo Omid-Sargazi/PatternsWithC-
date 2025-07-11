@@ -262,5 +262,58 @@ namespace DesignPattern.Tasks
             }
         }
     }
+
+    public class FetchDataTaskException
+    {
+        public static async Task RunFetchData()
+        {
+            Task<string> fetchData = Task.Run(() =>
+            {
+                Console.WriteLine($"getting data...");
+                if (DateTime.Now.Second % 3 == 0)
+                {
+                    throw new Exception("there is an error for getting data..");
+                }
+                return "User-DATA";
+            });
+
+            Task<string> validateData = fetchData.ContinueWith(prev =>
+            {
+                if (prev.IsFaulted)
+                    throw prev.Exception;
+                Console.WriteLine("is validated...");
+
+                if (prev.Result != "User-DATA")
+                    throw new Exception("Data is invalid");
+                return prev.Result;
+            });
+
+            Task saveData = validateData.ContinueWith(prev =>
+            {
+                if (prev.IsFaulted)
+                    throw prev.Exception;
+                Console.WriteLine("data is saving in database");
+
+                if (DateTime.Now.Second % 5 == 0)
+                {
+                    throw new Exception("there is a falut in saving data");
+                }
+                Console.WriteLine("data saved");
+            });
+
+            try
+            {
+                saveData.Wait();
+            }
+            catch (AggregateException ex)
+            {
+                foreach (var err in ex.Flatten().InnerExceptions)
+                {
+                    Console.WriteLine($"there is an error{err.Message}");
+                }
+                throw;
+            }
+        }
+    }
         
 }

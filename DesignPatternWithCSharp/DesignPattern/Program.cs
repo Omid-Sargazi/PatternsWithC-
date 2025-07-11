@@ -181,7 +181,9 @@ public class Program
         //await TaskException.RunException();
 
         //await NegativeNumber.RunException();
-        await FileNFoundException.RunException();
+        //await FileNFoundException.RunException();
+
+        await FetchDataTaskException.RunFetchData();
 
         //====================================
 
