@@ -13,6 +13,7 @@ using DesignPattern.MediatorPattern;
 using DesignPattern.Tasks;
 using DesignPattern.YeldExample;
 using DesignPattern.LINQ;
+using DesignPattern.ChainOfResponsibility;
 
 public class Program
 {
@@ -193,7 +194,31 @@ public class Program
         linqExampel.RunLINQ();
         //======================================
 
-        var delegate02 = new DelegateProblem02();
+
+        //===========================================
+        Console.WriteLine("//============= Chain Of Responsibility ========================//");
+        var teamLead = new LeaveHandler("Team Lead", r => r.NumberOfDays <= 2 && r.Reason != LeaveReason.Medical);
+        var projectManager = new LeaveHandler("Project manager", r => r.NumberOfDays <= 5 && r.Reason != LeaveReason.Medical);
+        var hrmanager = new LeaveHandler("HR Manager", r => r.Reason == LeaveReason.Medical || r.NumberOfDays > 5);
+        teamLead.SetNext(projectManager).SetNext(hrmanager);
+
+        var requests = new List<LeaveRequestt>
+        {
+            new LeaveRequestt { EmployeeName = "Ali", NumberOfDays = 1, Reason = LeaveReason.Personal },
+            new LeaveRequestt { EmployeeName = "Sara", NumberOfDays = 4, Reason = LeaveReason.Study },
+            new LeaveRequestt { EmployeeName = "John", NumberOfDays = 7, Reason = LeaveReason.Medical },
+            new LeaveRequestt { EmployeeName = "Reza", NumberOfDays = 3, Reason = LeaveReason.Medical },
+            new LeaveRequestt { EmployeeName = "Mona", NumberOfDays = 10, Reason = LeaveReason.Vacation },
+            new LeaveRequestt { EmployeeName = "Zizi", NumberOfDays = 2, Reason = LeaveReason.Medical },
+        };
+
+        foreach (var request in requests)
+        {
+            teamLead.Handle(request);
+        }
+        //===========================================
+
+            var delegate02 = new DelegateProblem02();
         delegate02.ProcessCompleted = ShowMessage;
         delegate02.StartProcess();
 
