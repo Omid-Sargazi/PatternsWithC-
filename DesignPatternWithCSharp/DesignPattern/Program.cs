@@ -216,9 +216,15 @@ public class Program
         {
             teamLead.Handle(request);
         }
+
+
+        var processor = new OrderProcessorr()
+        .AddCheck(order => order.Quantity > order.StockAvailable ? OrderStatus.RejectedByStock : (OrderStatus?)null)
+        .AddCheck(order => order.IsBlacklisted ? OrderStatus.RejectedByBlacklist : (OrderStatus?)null)
+        .AddCheck(order => order.TotalPrice > 1_000_000 ? OrderStatus.RequiresManagerApproval : (OrderStatus?)null);
         //===========================================
 
-            var delegate02 = new DelegateProblem02();
+        var delegate02 = new DelegateProblem02();
         delegate02.ProcessCompleted = ShowMessage;
         delegate02.StartProcess();
 
