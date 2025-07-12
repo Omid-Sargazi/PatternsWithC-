@@ -1,5 +1,6 @@
 namespace DesignPattern.ChainOfResponsibility
 {
+   
     public class LeaveRequest
     {
         public string EmployeeName { get; set; }
