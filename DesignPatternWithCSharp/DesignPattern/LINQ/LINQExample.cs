@@ -99,7 +99,41 @@ namespace DesignPattern.LINQ
 
             }
 
+            var customerMoreThan4 = from c in customers
+                                    group c by c.City into g
+                                    where g.All(c => c.Name.Length > 4)
+                                    select new { City = g.Key, Customer = g.ToList() };
 
+            foreach (var group in customerMoreThan4)
+            {
+                Console.WriteLine($"City:{group.City}");
+                foreach (var c in group.Customer)
+                {
+                    Console.WriteLine($"-{c.Name}");
+                }
+            }
+
+            var orderedCities = from c in customers
+                                group c by c.City into g
+                                orderby g.Count() descending
+                                select new { City = g.Key, Count = g.Count() };
+            foreach (var item in orderedCities)
+            {
+                Console.WriteLine($"{item.City}: {item.Count} customer");
+            }
+
+
+            var namesByCity = from c in customers
+                              group c by c.City into g
+                              select new
+                              {
+                                  City = g.Key,
+                                  names = string.Join(",", g.Select(c => c.Name)),
+                              };
+            foreach (var item in namesByCity)
+            {
+                Console.WriteLine($"{item.City}:{item.names}");
+            }
             
             foreach (var name in moreThan4)
                 {

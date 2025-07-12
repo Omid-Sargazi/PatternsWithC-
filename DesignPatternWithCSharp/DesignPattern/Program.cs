@@ -183,7 +183,7 @@ public class Program
         //await NegativeNumber.RunException();
         //await FileNFoundException.RunException();
 
-        await FetchDataTaskException.RunFetchData();
+        //await FetchDataTaskException.RunFetchData();
 
         //====================================
 
