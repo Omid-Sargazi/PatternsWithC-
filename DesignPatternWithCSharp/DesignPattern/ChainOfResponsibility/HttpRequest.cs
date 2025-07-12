@@ -41,4 +41,15 @@ namespace DesignPattern.ChainOfResponsibility
     }
 
 
+    public abstract class FirewallHandler
+    {
+        protected FirewallHandler _next;
+        public void SetNext(FirewallHandler next)
+        {
+            _next = next;
+        }
+
+        public abstract FirewallResult Handle(HttpRequest request);
+    }
+
 }
