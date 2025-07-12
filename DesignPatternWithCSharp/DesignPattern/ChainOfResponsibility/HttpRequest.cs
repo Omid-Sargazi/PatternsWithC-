@@ -52,4 +52,20 @@ namespace DesignPattern.ChainOfResponsibility
         public abstract FirewallResult Handle(HttpRequest request);
     }
 
+    public class IPHandler : FirewallHandler
+    {
+        private readonly List<string> _allowedIPs;
+        public IPHandler(IEnumerable<string> allowedIPs)
+        {
+             _allowedIPs = allowedIPs.ToList();
+        }
+        public override FirewallResult Handle(HttpRequest request)
+        {
+            if (!_allowedIPs.Contains(request.IP))
+            {
+                return FirewallResult.BlockeByIP;
+            }
+            return _next?.Handle(request) ?? FirewallResult.Allowed;
+        }
+    }
 }
