@@ -39,6 +39,16 @@ namespace LeetCode.DataStructure
             return (max, min);
         }
 
-        
+        public void Reverse(int[] arr)
+        {
+            for (int i = 0, j = arr.Length - 1; i < j; i++, j--)
+            {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+
+
     }
 }
