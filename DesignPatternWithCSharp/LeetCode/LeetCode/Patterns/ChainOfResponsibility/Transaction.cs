@@ -33,9 +33,45 @@ namespace LeetCode.Patterns.ChainOfResponsibility
         }
 
         protected abstract void Handle(Transaction transaction, TransactionResult result);
-
-
     }
 
+    public class BalanceCheckHandler : TransactionHandler
+    {
+        protected override void Handle(Transaction transaction, TransactionResult result)
+        {
+            if (transaction.Amount > transaction.Balance) result.Errors.Add("the balance is not enough");
+        }
+    }
 
+    public class DailyLimitHandler : TransactionHandler
+    {
+        protected override void Handle(Transaction transaction, TransactionResult result)
+        {
+            if (transaction.Amount > transaction.DailyLimit)
+                result.Errors.Add("there is a limition");
+        }
+    }
+
+    public class BlacklistHandler : TransactionHandler
+    {
+        protected override void Handle(Transaction transaction, TransactionResult result)
+        {
+            if (transaction.IsBlacklisted)
+                result.Errors.Add("User is block");
+        }
+    }
+
+    public static class HandlerBuilder
+    {
+        public static TransactionHandler BuildChain()
+        {
+            var balance = new BalanceCheckHandler();
+            var limit = new DailyLimitHandler();
+            var blackList = new BlacklistHandler();
+
+            balance.SetNext(limit);
+            limit.SetNext(blackList);
+            return balance;
+        }
+    }
 }
