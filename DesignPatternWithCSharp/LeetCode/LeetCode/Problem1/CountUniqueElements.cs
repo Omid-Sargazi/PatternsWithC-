@@ -13,4 +13,23 @@ namespace LeetCode.Problem1
             return unique.Count();
         }
     }
+
+    public class FrequencyAnalyzer
+    {
+        private Dictionary<int, int> FrequesntMap = new Dictionary<int, int>();
+
+        public (Dictionary<int, int> freqency, int uniqueCount) Analyze(int[] nums)
+        {
+            foreach (var num in nums)
+            {
+                if (FrequesntMap.ContainsKey(num))
+                    FrequesntMap[num]++;
+                else
+                    FrequesntMap[num] = 1;
+            }
+
+            int uniqueCount = FrequesntMap.Values.Count(v => v == 1);
+            return (FrequesntMap, uniqueCount);
+        }
+    }
 }

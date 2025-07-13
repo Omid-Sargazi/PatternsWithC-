@@ -40,3 +40,23 @@ public class CountUniqueTests
         Assert.Equal(0, result);
     }
 }
+
+public class FrequencyAnalyzerTests
+{
+    [Fact]
+    public void HandlesMixedDuplicates()
+    {
+        var analyaer = new FrequencyAnalyzer();
+        var (freq, uniqueCount) = analyaer.Analyze(new int[] { 1, 2, 2, 3, 4, 4, 4, 5, 10 });
+        Assert.Equal(4, uniqueCount);
+    }
+
+    [Fact]
+    public void HandlesAllUnique()
+    {
+        var analyaer = new FrequencyAnalyzer();
+        var (freq, uniqueCount) = analyaer.Analyze(new int[] { 7, 8, 9 });
+        Assert.Equal(3, uniqueCount);
+        Assert.Equal(1, freq[7]);
+    }
+}
