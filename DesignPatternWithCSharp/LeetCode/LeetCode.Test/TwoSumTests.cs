@@ -29,3 +29,14 @@ public class TwoSumTests
     }
 
 }
+
+public class CountUniqueTests
+{
+    [Fact]
+    public void HandlesEmptyArray()
+    {
+        var countUniqeElemnts = new CountUniqueElements();
+        var result = countUniqeElemnts.RunCountUniqueElements(new int[] { });
+        Assert.Equal(0, result);
+    }
+}
