@@ -33,6 +33,7 @@ namespace LeetCode
 
             var handkerChain = HandlerBuilder.BuildChain();
             var resultt = new TransactionResult();
+            handkerChain.Execute(transaction, resultt);
 
             Console.WriteLine($"the end of the result");
             if (resultt.IsSuccess)
