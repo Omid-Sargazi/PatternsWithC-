@@ -58,7 +58,7 @@ namespace LeetCode.TaskAndParallerProgramming
             long sum1 = 0;
             long sum2 = 0;
 
-            var s1 = Task.Run(async() =>
+            var s1 = Task.Run(async () =>
             {
                 for (int i = 0; i < numbers.Length / 2; i++)
                 {
@@ -80,6 +80,23 @@ namespace LeetCode.TaskAndParallerProgramming
             await Task.WhenAll(s1, s2);
 
             Console.WriteLine($"Total Sum is : {sum1 + sum2}");
+
+            await Task.Run(() =>
+            {
+                Console.WriteLine("Input Data..");
+            });
+
+            await Task.Run(() =>
+            {
+                Console.WriteLine("Save Data in Database");
+            });
+
+            await Task.Run(() =>
+            {
+                Console.WriteLine("Send Email");
+            });
+
+            
 
         }
     }
