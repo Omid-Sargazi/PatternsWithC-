@@ -15,6 +15,7 @@ using DesignPattern.YeldExample;
 using DesignPattern.LINQ;
 using DesignPattern.ChainOfResponsibility;
 using Microsoft.VisualBasic;
+using DesignPattern.BridgePattern;
 
 public class Program
 {
@@ -46,6 +47,13 @@ public class Program
         Console.WriteLine($"Find Two Number{res[i]}");            
         }
         //=================================
+
+        //==================================
+        Console.WriteLine("Bridge Pattern.=======================");
+        
+        Console.WriteLine(".=======================Bridge Pattern");
+
+        //==================================
 
 
         List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
