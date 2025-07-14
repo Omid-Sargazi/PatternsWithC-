@@ -56,6 +56,14 @@ namespace LeetCode
             var task1 = new TaskProgramming();
             await task1.RunRask();
             //========================================
+            Console.WriteLine("==============Reverse==============");
+            
+            int[] num = new int[] { 1, 2, 3, 4, 5, 6 };
+            ReverseArray.RunReverseArray(num);
+            foreach (var i in num)
+            {
+                Console.WriteLine($"Reverse is :{i}");
+            }
         }
     }
 }
