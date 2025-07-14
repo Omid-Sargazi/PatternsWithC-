@@ -31,4 +31,23 @@ namespace DesignPattern.BridgePattern
 
         public abstract string Draw();
     }
+
+    public class CircleBridgee : ShapeBridgee
+    {
+        private readonly double _radius;
+        private readonly double _centerX;
+        private readonly double _centerY;
+        public CircleBridgee(double radius, double centerX, double centerY, IRenderer renderer) : base(renderer)
+        {
+            _radius = radius;
+            _centerX = centerX;
+            _centerY = centerY;
+        }
+
+        public override string Draw()
+        {
+            string shapeData = $"Circle with radius {_radius} at center ({_centerX}, {_centerY})";
+            return _renderer.RenderShape(shapeData);
+        }
+    }
 }
