@@ -17,6 +17,16 @@ namespace LeetCode.TaskAndParallerProgramming
 
             Console.WriteLine($"{t2.Status}: Status of Tasks");
 
+
+            await Task.Run(async() =>
+             {
+                 for (int i = 0; i <= 5; i++)
+                 {
+                     Console.WriteLine($"Task is :{i}");
+                     await Task.Delay(1000);
+                 }
+             });
+
         }
     }
 }
