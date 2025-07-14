@@ -1,11 +1,13 @@
-﻿using LeetCode.Patterns.ChainOfResponsibility;
+﻿using System.Threading.Tasks;
+using LeetCode.Patterns.ChainOfResponsibility;
 using LeetCode.Problem1;
+using LeetCode.TaskAndParallerProgramming;
 
 namespace LeetCode
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
 
@@ -47,6 +49,12 @@ namespace LeetCode
                     Console.WriteLine(err);
                 }
             }
+            //========================================
+
+            //========================================
+            Console.WriteLine("==============Task==============");
+            var task1 = new TaskProgramming();
+            await task1.RunRask();
             //========================================
         }
     }
