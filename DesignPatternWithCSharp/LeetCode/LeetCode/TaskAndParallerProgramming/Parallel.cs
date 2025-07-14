@@ -32,7 +32,7 @@ namespace LeetCode.TaskAndParallerProgramming
                 for (int i = 0; i <= 5; i++)
                 {
                     Console.WriteLine($"Number: {i}");
-                    await Task.Delay(1000);
+                    await Task.Delay(100);
                 }
             });
 
@@ -41,7 +41,7 @@ namespace LeetCode.TaskAndParallerProgramming
                 for (int i = 1; i <= 10; i++)
                 {
                     Console.WriteLine($"Parallel work: {i}");
-                    await Task.Delay(500);
+                    await Task.Delay(50);
                 }
             });
 
@@ -96,7 +96,35 @@ namespace LeetCode.TaskAndParallerProgramming
                 Console.WriteLine("Send Email");
             });
 
-            
+
+            Task t11 = Task.Run(() =>
+            {
+                Console.WriteLine("مرحله 1: دریافت داده کاربر");
+            });
+            Task t22 = t11.ContinueWith((prev) =>
+            {
+                Console.WriteLine("مرحله 2: ذخیره در دیتابیس");
+            });
+
+            Task t33 = t22.ContinueWith(prev =>
+            {
+                Console.WriteLine("مرحله 3: ارسال ایمیل تایید");
+            });
+
+            t33.Wait();
+
+
+            Task<string> fetchData = Task.Run(() =>
+            {
+                return "Omid";
+            });
+
+            Task processData = fetchData.ContinueWith(prev =>
+            {
+                Console.WriteLine($"داده دریافت‌شده: {prev.Result}");
+            });
+
+
 
         }
     }
