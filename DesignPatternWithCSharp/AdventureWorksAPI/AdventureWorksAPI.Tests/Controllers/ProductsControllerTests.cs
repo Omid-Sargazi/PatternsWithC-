@@ -34,5 +34,17 @@ namespace AdventureWorksAPI.Tests.Controllers
             var products = Assert.IsAssignableFrom<IEnumerable<ProductDto>>(okResult.Value);
             Assert.Equal(2, ((List<ProductDto>)products).Count);
         }
+
+        [Fact]
+        public async Task GetTotalProductCount_ReturnsCorrectCount()
+        {
+            __mockRepo.Setup(r => r.GetTotalProductCountAsync()).ReturnsAsync(100);
+
+            var result = await _controller.GetTotalProductCount();
+
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var count = Assert.IsType<int>(okResult.Value);
+            Assert.Equal(100, count);
+        }
     }
 }
