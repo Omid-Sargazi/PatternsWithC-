@@ -46,5 +46,22 @@ namespace AdventureWorksAPI.Tests.Controllers
             var count = Assert.IsType<int>(okResult.Value);
             Assert.Equal(100, count);
         }
+
+        [Fact]
+        public async Task GetProductsWithSubcategory_ReturnsListWithSubcategories()
+        {
+            var mockData = new List<ProductWithSubcategoryDto>
+            {
+                new ProductWithSubcategoryDto{ProductName = "Mountain Bike",SubcategoryName = "Mountain"}
+            };
+
+            __mockRepo.Setup(r => r.GetProductsWithSubcategoryAsync()).ReturnsAsync(mockData);
+
+            var result = await _controller.GetProductsWithSubcategory();
+
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var items = Assert.IsAssignableFrom<IEnumerable<ProductWithSubcategoryDto>>(okResult);
+            Assert.Single(items);
+        }
     }
 }
