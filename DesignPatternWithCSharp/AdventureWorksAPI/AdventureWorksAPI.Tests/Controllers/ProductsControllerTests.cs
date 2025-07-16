@@ -60,7 +60,7 @@ namespace AdventureWorksAPI.Tests.Controllers
             var result = await _controller.GetProductsWithSubcategory();
 
             var okResult = Assert.IsType<OkObjectResult>(result);
-            var items = Assert.IsAssignableFrom<IEnumerable<ProductWithSubcategoryDto>>(okResult);
+            var items = Assert.IsAssignableFrom<IEnumerable<ProductWithSubcategoryDto>>(okResult.Value);
             Assert.Single(items);
         }
     }
