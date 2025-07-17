@@ -11,9 +11,16 @@ namespace AdventureWorksAPI.Repositories
         {
             _context = context;
         }
-        public Task<IEnumerable<ProductAvgQtyDto>> GetAvgOrderQtyPerProductAsync()
+        public async Task<IEnumerable<ProductAvgQtyDto>> GetAvgOrderQtyPerProductAsync()
         {
-            throw new NotImplementedException();
+            return await _context.SalesOrderDetails
+            .GroupBy(o => o.ProductId)
+            .Select(g => new ProductAvgQtyDto
+            {
+                ProductId = g.Key,
+                AvgQty = g.Average(x => x.OrderQty)
+            }).OrderByDescending(x => x.AvgQty)
+            .ToListAsync();
         }
 
         public async Task<IEnumerable<CategoryProductCountDto>> GetProductCountsPerCategoryAsync()
