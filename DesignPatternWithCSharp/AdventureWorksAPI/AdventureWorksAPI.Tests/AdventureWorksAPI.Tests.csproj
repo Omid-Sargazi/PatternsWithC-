@@ -5,6 +5,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
+      <!-- <EnableDefaultCompileItems>true</EnableDefaultCompileItems> -->
+    <!-- <OutputType>Exe</OutputType> -->
   </PropertyGroup>
 
   <ItemGroup>
