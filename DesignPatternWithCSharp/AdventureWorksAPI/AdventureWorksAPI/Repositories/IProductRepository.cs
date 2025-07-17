@@ -9,5 +9,6 @@ namespace AdventureWorksAPI.Repositories
         Task<IEnumerable<ProductDto>> GetOrderedByPriceDescAsync();
         Task<int> GetTotalProductCountAsync();
         Task<IEnumerable<ProductWithSubcategoryDto>> GetProductsWithSubcategoryAsync();
+        Task<IEnumerable<ProductWithCategoryDto>> GetProductsWithCategoryAsync();
     }
 }
