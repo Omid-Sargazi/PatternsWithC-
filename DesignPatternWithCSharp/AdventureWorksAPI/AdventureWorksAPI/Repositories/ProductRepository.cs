@@ -35,6 +35,19 @@ namespace AdventureWorksAPI.Repositories
             }).ToListAsync();
         }
 
+        public async Task<IEnumerable<ProductWithCategoryDto>> GetProductsWithCategoryAsync()
+        {
+            return await (from p in _context.Products
+                          join ps in _context.ProductSubcategories on p.ProductSubcategoryId equals ps.ProductSubcategoryId
+                          join pc in _context.ProductCategories on ps.ProductCategoryId equals pc.ProductCategoryId
+                          select new ProductWithCategoryDto
+                          {
+                              ProductName = p.Name,
+                              CategoryName = pc.Name,
+                          }
+            ).ToListAsync();
+        }
+
         public async Task<IEnumerable<ProductWithSubcategoryDto>> GetProductsWithSubcategoryAsync()
         {
             return await (from p in _context.Products
