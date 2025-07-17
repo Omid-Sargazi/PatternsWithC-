@@ -19,5 +19,19 @@ namespace AdventureWorksAPI.Controllers
             var result = await _repository.GetOrdersWithQtyOver10Async();
             return Ok(result);
         }
+
+        [HttpGet("count")]
+        public async Task<IActionResult> GetOrderCount()
+        {
+            var result = await _repository.GetTotalOrderCountAsync();
+            return Ok(result);
+        }
+
+        [HttpGet("sum-high-value")]
+        public async Task<IActionResult> GetHighValueOrdersSum()
+        {
+            var total = await _repository.GetHighValueOrderSumAsync();
+            return Ok(total);
+        }
     }
 }
