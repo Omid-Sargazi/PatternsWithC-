@@ -31,6 +31,16 @@ namespace LeetCode
             {
                 Console.WriteLine("تقسیم بر صفر!");
             }
+
+            string date = "2025-07-19";
+            if (date.TryParseDate(out DateTime parsedDate))
+            {
+                Console.WriteLine($"تاریخ: {parsedDate.ToShortDateString()}");
+            }
+            else
+            {
+                Console.WriteLine("فرمت تاریخ نامعتبر!");
+            }
         }
     }
 }

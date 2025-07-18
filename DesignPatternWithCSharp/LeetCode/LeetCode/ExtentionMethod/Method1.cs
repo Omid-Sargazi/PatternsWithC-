@@ -43,4 +43,12 @@ namespace LeetCode.ExtentionMethod
             return true;
         }
     }
+
+    public static class StringExtensionss
+    {
+        public static bool TryParseDate(this string dateString, out DateTime result)
+        {
+            return DateTime.TryParse(dateString, out result);
+        }
+    }
 }
