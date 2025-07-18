@@ -58,6 +58,9 @@ namespace LeetCode
 
             List<string> names = new List<string> { "Omid", "Saeed", "Vahid" };
             names.ForEachWithAction(name => Console.WriteLine($"Names are:{name}"));
+
+            var stringss = numbers.Transform(n => $"Number{n}");
+            Console.WriteLine(string.Join(",",stringss));
         }
     }
 }

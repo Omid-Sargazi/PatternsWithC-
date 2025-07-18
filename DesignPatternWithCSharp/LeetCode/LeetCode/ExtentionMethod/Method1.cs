@@ -98,5 +98,10 @@ namespace LeetCode.ExtentionMethod
                 action(item);
             }
         }
+
+        public static IEnumerable<Tresult> Transform<Tsource, Tresult>(this IEnumerable<Tsource> source, Func<Tsource, Tresult> transfer)
+        {
+            return source.Select(transfer);
+        }
     }
 }
