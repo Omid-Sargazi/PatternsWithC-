@@ -20,6 +20,8 @@ namespace LeetCode
             {
                 Console.WriteLine($"Even : {num}");
             }
+
+            var filtered = numbers.Wheree(x => x > 3);
         }
     }
 }
