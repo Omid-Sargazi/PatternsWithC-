@@ -51,4 +51,13 @@ namespace LeetCode.ExtentionMethod
             return DateTime.TryParse(dateString, out result);
         }
     }
+
+    public static class ListExtensions
+    {
+        public static void GetStatus(this List<int> numbers, out int sum, out int count)
+        {
+            sum = numbers.Sum();
+            count = numbers.Count();
+        }
+    }
 }

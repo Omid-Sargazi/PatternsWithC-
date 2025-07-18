@@ -41,6 +41,9 @@ namespace LeetCode
             {
                 Console.WriteLine("فرمت تاریخ نامعتبر!");
             }
+
+            numbers.GetStatus(out int sum, out int count);
+            Console.WriteLine($"Sum:{sum}, Count:{count}");
         }
     }
 }
