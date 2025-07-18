@@ -78,4 +78,14 @@ namespace LeetCode.ExtentionMethod
             return input != null;
         }
     }
+
+    public static class StringExtensions3
+    {
+        public static string ToCamelCase(this string input)
+        {
+            if (string.IsNullOrEmpty(input)) return input;
+            var words = input.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            return string.Join("", words.Select(w => char.ToUpper(w[0]) + w.Substring(1).ToLower()));
+        }
+    }
 }
