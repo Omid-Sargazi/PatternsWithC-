@@ -11,6 +11,7 @@ builder.Services.AddDbContext<AdventureWorks2019Context>(options =>
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IReportRepository, ReportRepository>();
 
 
 builder.Services.AddControllers();
