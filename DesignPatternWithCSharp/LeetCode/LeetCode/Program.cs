@@ -54,6 +54,10 @@ namespace LeetCode
             {
                 Console.WriteLine("کلمه پیدا نشد!");
             }
+
+
+            List<string> names = new List<string> { "Omid", "Saeed", "Vahid" };
+            names.ForEachWithAction(name => Console.WriteLine($"Names are:{name}"));
         }
     }
 }

@@ -88,4 +88,15 @@ namespace LeetCode.ExtentionMethod
             return string.Join("", words.Select(w => char.ToUpper(w[0]) + w.Substring(1).ToLower()));
         }
     }
+
+    public static class EnumerableExtensions
+    {
+        public static void ForEachWithAction<T>(this IEnumerable<T> source, Action<T> action)
+        {
+            foreach (var item in source)
+            {
+                action(item);
+            }
+        }
+    }
 }
