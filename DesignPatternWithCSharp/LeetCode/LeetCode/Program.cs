@@ -22,6 +22,15 @@ namespace LeetCode
             }
 
             var filtered = numbers.Wheree(x => x > 3);
+
+            if (MathExtensions.Divide(10, 0, out int quotient, out int reminder))
+            {
+                Console.WriteLine($"خارج قسمت: {quotient}, باقی‌مانده: {reminder}");
+            }
+            else
+            {
+                Console.WriteLine("تقسیم بر صفر!");
+            }
         }
     }
 }

@@ -19,4 +19,28 @@ namespace LeetCode.ExtentionMethod
             }
         }
     }
+
+    public static class StringExtensions
+    {
+        public static int ToIntOrDefault(this string input, int defaultValue = 0)
+        {
+            return int.TryParse(input, out int result) ? result : defaultValue;
+        }
+    }
+
+    public static class MathExtensions
+    {
+        public static bool Divide(int a, int b, out int quotient, out int reminder)
+        {
+            if (b == 0)
+            {
+                quotient = 0;
+                reminder = 0;
+                return false;
+            }
+            quotient = a / b;
+            reminder = a % b;
+            return true;
+        }
+    }
 }
