@@ -69,4 +69,13 @@ namespace LeetCode.ExtentionMethod
             return position >= 0;
         }
     }
+
+    public static class ObjectExtensions
+    {
+        public static bool EnsureNotNull<T>(this T input, out T result) where T : class, new()
+        {
+            result = input ?? new T();
+            return input != null;
+        }
+    }
 }
