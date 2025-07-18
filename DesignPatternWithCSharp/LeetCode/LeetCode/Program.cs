@@ -44,6 +44,16 @@ namespace LeetCode
 
             numbers.GetStatus(out int sum, out int count);
             Console.WriteLine($"Sum:{sum}, Count:{count}");
+
+            string text = "Omid Sargazi";
+            if (text.FindWord("Omid", out int position))
+            {
+                Console.WriteLine($"کلمه در موقعیت {position} پیدا شد");
+            }
+            else
+            {
+                Console.WriteLine("کلمه پیدا نشد!");
+            }
         }
     }
 }

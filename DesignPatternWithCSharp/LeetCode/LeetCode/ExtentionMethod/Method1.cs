@@ -60,4 +60,13 @@ namespace LeetCode.ExtentionMethod
             count = numbers.Count();
         }
     }
+
+    public static class StringExtensions2
+    {
+        public static bool FindWord(this string text, string word, out int position)
+        {
+            position = text.IndexOf(word);
+            return position >= 0;
+        }
+    }
 }
