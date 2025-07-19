@@ -23,7 +23,7 @@ namespace AdventureWorksConsole.QueriesExample
              ps => ps.ProductSubcategoryId,
              (p, ps) => new { p, ps }
 
-             
+
             ).GroupBy(x => x.ps.Name)
             .Select(g => new
             {
@@ -31,10 +31,41 @@ namespace AdventureWorksConsole.QueriesExample
                 AvgPrice = g.Average(x => x.p.ListPrice)
             }).ToListAsync();
 
-            foreach (var item in result)
+
+            var mostOrders = await _context.SalesOrderDetails
+            .GroupBy(x => x.ProductId)
+            .Select(g => new { ProductId = g.Key, MaxQty = g.Max(x => x.OrderQty) })
+            .ToListAsync();
+
+            var priceBetween100And1000 = _context.Products
+            .Where(p => p.ListPrice >= 100 && p.ListPrice <= 1000)
+            .ToListAsync();
+
+            var subcategoryWithMore10Product = _context.Products
+            .Join(_context.ProductSubcategories,
+                p => p.ProductSubcategoryId,
+                ps => ps.ProductSubcategoryId,
+                (p, ps) => new { p, ps }
+
+            ).GroupBy(x => x.ps.Name)
+            .Where(g => g.Count() > 10)
+            .Select(g => new { subCategory = g.Key, ProductCount = g.Count() }).ToListAsync();
+
+            var orderInSeptember = _context.SalesOrderHeaders
+            .Where(x => x.OrderDate.Month == 12)
+            .Select(x => new { x.SalesOrderId, x.OrderDate })
+            .ToListAsync();
+            
+            
+            foreach (var item in mostOrders)
             {
-                Console.WriteLine($"{item.SalesOrderId},{item.OrderQty}");
+                Console.WriteLine($"Product ID: {item.ProductId}, Max Quantity: {item.MaxQty}");
             }
+
+            foreach (var item in result)
+                {
+                    //Console.WriteLine($"{item.SalesOrderId},{item.OrderQty}");
+                }
             
         }
     }
