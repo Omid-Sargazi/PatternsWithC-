@@ -16,6 +16,21 @@ namespace AdventureWorksConsole.QueriesExample
             .Select(x => new { x.SalesOrderId, x.OrderQty })
             .ToListAsync();
 
+
+            var result2 = await _context.Products
+            .Join(_context.ProductSubcategories,
+             p => p.ProductSubcategoryId,
+             ps => ps.ProductSubcategoryId,
+             (p, ps) => new { p, ps }
+
+             
+            ).GroupBy(x => x.ps.Name)
+            .Select(g => new
+            {
+                Subcategory = g.Key,
+                AvgPrice = g.Average(x => x.p.ListPrice)
+            }).ToListAsync();
+
             foreach (var item in result)
             {
                 Console.WriteLine($"{item.SalesOrderId},{item.OrderQty}");
