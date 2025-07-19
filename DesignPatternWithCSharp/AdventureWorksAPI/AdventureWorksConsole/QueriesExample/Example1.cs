@@ -62,7 +62,7 @@ namespace AdventureWorksConsole.QueriesExample
             .ToListAsync();
 
             var mostProductWithSubproducts = _context.Products
-            .Join(_context.ProductSubcategories
+            .Join(_context.ProductSubcategories,
                 p => p.ProductSubcategoryId,
                 ps => ps.ProductSubcategoryId,
                 (p, ps) => new { p, ps.Name }
