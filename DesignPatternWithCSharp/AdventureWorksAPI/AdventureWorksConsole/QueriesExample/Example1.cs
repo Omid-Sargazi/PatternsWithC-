@@ -59,6 +59,19 @@ namespace AdventureWorksConsole.QueriesExample
             var orderPerYear = _context.SalesOrderHeaders
             .GroupBy(x => x.OrderDate.Year)
             .Select(g => new { Year = g.Key, Count = g.Count() })
+            .ToListAsync();
+
+            var mostProductWithSubproducts = _context.Products
+            .Join(_context.ProductSubcategories
+                p => p.ProductSubcategoryId,
+                ps => ps.ProductSubcategoryId,
+                (p, ps) => new { p, ps.Name }
+
+            )
+            .GroupBy(x => x.Name)
+            .OrderByDescending(g => g.Key)
+            .Take(3)
+            .Select(g => new { Subcategory = g.Key, Count = g.Count() })
             .ToListAsync(); 
 
             
