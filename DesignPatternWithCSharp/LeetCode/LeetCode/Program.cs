@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using DesignPatternsWithCSharp.BridgePattern;
 using LeetCode.ExtentionMethod;
 using LeetCode.Patterns.ChainOfResponsibility;
 using LeetCode.Problem1;
@@ -60,7 +61,10 @@ namespace LeetCode
             names.ForEachWithAction(name => Console.WriteLine($"Names are:{name}"));
 
             var stringss = numbers.Transform(n => $"Number{n}");
-            Console.WriteLine(string.Join(",",stringss));
+            Console.WriteLine(string.Join(",", stringss));
+
+            Console.WriteLine("Design Pattern==================");
+            ClientMessaga.Run();
         }
     }
 }
