@@ -55,7 +55,12 @@ namespace AdventureWorksConsole.QueriesExample
             .Where(x => x.OrderDate.Month == 12)
             .Select(x => new { x.SalesOrderId, x.OrderDate })
             .ToListAsync();
-            
+
+            var orderPerYear = _context.SalesOrderHeaders
+            .GroupBy(x => x.OrderDate.Year)
+            .Select(g => new { Year = g.Key, Count = g.Count() })
+            .ToListAsync(); 
+
             
             foreach (var item in mostOrders)
             {
