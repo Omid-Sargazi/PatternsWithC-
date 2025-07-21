@@ -45,6 +45,8 @@ namespace LeetCode
             ClientPipeline.Run();
 
             HandleEmail.Run();
+
+            StrategyDiscount.Run();
         }
     }
 }
