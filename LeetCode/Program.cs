@@ -39,6 +39,8 @@ namespace LeetCode
             Shape squae = new Shape(brush) { Name = "Square" };
 
             ClientRunOrder.Run();
+
+            RunDelegate.Run();
             
         }
     }
