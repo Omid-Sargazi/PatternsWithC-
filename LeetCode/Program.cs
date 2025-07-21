@@ -1,12 +1,14 @@
 ﻿using LeetCode.BridgePattern;
 using LeetCode.DecoratorPattern;
+using LeetCode.Delegate;
 using LeetCode.Problems01;
 
 namespace LeetCode
 {
     public class Program
     {
-        public static void Main(string[] args){
+        public static void Main(string[] args)
+        {
             Console.WriteLine("Hello, World!");
             string s = "abc";
             string s2 = "aabbcd";
@@ -33,8 +35,11 @@ namespace LeetCode
             IDrawingTool pencil = new Pencil();
             IDrawingTool brush = new Brush();
 
-            Shape circle = new Shape(pencil) {Name = "Circle"};
-            Shape squae = new Shape(brush) {Name = "Square"};
+            Shape circle = new Shape(pencil) { Name = "Circle" };
+            Shape squae = new Shape(brush) { Name = "Square" };
+
+            ClientRunOrder.Run();
+            
         }
     }
 }
