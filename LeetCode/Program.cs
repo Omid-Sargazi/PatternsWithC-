@@ -43,6 +43,8 @@ namespace LeetCode
             // RunDelegate.Run();
 
             ClientPipeline.Run();
+
+            HandleEmail.Run();
         }
     }
 }
