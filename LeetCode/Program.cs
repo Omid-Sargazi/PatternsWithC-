@@ -42,13 +42,15 @@ namespace LeetCode
 
             // RunDelegate.Run();
 
-            ClientPipeline.Run();
+            // ClientPipeline.Run();
 
-            HandleEmail.Run();
+            // HandleEmail.Run();
 
-            StrategyDiscount.Run();
+            // StrategyDiscount.Run();
 
-            ValidateRule.Run();
+            // ValidateRule.Run();
+
+            PasswordHandle.Run();
         }
     }
 }
