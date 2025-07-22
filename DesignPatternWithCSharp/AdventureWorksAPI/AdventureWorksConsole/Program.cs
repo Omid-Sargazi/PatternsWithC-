@@ -8,6 +8,8 @@ public class Program
     public static async Task Main(string[] args)
     {
         Console.WriteLine("Hello");
-        await Example1.Run();
+        // await Example1.Run();
+
+        CommonTableExpression.RunQuery();
     }
 }
