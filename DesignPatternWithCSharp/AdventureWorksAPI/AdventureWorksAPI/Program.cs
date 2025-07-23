@@ -25,10 +25,15 @@ app.UseMiddleware<RequestTimeMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
+    // app.UseDeveloperExceptionPage();
+}
     app.UseSwagger();
     app.UseSwaggerUI();
-}
 
+app.UseExceptionHandler("/Erorr");
+
+
+app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();

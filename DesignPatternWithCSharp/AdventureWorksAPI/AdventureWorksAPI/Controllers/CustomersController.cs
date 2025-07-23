@@ -20,5 +20,13 @@ namespace AdventureWorksAPI.Controllers
             var customers = await _repository.GetTop5CustomersAsync();
             return Ok(customers);
         }
+
+        [HttpGet("dividezero")]
+        public async Task<IActionResult> DivideZero()
+        {
+            int zero = 0;
+            int result = 10 / zero;
+            return Ok();
+        }
     }
 }
