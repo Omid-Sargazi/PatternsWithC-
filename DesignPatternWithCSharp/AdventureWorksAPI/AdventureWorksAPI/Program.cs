@@ -20,7 +20,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-app.UseMiddleware<LoggingMiddleware>();
+// app.UseMiddleware<LoggingMiddleware>();
+app.UseMiddleware<CountRequest>();
 
 app.UseWhen(context => context.Request.Path.StartsWithSegments("/logging"),
     builder=>
