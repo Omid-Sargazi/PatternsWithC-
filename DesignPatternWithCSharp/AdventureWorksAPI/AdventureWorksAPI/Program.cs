@@ -20,8 +20,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.UseMiddleware<EnhancedRequestTimingMiddleware>();
 // app.UseMiddleware<LoggingMiddleware>();
+app.UseMiddleware<RequestTimeMiddleware>();
 app.UseMiddleware<CountRequest>();
+
+app.UseMiddleware<AdminAccessMiddleware>();
 
 app.UseWhen(context => context.Request.Path.StartsWithSegments("/logging"),
     builder=>
@@ -30,7 +34,6 @@ app.UseWhen(context => context.Request.Path.StartsWithSegments("/logging"),
     }
 );
 
-app.UseMiddleware<RequestTimeMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {

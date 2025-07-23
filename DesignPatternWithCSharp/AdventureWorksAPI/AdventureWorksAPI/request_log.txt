@@ -1,0 +1,14 @@
+2025-07-23 19:41:26 | GET /swagger/v1/swagger.json | Duration: 74.2135ms | Status: 200
+2025-07-23 19:41:33 | GET /api/Orders/qty-over10 | Duration: 1963.6453ms | Status: 200
+2025-07-23 19:41:37 | GET /api/Orders/qty-over10 | Duration: 48.2826ms | Status: 200
+2025-07-23 19:41:44 | GET /api/Customers/top5 | Duration: 67.3544ms | Status: 200
+2025-07-23 19:42:00 | GET /api/Customers/top5 | Duration: 17.7833ms | Status: 200
+2025-07-23 19:42:20 | GET /info.html | Duration: 3.7349ms | Status: 304
+2025-07-23 20:11:24 | GET /swagger/v1/swagger.json | Duration: 80.5953ms | Status: 200
+2025-07-23 20:11:41 | GET /api/Customers/top5 | Duration: 1922.0995ms | Status: 200
+2025-07-23 20:12:24 | GET /swagger/index.html | Duration: 82.6958ms | Status: 200
+2025-07-23 20:12:24 | GET /swagger/v1/swagger.json | Duration: 63.6382ms | Status: 200
+2025-07-23 20:12:29 | GET /api/Customers/top5 | Duration: 2001.978ms | Status: 200
+2025-07-23 20:13:13 | GET /swagger/index.html | Duration: 85.499ms | Status: 200
+2025-07-23 20:13:14 | GET /swagger/v1/swagger.json | Duration: 62.9874ms | Status: 200
+2025-07-23 20:13:19 | GET /api/Customers/top5 | Duration: 1981.7269ms | Status: 200
