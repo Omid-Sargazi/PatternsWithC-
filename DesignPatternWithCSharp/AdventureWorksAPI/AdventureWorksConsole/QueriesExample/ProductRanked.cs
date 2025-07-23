@@ -62,7 +62,7 @@ namespace AdventureWorksConsole.QueriesExample
 
             foreach (var item in result)
             {
-                //Console.WriteLine($"Name:{item.Name},ListPrice:{item.ListPrice},Category:{item.Category},RowNum:{item.RowNum}");
+                //  Console.WriteLine($"Name:{item.Name},ListPrice:{item.ListPrice},Category:{item.Category},RowNum:{item.RowNum}");
             }
 
 

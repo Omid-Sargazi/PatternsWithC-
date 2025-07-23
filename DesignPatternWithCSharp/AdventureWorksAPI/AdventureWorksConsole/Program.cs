@@ -12,6 +12,7 @@ public class Program
 
         // CommonTableExpression.RunQuery();
 
-        await ProductRanked.RunProductRanked();
+        // await ProductRanked.RunProductRanked();
+        await TestQueryAdventureWork.Run();
     }
 }
