@@ -36,7 +36,37 @@ namespace AdventureWorksConsole.QueriesExample
             // }).ToListAsync();
 
 
-           var query = await _context.Products
+            var query = await _context.Products
+         .Include(p => p.ProductSubcategory)
+         .ThenInclude(ps => ps.ProductCategory)
+         .Where(p => p.ProductSubcategory != null && p.ProductSubcategory.ProductCategory != null)
+         .GroupBy(p => p.ProductSubcategory.ProductCategory.Name)
+         .Select(g => new
+         {
+             Category = g.Key,
+             Products = g.OrderByDescending(p => p.ListPrice).Take(3).Select(p => new
+             {
+                 p.Name,
+                 p.ListPrice
+             }).ToList()
+         })
+         .ToListAsync();
+
+            var result = query.SelectMany((g, index) => g.Products.Select(p => new
+            {
+                p.Name,
+                p.ListPrice,
+                g.Category,
+                RowNum = index + 1
+            })).ToList();
+
+            foreach (var item in result)
+            {
+                //Console.WriteLine($"Name:{item.Name},ListPrice:{item.ListPrice},Category:{item.Category},RowNum:{item.RowNum}");
+            }
+
+
+            var query2 = await _context.Products
         .Include(p => p.ProductSubcategory)
         .ThenInclude(ps => ps.ProductCategory)
         .Where(p => p.ProductSubcategory != null && p.ProductSubcategory.ProductCategory != null)
@@ -44,51 +74,33 @@ namespace AdventureWorksConsole.QueriesExample
         .Select(g => new
         {
             Category = g.Key,
-            Products = g.OrderByDescending(p => p.ListPrice).Take(3).Select(p => new
+            Products = g.OrderByDescending(p => p.ListPrice)
+            .Take(3)
+            .Select(p => new
             {
                 p.Name,
-                p.ListPrice
+                p.ListPrice,
             }).ToList()
-        })
-        .ToListAsync();
-        
-        var result = query.SelectMany((g, index) => g.Products.Select(p => new
-    {
-        p.Name,
-        p.ListPrice,
-        g.Category,
-        RowNum = index + 1
-    })).ToList();
+        }).ToListAsync();
 
-    foreach (var item in result)
-    {
-        Console.WriteLine($"Name:{item.Name},ListPrice:{item.ListPrice},Category:{item.Category},RowNum:{item.RowNum}");
-    }
+            var result02 = query2.SelectMany(g => g.Products.Select((p, index) => new
+            {
+                p.Name,
+                p.ListPrice,
+                g.Category,
+                RowNum = index + 1,
+            })).OrderBy(x => x.Category)
+        .ThenByDescending(x => x.ListPrice)
+        .ToList();
+
+        foreach (var item in result02)
+            {
+                Console.WriteLine($"Name: {item.Name}, ListPrice: {item.ListPrice}, Category: {item.Category}, RowNum: {item.RowNum}");
+            }
 
 
-        //    var navigationResult2 =  _context.ProductCategories
-            //     .SelectMany(pc => pc.ProductSubcategories
-            //         .SelectMany(ps => ps.Products
-            //             .Select(p => new
-            //             {
-            //                 p.Name,
-            //                 p.ListPrice,
-            //                 Category = pc.Name
-            //             })
-            //             .OrderByDescending(x => x.ListPrice)
-            //             .Take(3) // 3 محصول برتر از هر دسته
-            //         ))
-            //     .Select((item, index) => new
-            //     {
-            //         item.Name,
-            //         item.ListPrice,
-            //         item.Category,
-            //         RowNum = index + 1
-            //     })
-            //     .ToList();
-
-           
 
         }
+        
     }
 }
