@@ -20,7 +20,7 @@ namespace AdventureWorksConsole.ChainOfResponsibility
     public abstract class SupportHandler : ISupportHandler
     {
         protected SupportHandler _nextHandler;
-        protected void SetNextHandler(SupportHandler nextHandler)
+        public void SetNextHandler(SupportHandler nextHandler)
         {
             _nextHandler = nextHandler;
         }
@@ -89,5 +89,35 @@ namespace AdventureWorksConsole.ChainOfResponsibility
         }
     }
 
-    
+    public class HandleRequest
+    {
+        public static void Run()
+        {
+            var l1Support = new Level1SupportHandler();
+            var l2Support = new Level2SupportHandler();
+            var l3Support = new Level3SupportHandler();
+
+            l1Support.SetNextHandler(l2Support);
+            l2Support.SetNextHandler(l3Support);
+
+            var request1 = new SupportRequest("General", "Customer needs help with account setup");
+            var request2 = new SupportRequest("Technical", "Customer reports a server error");
+            var request3 = new SupportRequest("Advanced", "Customer needs custom integration");
+            var request4 = new SupportRequest("Unknown", "Unknown issue");
+
+                Console.WriteLine("Processing request 1:");
+            l1Support.HandleRequest(request1);
+
+            Console.WriteLine("\nProcessing request 2:");
+            l1Support.HandleRequest(request2);
+
+            Console.WriteLine("\nProcessing request 3:");
+            l1Support.HandleRequest(request3);
+
+            Console.WriteLine("\nProcessing request 4:");
+            l1Support.HandleRequest(request4);
+        }
+    }
+
+
 }
