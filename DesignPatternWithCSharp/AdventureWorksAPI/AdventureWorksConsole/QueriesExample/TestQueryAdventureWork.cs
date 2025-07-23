@@ -99,23 +99,62 @@ namespace AdventureWorksConsole.QueriesExample
                     Category = pc.Name
                 }
             ).Where(x => x.ListPrice > 500).OrderByDescending(x => x.ListPrice).Take(3).ToListAsync();
-            
-            foreach (var item in query11)
+
+
+            var query12 = await _context.Products
+            .Include(p => p.ProductSubcategory)
+            .ThenInclude(ps => ps.ProductCategory)
+            .Include(p => p.ProductInventories)
+            .Where(p => p.ProductInventories.Any() && p.ProductSubcategory != null && p.ProductSubcategory.ProductCategory != null)
+            .Take(3).ToListAsync();
+
+            var result12 = query12.Select(p => new
             {
-                Console.WriteLine($"Product:{item.Name},Category:{item.Category},SubCategory:{item.Subcategory},Price:{item.ListPrice}");
+                p.Name,
+                InventoryCount = p.ProductInventories.Count,
+                Category = p.ProductSubcategory.ProductCategory.Name,
+            }).ToList();
+
+
+
+            var query12_1 = await _context.Products
+            .Join(_context.ProductSubcategories,
+                p => p.ProductSubcategoryId,
+                ps => ps.ProductCategoryId,
+                (p, ps) => new { p, ps }
+            )
+            .Join(_context.ProductCategories,
+                temp => temp.ps.ProductCategoryId,
+                pc => pc.ProductCategoryId,
+                (temp, pc) => new { temp.p, temp.ps, pc }
+            )
+            .Join(_context.ProductInventories,
+                temp => temp.p.ProductId,
+                pi => pi.ProductId,
+                (temp, pi) => new
+                {
+                    temp.p.Name,
+                    InventoryCount=1,
+                    Category = temp.pc.Name,
+
+                }
+            ).
+            Take(3)
+            .ToListAsync();
+
+
+            foreach (var item in query12_1)
+            {
+            Console.WriteLine($"Product: {item.Name}, Inventory: {item.InventoryCount}, Category: {item.Category}");                    // Console.WriteLine($"Product:{item.Name},Category:{item.Category},SubCategory:{item.Subcategory},Price:{item.ListPrice}");
                 // Console.WriteLine("SelectMany");
                 // Console.WriteLine($"Name:{item.Name},PID:{item.ProductId},PSC:{item.ProductSubcategory.Name}");
             }
 
-
-
-
-
             foreach (var item in query6)
-                {
-                    // Console.WriteLine($"Product: {item.Name},ProductSubCategory: {item.ProductSubcategoryId},Count:{item.Products.Count}");
-                    // Console.WriteLine($"Product: {item.Name},ProductSubCategoryName: {item.ProductSubcategory.Name}, Product Category: {item.ProductSubcategory.ProductCategory.Name} ");
-                }
+            {
+                // Console.WriteLine($"Product: {item.Name},ProductSubCategory: {item.ProductSubcategoryId},Count:{item.Products.Count}");
+                // Console.WriteLine($"Product: {item.Name},ProductSubCategoryName: {item.ProductSubcategory.Name}, Product Category: {item.ProductSubcategory.ProductCategory.Name} ");
+            }
         }
          
     }
