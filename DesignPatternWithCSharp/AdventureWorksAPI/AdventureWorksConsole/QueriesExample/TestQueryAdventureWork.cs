@@ -44,15 +44,45 @@ namespace AdventureWorksConsole.QueriesExample
             .Take(3)
             .ToListAsync();
 
+            var query7 = await _context.Products
+            .Include(p => p.ProductSubcategory)
+            .Include(p => p.ProductInventories)
+            .Take(3)
+            .ToListAsync();
+
+            var query8 = await _context.ProductSubcategories
+            .SelectMany(ps => ps.Products)
+            // .Where(p => p.Name.Contains("Bikes"))
+            .Take(3)
+            .ToListAsync();
+
+            var products = await _context.ProductCategories
+                .SelectMany(pc => pc.ProductSubcategories)
+                .SelectMany(ps => ps.Products)
+                .Take(3)
+                .ToListAsync();
+            var query9 = products.Select((p, index) => new
+            {
+                p.Name,
+                RowNum = index + 1
+            }).ToList();
+            
+            foreach (var item in query9)
+            {
+                Console.WriteLine($"Product:{item.Name},RowNum:{item.RowNum}");
+                // Console.WriteLine("SelectMany");
+                // Console.WriteLine($"Name:{item.Name},PID:{item.ProductId},PSC:{item.ProductSubcategory.Name}");
+            }
+
 
 
 
 
             foreach (var item in query6)
-            {
-                // Console.WriteLine($"Product: {item.Name},ProductSubCategory: {item.ProductSubcategoryId},Count:{item.Products.Count}");
-                Console.WriteLine($"Product: {item.Name},ProductSubCategoryName: {item.ProductSubcategory.Name}, Product Category: {item.ProductSubcategory.ProductCategory.Name} ");
-            }
+                {
+                    // Console.WriteLine($"Product: {item.Name},ProductSubCategory: {item.ProductSubcategoryId},Count:{item.Products.Count}");
+                    // Console.WriteLine($"Product: {item.Name},ProductSubCategoryName: {item.ProductSubcategory.Name}, Product Category: {item.ProductSubcategory.ProductCategory.Name} ");
+                }
         }
          
     }
