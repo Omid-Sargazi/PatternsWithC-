@@ -10,6 +10,8 @@ public class Program
         Console.WriteLine("Hello");
         // await Example1.Run();
 
-        CommonTableExpression.RunQuery();
+        // CommonTableExpression.RunQuery();
+
+        await ProductRanked.RunProductRanked();
     }
 }
