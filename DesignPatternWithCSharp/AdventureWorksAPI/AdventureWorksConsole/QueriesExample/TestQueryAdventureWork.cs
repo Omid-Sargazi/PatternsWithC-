@@ -21,9 +21,37 @@ namespace AdventureWorksConsole.QueriesExample
             .Where(p => p.ListPrice > 1000)
             .Take(3).ToListAsync();
 
-            foreach (var item in query2)
+            var query3 =await _context.Products
+            .Include(p => p.ProductInventories)
+            .Where(p=>p.ProductInventories !=null)
+            .Take(3)
+            .ToListAsync();
+
+            var query4 = await _context.ProductSubcategories
+            .Include(ps => ps.Products)
+            .Take(3)
+            .ToListAsync();
+
+            var query5 = await _context.ProductCategories
+            .Include(pc => pc.ProductSubcategories)
+            .Take(3)
+            .ToListAsync();
+
+            var query6 = await _context.Products
+            .Include(p => p.ProductSubcategory)
+            .ThenInclude(ps => ps.ProductCategory)
+            .Where(p => p.ProductSubcategory != null && p.ProductSubcategory.ProductCategory != null)
+            .Take(3)
+            .ToListAsync();
+
+
+
+
+
+            foreach (var item in query6)
             {
-                Console.WriteLine($"Product: {item.Name},ListPrice:{item.ListPrice} Subcategory: {item.ProductSubcategory.Name}");
+                // Console.WriteLine($"Product: {item.Name},ProductSubCategory: {item.ProductSubcategoryId},Count:{item.Products.Count}");
+                Console.WriteLine($"Product: {item.Name},ProductSubCategoryName: {item.ProductSubcategory.Name}, Product Category: {item.ProductSubcategory.ProductCategory.Name} ");
             }
         }
          
