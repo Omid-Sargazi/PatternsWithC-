@@ -66,10 +66,43 @@ namespace AdventureWorksConsole.QueriesExample
                 p.Name,
                 RowNum = index + 1
             }).ToList();
-            
-            foreach (var item in query9)
+
+            var query10 = await _context.Products
+            .Include(p => p.ProductSubcategory)
+            .ThenInclude(ps => ps.ProductCategory)
+            .Where(p => p.ListPrice > 500 && p.ProductSubcategory != null && p.ProductSubcategory.ProductCategory != null).Take(3)
+            .ToListAsync();
+
+            var result10 = query10.Select(q => new
             {
-                Console.WriteLine($"Product:{item.Name},RowNum:{item.RowNum}");
+                q.Name,
+                q.ListPrice,
+                Subcategory = q.ProductSubcategory.Name,
+                Category = q.ProductSubcategory.ProductCategory.Name
+            }).ToList();
+
+
+            var query11 = await _context.Products
+            .Join(_context.ProductSubcategories,
+                p => p.ProductSubcategoryId,
+                ps => ps.ProductCategoryId,
+                (p, ps) => new { p, ps }
+            ).Join(_context.ProductCategories,
+                temp => temp.ps.ProductCategoryId,
+                pc => pc.ProductCategoryId,
+                (temp, pc) => new
+                {
+                    temp.p.ListPrice,
+                    temp.p.Name,
+                    temp.ps.ProductCategoryId,
+                    Subcategory = temp.ps.Name,
+                    Category = pc.Name
+                }
+            ).Where(x => x.ListPrice > 500).OrderByDescending(x => x.ListPrice).Take(3).ToListAsync();
+            
+            foreach (var item in query11)
+            {
+                Console.WriteLine($"Product:{item.Name},Category:{item.Category},SubCategory:{item.Subcategory},Price:{item.ListPrice}");
                 // Console.WriteLine("SelectMany");
                 // Console.WriteLine($"Name:{item.Name},PID:{item.ProductId},PSC:{item.ProductSubcategory.Name}");
             }
