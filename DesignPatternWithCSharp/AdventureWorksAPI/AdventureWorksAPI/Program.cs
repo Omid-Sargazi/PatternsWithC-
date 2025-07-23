@@ -1,3 +1,4 @@
+using AdventureWorksAPI.Middlewares;
 using AdventureWorksAPI.Models;
 using AdventureWorksAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -20,9 +21,11 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseMiddleware<RequestTimeMiddleware>();
+
 if (app.Environment.IsDevelopment())
 {
-   app.UseSwagger();
+    app.UseSwagger();
     app.UseSwaggerUI();
 }
 
