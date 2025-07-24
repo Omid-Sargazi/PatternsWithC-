@@ -5,6 +5,7 @@ using AdventureWorksAPI.Models;
 using AdventureWorksAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,16 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IReportRepository, ReportRepository>();
+
+Log.Logger = new LoggerConfiguration()
+.MinimumLevel.Information()
+.WriteTo.Console()
+.WriteTo.File("logs/log-.txt", rollingInterval: RollingInterval.Day)
+.WriteTo.Seq("http://localhost:5341")
+.Enrich.FromLogContext()
+.CreateLogger();
+
+builder.Host.UseSerilog();
 
 builder.Services.AddLogging(logging =>
 {
