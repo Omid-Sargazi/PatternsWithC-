@@ -1,4 +1,5 @@
 using AdventureWorksAPI.Middlewares;
+using AdventureWorksAPI.Middlewares.ErrorHandling;
 using AdventureWorksAPI.Models;
 using AdventureWorksAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseMiddleware<EnhancedRequestTimingMiddleware>();
 // app.UseMiddleware<LoggingMiddleware>();
 app.UseMiddleware<RequestTimeMiddleware>();
