@@ -1,7 +1,9 @@
 using AdventureWorksAPI.Middlewares;
+using AdventureWorksAPI.Middlewares.AuthorizationHandlers;
 using AdventureWorksAPI.Middlewares.ErrorHandling;
 using AdventureWorksAPI.Models;
 using AdventureWorksAPI.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,12 +24,21 @@ builder.Services.AddLogging(logging =>
 });
 
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("CanDeleteProject", policy =>
+        policy.Requirements.Add(new ProjectRequirement())
+    );
+});
+
+builder.Services.AddSingleton<IAuthorizationHandler, ProjectAuthorizationHandler>();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-app.UseMiddleware<ExceptionHandlingMiddleware>();
+// app.UseMiddleware<ExceptionHandlingMiddleware>();
 // app.UseMiddleware<EnhancedRequestTimingMiddleware>();
 // app.UseMiddleware<LoggingMiddleware>();
 // app.UseMiddleware<RequestTimeMiddleware>();
@@ -55,6 +66,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseStaticFiles();
 app.UseHttpsRedirection();
+app.UseMiddleware<AuthorizationExceptionMiddleware>();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
