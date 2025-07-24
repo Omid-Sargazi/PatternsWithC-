@@ -20,12 +20,12 @@ namespace AdventureWorksAPI.Middlewares.ErrorHandling
         {
             try
             {
-                _next(context);
+                await _next(context);
             }
             catch (Exception ex)
             {
 
-                return;
+                await HandleExceptionAsync(context, ex);
             }
         }
 
@@ -36,7 +36,7 @@ namespace AdventureWorksAPI.Middlewares.ErrorHandling
 
             switch (exception)
             {
-                case ValidationException vex:
+                case ValidationExceptions vex:
                     statusCode = StatusCodes.Status400BadRequest;
                     response.Message = vex.Message;
                     response.ErrorCode = "ValidationError";

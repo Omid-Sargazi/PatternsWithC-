@@ -1,8 +1,8 @@
 namespace AdventureWorksAPI.Middlewares.ErrorHandling
 {
-    public class ValidationException : Exception
+    public class ValidationExceptions : Exception
     {
-        public ValidationException(string message) : base(message) { }
+        public ValidationExceptions(string message) : base(message) { }
     }
 
     public class NotFoundException : Exception
