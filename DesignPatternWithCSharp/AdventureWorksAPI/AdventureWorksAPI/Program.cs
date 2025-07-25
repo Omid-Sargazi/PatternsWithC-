@@ -28,6 +28,7 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
+// builder.Services.AddSingleton<IRateLimiter, InMemoryRateLimiter>();
 builder.Services.AddLogging(logging =>
 {
     logging.AddConsole();
