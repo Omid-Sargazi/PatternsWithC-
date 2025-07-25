@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using AdventureWorksAPI.Models;
 using AdventureWorksConsole.QueriesExample;
+using AdventureWorksConsole.Refelection;
 
 public class Program
 {
@@ -25,7 +26,7 @@ public class Program
         var result = nestedList.SelectMany(x => x);
         foreach (var item in result)
         {
-            Console.WriteLine(item);
+            //Console.WriteLine(item);
         }
 
         List<List<List<List<int>>>> fourLevelList = new List<List<List<List<int>>>>
@@ -53,10 +54,13 @@ public class Program
     }
 };
 
-        var result02 = fourLevelList.SelectMany(x => x.SelectMany(x=>x.SelectMany(x=>x)));
+        var result02 = fourLevelList.SelectMany(x => x.SelectMany(x => x.SelectMany(x => x)));
         foreach (var item in result02)
         {
-            Console.WriteLine($"FourList:{item}");
+            //Console.WriteLine($"FourList:{item}");
         }
+
+
+        Problem01.Run();
     }
 }

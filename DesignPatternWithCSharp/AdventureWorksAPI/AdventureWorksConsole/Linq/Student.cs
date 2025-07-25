@@ -38,7 +38,13 @@ namespace AdventureWorksConsole.Linq
                     }
                 }
             };
+
+
         }
+
+        // IEnumerable<T> SelectMany<TSource, TResult>(
+        // this IEnumerable<TSource> source,
+        // Func<TSource, IEnumerable<TResult>> selector);
 
 
         IEnumerable<string> GetAllValues(TreeNode node)
@@ -54,4 +60,7 @@ namespace AdventureWorksConsole.Linq
         public List<TreeNode> Children = new List<TreeNode>();
 
     }
+
+
+
 }
