@@ -11,5 +11,11 @@ namespace AdventureWorksAPI.Controllers
 
         [HttpGet("ok")]
         public IActionResult OkMessage() => Ok("all things is good");
+
+        [HttpGet("ping")]
+        public IActionResult Ping()
+        {
+            return Ok("Pong");
+        }
     }
 }

@@ -52,6 +52,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 app.UseMiddleware<JwtMiddleware>();
+app.UseMiddleware<RateLimitMiddleware>();
 
 app.UseMiddleware<ExceptionHandlingMiddlewaree>();
 // app.UseMiddleware<ExceptionHandlingMiddleware>();
