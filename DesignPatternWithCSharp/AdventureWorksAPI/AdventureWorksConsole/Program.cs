@@ -61,6 +61,6 @@ public class Program
         }
 
 
-        Problem02.Run();
+        Problem03.Run();
     }
 }
