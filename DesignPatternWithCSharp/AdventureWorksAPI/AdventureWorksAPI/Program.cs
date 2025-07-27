@@ -1,3 +1,4 @@
+using AdventureWorksAPI.CleanMiddleware;
 using AdventureWorksAPI.Middlewares;
 using AdventureWorksAPI.Middlewares.AuthorizationHandlers;
 using AdventureWorksAPI.Middlewares.ErrorHandling;
@@ -50,6 +51,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandlingMiddlewaree>();
 // app.UseMiddleware<ExceptionHandlingMiddleware>();
 // app.UseMiddleware<EnhancedRequestTimingMiddleware>();
 // app.UseMiddleware<LoggingMiddleware>();
@@ -78,7 +81,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseStaticFiles();
 app.UseHttpsRedirection();
-app.UseMiddleware<AuthorizationExceptionMiddleware>();
+// app.UseMiddleware<AuthorizationExceptionMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
