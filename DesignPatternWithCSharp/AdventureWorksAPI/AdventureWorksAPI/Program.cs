@@ -51,6 +51,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.UseMiddleware<JwtMiddleware>();
 
 app.UseMiddleware<ExceptionHandlingMiddlewaree>();
 // app.UseMiddleware<ExceptionHandlingMiddleware>();
